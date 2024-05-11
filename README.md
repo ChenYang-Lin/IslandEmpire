@@ -1,3 +1,3 @@
 # IslandEmpire
 
-https://islandempire.onrender.com
+https://islandempire.netlify.app/
