@@ -21,8 +21,12 @@ export default class Resource extends Phaser.Physics.Arcade.Sprite {
         this.setOffset(ENTITY_DATA[resourceType].offsetX, ENTITY_DATA[resourceType].offsetY);
 
         if (ENTITY_DATA[resourceType].hasSecondPart){
-            this.createSecondPart()
+            this.createSecondPart();
+            this.hasSecondPart = true;
         }
+
+        this.maxHP = ENTITY_DATA[resourceType].maxHP;
+        this.hp = this.maxHP;
     }
 
     static preload(scene) {
@@ -33,5 +37,21 @@ export default class Resource extends Phaser.Physics.Arcade.Sprite {
         this.secondPart = this.scene.add.sprite(this.x, this.y, "resource", "tree_top")
         this.secondPart.depth = this.depth;
         this.secondPart.y -= 55;
+    }
+
+    onHit(damage) {
+        this.hp -= damage;
+        console.log(this.hp)
+        console.log(this.hasSecondPart, this.maxHP / 2)
+        if (this.hasSecondPart && this.hp < this.maxHP / 2) {
+            this.secondPart.destroy();
+        }
+        if (this.hp <= 0) {
+            this.onDeath();
+        }
+    }
+
+    onDeath() {
+        this.destroy();
     }
 }

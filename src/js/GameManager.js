@@ -30,8 +30,14 @@ export default class GameManager {
 
                 ],
             },
+            "0,3": {
+                isLand: true,
+                entities: [
+
+                ],
+            },
             "1,0": {
-                isLand: false,
+                isLand: true,
                 entities: [
 
                 ],
@@ -43,6 +49,12 @@ export default class GameManager {
                 ],
             },
             "1,2": {
+                isLand: true,
+                entities: [
+
+                ],
+            },
+            "1,3": {
                 isLand: true,
                 entities: [
 
@@ -66,10 +78,45 @@ export default class GameManager {
 
                 ],
             },
+            "2,3": {
+                isLand: true,
+                entities: [
+
+                ],
+            },
+            "3,0": {
+                isLand: true,
+                entities: [
+                    
+                ],
+            },
+            "3,1": {
+                isLand: true,
+                entities: [
+
+                ],
+            },
+            "3,2": {
+                isLand: true,
+                entities: [
+
+                ],
+            },
+            "3,3": {
+                isLand: true,
+                entities: [
+
+                ],
+            },
         }
     }
 
     initWorld() {
+        // for (let i = 0; i < 20; i++) {
+        //     for (let j = 0; j < 20; j++) {
+
+        //     }
+        // }
         for (const [key, value] of Object.entries(this.map)) {
             // console.log(`${key}: ${value}`)
 

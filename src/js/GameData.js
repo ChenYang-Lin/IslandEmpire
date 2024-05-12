@@ -38,6 +38,7 @@ const ENTITY_DATA = {
         offsetX: 0,
         offsetY: 32,
         hasSecondPart: true,
+        maxHP: 10,
     },
     bush: {
         type: "resource",
@@ -47,6 +48,7 @@ const ENTITY_DATA = {
         height: 32,
         offsetX: 0,
         offsetY: 0,
+        maxHP:5,
     },
     rock: {
         type: "resource",
@@ -56,6 +58,7 @@ const ENTITY_DATA = {
         height: 32,
         offsetX: 0,
         offsetY: 0,
+        maxHP:5,
     },
 }
 

@@ -10,6 +10,8 @@ export default class AnimationController {
 
         this.initAnimationListeners();
 
+        this.player.swordTouching = [];
+
     }
 
     initAnimationListeners() {
@@ -21,6 +23,7 @@ export default class AnimationController {
         this.player.on("animationcomplete_attack", () => {
             this.player.inAction = false;
             this.player.swordHitbox.destroy();
+            this.player.swordTouching = [];
         })
     }
 
@@ -55,6 +58,13 @@ export default class AnimationController {
 
         this.player.swordHitbox = this.scene.physics.add.image(x, y);
         this.player.swordHitbox.setSize(32, 32);
+
+        this.scene.physics.add.overlap(this.player.swordHitbox, this.scene.resourceCollidersGroup, (player, resource) => {
+            if (this.player.swordTouching.includes(resource))
+                return;
+            this.player.swordTouching.push(resource);
+            resource.onHit(1);
+        });
     }
 
     move(velocity, direction) {
