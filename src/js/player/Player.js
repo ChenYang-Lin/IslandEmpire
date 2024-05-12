@@ -1,4 +1,5 @@
 import AnimationController from "./AnimationController.js";
+import Hitbox from "./HitBox.js";
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
     constructor(scene) {
@@ -23,13 +24,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         
         this.touching = [];
     
-
+        // Player parts
+        this.animationController = new AnimationController(this.scene, this);
+        this.hitbox = new Hitbox(this.scene, this);
+        
         // Player stats
         this.speed = 150;
         this.attackDmg = 1;
-
-        this.animationController = new AnimationController(this.scene, this);
-
         
 
     }

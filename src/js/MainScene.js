@@ -1,6 +1,6 @@
 import GameManager from "./GameManager.js";
-import InputController from "./InputController.js";
-import Player from "./Player.js";
+import InputController from "./player/InputController.js";
+import Player from "./player/Player.js";
 import Resource from "./Resource.js";
 
 
@@ -21,10 +21,10 @@ export default class MainScene extends Phaser.Scene {
     }
 
     create() {
-        this.inputController = new InputController(this);
         this.gameManager = new GameManager(this);
         this.gameManager.initWorld();
         this.player = new Player(this);
+        this.inputController = new InputController(this, this.player);
 
         this.cameras.main.startFollow(this.player);
         // this.cameras.main.setLerp(0.3, 0.3);

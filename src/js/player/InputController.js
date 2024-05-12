@@ -1,8 +1,9 @@
 
 
 export default class InputController {
-    constructor(scene) {
+    constructor(scene, player) {
         this.scene = scene;
+        this.player = player;
         this.cursor = this.scene.input.keyboard.createCursorKeys();
         this.keyJ = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.J);
     }
@@ -34,13 +35,13 @@ export default class InputController {
 
         velocity.normalize();
 
-        this.scene.player.animationController.move(velocity, direction);
+        this.player.animationController.move(velocity, direction);
 
     }
 
     actionsController() {
         if (this.keyJ.isDown) {
-            this.scene.player.animationController.attack();
+            this.player.animationController.attack();
         }
     }
 
