@@ -16,6 +16,7 @@ export default class MainScene extends Phaser.Scene {
         Player.preload(this);
         Resource.preload(this);
 
+        this.load.atlas("item", "assets/item.png", "assets/item_atlas.json");
         this.load.atlas("land", "assets/land.png", "assets/land_atlas.json");
 
     }
@@ -40,8 +41,6 @@ export default class MainScene extends Phaser.Scene {
             console.log(this.player.touching)
         });
 
-        
-        
 
         
     }

@@ -38,7 +38,11 @@ const ENTITY_DATA = {
         offsetX: 0,
         offsetY: 32,
         hasSecondPart: true,
-        maxHP: 10,
+        maxHP: 1,
+        drops: [
+            "wood",
+            "wood",
+        ],
     },
     bush: {
         type: "resource",
@@ -48,7 +52,10 @@ const ENTITY_DATA = {
         height: 32,
         offsetX: 0,
         offsetY: 0,
-        maxHP:5,
+        maxHP: 1,
+        drops: [
+            "fiber",
+        ],
     },
     rock: {
         type: "resource",
@@ -58,7 +65,38 @@ const ENTITY_DATA = {
         height: 32,
         offsetX: 0,
         offsetY: 0,
-        maxHP:5,
+        maxHP: 1,
+        drops: [
+            "stone",
+            "stone",
+        ]
+    },
+    wood: {
+        type: "item",
+        repositionedX: 0,
+        repositionedY: 0,
+        width: 32,
+        height: 32,
+        offsetX: 0,
+        offsetY: 0,
+    },
+    fiber: {
+        type: "item",
+        repositionedX: 0,
+        repositionedY: 0,
+        width: 32,
+        height: 32,
+        offsetX: 0,
+        offsetY: 0,
+    },
+    stone: {
+        type: "item",
+        repositionedX: 0,
+        repositionedY: 0,
+        width: 32,
+        height: 32,
+        offsetX: 0,
+        offsetY: 0,
     },
 }
 

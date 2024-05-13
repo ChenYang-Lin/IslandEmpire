@@ -1,36 +1,43 @@
+import Drops from "./Drops.js";
 import { ENTITY_DATA } from "./GameData.js";
 
 export default class Resource extends Phaser.Physics.Arcade.Sprite {
 
-    constructor(scene, x, y, texture, resourceType) {
-        super(scene, x, y, texture, resourceType);
+    constructor(scene, x, y, texture, name) {
+        super(scene, x, y, texture, name);
 
         this.scene = scene;
-        // this.setScale(0.8)
-        // this.depth = this.y - ENTITY_DATA[resourceType].repositionedY
         this.depth = this.y;
+        
 
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
 
-        this.name = resourceType;
+        this.name = name;
 
-        this.x += ENTITY_DATA[resourceType].repositionedX;
-        this.y += ENTITY_DATA[resourceType].repositionedY;
-        this.setSize(ENTITY_DATA[resourceType].width, ENTITY_DATA[resourceType].height);
-        this.setOffset(ENTITY_DATA[resourceType].offsetX, ENTITY_DATA[resourceType].offsetY);
+        this.x += ENTITY_DATA[this.name].repositionedX;
+        this.y += ENTITY_DATA[this.name].repositionedY;
+        this.setSize(ENTITY_DATA[this.name].width, ENTITY_DATA[this.name].height);
+        this.setOffset(ENTITY_DATA[this.name].offsetX, ENTITY_DATA[this.name].offsetY);
 
-        if (ENTITY_DATA[resourceType].hasSecondPart){
+        if (ENTITY_DATA[this.name].hasSecondPart){
             this.createSecondPart();
             this.hasSecondPart = true;
         }
 
-        this.maxHP = ENTITY_DATA[resourceType].maxHP;
+        this.maxHP = ENTITY_DATA[this.name].maxHP;
         this.hp = this.maxHP;
     }
 
     static preload(scene) {
         scene.load.atlas("resource", "assets/resource.png", "assets/resource_atlas.json")
+    }
+
+    get position() {
+        return {
+            x: this.x - ENTITY_DATA[this.name].repositionedX,
+            y: this.y - ENTITY_DATA[this.name].repositionedY,
+        }
     }
 
     createSecondPart() {
@@ -52,6 +59,10 @@ export default class Resource extends Phaser.Physics.Arcade.Sprite {
     }
 
     onDeath() {
+        ENTITY_DATA[this.name].drops.forEach((name) => {
+            console.log(this.position.x, this.position.y)
+            let drops = new Drops(this.scene, this.position.x, this.position.y, "item", name);
+        })
         this.destroy();
     }
 }
