@@ -8,39 +8,19 @@ export default class InputController {
         this.keyJ = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.J);
 
 
-        this.joyLeft = false;
-        this.joyRight = false;
-        this.joyUp = false;
-        this.joyDown = false;
+        // this.joyLeft = false;
+        // this.joyRight = false;
+        // this.joyUp = false;
+        // this.joyDown = false;
 
-        this.joyStick;
-        this.createJoyStick();
+        // this.joyStick;
+        // this.createJoyStick();
 
-        window.addEventListener('resize', () => {
-            this.joyStick.x = 150;
-            this.joyStick.y = this.scene.sys.game.canvas.height - 150;
-        });
+        // window.addEventListener('resize', () => {
+        //     this.joyStick.x = 150;
+        //     this.joyStick.y = this.scene.sys.game.canvas.height - 150;
+        // });
 
-        this.scene.input.on("wheel",  (pointer, gameObjects, deltaX, deltaY, deltaZ) => {
-
-            if (deltaY > 0) {
-                var newZoom = this.scene.camera.zoom -.1;
-                if (newZoom > 0.5) {
-                    this.scene.camera.zoom = newZoom;     
-                }
-            }
-          
-            if (deltaY < 0) {
-                var newZoom = this.scene.camera.zoom +.1;
-                if (newZoom < 2.5) {
-                    this.scene.camera.zoom = newZoom;     
-                }
-            }
-    
-            // this.camera.centerOn(pointer.worldX, pointer.worldY);
-            // this.camera.pan(pointer.worldX, pointer.worldY, 2000, "Power2");
-          
-          });
 
     }
 
