@@ -16,6 +16,7 @@ export default class MainScene extends Phaser.Scene {
         Player.preload(this);
         Resource.preload(this);
 
+        this.load.plugin('rexvirtualjoystickplugin', "js/utils/rexvirtualjoystickplugin.min.js", true);
         this.load.atlas("item", "assets/item.png", "assets/item_atlas.json");
         this.load.atlas("land", "assets/land.png", "assets/land_atlas.json");
 
