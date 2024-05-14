@@ -28,9 +28,7 @@ export default class MainScene extends Phaser.Scene {
         this.player = new Player(this);
         this.inputController = new InputController(this, this.player);
 
-        this.cameras.main.startFollow(this.player);
-        // this.cameras.main.setLerp(0.3, 0.3);
-        this.cameras.roundPixels = true;
+
 
         this.physics.add.collider(this.player, this.landCollidersGroup);
         this.physics.add.collider(this.player, this.resourceCollidersGroup);
@@ -42,7 +40,10 @@ export default class MainScene extends Phaser.Scene {
             console.log(this.player.touching)
         });
 
-
+        this.camera = this.cameras.main;
+        this.camera.startFollow(this.player);
+        this.camera.setLerp(0.3, 0.3);
+        this.camera.roundPixels = true;
         
     }
 

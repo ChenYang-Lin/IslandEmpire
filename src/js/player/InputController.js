@@ -21,6 +21,27 @@ export default class InputController {
             this.joyStick.y = this.scene.sys.game.canvas.height - 150;
         });
 
+        this.scene.input.on("wheel",  (pointer, gameObjects, deltaX, deltaY, deltaZ) => {
+
+            if (deltaY > 0) {
+                var newZoom = this.scene.camera.zoom -.1;
+                if (newZoom > 0.5) {
+                    this.scene.camera.zoom = newZoom;     
+                }
+            }
+          
+            if (deltaY < 0) {
+                var newZoom = this.scene.camera.zoom +.1;
+                if (newZoom < 2.5) {
+                    this.scene.camera.zoom = newZoom;     
+                }
+            }
+    
+            // this.camera.centerOn(pointer.worldX, pointer.worldY);
+            // this.camera.pan(pointer.worldX, pointer.worldY, 2000, "Power2");
+          
+          });
+
     }
 
     createJoyStick() {
