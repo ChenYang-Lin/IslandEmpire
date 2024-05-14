@@ -15,12 +15,18 @@ export default class InputController {
 
         this.joyStick;
         this.createJoyStick();
+
+        window.addEventListener('resize', () => {
+            this.joyStick.x = 150;
+            this.joyStick.y = this.scene.sys.game.canvas.height - 150;
+        });
+
     }
 
     createJoyStick() {
         this.joyStick = this.scene.plugins.get('rexvirtualjoystickplugin').add(this.scene, {
-            x: 400,
-            y: 700,
+            x: 150,
+            y: this.scene.sys.game.canvas.height - 150,
             radius: 100,
             base: this.scene.add.circle(0, 0, 100, 0x888888),
             thumb: this.scene.add.circle(0, 0, 50, 0xcccccc),
@@ -35,6 +41,8 @@ export default class InputController {
             this.joyRight = cursorKeys.right.isDown;
             this.joyUp = cursorKeys.up.isDown;
             this.joyDown = cursorKeys.down.isDown;
+            console.log(window.innerWidth);
+            // this.joyStick.x = 400;
         }, this);
 
     }

@@ -4,12 +4,11 @@ import MainScene from "./MainScene.js";
 const config = {
     type: Phaser.AUTO,
     scale: {
-        // mode: Phaser.Scale.FIT,
+        mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
-
     },
-    backgroundColor: "#6ab7d7",
-    // backgroundColor: "#000000",
+    // backgroundColor: "#6ab7d7",
+    backgroundColor: "#000000",
     width: 1920,
     height: 1080,
     parent: "skyland",
