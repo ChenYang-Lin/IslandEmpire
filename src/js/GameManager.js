@@ -8,6 +8,7 @@ export default class GameManager {
 
         this.scene.landCollidersGroup = this.scene.physics.add.group({ immovable: true });
         this.scene.resourceCollidersGroup = this.scene.physics.add.group({ immovable: true });
+        this.scene.dropsCollidersGroup = this.scene.physics.add.group({ immovable: true });
 
         this.executedGrids = [];
 
@@ -133,7 +134,6 @@ export default class GameManager {
         entities.forEach((entity) => {
             if (ENTITY_DATA[entity].type === "resource"){
                 let resource = new Resource(this.scene, x, y, "resource", entity);
-                this.scene.resourceCollidersGroup.add(resource);
             }
         })
     }

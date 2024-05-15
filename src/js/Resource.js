@@ -27,6 +27,9 @@ export default class Resource extends Phaser.Physics.Arcade.Sprite {
 
         this.maxHP = ENTITY_DATA[this.name].maxHP;
         this.hp = this.maxHP;
+
+        
+        this.scene.resourceCollidersGroup.add(this);
     }
 
     static preload(scene) {
@@ -40,6 +43,13 @@ export default class Resource extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
+    get positionOnGrid() {
+        return {
+            x: (this.x - ENTITY_DATA[this.name].repositionedX) / 32,
+            y: (this.y - ENTITY_DATA[this.name].repositionedY) / 32,
+        }
+    }
+
     createSecondPart() {
         this.secondPart = this.scene.add.sprite(this.x, this.y, "resource", "tree_top")
         this.secondPart.depth = this.depth;
@@ -48,8 +58,8 @@ export default class Resource extends Phaser.Physics.Arcade.Sprite {
 
     onHit(damage) {
         this.hp -= damage;
-        console.log(this.hp)
-        console.log(this.hasSecondPart, this.maxHP / 2)
+        // console.log(this.hp)
+        // console.log(this.hasSecondPart, this.maxHP / 2)
         if (this.hasSecondPart && this.hp < this.maxHP / 2) {
             this.secondPart.destroy();
         }
@@ -61,6 +71,7 @@ export default class Resource extends Phaser.Physics.Arcade.Sprite {
     onDeath() {
         ENTITY_DATA[this.name].drops.forEach((name) => {
             console.log(this.position.x, this.position.y)
+            console.log(this.positionOnGrid.x, this.positionOnGrid.y)
             let drops = new Drops(this.scene, this.position.x, this.position.y, "item", name);
         })
         this.destroy();

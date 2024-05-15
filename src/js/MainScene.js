@@ -37,7 +37,9 @@ export default class MainScene extends Phaser.Scene {
             if (this.player.touching.includes(resource))
                 return;
             this.player.touching.push(resource);
-            console.log(this.player.touching)
+        });
+        this.physics.add.overlap(this.player, this.dropsCollidersGroup, (player, drops) => {
+            drops.destroy();
         });
 
         this.camera = this.cameras.main;
