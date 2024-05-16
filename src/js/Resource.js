@@ -72,7 +72,7 @@ export default class Resource extends Phaser.Physics.Arcade.Sprite {
         ENTITY_DATA[this.name].drops.forEach((name) => {
             console.log(this.position.x, this.position.y)
             console.log(this.positionOnGrid.x, this.positionOnGrid.y)
-            let drops = new Drops(this.scene, this.position.x, this.position.y, "item", name);
+            let drops = new Drops(this.scene, this.position.x + Math.floor(Math.random() * 20), this.position.y + Math.floor(Math.random() * 20), "item", name);
         })
         this.destroy();
     }

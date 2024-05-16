@@ -1,4 +1,5 @@
 import GameManager from "./GameManager.js";
+import Inventory from "./Inventory.js";
 import InputController from "./player/InputController.js";
 import Player from "./player/Player.js";
 import Resource from "./Resource.js";
@@ -26,6 +27,7 @@ export default class MainScene extends Phaser.Scene {
         this.gameManager = new GameManager(this);
         this.gameManager.initWorld();
         this.player = new Player(this);
+        this.inventory = new Inventory(this);
         this.inputController = new InputController(this, this.player);
 
 
@@ -33,13 +35,14 @@ export default class MainScene extends Phaser.Scene {
         this.physics.add.collider(this.player, this.landCollidersGroup);
         this.physics.add.collider(this.player, this.resourceCollidersGroup);
         
+        this.physics.add.overlap(this.player, this.dropsCollidersGroup, (player, drops) => {
+            this.inventory.addItem(drops.name, 1);
+            drops.destroy();
+        });
         this.physics.add.overlap(this.player.sensor, this.resourceCollidersGroup, (player, resource) => {
             if (this.player.touching.includes(resource))
                 return;
             this.player.touching.push(resource);
-        });
-        this.physics.add.overlap(this.player, this.dropsCollidersGroup, (player, drops) => {
-            drops.destroy();
         });
 
         this.camera = this.cameras.main;
