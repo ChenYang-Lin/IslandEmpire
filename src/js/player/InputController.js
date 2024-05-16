@@ -18,6 +18,7 @@ export default class InputController {
 
         window.addEventListener('resize', () => {
             // this.scene.sys.game.scale.setParentSize(window.innerWidth, window.innerHeight); // make sure game is not overflow in ios safari.
+            document.getElementById("island-empire").style.minHeight = window.innerHeight + "px"
             this.joyStick.x = 150;
             this.joyStick.y = this.scene.sys.game.canvas.height - 150;
         });
