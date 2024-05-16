@@ -24,7 +24,6 @@ export default class MainScene extends Phaser.Scene {
     }
 
     create() {
-
         this.gameManager = new GameManager(this);
         this.gameManager.initWorld();
         this.player = new Player(this);
