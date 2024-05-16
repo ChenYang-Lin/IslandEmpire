@@ -49,6 +49,8 @@ export default class MainScene extends Phaser.Scene {
         this.camera.startFollow(this.player);
         this.camera.setLerp(0.3, 0.3);
         this.camera.roundPixels = true;
+
+        // this.scale.setParentSize(window.innerWidth, window.innerHeight);
         
     }
 
