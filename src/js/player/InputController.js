@@ -17,7 +17,7 @@ export default class InputController {
         this.createJoyStick();
 
         window.addEventListener('resize', () => {
-            this.scene.sys.game.scale.setParentSize(window.innerWidth, window.innerHeight); // make sure game is not overflow in ios safari.
+            // this.scene.sys.game.scale.setParentSize(window.innerWidth, window.innerHeight); // make sure game is not overflow in ios safari.
             this.joyStick.x = 150;
             this.joyStick.y = this.scene.sys.game.canvas.height - 150;
         });
