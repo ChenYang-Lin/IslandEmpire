@@ -7,4 +7,21 @@
 body {
     width: 100%;
     height: 100%;
+    overflow: hidden;
+}
+
+#hud {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* background-color: blue;
+    opacity: 0.5; */
+}
+
+#attack {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
 }

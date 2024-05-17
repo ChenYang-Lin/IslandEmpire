@@ -1,4 +1,5 @@
 import GameManager from "./GameManager.js";
+import HUD from "./HUD.js";
 import Inventory from "./Inventory.js";
 import InputController from "./player/InputController.js";
 import Player from "./player/Player.js";
@@ -31,6 +32,7 @@ export default class MainScene extends Phaser.Scene {
         this.player = new Player(this);
         this.inventory = new Inventory(this);
         this.inputController = new InputController(this, this.player);
+        this.hud = new HUD(this);
 
 
 

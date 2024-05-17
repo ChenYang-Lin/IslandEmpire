@@ -13,7 +13,7 @@ const config = {
     height: 540,
     // width: 1920,
     // height: 1080,
-    parent: "skyland",
+    parent: "island-empire",
     scene: MainScene,
     pixelArt: true,
     physics: {
@@ -26,3 +26,4 @@ const config = {
 };
 
 const game = new Phaser.Game(config);
+
