@@ -25,6 +25,17 @@ export default class InputController {
             this.joyStick.y = this.scene.sys.game.canvas.height - 150;
         });
 
+        this.initMobileBtns();
+
+
+    }
+
+    initMobileBtns() {
+        let attackBtn = document.getElementById("attack-btn")
+        attackBtn.addEventListener("click", () => {
+            console.log("attack")
+            this.playAttackAnim();
+        })
     }
 
     createJoyStick() {
@@ -83,15 +94,15 @@ export default class InputController {
 
     }
 
-    actionsController() {
-        if (this.keyJ.isDown) {
-            this.player.animationController.attack();
-        }
+    playAttackAnim() {
+        this.player.animationController.attack(); 
     }
 
     update() {
         this.movementController();
-        this.actionsController();
+        if (this.keyJ.isDown) {
+            this.playAttackAnim();
+        }
     
     }
 }
