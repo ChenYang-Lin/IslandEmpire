@@ -29,7 +29,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.hitbox = new Hitbox(this.scene, this);
         
         // Player stats
-        this.speed = 150;
+        this.speed = 96;
         this.attackDmg = 1;
         
 

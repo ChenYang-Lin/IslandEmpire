@@ -1,3 +1,4 @@
+import InventoryWindow from "./InventoryWindow.js";
 
 
 export default class Inventory {
@@ -8,6 +9,9 @@ export default class Inventory {
             "stone": 2,
         }
         this.inventoryOrder = ["stone"];
+        this.inventoryOrder[3] = "wood";
+
+        this.inventoryWindow = new InventoryWindow(this);
     }
 
     addItem(name, quantity) {

@@ -1,6 +1,6 @@
 import GameManager from "./GameManager.js";
 import HUD from "./HUD.js";
-import Inventory from "./Inventory.js";
+import Inventory from "./inventory/Inventory.js";
 import InputController from "./player/InputController.js";
 import Player from "./player/Player.js";
 import Resource from "./Resource.js";
