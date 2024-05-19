@@ -35,7 +35,7 @@ body {
 }
 
 #attack-btn-icon {
-    max-width:70%;
+    max-width: 50px;
 }
 
 
@@ -53,11 +53,25 @@ body {
 }
 
 .inventory-slot {
+    position: relative;
     background-color: rgb(168, 101, 0);
     width: 32px;
-    height: 32px;
+    height: 42px;
     margin: 2px;
     text-align: center;
     line-height: 75px;
     font-size: 30px;
+}
+
+.inventory-slot-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+}
+
+.inventory-slot-quantity-text {
+    font-size: 12px;
+    color: white;
 }
