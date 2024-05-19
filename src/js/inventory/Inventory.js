@@ -5,13 +5,13 @@ export default class Inventory {
     constructor(scene) {
         this.scene = scene;
 
+        this.inventorySize = 8;
         this.inventory = {
             "stone": 2,
         }
         this.inventoryOrder = ["stone"];
-        this.inventoryOrder[3] = "wood";
 
-        this.inventoryWindow = new InventoryWindow(this);
+        this.inventoryWindow = new InventoryWindow(this.scene, this);
     }
 
     addItem(name, quantity) {
@@ -24,6 +24,7 @@ export default class Inventory {
             this.inventoryOrder.push(name);
         }
         console.log(this.inventory, this.inventoryOrder);
+        this.inventoryWindow.createInventoryWindow();
     }
 
 }
