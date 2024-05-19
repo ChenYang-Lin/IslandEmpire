@@ -21,8 +21,8 @@ export default class InputController {
             this.scene.hud.initHUD();
 
             this.scene.sys.game.scale.setParentSize(window.innerWidth, window.innerHeight); // make sure game is not overflow in ios safari.
-            this.joyStick.x = 150;
-            this.joyStick.y = this.scene.sys.game.canvas.height - 150;
+            this.joyStick.x = 100;
+            this.joyStick.y = this.scene.sys.game.canvas.height - 100;
         });
 
         this.initMobileBtns();
@@ -40,11 +40,11 @@ export default class InputController {
 
     createJoyStick() {
         this.joyStick = this.scene.plugins.get('rexvirtualjoystickplugin').add(this.scene, {
-            x: 150,
-            y: this.scene.sys.game.canvas.height - 150,
-            radius: 100,
-            base: this.scene.add.circle(0, 0, 100, 0x888888),
-            thumb: this.scene.add.circle(0, 0, 50, 0xcccccc),
+            x: 100,
+            y: this.scene.sys.game.canvas.height - 100,
+            radius: 70,
+            base: this.scene.add.circle(0, 0, 70, 0x888888),
+            thumb: this.scene.add.circle(0, 0, 20, 0xcccccc),
             // dir: '8dir',   // 'up&down'|0|'left&right'|1|'4dir'|2|'8dir'|3
             // forceMin: 16,
             // enable: true
