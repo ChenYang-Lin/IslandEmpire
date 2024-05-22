@@ -8,6 +8,13 @@ export default class HUD {
     }
 
     initHUD() {
+        this.windowSizeSynchronization();
+        
+        
+    }
+
+    windowSizeSynchronization() {
+        // Make sure the size of HUD window is same as game size.
         let islandEmpire = document.getElementById("island-empire").children[0];
         let hud = document.getElementById("hud");
         hud.style.display = "none"
@@ -18,7 +25,6 @@ export default class HUD {
             hud.style.width = window.getComputedStyle(islandEmpire).width;
             hud.style.height = window.getComputedStyle(islandEmpire).height;
             hud.style.display = "block"
-        }, 500);
-        
+        }, 50);
     }
 }

@@ -106,7 +106,7 @@ export default class GameManager {
             "3,3": {
                 isLand: true,
                 entities: [
-
+                    "bush"
                 ],
             },
         }
