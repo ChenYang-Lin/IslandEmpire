@@ -83,3 +83,12 @@ body {
     color: white;
     text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
 }
+
+#fps {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 12px;
+    color: white;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}

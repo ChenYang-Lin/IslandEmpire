@@ -61,6 +61,7 @@ export default class MainScene extends Phaser.Scene {
     update() {
         this.player.update();
         this.inputController.update();
+        this.hud.update();
 
         // this.getMousePosition();
     }

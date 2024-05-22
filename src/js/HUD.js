@@ -27,4 +27,15 @@ export default class HUD {
             hud.style.display = "block"
         }, 50);
     }
+
+    renderCurrentFPS() {
+        let fps = Math.floor(this.scene.sys.game.loop.actualFps);
+        
+        let fpsDiv = document.getElementById("fps");
+        fpsDiv.innerHTML = `FPS: ${fps}`;
+    }
+
+    update() {
+        this.renderCurrentFPS();
+    }   
 }
