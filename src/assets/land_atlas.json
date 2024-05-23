@@ -1,7 +1,7 @@
 {
     "frames": [
         {
-            "filename": "land",
+            "filename": "land_all",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -105,7 +105,7 @@
             }
         },
         {
-            "filename": "land_none",
+            "filename": "land",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -235,7 +235,7 @@
             }
         },
         {
-            "filename": "land_rb_bl_lt",
+            "filename": "land_rb_bl",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -248,7 +248,7 @@
             }
         },
         {
-            "filename": "land_rb_bl",
+            "filename": "land_rb_bl_lt",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -391,7 +391,7 @@
             }
         },
         {
-            "filename": "land_t_r_l",
+            "filename": "land_t_r_bl",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -404,7 +404,7 @@
             }
         },
         {
-            "filename": "land_t_r_bl",
+            "filename": "land_t_r_l",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -521,7 +521,7 @@
             }
         },
         {
-            "filename": "land_tr_bl_lt",
+            "filename": "land_tr_lt",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -534,7 +534,7 @@
             }
         },
         {
-            "filename": "land_tr_l",
+            "filename": "land_tr_rb",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -547,7 +547,7 @@
             }
         },
         {
-            "filename": "land_tr_lt",
+            "filename": "land_tr_bl_lt",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -560,7 +560,7 @@
             }
         },
         {
-            "filename": "land_tr_rb_bl",
+            "filename": "land_tr_l",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -573,7 +573,7 @@
             }
         },
         {
-            "filename": "land_tr_rb",
+            "filename": "land_tr_rb_bl",
             "frame": {
                 "w": 32,
                 "h": 32,

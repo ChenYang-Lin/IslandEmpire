@@ -109,28 +109,41 @@ export default class WorldManager {
                     "bush"
                 ],
             },
+            "-3,3": {
+                isLand: true,
+                entities: [
+                    "bush"
+                ],
+            },
         }
     }
 
     initWorld() {
-        // for (let i = 0; i < 20; i++) {
-        //     for (let j = 0; j < 20; j++) {
-
-        //     }
-        // }
-        for (const [key, value] of Object.entries(this.map)) {
-            // console.log(`${key}: ${value}`)
-
-
-            let x = key.split(",")[0] * 32;
-            let y = key.split(",")[1] * 32;
-
-            this.createLand(x, y);
-            this.createEntities(x, y, value.entities);
+        for (let gridY = -20; gridY < 20; gridY++) {
+            for (let gridX = -20; gridX < 20; gridX++) {
+                if (this.map[`${gridX},${gridY}`] && this.map[`${gridX},${gridY}`].isLand) {
+                    this.createLand(gridX, gridY);
+                    this.createEntities(gridX, gridY, this.map[`${gridX},${gridY}`].entities)
+                } else {
+                    this.createSurroundingLand(gridX, gridY);
+                }
+            }
         }
+        // for (const [key, value] of Object.entries(this.map)) {
+        //     // console.log(`${key}: ${value}`)
+
+
+        //     let x = key.split(",")[0] * 32;
+        //     let y = key.split(",")[1] * 32;
+
+        //     this.createLand(x, y);
+        //     this.createEntities(x, y, value.entities);
+        // }
     }
 
-    createEntities(x, y, entities) {
+    createEntities(gridX, gridY, entities) {
+        let x = gridX * 32;
+        let y = gridY * 32;
         entities.forEach((entity) => {
             if (ENTITY_DATA[entity].type === "resource"){
                 let resource = new Resource(this.scene, x, y, "resource", entity);
@@ -138,35 +151,23 @@ export default class WorldManager {
         })
     }
 
-    createLand(x, y) {
-        let gridX = x / 32;
-        let gridY = y / 32;
+    createLand(gridX, gridY) {
+        let x = gridX * 32;
+        let y = gridY * 32;
 
         if (!this.map[`${gridX},${gridY}`]?.isLand) {
             return;
         }
 
-        let landSprite = "land";
+        let landSprite = "land_all";
 
         let land = this.scene.add.sprite(x, y, "land", landSprite);
         land.depth = y - 10000;
 
-        this.createSurroundingLand(gridX-1, gridY-1);
-        this.createSurroundingLand(gridX, gridY-1);
-        this.createSurroundingLand(gridX+1, gridY-1);
-        this.createSurroundingLand(gridX-1, gridY);
-        this.createSurroundingLand(gridX+1, gridY);
-        this.createSurroundingLand(gridX-1, gridY+1);
-        this.createSurroundingLand(gridX, gridY+1);
-        this.createSurroundingLand(gridX+1, gridY+1);
 
     }
 
     createSurroundingLand(gridX, gridY) {
-        // Skip if current grid is land or if it has been executed by other land
-        if ((this.map[`${gridX},${gridY}`] && this.map[`${gridX},${gridY}`].isLand) || this.executedGrids.includes(`${gridX},${gridY}`)) {
-            return;
-        }
         
         let x = gridX * 32;
         let y = gridY * 32;
@@ -215,14 +216,13 @@ export default class WorldManager {
             landSprite += "_lt"
         } 
 
-        this.executedGrids.push(`${gridX},${gridY}`);
-
-
         let land = this.scene.add.sprite(x, y, "land", landSprite);
         land.depth = y - 10000;
-        
-        let collider = this.scene.physics.add.sprite(x, y)
-        this.scene.landCollidersGroup.add(collider);
+        if (landSprite !== "land") {
+            let collider = this.scene.physics.add.sprite(x, y)
+            this.scene.landCollidersGroup.add(collider);
+            console.log("1")
+        }
     }
 
     
