@@ -2,7 +2,7 @@ import { ENTITY_DATA } from "./GameData.js";
 import Resource from "./Resource.js";
 
 
-export default class GameManager {
+export default class WorldManager {
     constructor(scene) {
         this.scene = scene;
 

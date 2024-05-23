@@ -1,4 +1,4 @@
-import GameManager from "./GameManager.js";
+import WorldManager from "./WorldManager.js";
 import HUD from "./HUD.js";
 import Inventory from "./inventory/Inventory.js";
 import InputController from "./player/InputController.js";
@@ -27,8 +27,8 @@ export default class MainScene extends Phaser.Scene {
     create() {
         this.sys.game.scale.setParentSize(window.innerWidth, window.innerHeight); // make sure game is not overflow in ios safari.
 
-        this.gameManager = new GameManager(this);
-        this.gameManager.initWorld();
+        this.worldManager = new WorldManager(this);
+        this.worldManager.initWorld();
         this.player = new Player(this);
         this.inventory = new Inventory(this);
         this.inputController = new InputController(this, this.player);
