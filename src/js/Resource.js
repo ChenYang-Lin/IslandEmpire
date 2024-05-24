@@ -14,13 +14,14 @@ export default class Resource extends Phaser.Physics.Arcade.Sprite {
         this.scene.physics.add.existing(this);
 
         this.name = name;
+        this.hasSecondPart = false;
 
         this.x += ENTITY_DATA[this.name].repositionedX;
         this.y += ENTITY_DATA[this.name].repositionedY;
         this.setSize(ENTITY_DATA[this.name].width, ENTITY_DATA[this.name].height);
         this.setOffset(ENTITY_DATA[this.name].offsetX, ENTITY_DATA[this.name].offsetY);
 
-        if (ENTITY_DATA[this.name].hasSecondPart){
+        if (ENTITY_DATA[this.name].type === "multiple"){
             this.createSecondPart();
             this.hasSecondPart = true;
         }
@@ -58,8 +59,6 @@ export default class Resource extends Phaser.Physics.Arcade.Sprite {
 
     onHit(damage) {
         this.hp -= damage;
-        // console.log(this.hp)
-        // console.log(this.hasSecondPart, this.maxHP / 2)
         if (this.hasSecondPart && this.hp < this.maxHP / 2) {
             this.secondPart.destroy();
         }

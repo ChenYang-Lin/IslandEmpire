@@ -47,8 +47,6 @@ export default class InventoryWindow {
 
             inventorySlot.addEventListener('dragstart', (e) => {
                 e.target.parentNode.childNodes[this.selectedIndex].classList.remove("selected"); // resets the border of a previously selected inventory slot
-                e.target.classList.add("selected");
-                console.log(e.target)
                 this.selectedIndex = parseInt(e.target.getAttribute("index"), 10); // get selected inventory slot index.
                 if (!this.inventory.inventoryOrder[this.selectedIndex])
                     e.preventDefault();

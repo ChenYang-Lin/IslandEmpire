@@ -145,7 +145,7 @@ export default class WorldManager {
         let x = gridX * 32;
         let y = gridY * 32;
         entities.forEach((entity) => {
-            if (ENTITY_DATA[entity].type === "resource"){
+            if (ENTITY_DATA[entity].category === "resource"){
                 let resource = new Resource(this.scene, x, y, "resource", entity);
             }
         })
