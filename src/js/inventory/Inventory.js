@@ -15,15 +15,34 @@ export default class Inventory {
     }
 
     addItem(name, quantity) {
-        if (this.inventory[name]) {
+        if (this.inventoryOrder.includes(name)) {
             this.inventory[name] += quantity;
-        } else {
-            this.inventory[name] = quantity;
+            this.inventoryWindow.createInventoryWindow();
+            console.log(this.inventory, this.inventoryOrder);
+            return;
         }
-        if (!this.inventoryOrder.includes(name)) {
-            this.inventoryOrder.push(name);
+        
+        for (let i = 0; i < this.inventorySize; i++) {
+            if (this.inventoryOrder[i]) { // There is already an item in the current slot
+                if (i !== this.inventorySize - 1) 
+                    continue;
+                else {
+                    console.log("inventory is full")
+                }
+            } else { // Current slot is empty
+                this.inventoryOrder[i] = name;
+                this.inventory[name] = quantity;
+                this.inventoryWindow.createInventoryWindow();
+                console.log(this.inventory, this.inventoryOrder);
+                return;
+            }
         }
-        console.log(this.inventory, this.inventoryOrder);
+    }
+
+    swapItems(a, b) {
+        let temp = this.inventoryOrder[a]
+        this.inventoryOrder[a] = this.inventoryOrder[b];
+        this.inventoryOrder[b] = temp;
         this.inventoryWindow.createInventoryWindow();
     }
 

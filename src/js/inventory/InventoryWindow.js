@@ -6,6 +6,7 @@ export default class InventoryWindow {
         this.scene = scene;
         this.inventory = inventory;
 
+        this.selectedIndex = 0;
         this.dragIndex = -1;
         this.dropIndex = -1;
     
@@ -19,27 +20,80 @@ export default class InventoryWindow {
             // Create inventory slots and append to inventorySlotsContainer
             let inventorySlot = document.createElement("div");
             inventorySlot.classList.add("inventory-slot");
+            inventorySlot.setAttribute("index", `${i}`);
+            inventorySlot.setAttribute('draggable', true);
+
+            if (i === this.selectedIndex) {
+                inventorySlot.classList.add("selected");
+            }
+
+            inventorySlot.addEventListener('pointerenter', (e) => {
+                e.target.classList.add("hover");
+            })
+
+            inventorySlot.addEventListener('pointerleave', (e) => {
+                e.target.classList.remove("hover");
+            })
+  
+            inventorySlot.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                e.target.classList.add("hover");
+            });
             
-            let { itemImg, itemQuantityText } = this.createInventorySlot(i)
+            inventorySlot.addEventListener('dragleave', (e) => {
+                e.preventDefault();
+                e.target.classList.remove("hover");
+            });
+
+            inventorySlot.addEventListener('dragstart', (e) => {
+                e.target.parentNode.childNodes[this.selectedIndex].classList.remove("selected"); // resets the border of a previously selected inventory slot
+                e.target.classList.add("selected");
+                console.log(e.target)
+                this.selectedIndex = parseInt(e.target.getAttribute("index"), 10); // get selected inventory slot index.
+                if (!this.inventory.inventoryOrder[this.selectedIndex])
+                    e.preventDefault();
+                e.target.classList.remove("hover");
+                e.target.classList.remove("selected");   
+            });
+
+            inventorySlot.addEventListener('drop', (e) => {
+                let initialSlot = e.target.parentNode.childNodes[this.selectedIndex];
+                let currSlot = e.target;
+                currSlot.classList.add("hover");
+                initialSlot.classList.remove("selected"); // resets the border of a previously selected inventory slot
+                currSlot.classList.add("selected");
+                this.selectedIndex = parseInt(currSlot.getAttribute("index"), 10); // get selected inventory slot index.
+
+                this.inventory.swapItems(parseInt(initialSlot.getAttribute("index"), 10), parseInt(currSlot.getAttribute("index"), 10));
+            });
+
+
+            inventorySlot.addEventListener('click', (e) => {
+                console.log(e.target.parentNode)
+                e.target.parentNode.childNodes[this.selectedIndex].classList.remove("selected"); // resets the border of a previously selected inventory slot
+                e.target.classList.add("selected");
+                this.selectedIndex = parseInt(e.target.getAttribute("index"), 10); // get selected inventory slot index.
+            })
+
+            
+            
+            let { itemImg, itemQuantityText } = this.createSlotContent(i)
             inventorySlot.appendChild(itemImg);
             inventorySlot.appendChild(itemQuantityText);
             inventorySlotsContainer.appendChild(inventorySlot);
         }
     }
 
-    createInventorySlot(slotIndex) {
-        // Create Item Img
+    createSlotContent(slotIndex) {
+        // Create Item Img Container
         let itemImg = document.createElement('img');
-        itemImg.classList.add("item-img")
-        itemImg.setAttribute('draggable', true);
-        // itemImg.addEventListener('dragstart', this.dragStart.bind(this));
-        // itemImg.addEventListener('dragend', this.dragEnd.bind(this));
-
-        // Create Item Quantity Text
+        itemImg.classList.add("item-img");
+        
+        // Create Item Quantity Text Container
         let itemQuantityText = document.createElement("div");
         itemQuantityText.classList.add("item-quantity-text");
 
-        // See if current slot has item
+        // If there is an item in the current slot, fill the container with the corresponding content
         let name = this.inventory.inventoryOrder[slotIndex];
         if (name) {
             let quantity = this.inventory.inventory[name];

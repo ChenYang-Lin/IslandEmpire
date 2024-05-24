@@ -221,7 +221,6 @@ export default class WorldManager {
         if (landSprite !== "land") {
             let collider = this.scene.physics.add.sprite(x, y)
             this.scene.landCollidersGroup.add(collider);
-            console.log("1")
         }
     }
 
