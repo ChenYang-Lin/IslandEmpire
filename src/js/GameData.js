@@ -79,8 +79,8 @@ const ENTITY_DATA = {
     },
     // Item - weapon
     sword: {
-        category: "item",
-        type: "weapon",
+        category: "weapon",
+        type: "sword",
         repositionedX: 0,
         repositionedY: 0,
         width: 32,
@@ -90,8 +90,8 @@ const ENTITY_DATA = {
     },
     // Item - tool
     hoe: {
-        category: "item",
-        type: "tool",
+        category: "tool",
+        type: "hoe",
         repositionedX: 0,
         repositionedY: 0,
         width: 32,
@@ -100,8 +100,8 @@ const ENTITY_DATA = {
         offsetY: 0,
     },
     axe: {
-        category: "item",
-        type: "tool",
+        category: "tool",
+        type: "axe",
         repositionedX: 0,
         repositionedY: 0,
         width: 32,
@@ -110,8 +110,8 @@ const ENTITY_DATA = {
         offsetY: 0,
     },
     pickaxe: {
-        category: "item",
-        type: "tool",
+        category: "tool",
+        type: "pickaxe",
         repositionedX: 0,
         repositionedY: 0,
         width: 32,

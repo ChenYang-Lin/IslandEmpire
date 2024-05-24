@@ -1,4 +1,4 @@
-
+import { ENTITY_DATA } from "../GameData.js";
 
 export default class InputController {
     constructor(scene, player) {
@@ -34,7 +34,7 @@ export default class InputController {
         let actionBtn = document.getElementById("action-btn")
         actionBtn.addEventListener("touchstart", () => {
             console.log("action")
-            this.playAttackAnim();
+            this.beginAction();
         })
     }
 
@@ -94,15 +94,43 @@ export default class InputController {
 
     }
 
-    playAttackAnim() {
-        this.player.animationController.attack(); 
+    playAttackAnim(type) {
+        switch (type) {
+            case "sword":
+                this.player.animationController.swordAttack(); 
+                break;
+            default:
+        }
+        
+    }
+
+    playToolUsageAnimation(type) {
+        switch (type) {
+            case "hoe":
+                this.player.animationController.useHoe();
+            default:
+        }
+    }
+
+    beginAction() {
+        let selectedIndex = this.scene.inventory.inventoryWindow.selectedIndex;
+        let selectedItem = this.scene.inventory.inventoryOrder[selectedIndex];
+        
+        if (ENTITY_DATA[selectedItem].category === "weapon") {
+            this.playAttackAnim(ENTITY_DATA[selectedItem].type);
+        }
+        if (ENTITY_DATA[selectedItem].category === "tool") {
+            this.playToolUsageAnimation(ENTITY_DATA[selectedItem].type);
+        }
     }
 
     update() {
         this.movementController();
         if (this.keyJ.isDown) {
-            this.playAttackAnim();
+            this.beginAction();
         }
     
     }
+
+
 }

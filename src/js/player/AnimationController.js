@@ -23,13 +23,19 @@ export default class AnimationController {
         })
     }
     
-    attack() {
+    swordAttack() {
         if (this.inAction) 
             return;
         this.inAction = true;
         this.player.anims.play(`attack_${this.player.direction}`)
 
         this.player.hitbox.createSwordHitBox();
+    }
+
+    useHoe() {
+        if (this.inAction)
+            return
+        // this.inAction = true;
     }
 
 
