@@ -1,34 +1,7 @@
 
 
 const ENTITY_DATA = {
-    // tree: {
-    //     type: "resource",
-    //     repositionedX: 0,
-    //     repositionedY: -16,
-    //     width: 20,
-    //     height: 20,
-    //     offsetX: 6,
-    //     offsetY: 38,
-    //     hasSecondPart: true,
-    // },
-    // bush: {
-    //     type: "resource",
-    //     repositionedX: 0,
-    //     repositionedY: 0,
-    //     width: 20,
-    //     height: 20,
-    //     offsetX: 6,
-    //     offsetY: 6,
-    // },
-    // rock: {
-    //     type: "resource",
-    //     repositionedX: 0,
-    //     repositionedY: 0,
-    //     width: 20,
-    //     height: 20,
-    //     offsetX: 6,
-    //     offsetY: 6,
-    // },
+    // Resources
     tree: {
         category: "resource",
         type: "multiple",
@@ -38,7 +11,7 @@ const ENTITY_DATA = {
         height: 32,
         offsetX: 0,
         offsetY: 32,
-        maxHP: 4,
+        maxHP: 1,
         drops: [
             "wood",
             "wood",
@@ -53,7 +26,7 @@ const ENTITY_DATA = {
         height: 32,
         offsetX: 0,
         offsetY: 0,
-        maxHP: 4,
+        maxHP: 1,
         drops: [
             "fiber",
         ],
@@ -73,6 +46,7 @@ const ENTITY_DATA = {
             "stone",
         ]
     },
+    // Items - materials
     wood: {
         category: "item",
         type: "material",
@@ -103,6 +77,58 @@ const ENTITY_DATA = {
         offsetX: 0,
         offsetY: 0,
     },
+    // Item - weapon
+    sword: {
+        category: "item",
+        type: "weapon",
+        repositionedX: 0,
+        repositionedY: 0,
+        width: 32,
+        height: 32,
+        offsetX: 0,
+        offsetY: 0,
+    },
+    // Item - tool
+    hoe: {
+        category: "item",
+        type: "tool",
+        repositionedX: 0,
+        repositionedY: 0,
+        width: 32,
+        height: 32,
+        offsetX: 0,
+        offsetY: 0,
+    },
+    axe: {
+        category: "item",
+        type: "tool",
+        repositionedX: 0,
+        repositionedY: 0,
+        width: 32,
+        height: 32,
+        offsetX: 0,
+        offsetY: 0,
+    },
+    pickaxe: {
+        category: "item",
+        type: "tool",
+        repositionedX: 0,
+        repositionedY: 0,
+        width: 32,
+        height: 32,
+        offsetX: 0,
+        offsetY: 0,
+    }, 
+    seed: {
+        category: "item",
+        type: "seed",
+        repositionedX: 0,
+        repositionedY: 0,
+        width: 32,
+        height: 32,
+        offsetX: 0,
+        offsetY: 0,
+    }
 }
 
 export {

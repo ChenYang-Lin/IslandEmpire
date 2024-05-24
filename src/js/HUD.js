@@ -9,7 +9,7 @@ export default class HUD {
 
     initHUD() {
         this.windowSizeSynchronization();
-        
+        this.setActionButton(0);
         
     }
 
@@ -35,7 +35,18 @@ export default class HUD {
         fpsDiv.innerHTML = `FPS: ${fps}`;
     }
 
+    setActionButton() {
+        let icon = document.getElementById("action-btn-icon");
+        let selectedIndex = this.scene.inventory.inventoryWindow.selectedIndex;
+        let name = this.scene.inventory.inventoryOrder[selectedIndex];
+        if (name) 
+            icon.src = this.scene.sys.game.textures.getBase64("item", name);
+        else
+            icon.src = ""
+    }
+
     update() {
         this.renderCurrentFPS();
+        this.setActionButton();
     }   
 }

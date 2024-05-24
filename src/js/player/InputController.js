@@ -31,9 +31,9 @@ export default class InputController {
     }
 
     initMobileBtns() {
-        let attackBtn = document.getElementById("attack-btn")
-        attackBtn.addEventListener("touchstart", () => {
-            console.log("attack")
+        let actionBtn = document.getElementById("action-btn")
+        actionBtn.addEventListener("touchstart", () => {
+            console.log("action")
             this.playAttackAnim();
         })
     }

@@ -13,6 +13,12 @@ export default class InventoryWindow {
         this.createInventoryWindow();
     }
 
+    setSelectedIndex(e) {
+        e.target.parentNode.childNodes[this.selectedIndex].classList.remove("selected"); // resets the border of a previously selected inventory slot
+        e.target.classList.add("selected");
+        this.selectedIndex = parseInt(e.target.getAttribute("index"), 10); // get selected inventory slot index.
+    }
+
     createInventoryWindow() {
         let inventorySlotsContainer = document.getElementById("inventory-slots-container");
         inventorySlotsContainer.innerHTML = '';
@@ -46,8 +52,7 @@ export default class InventoryWindow {
             });
 
             inventorySlot.addEventListener('dragstart', (e) => {
-                e.target.parentNode.childNodes[this.selectedIndex].classList.remove("selected"); // resets the border of a previously selected inventory slot
-                this.selectedIndex = parseInt(e.target.getAttribute("index"), 10); // get selected inventory slot index.
+                this.setSelectedIndex(e);
                 if (!this.inventory.inventoryOrder[this.selectedIndex])
                     e.preventDefault();
                 e.target.classList.remove("hover");
@@ -58,19 +63,13 @@ export default class InventoryWindow {
                 let initialSlot = e.target.parentNode.childNodes[this.selectedIndex];
                 let currSlot = e.target;
                 currSlot.classList.add("hover");
-                initialSlot.classList.remove("selected"); // resets the border of a previously selected inventory slot
-                currSlot.classList.add("selected");
-                this.selectedIndex = parseInt(currSlot.getAttribute("index"), 10); // get selected inventory slot index.
+                this.setSelectedIndex(e);
 
                 this.inventory.swapItems(parseInt(initialSlot.getAttribute("index"), 10), parseInt(currSlot.getAttribute("index"), 10));
             });
 
-
             inventorySlot.addEventListener('click', (e) => {
-                console.log(e.target.parentNode)
-                e.target.parentNode.childNodes[this.selectedIndex].classList.remove("selected"); // resets the border of a previously selected inventory slot
-                e.target.classList.add("selected");
-                this.selectedIndex = parseInt(e.target.getAttribute("index"), 10); // get selected inventory slot index.
+                this.setSelectedIndex(e);                
             })
 
             

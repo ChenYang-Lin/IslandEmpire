@@ -1,7 +1,7 @@
 {
     "frames": [
         {
-            "filename": "land_all",
+            "filename": "land",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -27,11 +27,24 @@
             }
         },
         {
-            "filename": "land_b_l",
+            "filename": "land_all",
             "frame": {
                 "w": 32,
                 "h": 32,
                 "x": 1,
+                "y": 35
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "land_b_l",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 35,
                 "y": 35
             },
             "anchor": {
@@ -44,8 +57,8 @@
             "frame": {
                 "w": 32,
                 "h": 32,
-                "x": 35,
-                "y": 35
+                "x": 69,
+                "y": 1
             },
             "anchor": {
                 "x": 0.5,
@@ -58,19 +71,6 @@
                 "w": 32,
                 "h": 32,
                 "x": 69,
-                "y": 1
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "land_bl_lt",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 69,
                 "y": 35
             },
             "anchor": {
@@ -79,7 +79,7 @@
             }
         },
         {
-            "filename": "land_l",
+            "filename": "land_bl_lt",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -92,7 +92,7 @@
             }
         },
         {
-            "filename": "land_lt",
+            "filename": "land_l",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -105,7 +105,7 @@
             }
         },
         {
-            "filename": "land",
+            "filename": "land_lt",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -352,7 +352,7 @@
             }
         },
         {
-            "filename": "land_t_r",
+            "filename": "land_t_r_b",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -365,7 +365,7 @@
             }
         },
         {
-            "filename": "land_t_r_b",
+            "filename": "land_t_r",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -482,7 +482,7 @@
             }
         },
         {
-            "filename": "land_tr_bl",
+            "filename": "land_tr_b_l",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -495,7 +495,7 @@
             }
         },
         {
-            "filename": "land_tr_b_l",
+            "filename": "land_tr_b_lt",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -508,7 +508,7 @@
             }
         },
         {
-            "filename": "land_tr_b_lt",
+            "filename": "land_tr_bl",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -521,7 +521,7 @@
             }
         },
         {
-            "filename": "land_tr_lt",
+            "filename": "land_tr_bl_lt",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -534,7 +534,7 @@
             }
         },
         {
-            "filename": "land_tr_rb",
+            "filename": "land_tr_l",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -547,7 +547,7 @@
             }
         },
         {
-            "filename": "land_tr_bl_lt",
+            "filename": "land_tr_lt",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -560,7 +560,7 @@
             }
         },
         {
-            "filename": "land_tr_l",
+            "filename": "land_tr_rb",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -618,6 +618,214 @@
                 "h": 32,
                 "x": 171,
                 "y": 205
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "hoed_right_bottom_left",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 205,
+                "y": 205
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "hoed_right_left",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 239,
+                "y": 1
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "hoed_top",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 239,
+                "y": 35
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "hoed_top_bottom",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 239,
+                "y": 69
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "hoed_top_bottom_left",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 239,
+                "y": 103
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "hoed_top_left",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 239,
+                "y": 137
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "hoed_top_right",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 239,
+                "y": 171
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "hoed_top_right_bottom",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 239,
+                "y": 205
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "hoed_top_right_left",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 1,
+                "y": 239
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "hoed_all",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 35,
+                "y": 239
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "hoed_bottom",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 69,
+                "y": 239
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "hoed_bottom_left",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 103,
+                "y": 239
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "hoed_left",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 137,
+                "y": 239
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "hoed_none",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 171,
+                "y": 239
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "hoed_right",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 205,
+                "y": 239
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "hoed_right_bottom",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 239,
+                "y": 239
             },
             "anchor": {
                 "x": 0.5,

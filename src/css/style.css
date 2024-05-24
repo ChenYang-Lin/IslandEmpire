@@ -27,7 +27,7 @@ body {
     opacity: 0.5; */
 }
 
-#attack-btn {
+#action-btn {
     pointer-events: auto;
     position: absolute;
     right: 10px;
@@ -37,10 +37,9 @@ body {
     border-radius: 50%;
     border: none;
     background-color: gray;
-    opacity: .7;
 }
 
-#attack-btn-icon {
+#action-btn-icon {
     max-width: 35px;
 }
 

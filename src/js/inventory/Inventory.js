@@ -7,9 +7,11 @@ export default class Inventory {
 
         this.inventorySize = 8;
         this.inventory = {
+            "sword": 1,
+            "hoe": 1,
             "stone": 2,
         }
-        this.inventoryOrder = ["stone"];
+        this.inventoryOrder = ["sword", "hoe", "stone"];
 
         this.inventoryWindow = new InventoryWindow(this.scene, this);
     }
