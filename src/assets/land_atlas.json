@@ -14,7 +14,7 @@
             }
         },
         {
-            "filename": "land_b",
+            "filename": "land_all",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -27,7 +27,7 @@
             }
         },
         {
-            "filename": "land_all",
+            "filename": "land_b",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -40,7 +40,7 @@
             }
         },
         {
-            "filename": "land_b_l",
+            "filename": "land_b_lt",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -53,7 +53,7 @@
             }
         },
         {
-            "filename": "land_b_lt",
+            "filename": "land_b_l",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -235,7 +235,7 @@
             }
         },
         {
-            "filename": "land_rb_bl",
+            "filename": "land_rb_bl_lt",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -248,7 +248,7 @@
             }
         },
         {
-            "filename": "land_rb_bl_lt",
+            "filename": "land_rb_l",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -261,7 +261,7 @@
             }
         },
         {
-            "filename": "land_rb_l",
+            "filename": "land_rb_bl",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -352,7 +352,7 @@
             }
         },
         {
-            "filename": "land_t_r_b",
+            "filename": "land_t_r",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -365,7 +365,7 @@
             }
         },
         {
-            "filename": "land_t_r",
+            "filename": "land_t_r_b",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -378,7 +378,7 @@
             }
         },
         {
-            "filename": "land_t_r_b_l",
+            "filename": "land_t_r_bl",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -391,7 +391,7 @@
             }
         },
         {
-            "filename": "land_t_r_bl",
+            "filename": "land_t_r_b_l",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -625,7 +625,7 @@
             }
         },
         {
-            "filename": "hoed_right_bottom_left",
+            "filename": "hoed",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -638,7 +638,7 @@
             }
         },
         {
-            "filename": "hoed_right_left",
+            "filename": "hoed_bottom",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -651,7 +651,7 @@
             }
         },
         {
-            "filename": "hoed_top",
+            "filename": "hoed_bottom_left",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -664,7 +664,7 @@
             }
         },
         {
-            "filename": "hoed_top_bottom",
+            "filename": "hoed_left",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -677,7 +677,7 @@
             }
         },
         {
-            "filename": "hoed_top_bottom_left",
+            "filename": "hoed_right",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -690,7 +690,7 @@
             }
         },
         {
-            "filename": "hoed_top_left",
+            "filename": "hoed_right_bottom",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -703,7 +703,7 @@
             }
         },
         {
-            "filename": "hoed_top_right",
+            "filename": "hoed_right_bottom_left",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -716,7 +716,7 @@
             }
         },
         {
-            "filename": "hoed_top_right_bottom",
+            "filename": "hoed_right_left",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -729,7 +729,7 @@
             }
         },
         {
-            "filename": "hoed_top_right_left",
+            "filename": "hoed_top_bottom",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -742,7 +742,7 @@
             }
         },
         {
-            "filename": "hoed_all",
+            "filename": "hoed_top_bottom_left",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -755,7 +755,7 @@
             }
         },
         {
-            "filename": "hoed_bottom",
+            "filename": "hoed_top",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -768,7 +768,7 @@
             }
         },
         {
-            "filename": "hoed_bottom_left",
+            "filename": "hoed_top_left",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -781,7 +781,7 @@
             }
         },
         {
-            "filename": "hoed_left",
+            "filename": "hoed_top_right",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -794,7 +794,7 @@
             }
         },
         {
-            "filename": "hoed_none",
+            "filename": "hoed_top_right_bottom",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -807,7 +807,7 @@
             }
         },
         {
-            "filename": "hoed_right",
+            "filename": "hoed_top_right_bottom_left",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -820,7 +820,7 @@
             }
         },
         {
-            "filename": "hoed_right_bottom",
+            "filename": "hoed_top_right_left",
             "frame": {
                 "w": 32,
                 "h": 32,

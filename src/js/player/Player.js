@@ -1,5 +1,5 @@
 import AnimationController from "./AnimationController.js";
-import Hitbox from "./HitBox.js";
+import Hitbox from "./Hitbox.js";
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
     constructor(scene) {
@@ -55,10 +55,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
-    get grid() {
+    get onGrid() {
         return {
-            x: this.x + 16,
-            y: this.y - this.repositionedY + 16,
+            x: Math.floor((this.x + 16) / 32),
+            y: Math.floor((this.y - this.repositionedY + 16) / 32),
         }
     }
 

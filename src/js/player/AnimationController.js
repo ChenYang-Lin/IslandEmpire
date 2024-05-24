@@ -35,7 +35,14 @@ export default class AnimationController {
     useHoe() {
         if (this.inAction)
             return
-        // this.inAction = true;
+        this.inAction = true;
+        this.player.anims.play(`idle_${this.player.direction}`, true);
+        setTimeout(() => {
+            this.inAction = false;
+        }, 500);
+        let number = -1
+        console.log(`${number}`)
+        this.scene.worldManager.hoeLand(this.player.onGrid);
     }
 
 

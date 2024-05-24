@@ -11,6 +11,7 @@ export default class WorldManager {
         this.scene.dropsCollidersGroup = this.scene.physics.add.group({ immovable: true });
 
         this.executedGrids = [];
+        this.hoedLandSpriteGroup = {};
 
         this.map = {
             "0,0": {
@@ -50,12 +51,14 @@ export default class WorldManager {
                 ],
             },
             "1,2": {
+                isHoedLand: true,
                 isLand: true,
                 entities: [
 
                 ],
             },
             "1,3": {
+                isHoedLand: true,
                 isLand: true,
                 entities: [
 
@@ -123,22 +126,14 @@ export default class WorldManager {
             for (let gridX = -20; gridX < 20; gridX++) {
                 if (this.map[`${gridX},${gridY}`] && this.map[`${gridX},${gridY}`].isLand) {
                     this.createLand(gridX, gridY);
-                    this.createEntities(gridX, gridY, this.map[`${gridX},${gridY}`].entities)
+                    this.createEntities(gridX, gridY, this.map[`${gridX},${gridY}`].entities);
+                    if (this.map[`${gridX},${gridY}`].isHoedLand)
+                        this.createHoedLand(gridX, gridY);
                 } else {
                     this.createSurroundingLand(gridX, gridY);
                 }
             }
         }
-        // for (const [key, value] of Object.entries(this.map)) {
-        //     // console.log(`${key}: ${value}`)
-
-
-        //     let x = key.split(",")[0] * 32;
-        //     let y = key.split(",")[1] * 32;
-
-        //     this.createLand(x, y);
-        //     this.createEntities(x, y, value.entities);
-        // }
     }
 
     createEntities(gridX, gridY, entities) {
@@ -163,8 +158,6 @@ export default class WorldManager {
 
         let land = this.scene.add.sprite(x, y, "land", landSprite);
         land.depth = y - 10000;
-
-
     }
 
     createSurroundingLand(gridX, gridY) {
@@ -224,5 +217,58 @@ export default class WorldManager {
         }
     }
 
+    
+    createHoedLand(gridX, gridY) {
+        let x = gridX * 32;
+        let y = gridY * 32;
+
+        let hoedLandSpriteName = "hoed";
+
+        let top = `${gridX},${gridY-1}`;
+        let right = `${gridX+1},${gridY}`;
+        let bottom = `${gridX},${gridY+1}`;
+        let left = `${gridX-1},${gridY}`;
+
+        // top
+        if (this.map[top]?.isHoedLand) {
+            hoedLandSpriteName += "_top"
+        } 
+        // right
+        if (this.map[right]?.isHoedLand) {
+            hoedLandSpriteName += "_right"
+        } 
+        // bottom
+        if (this.map[bottom]?.isHoedLand) {
+            hoedLandSpriteName += "_bottom"
+        } 
+        // left
+        if (this.map[left]?.isHoedLand) {
+            hoedLandSpriteName += "_left"
+        } 
+
+        let hoedLandSprite = this.scene.add.sprite(x, y, "land", hoedLandSpriteName);
+        hoedLandSprite.depth = y - 10000;
+        this.hoedLandSpriteGroup[`${gridX},${gridY}`] = hoedLandSprite;
+    }
+
+
+    hoeLand(grid) {
+        if (this.map[`${grid.x},${grid.y}`].isHoedLand)
+            return;
+        this.map[`${grid.x},${grid.y}`].isHoedLand = true;
+        this.createHoedLand(grid.x, grid.y);
+
+        // Update surrounding hoed lands
+        this.updateSurroundingHoedLand(grid.x, grid.y + 1)
+        this.updateSurroundingHoedLand(grid.x, grid.y - 1)
+        this.updateSurroundingHoedLand(grid.x + 1, grid.y)
+        this.updateSurroundingHoedLand(grid.x - 1, grid.y)
+    }
+    updateSurroundingHoedLand(gridX, gridY) {
+        if (!this.map[`${gridX},${gridY}`]?.isHoedLand)
+            return;
+        this.hoedLandSpriteGroup[`${gridX},${gridY}`].destroy();
+        this.createHoedLand(gridX, gridY);
+    }
     
 }

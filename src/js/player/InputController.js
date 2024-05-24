@@ -124,11 +124,16 @@ export default class InputController {
         }
     }
 
+    renderHoveredGrid() {
+        
+    }
+
     update() {
         this.movementController();
         if (this.keyJ.isDown) {
             this.beginAction();
         }
+        this.renderHoveredGrid();
     
     }
 
