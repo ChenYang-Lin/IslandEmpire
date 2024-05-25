@@ -4,6 +4,7 @@ import Inventory from "./inventory/Inventory.js";
 import InputController from "./player/InputController.js";
 import Player from "./player/Player.js";
 import Resource from "./entity/Resource.js";
+import Crop from "./entity/Crop.js";
 
 
 export default class MainScene extends Phaser.Scene {
@@ -17,6 +18,7 @@ export default class MainScene extends Phaser.Scene {
     preload() {
         Player.preload(this);
         Resource.preload(this);
+        Crop.preload(this);
 
         this.load.plugin('rexvirtualjoystickplugin', "js/utils/rexvirtualjoystickplugin.min.js", true);
         this.load.atlas("item", "assets/item.png", "assets/item_atlas.json");

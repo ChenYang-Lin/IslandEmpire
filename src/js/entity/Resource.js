@@ -8,13 +8,13 @@ export default class Resource extends Phaser.Physics.Arcade.Sprite {
 
         this.scene = scene;
         this.depth = this.y;
+        this.name = name;
+        this.hasSecondPart = false;
         
 
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
 
-        this.name = name;
-        this.hasSecondPart = false;
 
         this.x += ENTITY_DATA[this.name].repositionedX;
         this.y += ENTITY_DATA[this.name].repositionedY;

@@ -1,4 +1,5 @@
 import { ENTITY_DATA } from "./GameData.js";
+import Crop from "./entity/Crop.js";
 import Resource from "./entity/Resource.js";
 
 
@@ -269,6 +270,15 @@ export default class WorldManager {
             return;
         this.hoedLandSpriteGroup[`${gridX},${gridY}`].destroy();
         this.createHoedLand(gridX, gridY);
+    }
+
+    sowingSeedOnLand(grid, seedName) {
+        if (!this.map[`${grid.x},${grid.y}`].isHoedLand)
+            return;
+        let x = grid.x * 32;
+        let y = grid.y * 32;
+        let cropName = ENTITY_DATA[seedName].crop;
+        this.crop = new Crop(this.scene, x, y, "crop", cropName)
     }
     
 }

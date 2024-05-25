@@ -32,7 +32,7 @@ export default class AnimationController {
         this.player.hitbox.createSwordHitBox();
     }
 
-    useHoe() {
+    hoe() {
         if (this.inAction)
             return
         this.inAction = true;
@@ -40,9 +40,18 @@ export default class AnimationController {
         setTimeout(() => {
             this.inAction = false;
         }, 500);
-        let number = -1
-        console.log(`${number}`)
         this.scene.worldManager.hoeLand(this.player.onGrid);
+    }
+
+    sow(seedName) {
+        if (this.inAction) 
+            return;
+        this.inAction = true;
+        this.player.anims.play(`idle_${this.player.direction}`, true);
+        setTimeout(() => {
+            this.inAction = false;
+        }, 500);
+        this.scene.worldManager.sowingSeedOnLand(this.player.onGrid, seedName);
     }
 
 

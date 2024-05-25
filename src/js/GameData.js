@@ -119,15 +119,24 @@ const ENTITY_DATA = {
         offsetX: 0,
         offsetY: 0,
     }, 
-    seed: {
+    "potato_seed": {
         category: "item",
         type: "seed",
         repositionedX: 0,
-        repositionedY: 0,
+        repositionedY: -16,
         width: 32,
         height: 32,
         offsetX: 0,
-        offsetY: 0,
+        offsetY: 32,
+        crop: "potato",
+    },
+    potato: {
+        repositionedX: 0,
+        repositionedY: -16,
+        width: 32,
+        height: 32,
+        offsetX: 0,
+        offsetY: 32,
     }
 }
 

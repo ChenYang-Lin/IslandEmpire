@@ -107,7 +107,15 @@ export default class InputController {
     playToolUsageAnimation(type) {
         switch (type) {
             case "hoe":
-                this.player.animationController.useHoe();
+                this.player.animationController.hoe();
+            default:
+        }
+    }
+
+    playItemUsageAnimaiton(type, selectedItem) {
+        switch (type) {
+            case "seed":
+                this.player.animationController.sow(selectedItem);
             default:
         }
     }
@@ -115,12 +123,18 @@ export default class InputController {
     beginAction() {
         let selectedIndex = this.scene.inventory.inventoryWindow.selectedIndex;
         let selectedItem = this.scene.inventory.inventoryOrder[selectedIndex];
-        
-        if (ENTITY_DATA[selectedItem].category === "weapon") {
-            this.playAttackAnim(ENTITY_DATA[selectedItem].type);
-        }
-        if (ENTITY_DATA[selectedItem].category === "tool") {
-            this.playToolUsageAnimation(ENTITY_DATA[selectedItem].type);
+
+        switch (ENTITY_DATA[selectedItem].category) {
+            case "weapon":
+                this.playAttackAnim(ENTITY_DATA[selectedItem].type);
+                break;
+            case "tool":
+                this.playToolUsageAnimation(ENTITY_DATA[selectedItem].type);
+                break;
+            case "item":
+                this.playItemUsageAnimaiton(ENTITY_DATA[selectedItem].type, selectedItem);
+                break;
+            default:
         }
     }
 
