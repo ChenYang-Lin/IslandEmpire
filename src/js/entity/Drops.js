@@ -1,4 +1,4 @@
-import { ENTITY_DATA } from "./GameData.js";
+import { ENTITY_DATA } from "../GameData.js";
 
 export default class Drops extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y, texture, name) {

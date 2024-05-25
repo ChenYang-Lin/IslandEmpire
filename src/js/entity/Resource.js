@@ -1,5 +1,5 @@
 import Drops from "./Drops.js";
-import { ENTITY_DATA } from "./GameData.js";
+import { ENTITY_DATA } from "../GameData.js";
 
 export default class Resource extends Phaser.Physics.Arcade.Sprite {
 

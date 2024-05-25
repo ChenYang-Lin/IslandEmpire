@@ -1,5 +1,5 @@
 import { ENTITY_DATA } from "./GameData.js";
-import Resource from "./Resource.js";
+import Resource from "./entity/Resource.js";
 
 
 export default class WorldManager {

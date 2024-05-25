@@ -3,7 +3,7 @@ import HUD from "./HUD.js";
 import Inventory from "./inventory/Inventory.js";
 import InputController from "./player/InputController.js";
 import Player from "./player/Player.js";
-import Resource from "./Resource.js";
+import Resource from "./entity/Resource.js";
 
 
 export default class MainScene extends Phaser.Scene {
