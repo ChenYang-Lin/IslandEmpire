@@ -9,8 +9,8 @@ export default class Crop extends Phaser.Physics.Arcade.Sprite {
         super(scene, x, y, "crops_grow", frame)
 
         this.scene = scene;
-        this.depth = this.y;
         this.name = name;
+        this.depth = this.y;
 
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
@@ -23,25 +23,28 @@ export default class Crop extends Phaser.Physics.Arcade.Sprite {
         this.harvestable = false;
         this.sowingTime = sowingTime;
         this.timeToGrow = ENTITY_DATA[this.name].timeToGrow;
+        this.growTime = Date.now() - this.sowingTime;
         this.harvestableTime = sowingTime + this.timeToGrow;
         this.totalPhase = ENTITY_DATA[this.name].totalPhase;
 
+        this.isHovered = false;
+        this.setInteractive(this.scene.input.makePixelPerfect());
+        this.graphics = this.scene.add.graphics();
         this.postFxPlugin = this.scene.plugins.get('rexoutlinepipelineplugin');
-        this.setInteractive()
         this.on('pointerover', () => {
             // Add postfx pipeline
             this.postFxPlugin.add(this, {
                 thickness: 1,
                 outlineColor: 0xFFE50C
             });
-            this.is_hovered = true;
-            // this.createHealthBar();            
+            this.isHovered = true;
+            this.createProgressBar();            
         })
         this.on('pointerout', () => {
             // Remove all outline post-fx pipelines
             this.postFxPlugin.remove(this);
-            // this.destroyHealthBar()
-            this.is_hovered = false;
+            this.isHovered = false;
+            this.destroyProgressBar()
         })
         this.on('pointerdown', () => {
             // 
@@ -52,11 +55,40 @@ export default class Crop extends Phaser.Physics.Arcade.Sprite {
         scene.load.atlas("crops_grow", "assets/crops_grow.png", "assets/crops_grow_atlas.json")
     }
 
+    get position() {
+        return {
+            x: this.x - ENTITY_DATA[this.name].repositionedX,
+            y: this.y - ENTITY_DATA[this.name].repositionedY,
+        }
+    }
+
     get onGrid() {
         return {
             x: Math.floor((this.x - ENTITY_DATA[this.name].repositionedX) / 32),
             y: Math.floor((this.y - ENTITY_DATA[this.name].repositionedY) / 32),
         }
+    }
+
+
+
+    createProgressBar() {
+        this.graphics = this.scene.add.graphics();
+        // Progress Box 
+        this.graphics.fillStyle(0x000000, 1);
+        this.progressBox = this.graphics.fillRoundedRect(this.x - this.displayWidth / 2, this.y - this.displayHeight / 2 + 32 - 6, this.displayWidth, 6, 2); // x, y, width, height, radius
+        this.progressBox.depth = this.depth + 1;
+        this.graphics.fillStyle(0x0000ff, 1);
+
+        // Progress Bar
+        let completionPercentage = this.growTime / this.timeToGrow;
+        let progressBarWidth = (this.growTime > this.timeToGrow) ? (this.displayWidth - 4) : (this.displayWidth - 4) * completionPercentage;
+        this.progressBar = this.graphics.fillRoundedRect(this.x - this.displayWidth / 2 + 2, this.y - this.displayHeight / 2 + 2 + 32 - 6, progressBarWidth, 6 - 4, 1); // x, y, width, height, radius
+        this.progressBar.depth = this.depth + 2;
+    }
+
+    destroyProgressBar() {
+        this.progressBox?.destroy();
+        this.progressBar?.destroy();
     }
 
     onDeath() {
@@ -66,16 +98,20 @@ export default class Crop extends Phaser.Physics.Arcade.Sprite {
     }
 
     update() {
+        // Update progress bar
+            
+        if (this.isHovered) {
+            this.destroyProgressBar();
+            this.createProgressBar();
+        }
         if (this.harvestable)
             return;
         if (Date.now() > this.harvestableTime) {
             this.harvestable = true;
         }
-        let growthTime = Date.now() - this.sowingTime;
-        let phase = Math.floor((growthTime / this.timeToGrow) * this.totalPhase);
-        console.log(phase);
+        this.growTime = Date.now() - this.sowingTime;
+        let phase = Math.floor((this.growTime / this.timeToGrow) * this.totalPhase);
         this.setFrame(this.name + "_" + phase);
 
-        // console.log("update")
     }
 }
