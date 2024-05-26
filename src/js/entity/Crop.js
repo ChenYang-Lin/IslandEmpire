@@ -2,7 +2,7 @@
 import { ENTITY_DATA } from "../GameData.js";
 
 export default class Crop extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, x, y, name) {
+    constructor(scene, x, y, name, sowingTime) {
         let phase = (Math.random() < 0.5) ? "_0" : "_0_alt"; // randomly choose two seed image;
         let frame = name + phase;
         console.log(frame)
@@ -19,9 +19,42 @@ export default class Crop extends Phaser.Physics.Arcade.Sprite {
         this.y += ENTITY_DATA[this.name].repositionedY;
         this.setSize(ENTITY_DATA[this.name].width, ENTITY_DATA[this.name].height);
         this.setOffset(ENTITY_DATA[this.name].offsetX, ENTITY_DATA[this.name].offsetY);
+
+        this.harvestable = false;
+        this.sowingTime = sowingTime;
+        this.timeToGrow = ENTITY_DATA[this.name].timeToGrow;
+        this.harvestableTime = sowingTime + this.timeToGrow;
+        this.totalPhase = ENTITY_DATA[this.name].totalPhase;
     }
 
     static preload(scene) {
         scene.load.atlas("crops_grow", "assets/crops_grow.png", "assets/crops_grow_atlas.json")
+    }
+
+    get onGrid() {
+        return {
+            x: Math.floor((this.x - ENTITY_DATA[this.name].repositionedX) / 32),
+            y: Math.floor((this.y - ENTITY_DATA[this.name].repositionedY) / 32),
+        }
+    }
+
+    onDeath() {
+        this.scene.worldManager.growingCrops[`${this.onGrid.x},${this.onGrid.y}`] = undefined;
+        this.scene.worldManager.map[`${this.onGrid.x},${this.onGrid.y}`].crop = undefined;
+        this.destroy();
+    }
+
+    update() {
+        if (this.harvestable)
+            return;
+        if (Date.now() > this.harvestableTime) {
+            this.harvestable = true;
+        }
+        let growthTime = Date.now() - this.sowingTime;
+        let phase = Math.floor((growthTime / this.timeToGrow) * this.totalPhase);
+        console.log(phase);
+        this.setFrame(this.name + "_" + phase);
+
+        // console.log("update")
     }
 }

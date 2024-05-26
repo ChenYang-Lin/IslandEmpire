@@ -11,8 +11,8 @@ export default class WorldManager {
         this.scene.resourceCollidersGroup = this.scene.physics.add.group({ immovable: true });
         this.scene.dropsCollidersGroup = this.scene.physics.add.group({ immovable: true });
 
-        this.executedGrids = [];
         this.hoedLandSpriteGroup = {};
+        this.growingCrops = {};
 
         this.map = {
             "0,0": {
@@ -274,12 +274,21 @@ export default class WorldManager {
         let x = grid.x * 32;
         let y = grid.y * 32;
         let cropGrowName = ENTITY_DATA[seedName].crop_grow;
+        let sowingTime = Date.now();
         this.map[`${grid.x},${grid.y}`].crop = {
             x,
             y,
             cropGrowName,
+            sowingTime,
         };
-        let crop = new Crop(this.scene, x, y, cropGrowName)
+        this.growingCrops[`${grid.x},${grid.y}`] = new Crop(this.scene, x, y, cropGrowName, sowingTime);
+    }
+
+
+    update() {
+        for (const [key, crop] of Object.entries(this.growingCrops)) {
+            crop.update();
+        }
     }
     
 }

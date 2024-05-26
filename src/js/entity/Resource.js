@@ -44,10 +44,10 @@ export default class Resource extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
-    get positionOnGrid() {
+    get onGrid() {
         return {
-            x: (this.x - ENTITY_DATA[this.name].repositionedX) / 32,
-            y: (this.y - ENTITY_DATA[this.name].repositionedY) / 32,
+            x: Math.floor((this.x - ENTITY_DATA[this.name].repositionedX) / 32),
+            y: Math.floor((this.y - ENTITY_DATA[this.name].repositionedY) / 32),
         }
     }
 
@@ -69,8 +69,6 @@ export default class Resource extends Phaser.Physics.Arcade.Sprite {
 
     onDeath() {
         ENTITY_DATA[this.name].drops.forEach((name) => {
-            console.log(this.position.x, this.position.y)
-            console.log(this.positionOnGrid.x, this.positionOnGrid.y)
             let drops = new Drops(this.scene, this.position.x + Math.floor(Math.random() * 20), this.position.y + Math.floor(Math.random() * 20), "item", name);
         })
         this.destroy();

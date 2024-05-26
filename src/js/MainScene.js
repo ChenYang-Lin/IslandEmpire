@@ -53,7 +53,7 @@ export default class MainScene extends Phaser.Scene {
 
         this.camera = this.cameras.main;
         this.camera.startFollow(this.player);
-        this.camera.setLerp(0.3, 0.3);
+        // this.camera.setLerp(0.3, 0.3);
         this.camera.roundPixels = true;
 
         // this.scale.setParentSize(window.innerWidth, window.innerHeight);
@@ -62,6 +62,7 @@ export default class MainScene extends Phaser.Scene {
 
     update() {
         this.player.update();
+        this.worldManager.update();
         this.inputController.update();
         this.hud.update();
 
