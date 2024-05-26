@@ -25,6 +25,27 @@ export default class Crop extends Phaser.Physics.Arcade.Sprite {
         this.timeToGrow = ENTITY_DATA[this.name].timeToGrow;
         this.harvestableTime = sowingTime + this.timeToGrow;
         this.totalPhase = ENTITY_DATA[this.name].totalPhase;
+
+        this.postFxPlugin = this.scene.plugins.get('rexoutlinepipelineplugin');
+        this.setInteractive()
+        this.on('pointerover', () => {
+            // Add postfx pipeline
+            this.postFxPlugin.add(this, {
+                thickness: 1,
+                outlineColor: 0xFFE50C
+            });
+            this.is_hovered = true;
+            // this.createHealthBar();            
+        })
+        this.on('pointerout', () => {
+            // Remove all outline post-fx pipelines
+            this.postFxPlugin.remove(this);
+            // this.destroyHealthBar()
+            this.is_hovered = false;
+        })
+        this.on('pointerdown', () => {
+            // 
+        })
     }
 
     static preload(scene) {

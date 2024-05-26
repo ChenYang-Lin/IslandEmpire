@@ -21,6 +21,7 @@ export default class MainScene extends Phaser.Scene {
         Crop.preload(this);
 
         this.load.plugin('rexvirtualjoystickplugin', "js/utils/rexvirtualjoystickplugin.min.js", true);
+        this.load.plugin('rexoutlinepipelineplugin', 'js/utils/rexoutlinepipelineplugin.min.js', true); // outline plugin
         this.load.atlas("item", "assets/item.png", "assets/item_atlas.json");
         this.load.atlas("land", "assets/land.png", "assets/land_atlas.json");
 
