@@ -12,7 +12,7 @@ export default class Inventory {
             "stone": 2,
             "potato_seed": 3,
         }
-        this.inventoryOrder = ["sword", "potato_seed", "hoe", "stone"];
+        this.inventoryOrder = ["potato_seed", "sword", "hoe", "stone"];
 
         this.inventoryWindow = new InventoryWindow(this.scene, this);
     }

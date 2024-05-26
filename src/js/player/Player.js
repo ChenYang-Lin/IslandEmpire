@@ -31,7 +31,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         // Player status
         this.hp = 100;
         this.mp = 100;
-        this.speed = 100;
+        this.speed = 96;
         this.attackDmg = 1;
 
         this.energy = 100;

@@ -137,6 +137,9 @@ const ENTITY_DATA = {
         height: 32,
         offsetX: 0,
         offsetY: 32,
+        phase: 6,
+        grow_time: 60, // seconds
+        crop: "potato",
     }
 }
 

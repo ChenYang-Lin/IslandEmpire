@@ -35,6 +35,9 @@ export default class AnimationController {
     hoe() {
         if (this.inAction)
             return
+        // return if the land has been hoed 
+        if (this.scene.worldManager.map[`${this.player.onGrid.x},${this.player.onGrid.y}`].isHoedLand)
+            return;
         this.inAction = true;
         this.player.anims.play(`idle_${this.player.direction}`, true);
         setTimeout(() => {
@@ -45,6 +48,12 @@ export default class AnimationController {
 
     sow(seedName) {
         if (this.inAction) 
+            return;
+        // return if the land has not been hoed yet
+        if (!this.scene.worldManager.map[`${this.player.onGrid.x},${this.player.onGrid.y}`].isHoedLand)
+            return;
+        // return if the land already has growing crop 
+        if (this.scene.worldManager.map[`${this.player.onGrid.x},${this.player.onGrid.y}`].crop) 
             return;
         this.inAction = true;
         this.player.anims.play(`idle_${this.player.direction}`, true);

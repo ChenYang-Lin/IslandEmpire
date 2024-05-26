@@ -254,8 +254,6 @@ export default class WorldManager {
 
 
     hoeLand(grid) {
-        if (this.map[`${grid.x},${grid.y}`].isHoedLand)
-            return;
         this.map[`${grid.x},${grid.y}`].isHoedLand = true;
         this.createHoedLand(grid.x, grid.y);
 
@@ -273,12 +271,15 @@ export default class WorldManager {
     }
 
     sowingSeedOnLand(grid, seedName) {
-        if (!this.map[`${grid.x},${grid.y}`].isHoedLand)
-            return;
         let x = grid.x * 32;
         let y = grid.y * 32;
-        let cropName = ENTITY_DATA[seedName].crop_grow;
-        this.crop = new Crop(this.scene, x, y, cropName)
+        let cropGrowName = ENTITY_DATA[seedName].crop_grow;
+        this.map[`${grid.x},${grid.y}`].crop = {
+            x,
+            y,
+            cropGrowName,
+        };
+        let crop = new Crop(this.scene, x, y, cropGrowName)
     }
     
 }
