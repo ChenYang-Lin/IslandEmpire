@@ -30,7 +30,7 @@ export default class Resource extends Phaser.Physics.Arcade.Sprite {
         this.hp = this.maxHP;
 
         
-        this.scene.resourceCollidersGroup.add(this);
+        this.scene.worldManager.resourceCollidersGroup.add(this);
     }
 
     static preload(scene) {

@@ -1,5 +1,7 @@
 import AnimationController from "./AnimationController.js";
+import CollisionController from "./CollisionController.js";
 import Hitbox from "./Hitbox.js";
+import Sensors from "./Sensors.js";
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
     constructor(scene) {
@@ -19,14 +21,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         
         this.direction = "left";
 
-        this.sensor = this.scene.physics.add.image(this.position.x, this.position.y);
-        this.sensor.body.setCircle(50, -33, -33);
-        
-        this.touching = [];
-    
-        // Player parts
         this.animationController = new AnimationController(this.scene, this);
         this.hitbox = new Hitbox(this.scene, this);
+        this.sensors = new Sensors(this.scene, this);
+        this.collisionController = new CollisionController(this.scene, this);
         
         // Player status
         this.hp = 100;
@@ -64,9 +62,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     update() {
         this.depth = this.y - this.repositionedY;
-        this.sensor.setPosition(this.position.x, this.position.y);
-
+        this.sensors.update();
         this.animationController.update();
+
 
     }
 

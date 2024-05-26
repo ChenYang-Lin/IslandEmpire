@@ -108,6 +108,7 @@ export default class Crop extends Phaser.Physics.Arcade.Sprite {
             return;
         if (Date.now() > this.harvestableTime) {
             this.harvestable = true;
+            this.scene.worldManager.collectablesGroup.add(this);
         }
         this.growTime = Date.now() - this.sowingTime;
         let phase = Math.floor((this.growTime / this.timeToGrow) * this.totalPhase);

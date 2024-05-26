@@ -17,7 +17,7 @@ export default class Drops extends Phaser.Physics.Arcade.Sprite {
         this.setSize(ENTITY_DATA[this.name].width, ENTITY_DATA[this.name].height);
         this.setOffset(ENTITY_DATA[this.name].offsetX, ENTITY_DATA[this.name].offsetY);
 
-        this.scene.dropsCollidersGroup.add(this);
+        this.scene.worldManager.collectablesGroup.add(this);
 
     }
 

@@ -32,7 +32,7 @@ export default class Hitbox {
         this.swordHitbox = this.scene.physics.add.image(x, y);
         this.swordHitbox.setSize(32, 32);
 
-        this.scene.physics.add.overlap(this.swordHitbox, this.scene.resourceCollidersGroup, (swordHitbox, resource) => {
+        this.scene.physics.add.overlap(this.swordHitbox, this.scene.worldManager.resourceCollidersGroup, (swordHitbox, resource) => {
             if (this.swordHitboxTouching.includes(resource))
                 return;
             this.swordHitboxTouching.push(resource);

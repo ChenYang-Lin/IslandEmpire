@@ -7,10 +7,11 @@ export default class WorldManager {
     constructor(scene) {
         this.scene = scene;
 
-        this.scene.landCollidersGroup = this.scene.physics.add.group({ immovable: true });
-        this.scene.resourceCollidersGroup = this.scene.physics.add.group({ immovable: true });
-        this.scene.dropsCollidersGroup = this.scene.physics.add.group({ immovable: true });
-
+        // Collider Groups
+        this.landCollidersGroup = this.scene.physics.add.group({ immovable: true });
+        this.resourceCollidersGroup = this.scene.physics.add.group({ immovable: true });
+        this.collectablesGroup = this.scene.physics.add.group({ immovable: true });
+         
         this.hoedLandSpriteGroup = {};
         this.growingCrops = {};
 
@@ -214,7 +215,7 @@ export default class WorldManager {
         land.depth = y - 10000;
         if (landSprite !== "land") {
             let collider = this.scene.physics.add.sprite(x, y)
-            this.scene.landCollidersGroup.add(collider);
+            this.landCollidersGroup.add(collider);
         }
     }
 

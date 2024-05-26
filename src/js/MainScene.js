@@ -10,9 +10,6 @@ import Crop from "./entity/Crop.js";
 export default class MainScene extends Phaser.Scene {
     constructor() {
         super({ key: "MainScene" });
-
-        this.landCollidersGroup;
-        this.resourceCollidersGroup;
     }
 
     preload() {
@@ -29,28 +26,14 @@ export default class MainScene extends Phaser.Scene {
 
     create() {
         this.sys.game.scale.setParentSize(window.innerWidth, window.innerHeight); // make sure game is not overflow in ios safari.
-
+   
+        // Initialization
         this.worldManager = new WorldManager(this);
         this.worldManager.initWorld();
         this.player = new Player(this);
         this.inventory = new Inventory(this);
         this.inputController = new InputController(this, this.player);
         this.hud = new HUD(this);
-
-
-
-        this.physics.add.collider(this.player, this.landCollidersGroup);
-        this.physics.add.collider(this.player, this.resourceCollidersGroup);
-        
-        this.physics.add.overlap(this.player, this.dropsCollidersGroup, (player, drops) => {
-            this.inventory.addItem(drops.name, 1);
-            drops.destroy();
-        });
-        this.physics.add.overlap(this.player.sensor, this.resourceCollidersGroup, (player, resource) => {
-            if (this.player.touching.includes(resource))
-                return;
-            this.player.touching.push(resource);
-        });
 
         this.camera = this.cameras.main;
         this.camera.startFollow(this.player);
