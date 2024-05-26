@@ -128,9 +128,9 @@ const ENTITY_DATA = {
         height: 32,
         offsetX: 0,
         offsetY: 32,
-        crop: "potato",
+        crop_grow: "potato_grow",
     },
-    potato: {
+    "potato_grow": {
         repositionedX: 0,
         repositionedY: -16,
         width: 32,

@@ -277,8 +277,8 @@ export default class WorldManager {
             return;
         let x = grid.x * 32;
         let y = grid.y * 32;
-        let cropName = ENTITY_DATA[seedName].crop;
-        this.crop = new Crop(this.scene, x, y, "crop", cropName)
+        let cropName = ENTITY_DATA[seedName].crop_grow;
+        this.crop = new Crop(this.scene, x, y, cropName)
     }
     
 }

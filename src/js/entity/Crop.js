@@ -2,10 +2,11 @@
 import { ENTITY_DATA } from "../GameData.js";
 
 export default class Crop extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, x, y, texture, name) {
+    constructor(scene, x, y, name) {
         let phase = (Math.random() < 0.5) ? "_0" : "_0_alt"; // randomly choose two seed image;
-        let frame = name + phase;
-        super(scene, x, y, texture, frame)
+        let frame = name + "_grow" + phase;
+        console.log(frame)
+        super(scene, x, y, "crops_grow", frame)
 
         this.scene = scene;
         this.depth = this.y;
@@ -21,6 +22,6 @@ export default class Crop extends Phaser.Physics.Arcade.Sprite {
     }
 
     static preload(scene) {
-        scene.load.atlas("crop", "assets/crop.png", "assets/crop_atlas.json")
+        scene.load.atlas("crops_grow", "assets/crops_grow.png", "assets/crops_grow_atlas.json")
     }
 }
