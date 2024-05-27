@@ -19,6 +19,7 @@ export default class Crop extends Phaser.Physics.Arcade.Sprite {
         this.y += ENTITY_DATA[this.name].repositionedY;
         this.setSize(ENTITY_DATA[this.name].width, ENTITY_DATA[this.name].height);
         this.setOffset(ENTITY_DATA[this.name].offsetX, ENTITY_DATA[this.name].offsetY);
+        this.collectable = ENTITY_DATA[this.name].collectable;
 
         this.harvestable = false;
         this.sowingTime = sowingTime;
@@ -92,8 +93,8 @@ export default class Crop extends Phaser.Physics.Arcade.Sprite {
     }
 
     onDeath() {
-        this.scene.worldManager.growingCrops[`${this.onGrid.x},${this.onGrid.y}`] = undefined;
-        this.scene.worldManager.map[`${this.onGrid.x},${this.onGrid.y}`].crop = undefined;
+        delete this.scene.worldManager.growingCrops[`${this.onGrid.x},${this.onGrid.y}`]
+        delete this.scene.worldManager.map[`${this.onGrid.x},${this.onGrid.y}`].crop 
         this.destroy();
     }
 

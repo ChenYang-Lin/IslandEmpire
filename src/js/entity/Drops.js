@@ -16,9 +16,14 @@ export default class Drops extends Phaser.Physics.Arcade.Sprite {
         this.y += ENTITY_DATA[this.name].repositionedY;
         this.setSize(ENTITY_DATA[this.name].width, ENTITY_DATA[this.name].height);
         this.setOffset(ENTITY_DATA[this.name].offsetX, ENTITY_DATA[this.name].offsetY);
+        this.collectable = ENTITY_DATA[this.name].collectable;
 
         this.scene.worldManager.collectablesGroup.add(this);
 
+    }
+
+    onDeath() {
+        this.destroy();
     }
 
     

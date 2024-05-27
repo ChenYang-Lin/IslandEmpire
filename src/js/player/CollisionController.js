@@ -23,6 +23,7 @@ export default class CollisionController {
 
         // Player overlap Collectables (drops, crops)
         this.currentCollectables = [];
+        this.collectableCollected = [];
         this.scene.physics.add.overlap(this.player.sensors.nearbyCollectablesSensor, this.scene.worldManager.collectablesGroup, (player, nearbyCollectable) => {
             if (!this.currentCollectables.includes(nearbyCollectable)) {
                 this.currentCollectables.push(nearbyCollectable)
@@ -33,10 +34,15 @@ export default class CollisionController {
         });
         setInterval(() => {
             this.sensors.touchingNearbyCollectables = this.sensors.touchingNearbyCollectables.filter(item => this.currentCollectables.includes(item));
+            this.sensors.touchingNearbyCollectables = this.sensors.touchingNearbyCollectables.filter(item => !this.collectableCollected.includes(item));
             this.currentCollectables = [];
-            console.log(this.sensors.touchingNearbyCollectables)
-        }, 1000);
+            this.scene.hud.createCollectablesContainer(this.sensors.touchingNearbyCollectables);
+        }, 500);
         
+    }
+
+    addCollectableCollected(collectableCollected) {
+        this.collectableCollected.push(collectableCollected);
     }
 
 }

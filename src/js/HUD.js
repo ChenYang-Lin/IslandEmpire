@@ -45,6 +45,41 @@ export default class HUD {
             icon.src = ""
     }
 
+    createCollectablesContainer(collectables, i) {
+        let collectablesContainer = document.getElementById("collectables-container");
+        
+        collectablesContainer.innerHTML = ""; // refresh container;
+
+        // Create collectables button
+        collectables.forEach((collectable, i) => {
+            let collectableBtn = document.createElement("button");
+            collectableBtn.classList.add("collectable-btn");
+            collectableBtn.setAttribute("index", `${i}`);
+            collectableBtn.onclick = () => {
+                console.log(i)
+                this.scene.inventory.addItem(collectable.collectable, 1);
+                this.scene.player.sensors.touchingNearbyCollectables[i].onDeath();
+                this.scene.player.collisionController.addCollectableCollected(collectable);
+                collectableBtn.remove();
+            }
+
+            // Create collectable img
+            let collectableImg = document.createElement('img');
+            collectableImg.classList.add("collectable-img");
+            collectableImg.src = this.scene.sys.game.textures.getBase64("item", collectable.collectable);
+
+            // Create collectable text
+            let collectableText = document.createElement("div");
+            collectableText.classList.add("collectable-name");
+            collectableText.innerHTML = `${collectable.collectable}`;
+    
+            collectableBtn.appendChild(collectableImg);
+            collectableBtn.appendChild(collectableText);
+            collectablesContainer.appendChild(collectableBtn);
+                    
+        })
+    }
+
     update() {
         this.renderCurrentFPS();
         this.setActionButton();

@@ -56,6 +56,7 @@ const ENTITY_DATA = {
         height: 32,
         offsetX: 0,
         offsetY: 0,
+        collectable: "wood",
     },
     fiber: {
         category: "item",
@@ -66,6 +67,7 @@ const ENTITY_DATA = {
         height: 32,
         offsetX: 0,
         offsetY: 0,
+        collectable: "fiber",
     },
     stone: {
         category: "item",
@@ -76,6 +78,7 @@ const ENTITY_DATA = {
         height: 32,
         offsetX: 0,
         offsetY: 0,
+        collectable: "stone",
     },
     // Item - weapon
     sword: {
@@ -139,8 +142,19 @@ const ENTITY_DATA = {
         offsetY: 32,
         totalPhase: 5,
         timeToGrow: 6 * 1000, // millisecond
-        crop: "potato",
-    }
+        collectable: "potato",
+    },
+    potato: {
+        category: "item",
+        type: "food",
+        repositionedX: 0,
+        repositionedY: 0,
+        width: 32,
+        height: 32,
+        offsetX: 0,
+        offsetY: 0,
+        collectable: "potato",
+    },
 }
 
 export {
