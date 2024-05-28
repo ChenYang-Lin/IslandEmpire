@@ -25,7 +25,6 @@ export default class Inventory {
         if (this.inventoryOrder.includes(name)) {
             this.inventory[name] += quantity;
             this.inventoryWindow.createInventoryWindow();
-            console.log(this.inventory, this.inventoryOrder);
             return;
         }
         
