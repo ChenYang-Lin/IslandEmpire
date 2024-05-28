@@ -32,7 +32,7 @@ export default class InputController {
 
     initMobileBtns() {
         let actionBtn = document.getElementById("action-btn")
-        actionBtn.addEventListener("touchstart", () => {
+        actionBtn.addEventListener("pointerdown", () => {
             console.log("action")
             this.beginAction();
         })

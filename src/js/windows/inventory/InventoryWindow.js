@@ -68,7 +68,7 @@ export default class InventoryWindow {
                 this.inventory.swapItems(parseInt(initialSlot.getAttribute("index"), 10), parseInt(currSlot.getAttribute("index"), 10));
             });
 
-            inventorySlot.addEventListener('click', (e) => {
+            inventorySlot.addEventListener('pointerdown', (e) => {
                 this.setSelectedIndex(e);                
             })
 
@@ -100,35 +100,5 @@ export default class InventoryWindow {
         
         return { itemImg, itemQuantityText };
     }
-
-    dragStart(e) {
-    //     e.target.className += ' hold';
-    //     setTimeout(() => (e.target.parentNode.innerHTML = ""), 0);
-    //     let currentGrid = e.target.parentNode;
-    //     this.dragIndex = Array.from(currentGrid.parentNode.children).indexOf(currentGrid);
-    // }
-
-    // dragEnd() {
-    //     console.log("dragEnd")
-    //     const items = document.getElementById("item-grids").children
-    //     if (this.dragIndex < 0) return;
-
-    //     console.log(this.dragIndex)
-    //     console.log(this.dropIndex)
-    //     if (this.dropIndex >= 0) {
-    //         // let fill = this.createItemIcon(this.inventory.inventory[this.dragIndex].name)
-    //         let currItem = this.inventory.inventory[this.dragIndex]
-    //         let fill = this.createItemIcon(currItem.name, currItem.quantity)
-    //         if (this.inventory.inventory[this.dropIndex] !== undefined) {
-    //             items.item(this.dragIndex).appendChild(fill);
-    //         } else {
-    //             items.item(this.dropIndex).appendChild(fill);
-    //         }
-    //         this.inventory.swapItems(this.dragIndex, this.dropIndex);
-    //         console.log(this.inventory.inventory)
-    //     } else {
-//     }
-    }
-
 
 }
