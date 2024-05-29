@@ -7,7 +7,7 @@
     font-family: "ＭＳ Ｐゴシック";
     /* font-family: "Silkscreen"; */
     user-select: none;
-    /* box-sizing: border-box; */
+    box-sizing: border-box;
 }
 
 html::-webkit-scrollbar {

@@ -5,6 +5,7 @@ import InputController from "./player/InputController.js";
 import Player from "./player/Player.js";
 import Resource from "./entity/Resource.js";
 import Crop from "./entity/Crop.js";
+import Shop from "./windows/Shop.js";
 
 
 export default class MainScene extends Phaser.Scene {
@@ -31,8 +32,9 @@ export default class MainScene extends Phaser.Scene {
         this.worldManager = new WorldManager(this);
         this.worldManager.initWorld();
         this.player = new Player(this);
-        this.inventory = new Inventory(this);
         this.inputController = new InputController(this, this.player);
+        this.inventory = new Inventory(this);
+        this.shop = new Shop(this);
         this.hud = new HUD(this);
 
         this.camera = this.cameras.main;

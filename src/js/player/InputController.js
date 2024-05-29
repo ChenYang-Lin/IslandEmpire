@@ -6,6 +6,7 @@ export default class InputController {
         this.player = player;
         this.cursor = this.scene.input.keyboard.createCursorKeys();
         this.keyJ = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.J);
+        this.keyP = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
 
 
         this.joyLeft = false;
@@ -142,13 +143,23 @@ export default class InputController {
         
     }
 
+  
+
     update() {
         this.movementController();
         if (this.keyJ.isDown) {
             this.beginAction();
         }
+        if (this.keyP.isDown) {
+            let shop = this.scene.shop;
+            shop.isOpen ? shop.closeWindow() : shop.openWindow();
+            shop.inAction = true;
+        }
+        if (this.keyP.isUp) {
+            this.scene.shop.inAction = false;
+        }
         this.renderHoveredGrid();
-    
+        
     }
 
 
