@@ -7,6 +7,11 @@
     font-family: "ＭＳ Ｐゴシック";
     /* font-family: "Silkscreen"; */
     user-select: none;
+    /* box-sizing: border-box; */
+}
+
+html::-webkit-scrollbar {
+    width: 10px;
 }
 
 body {
@@ -153,4 +158,108 @@ body {
     color: white;
     text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
     pointer-events: none;
+}
+
+#shop-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    pointer-events: auto;
+}
+
+#shop-header {
+    position: relative;
+    width: 100%;
+    height: 10%;
+    background-color: black;
+    padding-left: 10%;
+    display: flex;
+    align-items: center;
+}
+
+#shop-name {
+    color: white;
+    font-size: 24px;    
+}
+
+#shop-content {
+    position: relative;
+    width: 100%;
+    height: 75%;
+    display: flex;
+    /* background-color: white; */
+    padding-top: 10px;
+}
+
+#shop-item-list {
+    width: 60%;
+    height: 100%;
+    padding-left: 15%;
+    padding-right: 5px;
+    overflow-y: scroll;
+    /* background-color: red; */
+}
+
+.shop-item {
+    position: relative;
+    width: 100%;
+    height: 72px;
+    margin: 2px;
+    font-size: 16px;
+    color: white;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+    background-color: rgb(48, 48, 48);
+    display: flex;
+}
+
+.shop-item:hover {
+    background-color: white;
+    color: black;
+    text-shadow: none;
+}
+
+.shop-item-img {
+    margin: 4px;
+    width: 64px;
+    height: 64px;
+    background-color: cyan;
+}
+
+.shop-item-descriptions {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: left;
+}
+/* 
+.shop-item-descriptions-name {
+
+}
+
+.shop-item-descriptions-price {
+
+} */
+
+.shop-item-limit {
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid white;
+}
+
+#shop-item-descriptions {
+    width: 40%;
+    height: 100%;
+    /* background-color: blue; */
+}
+
+#shop-footer {
+    position: relative;
+    height: 15%;
+    /* background-color: green; */
 }
