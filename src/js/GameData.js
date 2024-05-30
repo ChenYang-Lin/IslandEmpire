@@ -157,6 +157,50 @@ const ENTITY_DATA = {
     },
 }
 
+const SHOP_DATA = [
+    {
+        name: "potato",
+        price: 10,
+        limit: -1,
+    },
+    {
+        name: "corn_seed",
+        price: 10,
+        limit: -1,
+    },
+    {
+        name: "potato_seed",
+        price: 10,
+        limit: -1,
+    },
+    {
+        name: "eggplant_seed",
+        price: 10,
+        limit: -1,
+    },
+    {
+        name: "cauliflower_seed",
+        price: 10,
+        limit: -1,
+    },
+    {
+        name: "pumpking_seed",
+        price: 10,
+        limit: -1,
+    },
+    {
+        name: "stone",
+        price: 10,
+        limit: -1,
+    },
+    {
+        name: "wood",
+        price: 10,
+        limit: -1,
+    },
+]
+
 export {
     ENTITY_DATA,
+    SHOP_DATA,
 }

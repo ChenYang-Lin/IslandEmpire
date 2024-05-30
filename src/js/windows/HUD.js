@@ -54,7 +54,7 @@ export default class HUD {
         collectables.forEach((collectable, i) => {
             let collectableBtn = document.createElement("button");
             collectableBtn.classList.add("collectable-btn");
-            collectableBtn.setAttribute("index", `${i}`);
+            // collectableBtn.setAttribute("index", `${i}`);
             collectableBtn.addEventListener("pointerdown", () => {
                 collectableBtn.remove();
                 this.scene.inventory.addItem(collectable.collectable, 1);

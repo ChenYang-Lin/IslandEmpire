@@ -5,7 +5,6 @@
     /* font-smooth: never;
     -webkit-font-smoothing : none; */
     font-family: "ＭＳ Ｐゴシック";
-    /* font-family: "Silkscreen"; */
     user-select: none;
     box-sizing: border-box;
 }
@@ -29,6 +28,7 @@ body {
     height: 100%;
     pointer-events: none;
     display: none;
+    image-rendering: pixelated;
     /* background-color: blue;
     opacity: 0.5; */
 }
@@ -185,6 +185,21 @@ body {
     font-size: 24px;    
 }
 
+#shop-exit-btn {
+    position: absolute;
+    right: 10px;
+    background-color: red;
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 60px;
+    border-radius: 50%;
+    justify-self: end;
+    color: white;
+}
+
 #shop-content {
     position: relative;
     width: 100%;
@@ -200,24 +215,35 @@ body {
     padding-left: 15%;
     padding-right: 5px;
     overflow-y: scroll;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
     /* background-color: red; */
 }
 
 .shop-item {
     position: relative;
-    width: 100%;
+    width: 97%;
     height: 72px;
-    margin: 2px;
+    margin: auto;
+    margin-top: 4px;
     font-size: 16px;
     color: white;
     text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
     background-color: rgb(48, 48, 48);
     display: flex;
+    align-items: center;
 }
 
 .shop-item:hover {
-    background-color: white;
+    background-color: rgb(223, 223, 223);
+}
+
+.shop-item-selected {
+    background-color: rgb(223, 223, 223);
     color: black;
+    width: 100%;
+    height: 80px;
     text-shadow: none;
 }
 
@@ -225,14 +251,14 @@ body {
     margin: 4px;
     width: 64px;
     height: 64px;
-    background-color: cyan;
+    background-color: rgb(228, 255, 255);
 }
 
 .shop-item-descriptions {
     margin-left: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: left;
 }
 /* 
