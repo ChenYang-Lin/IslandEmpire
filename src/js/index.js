@@ -1,6 +1,5 @@
 import MainScene from "./MainScene.js";
 
-
 const config = {
     type: Phaser.AUTO,
     scale: {
