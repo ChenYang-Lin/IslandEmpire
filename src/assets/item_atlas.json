@@ -1,38 +1,12 @@
 {
     "frames": [
         {
-            "filename": "pumpkin",
+            "filename": "corn_seed",
             "frame": {
                 "w": 32,
                 "h": 32,
                 "x": 0,
                 "y": 0
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "cauliflower",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 32,
-                "y": 0
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "corn",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 0,
-                "y": 32
             },
             "anchor": {
                 "x": 0.5,
@@ -45,59 +19,7 @@
                 "w": 32,
                 "h": 32,
                 "x": 32,
-                "y": 32
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "potato",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 64,
                 "y": 0
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "pumpking_seed",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 64,
-                "y": 32
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "cauliflower_seed",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 0,
-                "y": 64
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "corn_seed",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 32,
-                "y": 64
             },
             "anchor": {
                 "x": 0.5,
@@ -109,33 +31,7 @@
             "frame": {
                 "w": 32,
                 "h": 32,
-                "x": 64,
-                "y": 64
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "potato_seed",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 96,
-                "y": 0
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "wateringcan",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 96,
+                "x": 0,
                 "y": 32
             },
             "anchor": {
@@ -144,12 +40,12 @@
             }
         },
         {
-            "filename": "axe",
+            "filename": "fiber",
             "frame": {
                 "w": 32,
                 "h": 32,
-                "x": 96,
-                "y": 64
+                "x": 32,
+                "y": 32
             },
             "anchor": {
                 "x": 0.5,
@@ -161,8 +57,34 @@
             "frame": {
                 "w": 32,
                 "h": 32,
+                "x": 64,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "gold_bar",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 64,
+                "y": 32
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "gold_ore",
+            "frame": {
+                "w": 32,
+                "h": 32,
                 "x": 0,
-                "y": 96
+                "y": 64
             },
             "anchor": {
                 "x": 0.5,
@@ -175,7 +97,33 @@
                 "w": 32,
                 "h": 32,
                 "x": 32,
-                "y": 96
+                "y": 64
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "iron_bar",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 64,
+                "y": 64
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "iron_ore",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 96,
+                "y": 0
             },
             "anchor": {
                 "x": 0.5,
@@ -184,6 +132,58 @@
         },
         {
             "filename": "pickaxe",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 96,
+                "y": 32
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "potato",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 96,
+                "y": 64
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "potato_seed",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 0,
+                "y": 96
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "pumpkin",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 32,
+                "y": 96
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "pumpkin_seed",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -196,7 +196,7 @@
             }
         },
         {
-            "filename": "sword",
+            "filename": "stone",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -209,7 +209,7 @@
             }
         },
         {
-            "filename": "iron_ore",
+            "filename": "sword",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -222,7 +222,7 @@
             }
         },
         {
-            "filename": "stone",
+            "filename": "wateringcan",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -248,7 +248,7 @@
             }
         },
         {
-            "filename": "coal",
+            "filename": "cauliflower",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -261,7 +261,7 @@
             }
         },
         {
-            "filename": "copper_bar",
+            "filename": "axe",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -274,7 +274,7 @@
             }
         },
         {
-            "filename": "copper_ore",
+            "filename": "cauliflower_seed",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -287,7 +287,7 @@
             }
         },
         {
-            "filename": "fiber",
+            "filename": "coal",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -300,7 +300,7 @@
             }
         },
         {
-            "filename": "gold_bar",
+            "filename": "copper_bar",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -313,7 +313,7 @@
             }
         },
         {
-            "filename": "gold_ore",
+            "filename": "copper_ore",
             "frame": {
                 "w": 32,
                 "h": 32,
@@ -326,7 +326,7 @@
             }
         },
         {
-            "filename": "iron_bar",
+            "filename": "corn",
             "frame": {
                 "w": 32,
                 "h": 32,

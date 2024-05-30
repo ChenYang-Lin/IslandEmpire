@@ -11,8 +11,24 @@ export default class Shop {
 
         this.selectedItem = 0;
 
+
+        this.init();
+        
+    }
+
+    init() {
         this.shopContainer = document.getElementById("shop-container");
         this.createShopWindow();
+    
+        this.shopExitBtn = document.getElementById("shop-exit-btn");
+        this.shopExitBtn.addEventListener("pointerdown", () => {
+            this.closeWindow();
+        })
+
+        this.shopBuyBtn = document.getElementById("shop-buy-btn");
+        this.shopBuyBtn.addEventListener("pointerdown", () => {
+            this.scene.inventory.addItem(SHOP_DATA[this.selectedItem].name, 1);
+        })
     }
 
     createShopWindow() {
@@ -56,7 +72,7 @@ export default class Shop {
 
             let shopItemDescriptionsPrice = document.createElement("div");
             shopItemDescriptionsPrice.classList.add("shop-item-descriptions-price");
-            shopItemDescriptionsPrice.innerHTML = `${SHOP_DATA[i].price}`;
+            shopItemDescriptionsPrice.innerHTML = `Price: ${SHOP_DATA[i].price} coin`;
 
             shopItemDescriptions.appendChild(shopItemDescriptionsName);
             shopItemDescriptions.appendChild(shopItemDescriptionsPrice);

@@ -11,6 +11,10 @@ export default class HUD {
         this.windowSizeSynchronization();
         this.setActionButton(0);
         
+        this.shopUI = document.getElementById("shop-ui");
+        this.shopUI.addEventListener("pointerdown", () => {
+            this.scene.shop.openWindow();
+        })
     }
 
     windowSizeSynchronization() {
