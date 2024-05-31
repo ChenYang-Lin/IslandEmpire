@@ -3,13 +3,10 @@ import MainScene from "./MainScene.js";
 // PWA
 let deferredPrompt; 
 window.addEventListener("beforeinstallprompt", (e) => {
-    alert("hello")
     // Prevent the mini-infobar from appearing on mobile
     e.preventDefault();
     // Stash the event so it can be triggered later.
-    console.log("he")
     deferredPrompt = e;
-    alert(deferredPrompt);
 });
 const installUI = document.getElementById("install-ui");
 installUI.addEventListener("click", async () => {
@@ -21,9 +18,22 @@ installUI.addEventListener("click", async () => {
             deferredPrompt = null;
         }
     } else {
-        alert("Application Installed")
+        alert("Installed failed")
     }
 })
+
+// Detects if device is on iOS 
+const isIos = () => {
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    return /iphone|ipad|ipod/.test( userAgent );
+  }
+  // Detects if device is in standalone mode
+  const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+  
+  // Checks if should display install popup notification:
+  if (isIos() && !isInStandaloneMode()) {
+    this.setState({ showInstallMessage: true });
+  }
 
 const config = {
     type: Phaser.AUTO,
