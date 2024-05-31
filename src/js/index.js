@@ -9,7 +9,7 @@ window.addEventListener("beforeinstallprompt", (e) => {
     deferredPrompt = e;
 });
 const installUI = document.getElementById("install-ui");
-installUI.addEventListener("pointerdown", async () => {
+installUI.addEventListener("click", async () => {
     if (deferredPrompt !== null && deferredPrompt !== undefined) {
         console.log(deferredPrompt)
         deferredPrompt.prompt();
