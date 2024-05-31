@@ -2,9 +2,9 @@ import MainScene from "./MainScene.js";
 
 // PWA
 let deferredPrompt; 
-window.addEventListener("beforeinstallprompt", (e) => {
-    deferredPrompt = e;
-});
+// window.addEventListener("beforeinstallprompt", (e) => {
+//     deferredPrompt = e;
+// });
 const installUI = document.getElementById("install-ui");
 installUI.addEventListener("pointerdown", async () => {
     if (deferredPrompt !== null && deferredPrompt !== undefined) {
