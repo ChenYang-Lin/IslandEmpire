@@ -88,11 +88,14 @@
         async function registerSW() {
             if ('serviceWorker' in navigator) {
                 try {
-                await navigator
-                    .serviceWorker
-                    .register('serviceworker.js');
+                    await navigator
+                        .serviceWorker
+                        .register('sw.js');
+                    
+                    console.log("SW registation succeed")
                 }
                 catch (e) {
+                    console.log(e)
                     console.log('SW registration failed');
                 }
             }
