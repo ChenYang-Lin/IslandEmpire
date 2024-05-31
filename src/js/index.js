@@ -1,5 +1,23 @@
 import MainScene from "./MainScene.js";
 
+// PWA
+let deferredPrompt; 
+window.addEventListener("beforeinstallprompt", (e) => {
+    deferredPrompt = e;
+});
+const installUI = document.getElementById("install-ui");
+installUI.addEventListener("pointerdown", async () => {
+    if (deferredPrompt !== null && deferredPrompt !== undefined) {
+        console.log(deferredPrompt)
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === "accepted") {
+            deferredPrompt = null;
+        }
+    } else {
+        alert("Application Installed")
+    }
+})
 
 const config = {
     type: Phaser.AUTO,
