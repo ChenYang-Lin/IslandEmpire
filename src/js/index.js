@@ -7,13 +7,15 @@ window.addEventListener("beforeinstallprompt", (e) => {
 });
 const installUI = document.getElementById("install-ui");
 installUI.addEventListener("pointerdown", async () => {
-    console.log("deferredPrompt")
-    if (deferredPrompt !== null) {
+    if (deferredPrompt !== null && deferredPrompt !== undefined) {
+        console.log(deferredPrompt)
         deferredPrompt.prompt();
         const { outcome } = await deferredPrompt.userChoice;
         if (outcome === "accepted") {
             deferredPrompt = null;
         }
+    } else {
+        alert("Application Installed")
     }
 })
 
