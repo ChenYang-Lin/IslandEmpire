@@ -84,7 +84,7 @@ export default class HUD {
     }
 
     update() {
-        this.renderCurrentFPS();
+        // this.renderCurrentFPS();
         this.setActionButton();
     }   
 }

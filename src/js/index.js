@@ -1,5 +1,22 @@
 import MainScene from "./MainScene.js";
 
+// PWA
+let deferredPrompt; 
+window.addEventListener("beforeinstallprompt", (e) => {
+    deferredPrompt = e;
+});
+const installUI = document.getElementById("install-ui");
+installUI.addEventListener("pointerdown", async () => {
+    console.log(deferredPrompt)
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === "accepted") {
+            deferredPrompt = null;
+        }
+    }
+})
+
 const config = {
     type: Phaser.AUTO,
     scale: {
@@ -16,6 +33,10 @@ const config = {
     parent: "island-empire",
     scene: MainScene,
     pixelArt: true,
+    // fps: {
+    //     forceSetTimeOut: true,
+    //     target: 60,
+    // },
     physics: {
         default: 'arcade',
         arcade: {
