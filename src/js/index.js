@@ -1,40 +1,5 @@
 import MainScene from "./MainScene.js";
 
-// PWA
-let deferredPrompt; 
-window.addEventListener("beforeinstallprompt", (e) => {
-    // Prevent the mini-infobar from appearing on mobile
-    e.preventDefault();
-    // Stash the event so it can be triggered later.
-    deferredPrompt = e;
-});
-const installUI = document.getElementById("install-ui");
-installUI.addEventListener("click", async () => {
-    if (deferredPrompt !== null && deferredPrompt !== undefined) {
-        console.log(deferredPrompt)
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        if (outcome === "accepted") {
-            deferredPrompt = null;
-        }
-    } else {
-        alert("Installed failed")
-    }
-})
-
-// Detects if device is on iOS 
-const isIos = () => {
-    const userAgent = window.navigator.userAgent.toLowerCase();
-    return /iphone|ipad|ipod/.test( userAgent );
-  }
-  // Detects if device is in standalone mode
-  const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
-  
-  // Checks if should display install popup notification:
-  if (isIos() && !isInStandaloneMode()) {
-    this.setState({ showInstallMessage: true });
-  }
-
 const config = {
     type: Phaser.AUTO,
     scale: {
