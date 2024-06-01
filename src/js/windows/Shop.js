@@ -12,12 +12,13 @@ export default class Shop {
         this.selectedItem = 0;
 
 
+        this.shopContainer = document.getElementById("shop-container");
+        this.shopQuantityWindow = document.getElementById("shop-quantity-window");
         this.init();
         
     }
 
     init() {
-        this.shopContainer = document.getElementById("shop-container");
         this.createShopWindow();
     
         this.shopExitBtn = document.getElementById("shop-exit-btn");
@@ -25,10 +26,18 @@ export default class Shop {
             this.closeWindow();
         })
 
-        this.shopBuyBtn = document.getElementById("shop-buy-btn");
-        this.shopBuyBtn.addEventListener("pointerdown", () => {
-            this.scene.inventory.addItem(SHOP_DATA[this.selectedItem].name, 1);
+        this.shopPurchaseBtn = document.getElementById("shop-purchase-btn");
+        this.shopPurchaseBtn.addEventListener("pointerdown", () => {
+            this.openQuantityWindow();
         })
+
+        this.shopQuantityCancelBtn = document.getElementById("shop-quantity-cancel-btn");
+        this.shopQuantityCancelBtn.addEventListener("pointerdown", () => {
+            this.closeQuantityWindow();
+        })
+
+        this.initShopQuantityWindow();
+
     }
 
     createShopWindow() {
@@ -50,7 +59,6 @@ export default class Shop {
         for (let i = 0; i < SHOP_DATA.length; i++) {
             let shopItem = document.createElement("div");
             shopItem.classList.add("shop-item");
-            console.log(this.selectedItem)
             if (i === this.selectedItem) {
                 shopItem.classList.add("shop-item-selected");
             }
@@ -94,7 +102,6 @@ export default class Shop {
         let shopItemInfoDescription = document.getElementById("shop-item-info-description");
         let shopItemInfoOwned = document.getElementById("shop-item-info-owned");
 
-        console.log(shopItemInfoHeader)
         shopItemInfoHeader.innerHTML = `${SHOP_DATA[this.selectedItem].name}`;
         shopItemInfoCategory.innerHTML = `${ENTITY_DATA[SHOP_DATA[this.selectedItem].name].category}`;
         shopItemInfoImg.src = this.scene.sys.game.textures.getBase64("item", SHOP_DATA[this.selectedItem].name);
@@ -102,9 +109,68 @@ export default class Shop {
         shopItemInfoOwned.innerHTML = `Owned: ${owned ? owned : 0}`;
     }
 
+    initShopQuantityWindow() {
+        this.shopQuantityImg = document.getElementById("shop-quantity-img");
+        this.shopQuantityImg.src = this.scene.sys.game.textures.getBase64("item", SHOP_DATA[this.selectedItem].name);
+
+        this.shopQuantityValue = document.getElementById("shop-quantity-quantity-value");
+        this.shopQuantityRange = document.getElementById("shop-quantity-range");
+        let shopQuantityDecreaseBtn = document.getElementById("shop-quantity-decrease-btn");
+        let shopQuantityIncreaseBtn = document.getElementById("shop-quantity-increase-btn");
+        
+        this.quantity = 1;
+        this.shopQuantityRange.value = this.quantity;
+
+        let shopQuantityConfirmBtn = document.getElementById("shop-quantity-confirm-btn");
+        shopQuantityConfirmBtn.addEventListener("pointerdown", () => {
+            this.scene.inventory.addItem(SHOP_DATA[this.selectedItem].name, this.quantity);
+            this.closeQuantityWindow();
+        })
+
+
+        shopQuantityDecreaseBtn.addEventListener("pointerdown", () => {
+            if (this.quantity <= 1) 
+                return;
+            this.quantity -= 1;
+            this.shopQuantityRange.value = this.quantity;
+            this.shopQuantityValue.innerHTML = `${this.quantity}`;
+        })
+        shopQuantityIncreaseBtn.addEventListener("pointerdown", () => {
+            if (this.quantity >= 100) 
+                return;
+            this.quantity += 1;
+            this.shopQuantityRange.value = this.quantity;
+            this.shopQuantityValue.innerHTML = `${this.quantity}`;
+        })
+
+        this.shopQuantityRange.addEventListener("input", (e) => {
+            this.quantity = parseInt(e.target.value, 10);
+            this.shopQuantityRange.value = this.quantity;
+            this.shopQuantityValue.innerHTML = `${this.quantity}`;
+        })
+    }
+
+    resetQuantityWindow() {
+        this.quantity = 1;
+        this.shopQuantityImg.src = this.scene.sys.game.textures.getBase64("item", SHOP_DATA[this.selectedItem].name);
+        this.shopQuantityRange.value = 1;
+        this.shopQuantityValue.innerHTML = "1";
+    }
+
+    openQuantityWindow() {
+        this.resetQuantityWindow();
+        this.shopQuantityWindow.style.display = "block";
+    }
+
+    closeQuantityWindow() {
+        this.openWindow();
+    }
+
     openWindow() {
         if(this.inAction) 
             return
+        this.shopQuantityWindow.style.display = "none";
+        this.createShopWindow();
         this.isOpen = true;
         this.shopContainer.style.display = "block";
     }

@@ -87,7 +87,33 @@
                 </div>
             </div>
             <div id="shop-footer">
-                <button id="shop-buy-btn">Phurchase</button>
+                <button id="shop-purchase-btn" class="btn">Phurchase</button>
+            </div>
+            <!-- shop-quantity-window -->
+            <div id="shop-quantity-window">
+                <div id="shop-quantity-wrapper">
+                    <div id="shop-quantity-title">Item to purchase</div>
+                    <div id="shop-quantity-img-container">
+                        <img src="" alt="" id="shop-quantity-img">
+                    </div>
+                    <div id="shop-quantity-quantity">
+                        <div id="shop-quantity-quantity-text">Qty.</div>
+                        <div id="shop-quantity-quantity-value">1</div>
+                    </div>
+                    <div id="shop-quantity-selector">
+                        <button id="shop-quantity-decrease-btn" class="adjust-quantity-btn">-</button>
+                        <div id="shop-quantity-min-text">1</div>
+                        <input type="range" id="shop-quantity-range" name="shop-quantity-range" min="1" max="100" value="1" step="" />
+                        <div id="shop-quantity-max-text">100</div>
+                        <button id="shop-quantity-increase-btn" class="adjust-quantity-btn">+</button>
+                    </div>
+                    <div id="shop-quantity-cost">Cost: 10 coin</div>
+                    <hr>
+                    <div id="shop-quantity-btns">
+                        <button id="shop-quantity-cancel-btn" class="btn">Cancel</button>
+                        <button id="shop-quantity-confirm-btn" class="btn">Confirm</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
