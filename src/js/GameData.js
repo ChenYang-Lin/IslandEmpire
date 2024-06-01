@@ -147,6 +147,7 @@ const ENTITY_DATA = {
     potato: {
         category: "item",
         type: "food",
+        name: "Potato",
         repositionedX: 0,
         repositionedY: 0,
         width: 32,

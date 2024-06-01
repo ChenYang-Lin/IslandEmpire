@@ -1,4 +1,4 @@
-import { SHOP_DATA } from "../GameData.js";
+import { ENTITY_DATA, SHOP_DATA } from "../GameData.js";
 
 
 
@@ -34,6 +34,7 @@ export default class Shop {
     createShopWindow() {
         let shopItemList = document.getElementById("shop-item-list");
 
+        // Create Shop List
         shopItemList.innerHTML = "";
             // <div id="shop-item-list">
             //     <div class="shop-item">
@@ -86,6 +87,18 @@ export default class Shop {
             shopItemList.appendChild(shopItem);
         }
 
+        // Create Shop Info
+        let shopItemInfoHeader = document.getElementById("shop-item-info-header");
+        let shopItemInfoCategory = document.getElementById("shop-item-info-category");
+        let shopItemInfoImg = document.getElementById("shop-item-info-img");
+        let shopItemInfoDescription = document.getElementById("shop-item-info-description");
+        let shopItemInfoOwned = document.getElementById("shop-item-info-owned");
+
+        shopItemInfoHeader.innerHTML = `${SHOP_DATA[this.selectedItem].name}`;
+        shopItemInfoCategory.innerHTML = `${ENTITY_DATA[SHOP_DATA[this.selectedItem].name].category}`;
+        shopItemInfoImg.src = this.scene.sys.game.textures.getBase64("item", SHOP_DATA[this.selectedItem].name);
+        let owned = this.scene.inventory.inventory[SHOP_DATA[this.selectedItem].name];
+        shopItemInfoOwned.innerHTML = `Owned: ${owned ? owned : 0}`;
     }
 
     openWindow() {
