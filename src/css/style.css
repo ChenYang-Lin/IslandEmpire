@@ -167,8 +167,8 @@ body {
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
     pointer-events: auto;
-    /* display: none; */
-    display: block;
+    display: none;
+    /* display: block; */
 }
 
 #shop-header {
