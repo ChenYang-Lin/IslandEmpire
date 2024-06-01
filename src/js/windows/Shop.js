@@ -94,6 +94,7 @@ export default class Shop {
         let shopItemInfoDescription = document.getElementById("shop-item-info-description");
         let shopItemInfoOwned = document.getElementById("shop-item-info-owned");
 
+        console.log(shopItemInfoHeader)
         shopItemInfoHeader.innerHTML = `${SHOP_DATA[this.selectedItem].name}`;
         shopItemInfoCategory.innerHTML = `${ENTITY_DATA[SHOP_DATA[this.selectedItem].name].category}`;
         shopItemInfoImg.src = this.scene.sys.game.textures.getBase64("item", SHOP_DATA[this.selectedItem].name);
