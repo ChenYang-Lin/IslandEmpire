@@ -40,10 +40,11 @@ export default class MainScene extends Phaser.Scene {
         this.camera = this.cameras.main;
         this.camera.startFollow(this.player);
         // this.camera.setLerp(0.3, 0.3);
-        this.camera.roundPixels = true;
+        // this.camera.roundPixels = true;
 
-        // this.scale.setParentSize(window.innerWidth, window.innerHeight);
-        
+        this.input.on("pointerdown", (pointer) => {
+            this.getMousePosition();
+        })
     }
 
     update() {
@@ -52,12 +53,12 @@ export default class MainScene extends Phaser.Scene {
         this.inputController.update();
         this.hud.update();
 
-        // this.getMousePosition();
+
     }
 
     getMousePosition() {
-        let x = this.input.mousePointer.x;
-        let y = this.input.mousePointer.y
+        let x = Math.floor((this.input.mousePointer.x + this.camera.worldView.x + 16) / 32);
+        let y = Math.floor((this.input.mousePointer.y + this.camera.worldView.y + 16) / 32);
         console.log(x, y)
     }
 

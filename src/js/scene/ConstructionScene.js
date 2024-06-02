@@ -30,10 +30,21 @@ export default class ConstructionScene extends Phaser.Scene {
         
             this.camera.scrollX -= (pointer.x - pointer.prevPosition.x) / this.camera.zoom;
             this.camera.scrollY -= (pointer.y - pointer.prevPosition.y) / this.camera.zoom;
-          });
+        });
+
+        this.input.on("pointerdown", (pointer) => {
+            this.getMousePosition();
+        })
     }
 
     update() {
 
     }
+
+    getMousePosition() {
+        let x = Math.floor((this.input.mousePointer.x + this.camera.worldView.x + 16) / 32);
+        let y = Math.floor((this.input.mousePointer.y + this.camera.worldView.y + 16) / 32);
+        console.log(x, y)
+    }
+
 }
