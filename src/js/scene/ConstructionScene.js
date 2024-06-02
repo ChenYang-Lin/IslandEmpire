@@ -33,7 +33,9 @@ export default class ConstructionScene extends Phaser.Scene {
         });
 
         this.input.on("pointerdown", (pointer) => {
-            let { gridX, gridY } = this.getMousePosition();
+            let gridX = Math.floor((pointer.x + this.camera.worldView.x + 16) / 32)
+            let gridY = Math.floor((pointer.y + this.camera.worldView.y + 16) / 32)
+            // this.add.rectangle(gridX * 32, gridY * 32, 32, 32, "#fff", 0.5);
             this.updateLand(gridX, gridY, false);
         })
     }
@@ -42,11 +44,6 @@ export default class ConstructionScene extends Phaser.Scene {
 
     }
 
-    getMousePosition() {
-        let gridX = Math.floor((this.input.mousePointer.x + this.camera.worldView.x + 16) / 32);
-        let gridY = Math.floor((this.input.mousePointer.y + this.camera.worldView.y + 16) / 32);
-        return { gridX, gridY }
-    }
 
     updateLand(gridX, gridY, addLand) {
         let x = gridX * 32;
