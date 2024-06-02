@@ -484,16 +484,23 @@ body {
 }
 
 
-#shop-ui {
+#ui-container {
     position: absolute;
-    left: 20px;
-    top: 20px;
-    pointer-events: auto;
+    margin: 10px;
+    right: 0;
+    top: 0;
 }
 
-/* #install-ui {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    pointer-events: auto;
-} */
+.ui-btn {
+    width: 64px;
+    height: 64px;
+    background-color: #00000000;
+    border: none;
+}
+
+.ui-img {
+    image-rendering: auto;
+    width: 64px;
+    height: 64px;
+    cursor: pointer;
+}
