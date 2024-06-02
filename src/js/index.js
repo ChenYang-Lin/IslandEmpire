@@ -15,8 +15,8 @@ const config = {
     // width: 1920,
     // height: 1080,
     parent: "island-empire",
-    scene: MainScene,
-    // scene: ConstructionScene,
+    // scene: MainScene,
+    scene: ConstructionScene,
     pixelArt: true,
     // fps: {
     //     forceSetTimeOut: true,

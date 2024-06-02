@@ -9,14 +9,22 @@ export default class WorldManager {
 
         // Collider Groups
         this.landCollidersGroup = this.scene.physics.add.group({ immovable: true });
+        this.landSpriteGroup = {};
         this.resourceCollidersGroup = this.scene.physics.add.group({ immovable: true });
         this.collectablesGroup = this.scene.physics.add.group({ immovable: true });
          
         this.hoedLandSpriteGroup = {};
         this.growingCrops = {};
 
-        this.map = MAP_DATA;
+        if (localStorage.getItem("map")) {
+            this.map = this.loadMapFromLocalStorage();
+        } else {
+            this.map = MAP_DATA;
+            this.saveMapToLocalStorage();
+        }
     }
+
+
 
     initWorld() {
         for (let gridY = -20; gridY < 20; gridY++) {
@@ -33,7 +41,17 @@ export default class WorldManager {
         }
     }
 
+    saveMapToLocalStorage() {
+        localStorage.setItem("map", JSON.stringify(this.map));
+    }
+
+    loadMapFromLocalStorage() {
+        return JSON.parse(localStorage.getItem("map"));
+    }
+
     createEntities(gridX, gridY, entities) {
+        if (!entities)
+            return;
         let x = gridX * 32;
         let y = gridY * 32;
         entities.forEach((entity) => {
@@ -54,6 +72,7 @@ export default class WorldManager {
         let landSprite = "land_all";
 
         let land = this.scene.add.sprite(x, y, "land", landSprite);
+        this.landSpriteGroup[`${gridX},${gridY}`] = land;
         land.depth = y - 10000;
     }
 
@@ -72,6 +91,7 @@ export default class WorldManager {
         let bl = `${gridX-1},${gridY+1}`;
         let left = `${gridX-1},${gridY}`;
         let lt = `${gridX-1},${gridY-1}`;
+
 
         // top
         if (this.map[top]?.isLand) {
@@ -106,9 +126,16 @@ export default class WorldManager {
             landSprite += "_lt"
         } 
 
+        // Check if current grid is a land
+        if (this.map[`${gridX},${gridY}`]?.isLand) {
+            return;
+        }
+
         let land = this.scene.add.sprite(x, y, "land", landSprite);
+        this.landSpriteGroup[`${gridX},${gridY}`]?.destroy();
+        this.landSpriteGroup[`${gridX},${gridY}`] = land;
         land.depth = y - 10000;
-        if (landSprite !== "land") {
+        if (landSprite !== "land" && landSprite !== "land_all") {
             let collider = this.scene.physics.add.sprite(x, y)
             this.landCollidersGroup.add(collider);
         }

@@ -33,7 +33,8 @@ export default class ConstructionScene extends Phaser.Scene {
         });
 
         this.input.on("pointerdown", (pointer) => {
-            this.getMousePosition();
+            let { gridX, gridY } = this.getMousePosition();
+            this.updateLand(gridX, gridY, false);
         })
     }
 
@@ -42,9 +43,50 @@ export default class ConstructionScene extends Phaser.Scene {
     }
 
     getMousePosition() {
-        let x = Math.floor((this.input.mousePointer.x + this.camera.worldView.x + 16) / 32);
-        let y = Math.floor((this.input.mousePointer.y + this.camera.worldView.y + 16) / 32);
-        console.log(x, y)
+        let gridX = Math.floor((this.input.mousePointer.x + this.camera.worldView.x + 16) / 32);
+        let gridY = Math.floor((this.input.mousePointer.y + this.camera.worldView.y + 16) / 32);
+        return { gridX, gridY }
     }
+
+    updateLand(gridX, gridY, addLand) {
+        let x = gridX * 32;
+        let y = gridY * 32;
+
+        let landSprite;
+
+
+        if (addLand) {
+            // add land
+            if (this.worldManager.map[`${gridX},${gridY}`]?.isLand) 
+                return;
+            landSprite = "land_all";
+            this.worldManager.map[`${gridX},${gridY}`] = { isLand: true }
+        } else {
+            // remove land
+            if (!this.worldManager.map[`${gridX},${gridY}`]?.isLand) 
+                return;
+            landSprite = "land";
+            this.worldManager.map[`${gridX},${gridY}`] = { isLand: false }
+        }
+
+        this.worldManager.saveMapToLocalStorage();
+
+
+        let land = this.add.sprite(x, y, "land", landSprite);
+        this.worldManager.landSpriteGroup[`${gridX},${gridY}`]?.destroy();
+        this.worldManager.landSpriteGroup[`${gridX},${gridY}`] = land;
+        land.depth = y - 10000;
+
+        this.worldManager.createSurroundingLand(gridX-1, gridY-1);
+        this.worldManager.createSurroundingLand(gridX-1, gridY);
+        this.worldManager.createSurroundingLand(gridX-1, gridY+1);
+        this.worldManager.createSurroundingLand(gridX, gridY-1);
+        this.worldManager.createSurroundingLand(gridX, gridY);
+        this.worldManager.createSurroundingLand(gridX, gridY+1);
+        this.worldManager.createSurroundingLand(gridX+1, gridY-1);
+        this.worldManager.createSurroundingLand(gridX+1, gridY);
+        this.worldManager.createSurroundingLand(gridX+1, gridY+1);
+    }  
+
 
 }
