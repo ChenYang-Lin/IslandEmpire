@@ -1,4 +1,4 @@
-import { ENTITY_DATA } from "./GameData.js";
+import { ENTITY_DATA, MAP_DATA } from "./GameData.js";
 import Crop from "./entity/Crop.js";
 import Resource from "./entity/Resource.js";
 
@@ -15,112 +15,7 @@ export default class WorldManager {
         this.hoedLandSpriteGroup = {};
         this.growingCrops = {};
 
-        this.map = {
-            "0,0": {
-                isLand: true,
-                entities: [
-                    "tree",
-                ],
-            },
-            "0,1": {
-                isLand: true,
-                entities: [
-                    
-                ],
-            },
-            "0,2": {
-                isLand: true,
-                entities: [
-
-                ],
-            },
-            "0,3": {
-                isLand: true,
-                entities: [
-
-                ],
-            },
-            "1,0": {
-                isLand: true,
-                entities: [
-
-                ],
-            },
-            "1,1": {
-                isLand: true,
-                entities: [
-
-                ],
-            },
-            "1,2": {
-                isHoedLand: true,
-                isLand: true,
-                entities: [
-
-                ],
-            },
-            "1,3": {
-                isHoedLand: true,
-                isLand: true,
-                entities: [
-
-                ],
-            },
-            "2,0": {
-                isLand: true,
-                entities: [
-                    "rock",
-                ],
-            },
-            "2,1": {
-                isLand: true,
-                entities: [
-
-                ],
-            },
-            "2,2": {
-                isLand: true,
-                entities: [
-
-                ],
-            },
-            "2,3": {
-                isLand: true,
-                entities: [
-
-                ],
-            },
-            "3,0": {
-                isLand: true,
-                entities: [
-                    
-                ],
-            },
-            "3,1": {
-                isLand: true,
-                entities: [
-
-                ],
-            },
-            "3,2": {
-                isLand: true,
-                entities: [
-
-                ],
-            },
-            "3,3": {
-                isLand: true,
-                entities: [
-                    "bush"
-                ],
-            },
-            "-3,3": {
-                isLand: true,
-                entities: [
-                    "bush"
-                ],
-            },
-        }
+        this.map = MAP_DATA;
     }
 
     initWorld() {

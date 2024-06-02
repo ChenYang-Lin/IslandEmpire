@@ -333,7 +333,115 @@ const SHOP_DATA = [
     },
 ]
 
+const MAP_DATA = {
+    "0,0": {
+        isLand: true,
+        entities: [
+            "tree",
+        ],
+    },
+    "0,1": {
+        isLand: true,
+        entities: [
+            
+        ],
+    },
+    "0,2": {
+        isLand: true,
+        entities: [
+
+        ],
+    },
+    "0,3": {
+        isLand: true,
+        entities: [
+
+        ],
+    },
+    "1,0": {
+        isLand: true,
+        entities: [
+
+        ],
+    },
+    "1,1": {
+        isLand: true,
+        entities: [
+
+        ],
+    },
+    "1,2": {
+        isHoedLand: true,
+        isLand: true,
+        entities: [
+
+        ],
+    },
+    "1,3": {
+        isHoedLand: true,
+        isLand: true,
+        entities: [
+
+        ],
+    },
+    "2,0": {
+        isLand: true,
+        entities: [
+            "rock",
+        ],
+    },
+    "2,1": {
+        isLand: true,
+        entities: [
+
+        ],
+    },
+    "2,2": {
+        isLand: true,
+        entities: [
+
+        ],
+    },
+    "2,3": {
+        isLand: true,
+        entities: [
+
+        ],
+    },
+    "3,0": {
+        isLand: true,
+        entities: [
+            
+        ],
+    },
+    "3,1": {
+        isLand: true,
+        entities: [
+
+        ],
+    },
+    "3,2": {
+        isLand: true,
+        entities: [
+
+        ],
+    },
+    "3,3": {
+        isLand: true,
+        entities: [
+            "bush"
+        ],
+    },
+    "-3,3": {
+        isLand: true,
+        entities: [
+            "bush"
+        ],
+    },
+}
+
 export {
     ENTITY_DATA,
     SHOP_DATA,
+    MAP_DATA
 }

@@ -1,4 +1,5 @@
 import MainScene from "./MainScene.js";
+import ConstructionScene from "./scene/ConstructionScene.js";
 
 const config = {
     type: Phaser.AUTO,
@@ -14,7 +15,8 @@ const config = {
     // width: 1920,
     // height: 1080,
     parent: "island-empire",
-    scene: MainScene,
+    // scene: MainScene,
+    scene: ConstructionScene,
     pixelArt: true,
     // fps: {
     //     forceSetTimeOut: true,
