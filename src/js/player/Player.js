@@ -60,11 +60,11 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
-    update() {
+    update(time, delta) {
         this.depth = this.y - this.repositionedY;
         this.sensors.update();
         this.animationController.update();
-
+        this.collisionController.update(time, delta);
 
     }
 

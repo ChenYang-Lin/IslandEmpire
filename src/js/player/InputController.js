@@ -122,8 +122,8 @@ export default class InputController {
     }
 
     beginAction() {
-        let selectedIndex = this.scene.inventory.inventoryWindow.selectedIndex;
-        let selectedItem = this.scene.inventory.inventoryOrder[selectedIndex];
+        let selectedIndex = this.scene.hud.inventory.inventoryWindow.selectedIndex;
+        let selectedItem = this.scene.hud.inventory.inventoryOrder[selectedIndex];
 
         switch (ENTITY_DATA[selectedItem].category) {
             case "weapon":
@@ -156,7 +156,7 @@ export default class InputController {
             shop.inAction = true;
         }
         if (this.keyP.isUp) {
-            this.scene.shop.inAction = false;
+            this.scene.hud.shop.inAction = false;
         }
         this.renderHoveredGrid();
         

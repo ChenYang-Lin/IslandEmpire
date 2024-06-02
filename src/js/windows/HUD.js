@@ -1,34 +1,53 @@
 
+import Shop from "./Shop.js";
+import Inventory from "./inventory/Inventory.js";
 
 export default class HUD {
     constructor(scene) {
         this.scene = scene;
 
+        this.hud = document.getElementById("hud");
+        this.inventorySlotsContainer = document.getElementById("inventory-slots-container");
+        this.collectableContainer = document.getElementById("collectables-container");
+        this.actionBtn = document.getElementById("action-btn");
+
+        // UIs
+        this.shopUI = document.getElementById("shop-ui");
+        this.constructionUI = document.getElementById("construction-ui");
+        this.exitUI = document.getElementById("exit-ui");
         this.initHUD();
     }
 
     initHUD() {
+        this.inventory = new Inventory(this.scene, this);
+        this.shop = new Shop(this.scene, this);
+
         this.windowSizeSynchronization();
         this.setActionButton(0);
         
         this.shopUI = document.getElementById("shop-ui");
         this.shopUI.addEventListener("pointerdown", () => {
-            this.scene.shop.openWindow();
+            this.shop.openWindow();
+        })
+        
+        let constructionUI = document.getElementById("construction-ui");
+        constructionUI.addEventListener("pointerdown", () => {
+            this.hideMainSceneUIs();
+            this.scene.scene.start("ConstructionScene");
         })
     }
 
     windowSizeSynchronization() {
         // Make sure the size of HUD window is same as game size.
         let islandEmpire = document.getElementById("island-empire").children[0];
-        let hud = document.getElementById("hud");
-        hud.style.display = "none"
+        this.closeHUD();
 
         setTimeout(() => {    
             hud.style.marginTop = window.getComputedStyle(islandEmpire).marginTop;
             hud.style.marginLeft = window.getComputedStyle(islandEmpire).marginLeft;
             hud.style.width = window.getComputedStyle(islandEmpire).width;
             hud.style.height = window.getComputedStyle(islandEmpire).height;
-            hud.style.display = "block"
+            this.openHUD();
         }, 50);
     }
 
@@ -41,15 +60,16 @@ export default class HUD {
 
     setActionButton() {
         let icon = document.getElementById("action-btn-icon");
-        let selectedIndex = this.scene.inventory.inventoryWindow.selectedIndex;
-        let name = this.scene.inventory.inventoryOrder[selectedIndex];
+        let selectedIndex = this.inventory.inventoryWindow.selectedIndex;
+        let name = this.inventory.inventoryOrder[selectedIndex];
         if (name) 
             icon.src = this.scene.sys.game.textures.getBase64("item", name);
         else
             icon.src = ""
     }
 
-    createCollectablesContainer(collectables, i) {
+    createCollectablesContainer(collectables) {
+        console.log("calling")
         let collectablesContainer = document.getElementById("collectables-container");
         
         collectablesContainer.innerHTML = ""; // refresh container;
@@ -61,7 +81,7 @@ export default class HUD {
             // collectableBtn.setAttribute("index", `${i}`);
             collectableBtn.addEventListener("pointerdown", () => {
                 collectableBtn.remove();
-                this.scene.inventory.addItem(collectable.collectable, 1);
+                this.inventory.addItem(collectable.collectable, 1);
                 this.scene.player.sensors.touchingNearbyCollectables[i].onDeath();
                 this.scene.player.collisionController.addCollectableCollected(collectable);
             })
@@ -81,6 +101,33 @@ export default class HUD {
             collectablesContainer.appendChild(collectableBtn);
                     
         })
+    }
+
+    hideMainSceneUIs() {
+        this.inventorySlotsContainer.style.display = "none";
+        this.collectableContainer.style.display = "none";
+        this.actionBtn.style.display = "none";
+        this.exitUI.style.display = "block";
+        this.shopUI.style.display = "none";
+        this.constructionUI.style.display = "none";
+    }
+
+    showMainSceneUIs() {
+        this.inventorySlotsContainer.style.display = "flex";
+        this.collectableContainer.style.display = "block";
+        this.actionBtn.style.display = "block";
+        this.exitUI.style.display = "none";
+        this.shopUI.style.display = "block";
+        this.constructionUI.style.display = "block";
+    }
+
+    closeHUD () {
+        this.hud.style.display = "none";
+    }
+
+    openHUD() {
+        this.hud.style.display = "block";
+        this.showMainSceneUIs();
     }
 
     update() {

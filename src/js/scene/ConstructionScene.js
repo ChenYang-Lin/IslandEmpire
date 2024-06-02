@@ -5,7 +5,7 @@ import Resource from "../entity/Resource.js";
 
 export default class ConstructionScene extends Phaser.Scene {
     constructor() {
-        super({ key: "Cons"})
+        super({ key: "ConstructionScene"})
     }
 
     preload() {
@@ -18,6 +18,7 @@ export default class ConstructionScene extends Phaser.Scene {
     create() {
         this.worldManager = new WorldManager(this);
         this.worldManager.initWorld();
+        
 
         this.camera = this.cameras.main;
         this.camera.scrollX -= 480;
@@ -38,10 +39,11 @@ export default class ConstructionScene extends Phaser.Scene {
             // this.add.rectangle(gridX * 32, gridY * 32, 32, 32, "#fff", 0.5);
             this.updateLand(gridX, gridY, false);
         })
-    }
-
-    update() {
-
+        
+        this.exitUI = document.getElementById("exit-ui");
+        this.exitUI.addEventListener("pointerdown", () => {
+            this.scene.start("MainScene");
+        })
     }
 
 
@@ -84,6 +86,10 @@ export default class ConstructionScene extends Phaser.Scene {
         this.worldManager.createSurroundingLand(gridX+1, gridY);
         this.worldManager.createSurroundingLand(gridX+1, gridY+1);
     }  
+
+    update() {
+
+    }
 
 
 }

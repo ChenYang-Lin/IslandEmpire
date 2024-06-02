@@ -3,8 +3,9 @@ import { ENTITY_DATA, SHOP_DATA } from "../GameData.js";
 
 
 export default class Shop {
-    constructor(scene) {
+    constructor(scene, hud) {
         this.scene = scene;
+        this.hud = hud;
 
         this.isOpen = false;
         this.inAction = false;
@@ -105,7 +106,8 @@ export default class Shop {
         shopItemInfoHeader.innerHTML = `${SHOP_DATA[this.selectedItem].name}`;
         shopItemInfoCategory.innerHTML = `${ENTITY_DATA[SHOP_DATA[this.selectedItem].name].category}`;
         shopItemInfoImg.src = this.scene.sys.game.textures.getBase64("item", SHOP_DATA[this.selectedItem].name);
-        let owned = this.scene.inventory.inventory[SHOP_DATA[this.selectedItem].name];
+
+        let owned = this.hud.inventory.inventory[SHOP_DATA[this.selectedItem].name];
         shopItemInfoOwned.innerHTML = `Owned: ${owned ? owned : 0}`;
     }
 
@@ -123,7 +125,7 @@ export default class Shop {
 
         let shopQuantityConfirmBtn = document.getElementById("shop-quantity-confirm-btn");
         shopQuantityConfirmBtn.addEventListener("pointerdown", () => {
-            this.scene.inventory.addItem(SHOP_DATA[this.selectedItem].name, this.quantity);
+            this.hud.inventory.addItem(SHOP_DATA[this.selectedItem].name, this.quantity);
             this.closeQuantityWindow();
         })
 

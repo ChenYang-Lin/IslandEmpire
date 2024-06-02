@@ -7,21 +7,18 @@ export default class CollisionController {
         this.sensors = player.sensors;
 
         
+        this.timer = 0;
 
         // Collisions and Overlaps
         this.scene.physics.add.collider(this.player, this.scene.worldManager.landCollidersGroup);
         this.scene.physics.add.collider(this.player, this.scene.worldManager.resourceCollidersGroup);
         
 
-        // Player overlap Collectables (drops, crops)
-        // this.physics.add.overlap(this.player, this.nearbyCollectablesGroup, (player, collectable) => {
-        //     this.inventory.addItem(collectable.name, 1);
-        //     collectable.destroy();
-        // });
+        this.initPlayerOverlapCollectables();
+        
+    }
 
-
-
-        // Player overlap Collectables (drops, crops)
+    initPlayerOverlapCollectables() {
         this.currentCollectables = [];
         this.collectableCollected = [];
         this.scene.physics.add.overlap(this.player.sensors.nearbyCollectablesSensor, this.scene.worldManager.collectablesGroup, (player, nearbyCollectable) => {
@@ -32,17 +29,22 @@ export default class CollisionController {
                 this.sensors.touchingNearbyCollectables.push(nearbyCollectable);
             }
         });
-        setInterval(() => {
-            this.sensors.touchingNearbyCollectables = this.sensors.touchingNearbyCollectables.filter(item => this.currentCollectables.includes(item));
-            this.sensors.touchingNearbyCollectables = this.sensors.touchingNearbyCollectables.filter(item => !this.collectableCollected.includes(item));
-            this.currentCollectables = [];
-            this.scene.hud.createCollectablesContainer(this.sensors.touchingNearbyCollectables);
-        }, 500);
-        
     }
 
     addCollectableCollected(collectableCollected) {
         this.collectableCollected.push(collectableCollected);
     }
+
+    update(time, delta) {
+        this.timer += delta;
+        if (this.timer > 500) {
+            this.timer = 0;
+            this.sensors.touchingNearbyCollectables = this.sensors.touchingNearbyCollectables.filter(item => this.currentCollectables.includes(item));
+            this.sensors.touchingNearbyCollectables = this.sensors.touchingNearbyCollectables.filter(item => !this.collectableCollected.includes(item));
+            this.currentCollectables = [];
+            this.scene.hud.createCollectablesContainer(this.sensors.touchingNearbyCollectables);
+        }
+    }
+    
 
 }
