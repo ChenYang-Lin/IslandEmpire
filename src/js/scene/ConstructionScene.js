@@ -20,16 +20,16 @@ export default class ConstructionScene extends Phaser.Scene {
         this.worldManager.initWorld();
 
         this.camera = this.cameras.main;
+        this.camera.scrollX -= 480;
+        this.camera.scrollY -= 270;
 
         this.input.mousePointer.motionFactor = 0.5;
         this.input.pointer1.motionFactor = 0.5;
         this.input.on("pointermove", (pointer) => {
             if (!pointer.isDown) return;
         
-            const { x, y } = pointer.velocity;
-        
-            this.camera.scrollX -= x / this.camera.zoom;
-            this.camera.scrollY -= y / this.camera.zoom;
+            this.camera.scrollX -= (pointer.x - pointer.prevPosition.x) / this.camera.zoom;
+            this.camera.scrollY -= (pointer.y - pointer.prevPosition.y) / this.camera.zoom;
           });
     }
 
