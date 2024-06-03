@@ -19,7 +19,7 @@ export default class InputController {
 
         window.addEventListener('resize', () => {
             console.log("window resized")
-            this.scene.hud.initHUD();
+            this.scene.hud.renderHUD();
 
             this.scene.sys.game.scale.setParentSize(window.innerWidth, window.innerHeight); // make sure game is not overflow in ios safari.
             this.joyStick.x = 100;
