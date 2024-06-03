@@ -6,6 +6,10 @@ import Resource from "../entity/Resource.js";
 export default class ConstructionScene extends Phaser.Scene {
     constructor() {
         super({ key: "ConstructionScene"})
+
+        this.hud = document.getElementById("hud");
+        this.click = false;
+        this.isPlacement = true;
     }
 
     preload() {
@@ -19,6 +23,7 @@ export default class ConstructionScene extends Phaser.Scene {
         this.worldManager = new WorldManager(this);
         this.worldManager.initWorld();
         
+        this.createPlacementRemovalBtns();
 
         this.camera = this.cameras.main;
         this.camera.scrollX -= 480;
@@ -27,6 +32,9 @@ export default class ConstructionScene extends Phaser.Scene {
         this.input.mousePointer.motionFactor = 0.5;
         this.input.pointer1.motionFactor = 0.5;
         this.input.on("pointermove", (pointer) => {
+            if (Math.abs(pointer.x - pointer.prevPosition.x) >= 1 || Math.abs(pointer.y - pointer.prevPosition.y) >= 1 ) {
+                this.click = false;
+            }
             if (!pointer.isDown) return;
         
             this.camera.scrollX -= (pointer.x - pointer.prevPosition.x) / this.camera.zoom;
@@ -34,14 +42,21 @@ export default class ConstructionScene extends Phaser.Scene {
         });
 
         this.input.on("pointerdown", (pointer) => {
+            this.click = true;
+        })
+        this.input.on("pointerup", (pointer) => {
+            if (!this.click) 
+                return;
             let gridX = Math.floor((pointer.x + this.camera.worldView.x + 16) / 32)
             let gridY = Math.floor((pointer.y + this.camera.worldView.y + 16) / 32)
             // this.add.rectangle(gridX * 32, gridY * 32, 32, 32, "#fff", 0.5);
-            this.updateLand(gridX, gridY, false);
+            this.updateLand(gridX, gridY, this.isPlacement);
         })
         
         this.exitUI = document.getElementById("exit-ui");
         this.exitUI.addEventListener("pointerdown", () => {
+            this.placementBtn.remove();
+            this.removalBtn.remove();
             this.scene.start("MainScene");
         })
     }
@@ -86,6 +101,33 @@ export default class ConstructionScene extends Phaser.Scene {
         this.worldManager.createSurroundingLand(gridX+1, gridY);
         this.worldManager.createSurroundingLand(gridX+1, gridY+1);
     }  
+
+    createPlacementRemovalBtns() {
+        this.placementBtn = document.createElement("button");
+        this.placementBtn.id = "placement-btn";
+        this.placementBtn.classList.add("construct-action-btns");
+        this.placementBtn.classList.add("active");
+        this.placementBtn.innerHTML = `Placement`;
+        this.placementBtn.addEventListener("pointerdown", () => {
+            this.isPlacement = true;
+            this.placementBtn.classList.add("active");
+            this.removalBtn.classList.remove("active");
+        })
+
+        this.removalBtn = document.createElement("button");
+        this.removalBtn.id = "removal-btn";
+        this.removalBtn.classList.add("construct-action-btns");
+        this.removalBtn.innerHTML = `Removal`;
+        this.removalBtn.addEventListener("pointerdown", () => {
+            this.isPlacement = false;
+            this.removalBtn.classList.add("active");
+            this.placementBtn.classList.remove("active");
+        })
+
+
+        this.hud.appendChild(this.placementBtn);
+        this.hud.appendChild(this.removalBtn);
+    }
 
     update() {
 

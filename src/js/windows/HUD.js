@@ -22,9 +22,6 @@ export default class HUD {
         this.inventory = new Inventory(this.scene, this);
         this.shop = new Shop(this.scene, this);
 
-        this.windowSizeSynchronization();
-        this.setActionButton(0);
-        
         this.shopUI = document.getElementById("shop-ui");
         this.shopUI.addEventListener("pointerdown", () => {
             this.shop.openWindow();
@@ -35,6 +32,13 @@ export default class HUD {
             this.hideMainSceneUIs();
             this.scene.scene.start("ConstructionScene");
         })
+        this.renderHUD()
+    }
+
+    renderHUD() {
+        this.windowSizeSynchronization();
+        this.setActionButton();
+        
     }
 
     windowSizeSynchronization() {

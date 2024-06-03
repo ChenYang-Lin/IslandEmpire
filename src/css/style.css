@@ -507,3 +507,10 @@ body {
     cursor: pointer;
 }
 
+.construct-action-btns {
+    pointer-events: auto;
+}
+
+.active {
+    background-color: cyan;
+}
