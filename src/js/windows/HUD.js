@@ -15,6 +15,7 @@ export default class HUD {
         this.shopUI = document.getElementById("shop-ui");
         this.constructionUI = document.getElementById("construction-ui");
         this.exitUI = document.getElementById("exit-ui");
+        this.constructionContainer = document.getElementById("construction-container");
         this.initHUD();
     }
 
@@ -29,17 +30,14 @@ export default class HUD {
         
         let constructionUI = document.getElementById("construction-ui");
         constructionUI.addEventListener("pointerdown", () => {
-            this.hideMainSceneUIs();
+            this.showConstructionSceneUIs();
             this.scene.scene.start("ConstructionScene");
         })
-        this.renderHUD()
-    }
-
-    renderHUD() {
         this.windowSizeSynchronization();
         this.setActionButton();
-        
+        this.showMainSceneUIs();
     }
+
 
     windowSizeSynchronization() {
         // Make sure the size of HUD window is same as game size.
@@ -111,18 +109,28 @@ export default class HUD {
         this.inventorySlotsContainer.style.display = "none";
         this.collectableContainer.style.display = "none";
         this.actionBtn.style.display = "none";
-        this.exitUI.style.display = "block";
         this.shopUI.style.display = "none";
         this.constructionUI.style.display = "none";
     }
 
     showMainSceneUIs() {
+        this.hideConstructionSceneUIs();
         this.inventorySlotsContainer.style.display = "flex";
         this.collectableContainer.style.display = "block";
         this.actionBtn.style.display = "block";
-        this.exitUI.style.display = "none";
         this.shopUI.style.display = "block";
         this.constructionUI.style.display = "block";
+    }
+
+    showConstructionSceneUIs() {
+        this.hideMainSceneUIs();
+        this.exitUI.style.display = "block";
+        this.constructionContainer.style.display = "block";
+    }
+
+    hideConstructionSceneUIs() {
+        this.exitUI.style.display = "none";
+        this.constructionContainer.style.display = "none";
     }
 
     closeHUD () {
@@ -131,7 +139,6 @@ export default class HUD {
 
     openHUD() {
         this.hud.style.display = "block";
-        this.showMainSceneUIs();
     }
 
     update() {

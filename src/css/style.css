@@ -509,6 +509,7 @@ body {
 
 .construct-action-btns {
     pointer-events: auto;
+    padding: 20px;
 }
 
 .active {

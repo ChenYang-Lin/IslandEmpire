@@ -23,7 +23,7 @@ export default class ConstructionScene extends Phaser.Scene {
         this.worldManager = new WorldManager(this);
         this.worldManager.initWorld();
         
-        this.createPlacementRemovalBtns();
+        this.initPlacementRemovalBtns();
 
         this.camera = this.cameras.main;
         this.camera.scrollX -= 480;
@@ -55,8 +55,7 @@ export default class ConstructionScene extends Phaser.Scene {
         
         this.exitUI = document.getElementById("exit-ui");
         this.exitUI.addEventListener("pointerdown", () => {
-            this.placementBtn.remove();
-            this.removalBtn.remove();
+            
             this.scene.start("MainScene");
         })
     }
@@ -102,31 +101,20 @@ export default class ConstructionScene extends Phaser.Scene {
         this.worldManager.createSurroundingLand(gridX+1, gridY+1);
     }  
 
-    createPlacementRemovalBtns() {
-        this.placementBtn = document.createElement("button");
-        this.placementBtn.id = "placement-btn";
-        this.placementBtn.classList.add("construct-action-btns");
-        this.placementBtn.classList.add("active");
-        this.placementBtn.innerHTML = `Placement`;
+    initPlacementRemovalBtns() {
+        this.placementBtn = document.getElementById("placement-btn");
         this.placementBtn.addEventListener("pointerdown", () => {
             this.isPlacement = true;
             this.placementBtn.classList.add("active");
             this.removalBtn.classList.remove("active");
         })
 
-        this.removalBtn = document.createElement("button");
-        this.removalBtn.id = "removal-btn";
-        this.removalBtn.classList.add("construct-action-btns");
-        this.removalBtn.innerHTML = `Removal`;
+        this.removalBtn = document.getElementById("removal-btn");
         this.removalBtn.addEventListener("pointerdown", () => {
             this.isPlacement = false;
             this.removalBtn.classList.add("active");
             this.placementBtn.classList.remove("active");
         })
-
-
-        this.hud.appendChild(this.placementBtn);
-        this.hud.appendChild(this.removalBtn);
     }
 
     update() {
