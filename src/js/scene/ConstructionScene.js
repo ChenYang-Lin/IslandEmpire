@@ -79,8 +79,8 @@ export default class ConstructionScene extends Phaser.Scene {
         } else {
             this.graphics.lineStyle(2, 0x00ff00);
         }
-        this.graphics.strokeRectShape(this.pointerOnGridIndicator);
         this.pointerOnGridIndicator.setPosition(gridX * 32 - 16, gridY * 32 - 16);
+        this.graphics.strokeRectShape(this.pointerOnGridIndicator);
     }
 
 
