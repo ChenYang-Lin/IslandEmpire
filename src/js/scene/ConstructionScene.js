@@ -58,6 +58,7 @@ export default class ConstructionScene extends Phaser.Scene {
                 return;
             this.gridX = Math.floor((pointer.x + this.camera.worldView.x + 16) / 32)
             this.gridY = Math.floor((pointer.y + this.camera.worldView.y + 16) / 32)
+            this.updatePointerOnGridIndicator();
             this.updateLand(this.gridX, this.gridY, this.isPlacement);
         })
         
