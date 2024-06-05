@@ -7,6 +7,7 @@ export default class ConstructionScene extends Phaser.Scene {
     constructor() {
         super({ key: "ConstructionScene"})
 
+
         this.hud = document.getElementById("hud");
         this.click = false;
         this.isPlacement = true;
@@ -25,6 +26,10 @@ export default class ConstructionScene extends Phaser.Scene {
         
         this.initPlacementRemovalBtns();
 
+        this.graphics = this.add.graphics({ lineStyle: { width: 2, color: 0x00ff00 }})
+        this.postFxPlugin = this.plugins.get('rexoutlinepipelineplugin');
+        this.pointerOnGridIndicator = new Phaser.Geom.Rectangle(0, 0, 32, 32);
+
         this.camera = this.cameras.main;
         this.camera.scrollX -= 480;
         this.camera.scrollY -= 270;
@@ -32,6 +37,10 @@ export default class ConstructionScene extends Phaser.Scene {
         this.input.mousePointer.motionFactor = 0.5;
         this.input.pointer1.motionFactor = 0.5;
         this.input.on("pointermove", (pointer) => {
+            this.gridX = Math.floor((pointer.x + this.camera.worldView.x + 16) / 32)
+            this.gridY = Math.floor((pointer.y + this.camera.worldView.y + 16) / 32)
+            this.updatePointerOnGridIndicator();
+            // make it still count as clicked if pointer didn't move too much. 
             if (Math.abs(pointer.x - pointer.prevPosition.x) >= 1 || Math.abs(pointer.y - pointer.prevPosition.y) >= 1 ) {
                 this.click = false;
             }
@@ -47,10 +56,8 @@ export default class ConstructionScene extends Phaser.Scene {
         this.input.on("pointerup", (pointer) => {
             if (!this.click) 
                 return;
-            let gridX = Math.floor((pointer.x + this.camera.worldView.x + 16) / 32)
-            let gridY = Math.floor((pointer.y + this.camera.worldView.y + 16) / 32)
             // this.add.rectangle(gridX * 32, gridY * 32, 32, 32, "#fff", 0.5);
-            this.updateLand(gridX, gridY, this.isPlacement);
+            this.updateLand(this.gridX, this.gridY, this.isPlacement);
         })
         
         this.exitUI = document.getElementById("exit-ui");
@@ -58,6 +65,20 @@ export default class ConstructionScene extends Phaser.Scene {
             
             this.scene.start("MainScene");
         })
+
+
+    }
+
+    updatePointerOnGridIndicator() {
+        this.graphics.clear();
+        let isCurrGridLand = this.worldManager.map[`${this.gridX},${this.gridY}`]?.isLand
+        if ((isCurrGridLand && this.isPlacement) || (!isCurrGridLand && !this.isPlacement)) {
+            this.graphics.lineStyle(2, 0xff0000);
+        } else {
+            this.graphics.lineStyle(2, 0x00ff00);
+        }
+        this.graphics.strokeRectShape(this.pointerOnGridIndicator);
+        this.pointerOnGridIndicator.setPosition(this.gridX * 32 - 16, this.gridY * 32 - 16);
     }
 
 
