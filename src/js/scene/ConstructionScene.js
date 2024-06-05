@@ -39,7 +39,7 @@ export default class ConstructionScene extends Phaser.Scene {
         this.input.on("pointermove", (pointer) => {
             this.gridX = Math.floor((pointer.x + this.camera.worldView.x + 16) / 32)
             this.gridY = Math.floor((pointer.y + this.camera.worldView.y + 16) / 32)
-            this.updatePointerOnGridIndicator();
+            this.updatePointerOnGridIndicator(this.gridX, this.gridY);
             // make it still count as clicked if pointer didn't move too much. 
             if (Math.abs(pointer.x - pointer.prevPosition.x) >= 1 || Math.abs(pointer.y - pointer.prevPosition.y) >= 1 ) {
                 this.click = false;
@@ -58,7 +58,7 @@ export default class ConstructionScene extends Phaser.Scene {
                 return;
             this.gridX = Math.floor((pointer.x + this.camera.worldView.x + 16) / 32)
             this.gridY = Math.floor((pointer.y + this.camera.worldView.y + 16) / 32)
-            this.updatePointerOnGridIndicator();
+            this.updatePointerOnGridIndicator(this.gridX, this.gridY);
             this.updateLand(this.gridX, this.gridY, this.isPlacement);
         })
         
@@ -71,16 +71,16 @@ export default class ConstructionScene extends Phaser.Scene {
 
     }
 
-    updatePointerOnGridIndicator() {
+    updatePointerOnGridIndicator(gridX, gridY) {
         this.graphics.clear();
-        let isCurrGridLand = this.worldManager.map[`${this.gridX},${this.gridY}`]?.isLand
+        let isCurrGridLand = this.worldManager.map[`${gridX},${gridY}`]?.isLand
         if ((isCurrGridLand && this.isPlacement) || (!isCurrGridLand && !this.isPlacement)) {
             this.graphics.lineStyle(2, 0xff0000);
         } else {
             this.graphics.lineStyle(2, 0x00ff00);
         }
         this.graphics.strokeRectShape(this.pointerOnGridIndicator);
-        this.pointerOnGridIndicator.setPosition(this.gridX * 32 - 16, this.gridY * 32 - 16);
+        this.pointerOnGridIndicator.setPosition(gridX * 32 - 16, gridY * 32 - 16);
     }
 
 
