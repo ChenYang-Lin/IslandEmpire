@@ -56,7 +56,8 @@ export default class ConstructionScene extends Phaser.Scene {
         this.input.on("pointerup", (pointer) => {
             if (!this.click) 
                 return;
-            // this.add.rectangle(gridX * 32, gridY * 32, 32, 32, "#fff", 0.5);
+            this.gridX = Math.floor((pointer.x + this.camera.worldView.x + 16) / 32)
+            this.gridY = Math.floor((pointer.y + this.camera.worldView.y + 16) / 32)
             this.updateLand(this.gridX, this.gridY, this.isPlacement);
         })
         
