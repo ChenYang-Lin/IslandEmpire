@@ -510,8 +510,18 @@ body {
 .construct-action-btns {
     pointer-events: auto;
     padding: 20px;
+    margin: 10px;
 }
 
 .active {
     background-color: cyan;
+}
+
+#construction-confirmation-btns-container {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
 }

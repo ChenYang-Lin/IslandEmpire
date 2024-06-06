@@ -11,6 +11,7 @@ export default class ConstructionScene extends Phaser.Scene {
         this.hud = document.getElementById("hud");
         this.click = false;
         this.isPlacement = true;
+        this.selectedGrid = undefined;
     }
 
     preload() {
@@ -25,6 +26,7 @@ export default class ConstructionScene extends Phaser.Scene {
         this.worldManager.initWorld();
         
         this.initPlacementRemovalBtns();
+        this.initConfirmationBtns();
 
         this.graphics = this.add.graphics({ lineStyle: { width: 2, color: 0x00ff00 }})
         this.postFxPlugin = this.plugins.get('rexoutlinepipelineplugin');
@@ -37,9 +39,11 @@ export default class ConstructionScene extends Phaser.Scene {
         this.input.mousePointer.motionFactor = 0.5;
         this.input.pointer1.motionFactor = 0.5;
         this.input.on("pointermove", (pointer) => {
-            this.gridX = Math.floor((pointer.x + this.camera.worldView.x + 16) / 32)
-            this.gridY = Math.floor((pointer.y + this.camera.worldView.y + 16) / 32)
-            this.updatePointerOnGridIndicator(this.gridX, this.gridY);
+            this.gridX = Math.floor((pointer.x + this.camera.worldView.x + 16) / 32);
+            this.gridY = Math.floor((pointer.y + this.camera.worldView.y + 16) / 32);
+            // only update indicater when there no grid currently selected
+            if (this.selectedGrid === undefined)
+                this.updatePointerOnGridIndicator(this.gridX, this.gridY);
             // make it still count as clicked if pointer didn't move too much. 
             if (Math.abs(pointer.x - pointer.prevPosition.x) >= 1 || Math.abs(pointer.y - pointer.prevPosition.y) >= 1 ) {
                 this.click = false;
@@ -54,12 +58,14 @@ export default class ConstructionScene extends Phaser.Scene {
             this.click = true;
         })
         this.input.on("pointerup", (pointer) => {
-            if (!this.click) 
+            console.log(this.selectedGrid)
+            if (!this.click || this.selectedGrid !== undefined) 
                 return;
             this.gridX = Math.floor((pointer.x + this.camera.worldView.x + 16) / 32)
             this.gridY = Math.floor((pointer.y + this.camera.worldView.y + 16) / 32)
             this.updatePointerOnGridIndicator(this.gridX, this.gridY);
-            this.updateLand(this.gridX, this.gridY, this.isPlacement);
+            if (this.isCommandExecutable() === true)
+                this.showConfirmationContainer();
         })
         
         this.exitUI = document.getElementById("exit-ui");
@@ -70,6 +76,18 @@ export default class ConstructionScene extends Phaser.Scene {
 
 
     }
+
+    isCommandExecutable() {
+        if (this.isPlacement) {
+            if (this.worldManager.map[`${this.gridX},${this.gridY}`]?.isLand) 
+                return false;
+        } else {
+            if (!this.worldManager.map[`${this.gridX},${this.gridY}`]?.isLand) 
+                return false;
+        }
+        return true;
+    }
+
 
     updatePointerOnGridIndicator(gridX, gridY) {
         this.graphics.clear();
@@ -84,14 +102,15 @@ export default class ConstructionScene extends Phaser.Scene {
     }
 
 
-    updateLand(gridX, gridY, addLand) {
+    updateLand() {
+        let gridX = this.selectedGrid.x;
+        let gridY = this.selectedGrid.y;
         let x = gridX * 32;
         let y = gridY * 32;
 
         let landSprite;
 
-
-        if (addLand) {
+        if (this.isPlacement) {
             // add land
             if (this.worldManager.map[`${gridX},${gridY}`]?.isLand) 
                 return;
@@ -138,6 +157,33 @@ export default class ConstructionScene extends Phaser.Scene {
             this.removalBtn.classList.add("active");
             this.placementBtn.classList.remove("active");
         })
+    }
+
+    initConfirmationBtns() {
+        this.ConfirmationBtnsContainer = document.getElementById("construction-confirmation-btns-container");
+        this.ConfirmBtn = document.getElementById("construction-confirm-btn")
+        this.CancelBtn = document.getElementById("construction-cancel-btn")
+        
+        this.hideConfirmationContainer();
+
+        this.ConfirmBtn.addEventListener("pointerdown", () => {
+            this.updateLand();
+            this.hideConfirmationContainer();
+        })
+
+        this.CancelBtn.addEventListener("pointerdown", () => {
+            this.hideConfirmationContainer();
+        })
+    }
+
+    showConfirmationContainer() {
+        this.selectedGrid = { x: this.gridX, y: this.gridY };
+        this.ConfirmationBtnsContainer.style.display = "flex";
+    }
+
+    hideConfirmationContainer() {
+        this.selectedGrid = undefined;
+        this.ConfirmationBtnsContainer.style.display = "none";
     }
 
     update() {
