@@ -1,5 +1,5 @@
 
-import { ENTITY_DATA } from "../GameData.js";
+import { CROP_GROW_DATA } from "../GameData.js";
 
 export default class Crop extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y, name, sowingTime) {
@@ -15,18 +15,18 @@ export default class Crop extends Phaser.Physics.Arcade.Sprite {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
 
-        this.x += ENTITY_DATA[this.name].repositionedX;
-        this.y += ENTITY_DATA[this.name].repositionedY;
-        this.setSize(ENTITY_DATA[this.name].width, ENTITY_DATA[this.name].height);
-        this.setOffset(ENTITY_DATA[this.name].offsetX, ENTITY_DATA[this.name].offsetY);
-        this.collectable = ENTITY_DATA[this.name].collectable;
+        this.x += CROP_GROW_DATA[this.name].repositionedX;
+        this.y += CROP_GROW_DATA[this.name].repositionedY;
+        this.setSize(CROP_GROW_DATA[this.name].width, CROP_GROW_DATA[this.name].height);
+        this.setOffset(CROP_GROW_DATA[this.name].offsetX, CROP_GROW_DATA[this.name].offsetY);
+        this.collectable = CROP_GROW_DATA[this.name].collectable;
 
         this.harvestable = false;
         this.sowingTime = sowingTime;
-        this.timeToGrow = ENTITY_DATA[this.name].timeToGrow;
+        this.timeToGrow = CROP_GROW_DATA[this.name].timeToGrow;
         this.growTime = Date.now() - this.sowingTime;
         this.harvestableTime = sowingTime + this.timeToGrow;
-        this.totalPhase = ENTITY_DATA[this.name].totalPhase;
+        this.totalPhase = CROP_GROW_DATA[this.name].totalPhase;
 
         this.isHovered = false;
         this.setInteractive(this.scene.input.makePixelPerfect());
@@ -58,15 +58,15 @@ export default class Crop extends Phaser.Physics.Arcade.Sprite {
 
     get position() {
         return {
-            x: this.x - ENTITY_DATA[this.name].repositionedX,
-            y: this.y - ENTITY_DATA[this.name].repositionedY,
+            x: this.x - CROP_GROW_DATA[this.name].repositionedX,
+            y: this.y - CROP_GROW_DATA[this.name].repositionedY,
         }
     }
 
     get onGrid() {
         return {
-            x: Math.floor((this.x - ENTITY_DATA[this.name].repositionedX) / 32),
-            y: Math.floor((this.y - ENTITY_DATA[this.name].repositionedY) / 32),
+            x: Math.floor((this.x - CROP_GROW_DATA[this.name].repositionedX) / 32),
+            y: Math.floor((this.y - CROP_GROW_DATA[this.name].repositionedY) / 32),
         }
     }
 

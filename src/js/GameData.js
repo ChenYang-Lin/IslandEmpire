@@ -46,6 +46,10 @@ const ENTITY_DATA = {
             "stone",
         ]
     },
+
+}
+
+const ITEM_DATA = {
     // Items - materials
     wood: {
         category: "item",
@@ -133,17 +137,7 @@ const ENTITY_DATA = {
         offsetY: 32,
         crop_grow: "potato_grow",
     },
-    "potato_grow": {
-        repositionedX: 0,
-        repositionedY: -16,
-        width: 32,
-        height: 32,
-        offsetX: 0,
-        offsetY: 32,
-        totalPhase: 5,
-        timeToGrow: 6 * 1000, // millisecond
-        collectable: "potato",
-    },
+    
     potato: {
         category: "item",
         type: "food",
@@ -167,17 +161,7 @@ const ENTITY_DATA = {
         offsetY: 32,
         crop_grow: "eggplant_grow",
     },
-    "eggplant_grow": {
-        repositionedX: 0,
-        repositionedY: -16,
-        width: 32,
-        height: 32,
-        offsetX: 0,
-        offsetY: 32,
-        totalPhase: 5,
-        timeToGrow: 6 * 1000, // millisecond
-        collectable: "eggplant",
-    },
+
     eggplant: {
         category: "item",
         type: "food",
@@ -200,17 +184,7 @@ const ENTITY_DATA = {
         offsetY: 32,
         crop_grow: "cauliflower_grow",
     },
-    "cauliflower_grow": {
-        repositionedX: 0,
-        repositionedY: -16,
-        width: 32,
-        height: 32,
-        offsetX: 0,
-        offsetY: 32,
-        totalPhase: 5,
-        timeToGrow: 6 * 1000, // millisecond
-        collectable: "cauliflower",
-    },
+
     cauliflower: {
         category: "item",
         type: "food",
@@ -233,17 +207,7 @@ const ENTITY_DATA = {
         offsetY: 32,
         crop_grow: "pumpkin_grow",
     },
-    "pumpkin_grow": {
-        repositionedX: 0,
-        repositionedY: -16,
-        width: 32,
-        height: 32,
-        offsetX: 0,
-        offsetY: 32,
-        totalPhase: 5,
-        timeToGrow: 6 * 1000, // millisecond
-        collectable: "pumpkin",
-    },
+
     pumpkin: {
         category: "item",
         type: "food",
@@ -266,17 +230,7 @@ const ENTITY_DATA = {
         offsetY: 32,
         crop_grow: "corn_grow",
     },
-    "corn_grow": {
-        repositionedX: 0,
-        repositionedY: -16,
-        width: 32,
-        height: 32,
-        offsetX: 0,
-        offsetY: 32,
-        totalPhase: 5,
-        timeToGrow: 6 * 1000, // millisecond
-        collectable: "corn",
-    },
+
     corn: {
         category: "item",
         type: "food",
@@ -286,6 +240,64 @@ const ENTITY_DATA = {
         height: 32,
         offsetX: 0,
         offsetY: 0,
+        collectable: "corn",
+    },
+}
+
+const CROP_GROW_DATA = {
+    "potato_grow": {
+        repositionedX: 0,
+        repositionedY: -16,
+        width: 32,
+        height: 32,
+        offsetX: 0,
+        offsetY: 32,
+        totalPhase: 5,
+        timeToGrow: 6 * 1000, // millisecond
+        collectable: "potato",
+    },
+    "eggplant_grow": {
+        repositionedX: 0,
+        repositionedY: -16,
+        width: 32,
+        height: 32,
+        offsetX: 0,
+        offsetY: 32,
+        totalPhase: 5,
+        timeToGrow: 6 * 1000, // millisecond
+        collectable: "eggplant",
+    },
+    "cauliflower_grow": {
+        repositionedX: 0,
+        repositionedY: -16,
+        width: 32,
+        height: 32,
+        offsetX: 0,
+        offsetY: 32,
+        totalPhase: 5,
+        timeToGrow: 6 * 1000, // millisecond
+        collectable: "cauliflower",
+    },
+    "pumpkin_grow": {
+        repositionedX: 0,
+        repositionedY: -16,
+        width: 32,
+        height: 32,
+        offsetX: 0,
+        offsetY: 32,
+        totalPhase: 5,
+        timeToGrow: 6 * 1000, // millisecond
+        collectable: "pumpkin",
+    },
+    "corn_grow": {
+        repositionedX: 0,
+        repositionedY: -16,
+        width: 32,
+        height: 32,
+        offsetX: 0,
+        offsetY: 32,
+        totalPhase: 5,
+        timeToGrow: 6 * 1000, // millisecond
         collectable: "corn",
     },
 }
@@ -442,6 +454,8 @@ const MAP_DATA = {
 
 export {
     ENTITY_DATA,
+    ITEM_DATA,
+    CROP_GROW_DATA,
     SHOP_DATA,
     MAP_DATA
 }

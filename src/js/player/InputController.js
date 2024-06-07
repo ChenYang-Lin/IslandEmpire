@@ -1,4 +1,4 @@
-import { ENTITY_DATA } from "../GameData.js";
+import { ITEM_DATA } from "../GameData.js";
 
 export default class InputController {
     constructor(scene, player) {
@@ -126,15 +126,15 @@ export default class InputController {
         let selectedIndex = this.scene.hud.inventory.inventoryWindow.selectedIndex;
         let selectedItem = this.scene.hud.inventory.inventoryOrder[selectedIndex];
 
-        switch (ENTITY_DATA[selectedItem].category) {
+        switch (ITEM_DATA[selectedItem].category) {
             case "weapon":
-                this.playAttackAnim(ENTITY_DATA[selectedItem].type);
+                this.playAttackAnim(ITEM_DATA[selectedItem].type);
                 break;
             case "tool":
-                this.playToolUsageAnimation(ENTITY_DATA[selectedItem].type);
+                this.playToolUsageAnimation(ITEM_DATA[selectedItem].type);
                 break;
             case "item":
-                this.playItemUsageAnimaiton(ENTITY_DATA[selectedItem].type, selectedItem);
+                this.playItemUsageAnimaiton(ITEM_DATA[selectedItem].type, selectedItem);
                 break;
             default:
         }
