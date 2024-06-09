@@ -1,6 +1,6 @@
 
 
-const ENTITY_DATA = {
+const RESOURCE_DATA = {
     // Resources
     tree: {
         category: "resource",
@@ -453,7 +453,7 @@ const MAP_DATA = {
 }
 
 export {
-    ENTITY_DATA,
+    RESOURCE_DATA,
     ITEM_DATA,
     CROP_GROW_DATA,
     SHOP_DATA,

@@ -1,29 +1,22 @@
 import { ITEM_DATA } from "../GameData.js";
+import Entity from "./Entity.js";
 
-export default class Drops extends Phaser.Physics.Arcade.Sprite {
+export default class Drops extends Entity {
     constructor(scene, x, y, texture, name) {
-        super(scene, x, y, texture, name);
-
-        this.scene = scene;
-        this.depth = this.y;
-
-        this.scene.add.existing(this);
-        this.scene.physics.add.existing(this);
+        const ENTITY_DATA = ITEM_DATA[name]
+        super(scene, x, y, texture, name, ENTITY_DATA);
 
         this.name = name;
 
-        this.x += ITEM_DATA[this.name].repositionedX;
-        this.y += ITEM_DATA[this.name].repositionedY;
-        this.setSize(ITEM_DATA[this.name].width, ITEM_DATA[this.name].height);
-        this.setOffset(ITEM_DATA[this.name].offsetX, ITEM_DATA[this.name].offsetY);
-        this.collectable = ITEM_DATA[this.name].collectable;
+        
+        this.collectable = this.ENTITY_DATA.collectable;
 
         this.scene.worldManager.collectablesGroup.add(this);
 
     }
 
     onDeath() {
-        this.destroy();
+        super.onDeath();
     }
 
     

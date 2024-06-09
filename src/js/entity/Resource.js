@@ -1,32 +1,23 @@
 import Drops from "./Drops.js";
-import { ENTITY_DATA } from "../GameData.js";
+import { RESOURCE_DATA } from "../GameData.js";
+import Entity from "./Entity.js";
 
-export default class Resource extends Phaser.Physics.Arcade.Sprite {
+export default class Resource extends Entity {
 
     constructor(scene, x, y, texture, name) {
-        super(scene, x, y, texture, name);
+        const ENTITY_DATA = RESOURCE_DATA[name];
+        super(scene, x, y, texture, name, ENTITY_DATA);
 
-        this.scene = scene;
-        this.depth = this.y;
         this.name = name;
         this.hasSecondPart = false;
         
 
-        this.scene.add.existing(this);
-        this.scene.physics.add.existing(this);
-
-
-        this.x += ENTITY_DATA[this.name].repositionedX;
-        this.y += ENTITY_DATA[this.name].repositionedY;
-        this.setSize(ENTITY_DATA[this.name].width, ENTITY_DATA[this.name].height);
-        this.setOffset(ENTITY_DATA[this.name].offsetX, ENTITY_DATA[this.name].offsetY);
-
-        if (ENTITY_DATA[this.name].type === "multiple"){
+        if (this.ENTITY_DATA.type === "multiple"){
             this.createSecondPart();
             this.hasSecondPart = true;
         }
 
-        this.maxHP = ENTITY_DATA[this.name].maxHP;
+        this.maxHP = this.ENTITY_DATA.maxHP;
         this.hp = this.maxHP;
 
         
@@ -35,20 +26,6 @@ export default class Resource extends Phaser.Physics.Arcade.Sprite {
 
     static preload(scene) {
         scene.load.atlas("resource", "assets/resource.png", "assets/resource_atlas.json")
-    }
-
-    get position() {
-        return {
-            x: this.x - ENTITY_DATA[this.name].repositionedX,
-            y: this.y - ENTITY_DATA[this.name].repositionedY,
-        }
-    }
-
-    get onGrid() {
-        return {
-            x: Math.floor((this.x - ENTITY_DATA[this.name].repositionedX) / 32),
-            y: Math.floor((this.y - ENTITY_DATA[this.name].repositionedY) / 32),
-        }
     }
 
     createSecondPart() {
@@ -68,9 +45,9 @@ export default class Resource extends Phaser.Physics.Arcade.Sprite {
     }
 
     onDeath() {
-        ENTITY_DATA[this.name].drops.forEach((name) => {
+        this.ENTITY_DATA.drops.forEach((name) => {
             let drops = new Drops(this.scene, this.position.x + Math.floor(Math.random() * 20), this.position.y + Math.floor(Math.random() * 20), "item", name);
         })
-        this.destroy();
+        super.onDeath();
     }
 }

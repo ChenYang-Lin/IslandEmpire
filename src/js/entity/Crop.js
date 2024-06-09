@@ -1,32 +1,24 @@
 
 import { CROP_GROW_DATA } from "../GameData.js";
+import Entity from "./Entity.js";
 
-export default class Crop extends Phaser.Physics.Arcade.Sprite {
+export default class Crop extends Entity {
     constructor(scene, x, y, name, sowingTime) {
         let phase = (Math.random() < 0.5) ? "_0" : "_0_alt"; // randomly choose two seed image;
         let frame = name + phase;
-        console.log(frame)
-        super(scene, x, y, "crops_grow", frame)
+        const ENTITY_DATA = CROP_GROW_DATA[name];
+        super(scene, x, y, "crops_grow", frame, ENTITY_DATA)
 
-        this.scene = scene;
         this.name = name;
-        this.depth = this.y;
 
-        this.scene.add.existing(this);
-        this.scene.physics.add.existing(this);
-
-        this.x += CROP_GROW_DATA[this.name].repositionedX;
-        this.y += CROP_GROW_DATA[this.name].repositionedY;
-        this.setSize(CROP_GROW_DATA[this.name].width, CROP_GROW_DATA[this.name].height);
-        this.setOffset(CROP_GROW_DATA[this.name].offsetX, CROP_GROW_DATA[this.name].offsetY);
-        this.collectable = CROP_GROW_DATA[this.name].collectable;
+        this.collectable = this.ENTITY_DATA.collectable;
 
         this.harvestable = false;
         this.sowingTime = sowingTime;
-        this.timeToGrow = CROP_GROW_DATA[this.name].timeToGrow;
+        this.timeToGrow = this.ENTITY_DATA.timeToGrow;
         this.growTime = Date.now() - this.sowingTime;
         this.harvestableTime = sowingTime + this.timeToGrow;
-        this.totalPhase = CROP_GROW_DATA[this.name].totalPhase;
+        this.totalPhase = this.ENTITY_DATA.totalPhase;
 
         this.isHovered = false;
         this.setInteractive(this.scene.input.makePixelPerfect());
@@ -56,20 +48,6 @@ export default class Crop extends Phaser.Physics.Arcade.Sprite {
         scene.load.atlas("crops_grow", "assets/crops_grow.png", "assets/crops_grow_atlas.json")
     }
 
-    get position() {
-        return {
-            x: this.x - CROP_GROW_DATA[this.name].repositionedX,
-            y: this.y - CROP_GROW_DATA[this.name].repositionedY,
-        }
-    }
-
-    get onGrid() {
-        return {
-            x: Math.floor((this.x - CROP_GROW_DATA[this.name].repositionedX) / 32),
-            y: Math.floor((this.y - CROP_GROW_DATA[this.name].repositionedY) / 32),
-        }
-    }
-
 
 
     createProgressBar() {
@@ -95,7 +73,7 @@ export default class Crop extends Phaser.Physics.Arcade.Sprite {
     onDeath() {
         delete this.scene.worldManager.growingCrops[`${this.onGrid.x},${this.onGrid.y}`]
         delete this.scene.worldManager.map[`${this.onGrid.x},${this.onGrid.y}`].crop 
-        this.destroy();
+        super.onDeath();
     }
 
     update() {
