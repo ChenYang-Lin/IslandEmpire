@@ -11,24 +11,31 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
 
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
+
+        this.repositionedX = this.ENTITY_DATA.repositionedX ?? 0;
+        this.repositionedY = this.ENTITY_DATA.repositionedY ?? 0;
+        this.width = this.ENTITY_DATA.width ?? 32;
+        this.height = this.ENTITY_DATA.height ?? 32;
+        this.offsetX = this.ENTITY_DATA.offsetX ?? 0;
+        this.offsetY = this.ENTITY_DATA.offsetY ?? 0;
         
-        this.x += this.ENTITY_DATA.repositionedX;
-        this.y += this.ENTITY_DATA.repositionedY;
-        this.setSize(this.ENTITY_DATA.width, this.ENTITY_DATA.height);
-        this.setOffset(this.ENTITY_DATA.offsetX, this.ENTITY_DATA.offsetY);
+        this.x += this.repositionedX;
+        this.y += this.repositionedY;
+        this.setSize(this.width, this.height);
+        this.setOffset(this.offsetX, this.offsetY);
     }
 
     get position() {
         return {
-            x: this.x - this.ENTITY_DATA.repositionedX,
-            y: this.y - this.ENTITY_DATA.repositionedY,
+            x: this.x - this.repositionedX,
+            y: this.y - this.repositionedY,
         }
     }
 
     get onGrid() {
         return {
-            x: Math.floor((this.x - this.ENTITY_DATA.repositionedX) / 32),
-            y: Math.floor((this.y - this.ENTITY_DATA.repositionedY) / 32),
+            x: Math.floor(this.position.x / 32),
+            y: Math.floor(this.position.y / 32),
         }
     }
 
