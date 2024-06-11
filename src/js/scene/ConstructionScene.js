@@ -27,6 +27,7 @@ export default class ConstructionScene extends Phaser.Scene {
         
         this.initPlacementRemovalBtns();
         this.initConfirmationBtns();
+        this.initItemContainer();
 
         this.graphics = this.add.graphics({ lineStyle: { width: 2, color: 0x00ff00 }})
         this.postFxPlugin = this.plugins.get('rexoutlinepipelineplugin');
@@ -174,6 +175,18 @@ export default class ConstructionScene extends Phaser.Scene {
         this.CancelBtn.addEventListener("pointerdown", () => {
             this.hideConfirmationContainer();
         })
+    }
+
+    initItemContainer() {
+        this.constructionItemContainer = document.getElementById("construction-item-container");
+        this.constructionItemList = document.getElementById("construction-item-list");  
+
+        for (let i = 0; i < 10; i++) {
+            let item = document.createElement("div");
+            item.classList.add("construction-item-card");
+
+            this.constructionItemList.appendChild(item);
+        }
     }
 
     showConfirmationContainer() {

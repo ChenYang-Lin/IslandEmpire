@@ -525,3 +525,28 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+#construction-item-container {
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    height: 100px;
+    width: 60%;
+    transform: translateX(-50%);
+    background-color: green;
+}
+
+#construction-item-list {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+}
+
+.construction-item-card {
+    width: 64px;
+    height: 64px;
+    background-color: blue;
+    margin: 2px;
+}
