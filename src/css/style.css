@@ -532,21 +532,25 @@ body {
     left: 50%;
     height: 100px;
     width: 60%;
+    padding: 10px;
     transform: translateX(-50%);
-    background-color: green;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    pointer-events: auto;
 }
 
 #construction-item-list {
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: red;
+    overflow: auto;
+    white-space: nowrap;
+    background-color: rgba(255, 0, 0, 0);
 }
 
 .construction-item-card {
+    display: inline-block;
+    text-align: center;
     width: 64px;
     height: 64px;
-    background-color: blue;
     margin: 2px;
+    background-color: blue;
 }
