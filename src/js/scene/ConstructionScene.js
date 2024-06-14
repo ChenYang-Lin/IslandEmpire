@@ -1,3 +1,4 @@
+import { CONSTRUCTION_DATA } from "../GameData.js";
 import WorldManager from "../WorldManager.js";
 import Crop from "../entity/Crop.js";
 import Resource from "../entity/Resource.js";
@@ -12,12 +13,23 @@ export default class ConstructionScene extends Phaser.Scene {
         this.click = false;
         this.isPlacement = true;
         this.selectedGrid = undefined;
+
+        this.initPlacementRemovalBtns();
+        this.initConfirmationBtns();
+
+                
+        this.exitUI = document.getElementById("exit-ui");
+        this.exitUI.addEventListener("pointerdown", () => {
+            
+            this.scene.start("MainScene");
+        })
     }
 
     preload() {
         Resource.preload(this);
         Crop.preload(this);
 
+        this.load.atlas("construction", "assets/construction.png", "assets/construction_atlas.json");
         this.load.atlas("land", "assets/land.png", "assets/land_atlas.json");
     }
 
@@ -25,8 +37,7 @@ export default class ConstructionScene extends Phaser.Scene {
         this.worldManager = new WorldManager(this);
         this.worldManager.initWorld();
         
-        this.initPlacementRemovalBtns();
-        this.initConfirmationBtns();
+
         this.initItemContainer();
 
         this.graphics = this.add.graphics({ lineStyle: { width: 2, color: 0x00ff00 }})
@@ -68,12 +79,7 @@ export default class ConstructionScene extends Phaser.Scene {
             if (this.isCommandExecutable() === true)
                 this.showConfirmationContainer();
         })
-        
-        this.exitUI = document.getElementById("exit-ui");
-        this.exitUI.addEventListener("pointerdown", () => {
-            
-            this.scene.start("MainScene");
-        })
+
 
 
     }
@@ -108,7 +114,6 @@ export default class ConstructionScene extends Phaser.Scene {
         let gridY = this.selectedGrid.y;
         let x = gridX * 32;
         let y = gridY * 32;
-
         let landSprite;
 
         if (this.isPlacement) {
@@ -166,6 +171,7 @@ export default class ConstructionScene extends Phaser.Scene {
         this.CancelBtn = document.getElementById("construction-cancel-btn")
         
         this.hideConfirmationContainer();
+        console.log("new")
 
         this.ConfirmBtn.addEventListener("pointerdown", () => {
             this.updateLand();
@@ -181,10 +187,17 @@ export default class ConstructionScene extends Phaser.Scene {
         this.constructionItemContainer = document.getElementById("construction-item-container");
         this.constructionItemList = document.getElementById("construction-item-list");  
 
-        for (let i = 0; i < 10; i++) {
+        this.constructionItemList.innerHTML = ``;
+
+        for (const [key, value] of Object.entries(CONSTRUCTION_DATA)) {
             let item = document.createElement("div");
             item.classList.add("construction-item-card");
 
+            let itemImg = document.createElement("img");
+            itemImg.classList.add("construction-item-img");
+            itemImg.src = this.sys.game.textures.getBase64("construction", key);
+
+            item.appendChild(itemImg);
             this.constructionItemList.appendChild(item);
         }
     }

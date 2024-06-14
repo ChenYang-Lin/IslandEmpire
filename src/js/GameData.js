@@ -452,10 +452,22 @@ const MAP_DATA = {
     },
 }
 
+const CONSTRUCTION_DATA = {
+    "soil": {
+        width: 1,
+        height: 1,
+    },
+    "house": {
+        width: 3,
+        height: 3,
+    }
+}
+
 export {
     RESOURCE_DATA,
     ITEM_DATA,
     CROP_GROW_DATA,
     SHOP_DATA,
-    MAP_DATA
+    MAP_DATA,
+    CONSTRUCTION_DATA
 }
