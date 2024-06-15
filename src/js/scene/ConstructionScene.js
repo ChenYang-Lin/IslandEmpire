@@ -13,6 +13,7 @@ export default class ConstructionScene extends Phaser.Scene {
         this.click = false;
         this.isPlacement = true;
         this.selectedGrid = undefined;
+        this.selectedItemIndex = 0;
 
         this.initPlacementRemovalBtns();
         this.initConfirmationBtns();
@@ -71,13 +72,19 @@ export default class ConstructionScene extends Phaser.Scene {
         })
         this.input.on("pointerup", (pointer) => {
             console.log(this.selectedGrid)
-            if (!this.click || this.selectedGrid !== undefined) 
+            if (!this.click) 
                 return;
             this.gridX = Math.floor((pointer.x + this.camera.worldView.x + 16) / 32)
             this.gridY = Math.floor((pointer.y + this.camera.worldView.y + 16) / 32)
             this.updatePointerOnGridIndicator(this.gridX, this.gridY);
-            if (this.isCommandExecutable() === true)
+            if (this.selectedGrid !== undefined) {
+                this.updateLand(this.selectedGrid.x, this.selectedGrid.y, !this.isPlacement);
+            }
+            if (this.isCommandExecutable() === true){
+                this.updateLand(this.gridX, this.gridY, this.isPlacement);
                 this.showConfirmationContainer();
+            }
+
         })
 
 
@@ -109,29 +116,25 @@ export default class ConstructionScene extends Phaser.Scene {
     }
 
 
-    updateLand() {
-        let gridX = this.selectedGrid.x;
-        let gridY = this.selectedGrid.y;
+    updateLand(gridX, gridY, isPlacement) {
         let x = gridX * 32;
         let y = gridY * 32;
         let landSprite;
 
-        if (this.isPlacement) {
+        if (isPlacement) {
             // add land
             if (this.worldManager.map[`${gridX},${gridY}`]?.isLand) 
                 return;
             landSprite = "land_all";
-            this.worldManager.map[`${gridX},${gridY}`] = { isLand: true }
+            
         } else {
             // remove land
             if (!this.worldManager.map[`${gridX},${gridY}`]?.isLand) 
                 return;
             landSprite = "land";
-            this.worldManager.map[`${gridX},${gridY}`] = { isLand: false }
         }
 
-        this.worldManager.saveMapToLocalStorage();
-
+        this.updateMapData(gridX, gridY, isPlacement)
 
         let land = this.add.sprite(x, y, "land", landSprite);
         this.worldManager.landSpriteGroup[`${gridX},${gridY}`]?.destroy();
@@ -148,6 +151,15 @@ export default class ConstructionScene extends Phaser.Scene {
         this.worldManager.createSurroundingLand(gridX+1, gridY);
         this.worldManager.createSurroundingLand(gridX+1, gridY+1);
     }  
+
+    updateMapData(gridX, gridY, isPlacement) {
+        let isLand = isPlacement ? true : false 
+        if (this.worldManager.map[`${gridX},${gridY}`] !== undefined) {
+            this.worldManager.map[`${gridX},${gridY}`].isLand = isLand;
+        } else {
+            this.worldManager.map[`${gridX},${gridY}`] = { isLand: isLand};
+        }
+    }
 
     initPlacementRemovalBtns() {
         this.placementBtn = document.getElementById("placement-btn");
@@ -173,12 +185,14 @@ export default class ConstructionScene extends Phaser.Scene {
         this.hideConfirmationContainer();
         console.log("new")
 
-        this.ConfirmBtn.addEventListener("pointerdown", () => {
-            this.updateLand();
+        this.ConfirmBtn.addEventListener("pointerdown", () => { 
+            this.worldManager.saveMapToLocalStorage();
             this.hideConfirmationContainer();
         })
 
         this.CancelBtn.addEventListener("pointerdown", () => {
+            console.log(this.selectedGrid)
+            this.updateLand(this.selectedGrid.x, this.selectedGrid.y, !this.isPlacement);
             this.hideConfirmationContainer();
         })
     }
@@ -189,17 +203,26 @@ export default class ConstructionScene extends Phaser.Scene {
 
         this.constructionItemList.innerHTML = ``;
 
-        for (const [key, value] of Object.entries(CONSTRUCTION_DATA)) {
+        Object.entries(CONSTRUCTION_DATA).forEach(([key, value], i) => {
             let item = document.createElement("div");
             item.classList.add("construction-item-card");
+            item.setAttribute("index", `${i}`);
 
             let itemImg = document.createElement("img");
             itemImg.classList.add("construction-item-img");
             itemImg.src = this.sys.game.textures.getBase64("construction", key);
 
+            item.addEventListener("pointerdown", (e) => {
+                console.log(e.target.parentNode, this.selectedItemIndex)
+                e.target.parentNode.childNodes[this.selectedItemIndex].classList.remove("construction-item-selected");
+                item.classList.add("construction-item-selected");
+                this.selectedItemIndex = parseInt(e.target.getAttribute("index"), 10);
+            })
+
             item.appendChild(itemImg);
             this.constructionItemList.appendChild(item);
-        }
+        })
+
     }
 
     showConfirmationContainer() {
