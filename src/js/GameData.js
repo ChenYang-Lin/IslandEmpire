@@ -457,10 +457,10 @@ const CONSTRUCTION_DATA = {
         width: 1,
         height: 1,
     },
-    "house": {
-        width: 3,
-        height: 3,
-    }
+    // "house": {
+    //     width: 3,
+    //     height: 3,
+    // }
 }
 
 export {

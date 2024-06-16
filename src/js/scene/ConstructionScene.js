@@ -13,17 +13,18 @@ export default class ConstructionScene extends Phaser.Scene {
         this.click = false;
         this.isPlacement = true;
         this.selectedGrid = undefined;
-        this.selectedItemIndex = 0;
+        this.selectedItemIndex = undefined;
 
-        this.initPlacementRemovalBtns();
-        this.initConfirmationBtns();
 
-                
+        this.constructionItemContainer = document.getElementById("construction-item-container");
+        this.constructionItemList = document.getElementById("construction-item-list");  
+                        
         this.exitUI = document.getElementById("exit-ui");
         this.exitUI.addEventListener("pointerdown", () => {
             
             this.scene.start("MainScene");
         })
+
     }
 
     preload() {
@@ -40,6 +41,8 @@ export default class ConstructionScene extends Phaser.Scene {
         
 
         this.initItemContainer();
+        // this.initPlacementRemovalBtns();
+        this.initConfirmationBtns();
 
         this.graphics = this.add.graphics({ lineStyle: { width: 2, color: 0x00ff00 }})
         this.postFxPlugin = this.plugins.get('rexoutlinepipelineplugin');
@@ -77,6 +80,9 @@ export default class ConstructionScene extends Phaser.Scene {
             this.gridX = Math.floor((pointer.x + this.camera.worldView.x + 16) / 32)
             this.gridY = Math.floor((pointer.y + this.camera.worldView.y + 16) / 32)
             this.updatePointerOnGridIndicator(this.gridX, this.gridY);
+
+            
+            this.isPlacement = this.selectedItemIndex !== undefined ? true : false;
             if (this.selectedGrid !== undefined) {
                 this.updateLand(this.selectedGrid.x, this.selectedGrid.y, !this.isPlacement);
             }
@@ -183,7 +189,6 @@ export default class ConstructionScene extends Phaser.Scene {
         this.CancelBtn = document.getElementById("construction-cancel-btn")
         
         this.hideConfirmationContainer();
-        console.log("new")
 
         this.ConfirmBtn.addEventListener("pointerdown", () => { 
             this.worldManager.saveMapToLocalStorage();
@@ -198,9 +203,6 @@ export default class ConstructionScene extends Phaser.Scene {
     }
 
     initItemContainer() {
-        this.constructionItemContainer = document.getElementById("construction-item-container");
-        this.constructionItemList = document.getElementById("construction-item-list");  
-
         this.constructionItemList.innerHTML = ``;
 
         Object.entries(CONSTRUCTION_DATA).forEach(([key, value], i) => {
@@ -213,8 +215,7 @@ export default class ConstructionScene extends Phaser.Scene {
             itemImg.src = this.sys.game.textures.getBase64("construction", key);
 
             item.addEventListener("pointerdown", (e) => {
-                console.log(e.target.parentNode, this.selectedItemIndex)
-                e.target.parentNode.childNodes[this.selectedItemIndex].classList.remove("construction-item-selected");
+                this.resetSelectedItem();
                 item.classList.add("construction-item-selected");
                 this.selectedItemIndex = parseInt(e.target.getAttribute("index"), 10);
             })
@@ -225,12 +226,20 @@ export default class ConstructionScene extends Phaser.Scene {
 
     }
 
+    resetSelectedItem() {
+        if (this.selectedItemIndex !== undefined)
+            this.constructionItemList.childNodes[this.selectedItemIndex]?.classList.remove("construction-item-selected");
+    }
+
     showConfirmationContainer() {
         this.selectedGrid = { x: this.gridX, y: this.gridY };
         this.ConfirmationBtnsContainer.style.display = "flex";
     }
 
     hideConfirmationContainer() {
+        console.log(this.constructionItemList)
+        this.resetSelectedItem();
+        this.selectedItemIndex = undefined;
         this.selectedGrid = undefined;
         this.ConfirmationBtnsContainer.style.display = "none";
     }
