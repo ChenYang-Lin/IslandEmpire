@@ -7,9 +7,6 @@ export default class InputController {
         this.cursor = this.scene.input.keyboard.createCursorKeys();
         this.keyJ = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.J);
         this.keyP = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
-        this.keyI = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.I);
-        
-        this.inventoryOpen = false;
 
 
         this.joyLeft = false;
@@ -155,21 +152,9 @@ export default class InputController {
             this.beginAction();
         }
         if (this.keyP.isDown) {
-            let shop = this.scene.hud.shop;
+            let shop = this.scene.shop;
             shop.isOpen ? shop.closeWindow() : shop.openWindow();
             shop.inAction = true;
-        }
-        if (this.keyI.isDown) {
-            let inventoryContainer = document.getElementById("inventory-container");
-            
-            if (this.inventoryOpen) {
-                inventoryContainer.style.display = "none";
-                this.inventoryOpen = false;
-            } else {
-                inventoryContainer.style.display = "block";
-                this.inventoryOpen = true;
-            } 
-
         }
         if (this.keyP.isUp) {
             this.scene.hud.shop.inAction = false;
