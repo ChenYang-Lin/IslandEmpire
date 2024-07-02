@@ -13,6 +13,7 @@ export default class HUD {
 
         // UIs
         this.shopUI = document.getElementById("shop-ui");
+        this.inventoryUI = document.getElementById("inventory-ui");
         this.constructionUI = document.getElementById("construction-ui");
         this.exitUI = document.getElementById("exit-ui");
         this.constructionContainer = document.getElementById("construction-container");
@@ -23,13 +24,15 @@ export default class HUD {
         this.inventory = new Inventory(this.scene, this);
         this.shop = new Shop(this.scene, this);
 
-        this.shopUI = document.getElementById("shop-ui");
         this.shopUI.addEventListener("pointerdown", () => {
             this.shop.openWindow();
         })
+
+        this.inventoryUI.addEventListener("pointerdown", () => {
+            this.inventory.openWindow();
+        })
         
-        let constructionUI = document.getElementById("construction-ui");
-        constructionUI.addEventListener("pointerdown", () => {
+        this.constructionUI.addEventListener("pointerdown", () => {
             this.showConstructionSceneUIs();
             this.scene.scene.start("ConstructionScene");
         })

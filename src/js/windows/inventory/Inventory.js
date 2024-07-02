@@ -19,6 +19,8 @@ export default class Inventory {
             "stone"];
 
         this.inventoryWindow = new InventoryWindow(this.scene, this);
+
+        this.inAction = false;
     }
 
     addItem(name, quantity) {
@@ -50,6 +52,15 @@ export default class Inventory {
         this.inventoryOrder[a] = this.inventoryOrder[b];
         this.inventoryOrder[b] = temp;
         this.inventoryWindow.createInventoryWindow();
+    }
+
+    openWindow() {
+        this.inventoryWindow.renderInventoryWindow();
+        document.getElementById("inventory-container").style.display = "block";
+    }
+
+    closeWindow() {
+        document.getElementById("inventory-container").style.display = "none";
     }
 
 }

@@ -11,6 +11,14 @@ export default class InventoryWindow {
         this.dropIndex = -1;
     
         this.createInventoryWindow();
+        this.renderInventoryWindow();
+
+        let inventoryContainer = document.getElementById("inventory-container");
+        let exitBtn = document.getElementById("inventory-exit-btn");
+
+        exitBtn.addEventListener("pointerdown", () => {
+            inventoryContainer.style.display = "none";
+        })
     }
 
     setSelectedIndex(e) {
@@ -101,4 +109,53 @@ export default class InventoryWindow {
         return { itemImg, itemQuantityText };
     }
 
+    renderInventoryWindow() {
+        let inventoryList = document.getElementById("inventory-list");
+
+        // Create Inventory Items
+        inventoryList.innerHTML = "";
+        
+        for (const [key, value] of Object.entries(this.inventory.inventory)) {
+            console.log(key, value);
+
+            let itemWrapper = document.createElement("div");
+            itemWrapper.classList.add("inventory-item-wrapper");
+            itemWrapper.setAttribute("key", `${key}`);
+            itemWrapper.addEventListener("pointerdown", () => {
+                this.renderItemDetailBox(key)
+            })
+
+            let itemImgWrapper = document.createElement("div");
+            itemImgWrapper.classList.add("invenotry-item-img-wrapper");
+
+            let itemImg = document.createElement("img");
+            itemImg.classList.add("invenntory-item-img")
+            itemImg.src = this.scene.sys.game.textures.getBase64("item", key);
+
+            let itemQuantity = document.createElement("div");
+            itemQuantity.classList.add("inventory-item-quantity");
+            itemQuantity.innerHTML = value;
+
+            itemImgWrapper.appendChild(itemImg);
+            itemWrapper.appendChild(itemImgWrapper)
+            itemWrapper.appendChild(itemQuantity)
+            inventoryList.appendChild(itemWrapper);
+        }
+
+        this.renderItemDetailBox("stone");
+    }
+
+    renderItemDetailBox(selectedItem) {
+        let name = document.getElementById("inventory-description-name");
+        let type = document.getElementById("inventory-description-type");
+        let image = document.getElementById("inventory-description-img");
+        let owned = document.getElementById("inventory-description-owned");
+        let descriptions = document.getElementById("inventory-description-descriptions");
+
+        name.innerHTML = `${selectedItem}`;
+        // type.innerHTML = `${}`;
+        image.src = this.scene.sys.game.textures.getBase64("item", selectedItem);
+        owned.innerHTML = `${this.inventory.inventory[selectedItem]}`;
+        // descriptions.innerHTML = `${}`;
+    }
 }
