@@ -25,7 +25,6 @@ export default class MainScene extends Phaser.Scene {
     }
 
     create() {
-        this.sys.game.scale.setParentSize(window.innerWidth, window.innerHeight); // make sure game is not overflow in ios safari.
    
         // Initialization
         this.worldManager = new WorldManager(this);

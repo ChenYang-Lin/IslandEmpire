@@ -22,7 +22,7 @@ export default class InputController {
             // this.scene.hud.renderHUD();
             this.scene.hud.windowSizeSynchronization();
 
-            this.scene.sys.game.scale.setParentSize(window.innerWidth, window.innerHeight); // make sure game is not overflow in ios safari.
+            this.scene.sys.game.scale.resize(window.innerWidth, window.innerHeight);
             this.joyStick.x = 100;
             this.joyStick.y = this.scene.sys.game.canvas.height - 100;
         });
