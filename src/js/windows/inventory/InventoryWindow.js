@@ -147,8 +147,11 @@ export default class InventoryWindow {
 
     renderItemDetailBox(selectedItem) {
         const inventoryItemDetail = document.getElementById("inventory-detail");
+        
 
         let image = this.scene.sys.game.textures.getBase64('item', selectedItem)
+        let owned = this.inventory.inventory[selectedItem];
+
         inventoryItemDetail.innerHTML = 
         `
         <div class="panel-detail-header">${selectedItem}</div>
@@ -157,6 +160,7 @@ export default class InventoryWindow {
             <img src="${image}" alt="" class="panel-detail-body-img">
         </div>
         <div class="panel-detail-descriptions">Some descriptions</div>
+        <div class="panel-detail-owned">Owned: ${owned}</div>
         `
 
     }

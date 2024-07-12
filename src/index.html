@@ -80,7 +80,14 @@
         
          <div id="inventory-container" class="panel-container">
             <div id="inventory-header" class="panel-header">
-                <div id="inventory-exit-btn" class="panel-exit-btn">X</div>
+                <div id="inventory-tag" class="panel-tag">Inventory</div>
+                <div id="inventory-category-container" class="panel-category-container">
+                    <img id="inventory-category-weapon" class="panel-category-element" src="assets/icons/panel/weapon-icon-light.png"></img>
+                    <img id="inventory-category-consumable" class="panel-category-element" src="assets/icons/panel/consumable-icon-light.png"></img>
+                    <img id="inventory-category-material" class="panel-category-element" src="assets/icons/panel/material-icon-light.png"></img>
+                    <img id="inventory-category-construction" class="panel-category-element" src="assets/icons/panel/construction-icon-light.png"></img>
+                </div>
+                <img src="assets//icons/panel/exit-btn.png" id="inventory-exit-btn" class="panel-exit-btn"></img>
             </div>
             <div id="inventory-body" class="panel-body">
                 <div id="inventory-list" class="panel-list"></div>
@@ -106,16 +113,14 @@
                     <div class="shop-item"></div> -->
                 </div>
                 <div id="shop-item-info-wrapper">
-                    <div id="shop-item-info">
-                        <div id="shop-item-info-header">Wood</div>
-                        <div id="shop-item-info-img-container">
-                            <div id="shop-item-info-category">Resource</div>
-                            <img src="" alt="" id="shop-item-info-img">
+                    <div id="shop-item-info" class="panel-detail">
+                        <div id="shop-item-info-header" class="panel-detail-header">Wood</div>
+                        <div id="shop-item-info-img-container" class="panel-detail-body">
+                            <div id="shop-item-info-category" class="panel-detail-body-type">Resource</div>
+                            <img src="" alt="" id="shop-item-info-img" class="panel-detail-body-img">
                         </div>
-                        <div id="shop-item-info-descriptions-container">
-                            <div id="shop-item-info-description">some descriptions</div>
-                            <div id="shop-item-info-owned">Owned: 20</div>
-                        </div>
+                        <div id="shop-item-info-description" class="panel-detail-descriptions">some descriptions</div>
+                        <div id="shop-item-info-owned" class="panel-detail-owned">Owned: 20</div>
                     </div>
                 </div>
             </div>
