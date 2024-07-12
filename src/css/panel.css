@@ -28,6 +28,8 @@
 }
 
 .panel-category-container {
+    width: 60%;
+    padding: 0 auto;
     overflow: hidden;
     white-space: nowrap;
     /* background-color: red; */
