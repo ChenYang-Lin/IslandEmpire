@@ -11,7 +11,7 @@ export default class InventoryWindow {
         this.dropIndex = -1;
     
         this.createInventoryWindow();
-        this.renderInventoryWindow();
+        this.renderInventoryPanel();
 
         let inventoryContainer = document.getElementById("inventory-container");
         let exitBtn = document.getElementById("inventory-exit-btn");
@@ -109,7 +109,7 @@ export default class InventoryWindow {
         return { itemImg, itemQuantityText };
     }
 
-    renderInventoryWindow() {
+    renderInventoryPanel() {
         let inventoryList = document.getElementById("inventory-list");
 
         // Create Inventory Items
@@ -118,44 +118,46 @@ export default class InventoryWindow {
         for (const [key, value] of Object.entries(this.inventory.inventory)) {
             console.log(key, value);
 
-            let itemWrapper = document.createElement("div");
-            itemWrapper.classList.add("inventory-item-wrapper");
-            itemWrapper.setAttribute("key", `${key}`);
-            itemWrapper.addEventListener("pointerdown", () => {
+            let item = document.createElement("div");
+            item.classList.add("panel-item");
+            item.setAttribute("key", `${key}`);
+            item.addEventListener("pointerdown", () => {
                 this.renderItemDetailBox(key)
             })
 
             let itemImgWrapper = document.createElement("div");
-            itemImgWrapper.classList.add("invenotry-item-img-wrapper");
+            itemImgWrapper.classList.add("panel-item-img-wrapper");
 
             let itemImg = document.createElement("img");
-            itemImg.classList.add("invenntory-item-img")
+            itemImg.classList.add("panel-item-img")
             itemImg.src = this.scene.sys.game.textures.getBase64("item", key);
 
             let itemQuantity = document.createElement("div");
-            itemQuantity.classList.add("inventory-item-quantity");
+            itemQuantity.classList.add("panel-item-quantity");
             itemQuantity.innerHTML = value;
 
             itemImgWrapper.appendChild(itemImg);
-            itemWrapper.appendChild(itemImgWrapper)
-            itemWrapper.appendChild(itemQuantity)
-            inventoryList.appendChild(itemWrapper);
+            item.appendChild(itemImgWrapper)
+            item.appendChild(itemQuantity)
+            inventoryList.appendChild(item);
         }
 
         this.renderItemDetailBox("stone");
     }
 
     renderItemDetailBox(selectedItem) {
-        let name = document.getElementById("inventory-description-name");
-        let type = document.getElementById("inventory-description-type");
-        let image = document.getElementById("inventory-description-img");
-        let owned = document.getElementById("inventory-description-owned");
-        let descriptions = document.getElementById("inventory-description-descriptions");
+        const inventoryItemDetail = document.getElementById("inventory-detail");
 
-        name.innerHTML = `${selectedItem}`;
-        // type.innerHTML = `${}`;
-        image.src = this.scene.sys.game.textures.getBase64("item", selectedItem);
-        owned.innerHTML = `${this.inventory.inventory[selectedItem]}`;
-        // descriptions.innerHTML = `${}`;
+        let image = this.scene.sys.game.textures.getBase64('item', selectedItem)
+        inventoryItemDetail.innerHTML = 
+        `
+        <div class="panel-detail-header">${selectedItem}</div>
+        <div class="panel-detail-body">
+            <div class="panel-detail-body-type">${"Item Type"}</div>
+            <img src="${image}" alt="" class="panel-detail-body-img">
+        </div>
+        <div class="panel-detail-descriptions">Some descriptions</div>
+        `
+
     }
 }

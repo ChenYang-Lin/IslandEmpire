@@ -7,7 +7,11 @@
     <title>Island Empire</title>
     <link rel="icon" type="image/x-icon" href="./assets/icons/hoe.png">
 
+    <!-- css -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/hud.css">
+    <link rel="stylesheet" href="css/invenotry.css">
+    <link rel="stylesheet" href="css/panel.css">
     
     <script src="js/utils/phaser.min.js"></script>
 
@@ -74,21 +78,13 @@
         <!-- <button id="install-ui">Install</button> -->
          <!-- Inventory -->
         
-         <div id="inventory-container">
-            <div id="inventory-header">
-                <div id="inventory-exit-btn">X</div>
+         <div id="inventory-container" class="panel-container">
+            <div id="inventory-header" class="panel-header">
+                <div id="inventory-exit-btn" class="panel-exit-btn">X</div>
             </div>
-            <div id="inventory-body">
-                <div id="inventory-list"></div>
-                <div id="inventory-description">
-                    <div id="inventory-description-name">Item Name</div>
-                    <div id="inventory-description-intro">
-                        <div id="inventory-description-type">Item type</div>
-                        <img src="" alt="" id="inventory-description-img">
-                        <div id="inventory-description-owned">Owned 1</div>
-                    </div>
-                    <div id="inventory-description-descriptions">Some descriptions</div>
-                </div>
+            <div id="inventory-body" class="panel-body">
+                <div id="inventory-list" class="panel-list"></div>
+                <div id="inventory-detail" class="panel-detail"></div>
             </div>
          </div>
         <!-- Shop -->

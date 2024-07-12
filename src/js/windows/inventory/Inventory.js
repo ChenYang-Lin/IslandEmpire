@@ -55,7 +55,7 @@ export default class Inventory {
     }
 
     openWindow() {
-        this.inventoryWindow.renderInventoryWindow();
+        this.inventoryWindow.renderInventoryPanel();
         document.getElementById("inventory-container").style.display = "block";
     }
 
