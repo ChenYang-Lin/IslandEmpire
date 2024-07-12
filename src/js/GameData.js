@@ -52,7 +52,7 @@ const RESOURCE_DATA = {
 const ITEM_DATA = {
     // Items - materials
     wood: {
-        category: "item",
+        category: "material",
         type: "material",
         repositionedX: 0,
         repositionedY: 0,
@@ -63,7 +63,7 @@ const ITEM_DATA = {
         collectable: "wood",
     },
     fiber: {
-        category: "item",
+        category: "material",
         type: "material",
         repositionedX: 0,
         repositionedY: 0,
@@ -74,7 +74,7 @@ const ITEM_DATA = {
         collectable: "fiber",
     },
     stone: {
-        category: "item",
+        category: "material",
         type: "material",
         repositionedX: 0,
         repositionedY: 0,

@@ -1,3 +1,4 @@
+import { ITEM_DATA } from "../../GameData.js";
 
 
 
@@ -9,16 +10,32 @@ export default class InventoryWindow {
         this.selectedIndex = 0;
         this.dragIndex = -1;
         this.dropIndex = -1;
+
+        this.selectedCategoryIndex = 0;
+        this.selectedCategory = "weapon"
     
         this.createInventoryWindow();
         this.renderInventoryPanel();
 
+        this.init();
+    }
+
+    init() {
         let inventoryContainer = document.getElementById("inventory-container");
         let exitBtn = document.getElementById("inventory-exit-btn");
 
         exitBtn.addEventListener("pointerdown", () => {
             inventoryContainer.style.display = "none";
         })
+
+        let categoryElements = document.querySelectorAll(".panel-category-element");
+        for (let i = 0; i < categoryElements.length; i++) {
+            categoryElements[i].addEventListener("click", () => {
+                this.selectedCategoryIndex = i;
+                this.selectedCategory = categoryElements[i].getAttribute("data-category");
+                this.renderInventoryPanel();
+            })
+        }
     }
 
     setSelectedIndex(e) {
@@ -110,13 +127,33 @@ export default class InventoryWindow {
     }
 
     renderInventoryPanel() {
+        this.renderInventorySelectedCategory();
+        this.renderInventoryList();
+        this.renderItemDetailBox("stone");
+    }
+
+    renderInventorySelectedCategory() {
+        let inventoryCategoryContainer = document.getElementById("inventory-category-container");
+        let categoryElements = inventoryCategoryContainer.children
+        
+        for (let i = 0; i < categoryElements.length; i++) {
+            categoryElements[i].classList.remove("panel-category-element-selected");
+        }
+
+        categoryElements[this.selectedCategoryIndex].classList.add("panel-category-element-selected");
+    }
+
+    renderInventoryList() {
         let inventoryList = document.getElementById("inventory-list");
 
         // Create Inventory Items
         inventoryList.innerHTML = "";
+
+
         
         for (const [key, value] of Object.entries(this.inventory.inventory)) {
-            console.log(key, value);
+            if (ITEM_DATA[key].category !== this.selectedCategory)
+                continue;
 
             let item = document.createElement("div");
             item.classList.add("panel-item");
@@ -141,8 +178,6 @@ export default class InventoryWindow {
             item.appendChild(itemQuantity)
             inventoryList.appendChild(item);
         }
-
-        this.renderItemDetailBox("stone");
     }
 
     renderItemDetailBox(selectedItem) {
@@ -151,12 +186,12 @@ export default class InventoryWindow {
 
         let image = this.scene.sys.game.textures.getBase64('item', selectedItem)
         let owned = this.inventory.inventory[selectedItem];
-
+        let type = ITEM_DATA[selectedItem].type;
         inventoryItemDetail.innerHTML = 
         `
         <div class="panel-detail-header">${selectedItem}</div>
         <div class="panel-detail-body">
-            <div class="panel-detail-body-type">${"Item Type"}</div>
+            <div class="panel-detail-body-type">${type}</div>
             <img src="${image}" alt="" class="panel-detail-body-img">
         </div>
         <div class="panel-detail-descriptions">Some descriptions</div>
