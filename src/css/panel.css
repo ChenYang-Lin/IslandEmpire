@@ -18,18 +18,23 @@
     width: 100%;
     height: 10%;
     background-color: black;
-    display: flex;
-    justify-content: space-between;
 }
 
 .panel-tag {
+    position: absolute;
+    left: 2%;
+    top: 50%;
+    transform: translateY(-50%);
     font-family: Arial, Helvetica, sans-serif;
     color: white;
 }
 
 .panel-category-container {
-    width: 60%;
-    padding: 0 auto;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     overflow: hidden;
     white-space: nowrap;
     /* background-color: red; */
@@ -54,6 +59,8 @@
 }
 
 .panel-exit-btn {
+    position: absolute;
+    right: 0;
     transform: scale(0.5);
     height: 100%;
     aspect-ratio: 1;
