@@ -52,10 +52,9 @@
     transition: 0.1s;
     cursor: pointer;
 }
-.panel-category-element:hover {
-    /* filter: invert(100%); */
+/* .panel-category-element:hover {
     padding: 0px;
-}
+} */
 
 .panel-category-element-selected {
     filter: invert(100%);
