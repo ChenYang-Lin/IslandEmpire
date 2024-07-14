@@ -30,7 +30,7 @@ export default class InventoryWindow {
 
         let categoryElements = document.querySelectorAll(".panel-category-element");
         for (let i = 0; i < categoryElements.length; i++) {
-            categoryElements[i].addEventListener("click", () => {
+            categoryElements[i].addEventListener("pointerdown", () => {
                 this.selectedCategoryIndex = i;
                 this.selectedCategory = categoryElements[i].getAttribute("data-category");
                 this.renderInventoryPanel();
