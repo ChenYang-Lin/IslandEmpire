@@ -16,7 +16,7 @@
 .panel-header {
     position: relative;
     width: 100%;
-    height: 10%;
+    height: 15%;
     background-color: black;
 }
 
@@ -52,9 +52,9 @@
     transition: 0.1s;
     cursor: pointer;
 }
-/* .panel-category-element:hover {
+.panel-category-element:hover {
     padding: 0px;
-} */
+}
 
 .panel-category-element-selected {
     filter: invert(100%);
