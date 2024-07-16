@@ -118,7 +118,7 @@ export default class HUD {
 
     showMainSceneUIs() {
         this.hideConstructionSceneUIs();
-        this.inventorySlotsContainer.style.display = "flex";
+        // this.inventorySlotsContainer.style.display = "flex";
         this.collectableContainer.style.display = "block";
         this.actionBtn.style.display = "block";
         this.shopUI.style.display = "block";

@@ -14,7 +14,7 @@ export default class InventoryWindow {
         this.selectedCategoryIndex = 0;
         this.selectedCategory = "weapon"
     
-        this.createInventoryWindow();
+        // this.createInventoryWindow();
         this.renderInventoryPanel();
 
         this.init();
