@@ -2,6 +2,7 @@ import AnimationController from "./AnimationController.js";
 import CollisionController from "./CollisionController.js";
 import Hitbox from "./Hitbox.js";
 import Sensors from "./Sensors.js";
+import Stats from "./Stats.js";
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
     constructor(scene) {
@@ -25,17 +26,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.hitbox = new Hitbox(this.scene, this);
         this.sensors = new Sensors(this.scene, this);
         this.collisionController = new CollisionController(this.scene, this);
-        
-        // Player status
-        this.hp = 100;
-        this.mp = 100;
-        this.speed = 96;
-        this.attackDmg = 1;
-
-        this.energy = 100;
-        this.hunger = 100;
-        this.thirst = 100;
-
+        this.stats = new Stats(this.scene, this);
         
 
     }

@@ -72,7 +72,7 @@ export default class AnimationController {
 
         this.player.direction = direction ? direction : this.player.direction;
 
-        velocity.scale(this.player.speed);
+        velocity.scale(this.player.stats.speed);
         this.player.setVelocity(velocity.x, velocity.y);
 
         // Walk or idle animaiton depends on velocity

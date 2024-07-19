@@ -36,7 +36,7 @@ export default class Hitbox {
             if (this.swordHitboxTouching.includes(resource))
                 return;
             this.swordHitboxTouching.push(resource);
-            resource.onHit(this.player.attackDmg);
+            resource.onHit(this.player.stats.attackDmg);
         });
     }
 

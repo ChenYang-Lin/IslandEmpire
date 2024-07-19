@@ -12,13 +12,15 @@
     <link rel="stylesheet" href="css/hud.css">
     <link rel="stylesheet" href="css/invenotry.css">
     <link rel="stylesheet" href="css/panel.css">
+    <link rel="stylesheet" href="css/stats.css">
     
     <script src="js/utils/phaser.min.js"></script>
 
     <!-- Meta Tags required for Progressive Web App -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> -->
     <link rel="manifest" href="manifest.json">
 </head>
 <body oncontextmenu="return false">
@@ -33,8 +35,41 @@
         <button id="action-btn">
             <img id="action-btn-icon" src="./assets/icons/sword.png"></img>
         </button>
-        <!-- Player Status -->
-        
+        <!-- Player Stats -->
+        <div id="stats-container">
+            <div id="hunger-thirst-container">
+                <div id="hunger-bar-container">
+                    <img src="assets/icons/stats/hunger.png" alt="" id="hunger-bar-icon">
+                    <div id="hunger-bar">
+                        <div class="bar-background"></div>
+                        <div class="bar-foreground">
+                            <div id="hunger-bar-current"></div>
+                        </div>
+                        <div id="hunger-bar-value" class="bar-value">100/100</div>
+                    </div>
+                </div>
+                <div id="thirst-bar-container">
+                    <img src="assets/icons/stats/thirst.png" alt="" id="thirst-bar-icon">
+                    <div id="thirst-bar">
+                        <div class="bar-background"></div>
+                        <div class="bar-foreground">
+                            <div id="thirst-bar-current"></div>
+                        </div>
+                        <div id="thirst-bar-value" class="bar-value">100/100</div>
+                    </div>
+                </div>
+            </div>
+            <div id="health-bar-container">
+                <!-- <img src="assets/icons/stats/health.png" alt="" id="health-bar-icon"> -->
+                <div id="health-bar">
+                    <div class="bar-background"></div>
+                    <div class="bar-foreground">
+                        <div id="health-bar-current"></div>
+                    </div>
+                    <div id="health-bar-value" class="bar-value">100/100</div>
+                </div>
+            </div>
+        </div>
         <!-- Construction -->
         <div id="construction-container">
             <!-- <button id="placement-btn" class="construct-action-btns active">Placement</button>

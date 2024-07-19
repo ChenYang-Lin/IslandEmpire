@@ -4,7 +4,7 @@
     overflow: hidden;
     /* font-smooth: never;
     -webkit-font-smoothing : none; */
-    font-family: "ＭＳ Ｐゴシック";
+    /* font-family: "ＭＳ Ｐゴシック"; */
     user-select: none;
     box-sizing: border-box;
 }

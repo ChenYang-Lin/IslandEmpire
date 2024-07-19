@@ -24,6 +24,8 @@ export default class HUD {
         this.inventory = new Inventory(this.scene, this);
         this.shop = new Shop(this.scene, this);
 
+        this.scene.player.stats.initDisplay();
+
         this.shopUI.addEventListener("pointerdown", () => {
             this.shop.openWindow();
         })
@@ -109,7 +111,7 @@ export default class HUD {
     }
 
     hideMainSceneUIs() {
-        this.inventorySlotsContainer.style.display = "none";
+        // this.inventorySlotsContainer.style.display = "none";
         this.collectableContainer.style.display = "none";
         this.actionBtn.style.display = "none";
         this.shopUI.style.display = "none";
