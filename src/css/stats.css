@@ -41,7 +41,6 @@
 #hunger-thirst-container {
     position: relative;
     height: 20px;
-    margin-bottom: 2px;
     display: flex;
 }
 
