@@ -28,14 +28,6 @@
 }
 
 
-#stats-container {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 4px;
-    width: 30%;
-    /* background-color: blue; */
-}
 
 /* Hunger Thirst Container */
 #hunger-thirst-container {

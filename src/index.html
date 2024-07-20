@@ -27,49 +27,74 @@
     <div id="island-empire">
         
     </div>
-
+    
     <div id="hud">
         <!-- FPS -->
         <div id="fps"></div>
-        <!-- Action Button -->
-        <button id="action-btn">
-            <img id="action-btn-icon" src="./assets/icons/sword.png"></img>
-        </button>
-        <!-- Player Stats -->
-        <div id="stats-container">
-            <div id="hunger-thirst-container">
-                <div id="hunger-bar-container">
-                    <img src="assets/icons/stats/hunger.png" alt="" id="hunger-bar-icon">
-                    <div id="hunger-bar">
-                        <div class="bar-background"></div>
-                        <div class="bar-foreground">
-                            <div id="hunger-bar-current"></div>
+        <!-- HUD Footer -->
+        <div id="hud-footer">
+            <!-- Joy Stick -->
+            <div id="joy-stick-wrapper">
+            </div>
+
+            <!-- Player Stats -->
+            <div id="stats-container">
+                <div id="hunger-thirst-container">
+                    <div id="hunger-bar-container">
+                        <img src="assets/icons/stats/hunger.png" alt="" id="hunger-bar-icon">
+                        <div id="hunger-bar">
+                            <div class="bar-background"></div>
+                            <div class="bar-foreground">
+                                <div id="hunger-bar-current"></div>
+                            </div>
+                            <div id="hunger-bar-value" class="bar-value">100/100</div>
                         </div>
-                        <div id="hunger-bar-value" class="bar-value">100/100</div>
+                    </div>
+                    <div id="thirst-bar-container">
+                        <img src="assets/icons/stats/thirst.png" alt="" id="thirst-bar-icon">
+                        <div id="thirst-bar">
+                            <div class="bar-background"></div>
+                            <div class="bar-foreground">
+                                <div id="thirst-bar-current"></div>
+                            </div>
+                            <div id="thirst-bar-value" class="bar-value">100/100</div>
+                        </div>
                     </div>
                 </div>
-                <div id="thirst-bar-container">
-                    <img src="assets/icons/stats/thirst.png" alt="" id="thirst-bar-icon">
-                    <div id="thirst-bar">
+                <div id="health-bar-container">
+                    <!-- <img src="assets/icons/stats/health.png" alt="" id="health-bar-icon"> -->
+                    <div id="health-bar">
                         <div class="bar-background"></div>
                         <div class="bar-foreground">
-                            <div id="thirst-bar-current"></div>
+                            <div id="health-bar-current"></div>
                         </div>
-                        <div id="thirst-bar-value" class="bar-value">100/100</div>
+                        <div id="health-bar-value" class="bar-value">100/100</div>
                     </div>
                 </div>
             </div>
-            <div id="health-bar-container">
-                <!-- <img src="assets/icons/stats/health.png" alt="" id="health-bar-icon"> -->
-                <div id="health-bar">
-                    <div class="bar-background"></div>
-                    <div class="bar-foreground">
-                        <div id="health-bar-current"></div>
+            <!-- Action Buttons Container -->
+            <div id="action-buttons-container">
+                <div id="col-1-btn-container"></div>
+                <div id="col-2-btn-container">
+                    <div id="farming-btn-switch"></div>
+                    <div id="farming-btn"></div>
+                </div>
+                <div id="col-3-btn-container">
+                    <div class="action-btn-wrapper">
+                        <img src="./assets/icons/control/attack-btn-icon.png" alt="" id="action-btn" class="action-btn">
                     </div>
-                    <div id="health-bar-value" class="bar-value">100/100</div>
+                </div>
+                <div id="col-4-btn-container">
+                    <div class="action-btn-wrapper">
+                        <img src="./assets/icons/control/farming-btn-icon.png" alt="" id="farming-btn" class="action-btn">
+                    </div>
+                    <div class="action-btn-wrapper">
+                        <img src="./assets/icons/control/dash-btn-icon.png" alt="" id="dash-btn" class="action-btn">
+                    </div>
                 </div>
             </div>
         </div>
+        
         <!-- Construction -->
         <div id="construction-container">
             <!-- <button id="placement-btn" class="construct-action-btns active">Placement</button>
@@ -110,9 +135,9 @@
             <button id="exit-ui" class="ui-btn"><img src="assets/icons/exit.png" alt="" class="ui-img"></button>
         </div>
         <!-- <button id="install-ui">Install</button> -->
-         <!-- Inventory -->
+        <!-- Inventory -->
         
-         <div id="inventory-container" class="panel-container">
+        <div id="inventory-container" class="panel-container">
             <div id="inventory-header" class="panel-header">
                 <div id="inventory-tag" class="panel-tag">Inventory</div>
                 <div id="inventory-category-container" class="panel-category-container">
@@ -128,7 +153,7 @@
                 <div id="inventory-list" class="panel-list"></div>
                 <div id="inventory-detail" class="panel-detail"></div>
             </div>
-         </div>
+        </div>
         <!-- Shop -->
         <div id="shop-container">
             <div id="shop-header">
@@ -214,6 +239,7 @@
         }
     </script>
     <script src="sw.js"></script>
+    <script src="js/utils/joy.js"></script>
     <script type="module" src="js/index.js"></script>
 
 </body>

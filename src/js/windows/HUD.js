@@ -50,8 +50,6 @@ export default class HUD {
         this.closeHUD();
 
         setTimeout(() => {    
-            hud.style.marginTop = window.getComputedStyle(islandEmpire).marginTop;
-            hud.style.marginLeft = window.getComputedStyle(islandEmpire).marginLeft;
             hud.style.width = window.getComputedStyle(islandEmpire).width;
             hud.style.height = window.getComputedStyle(islandEmpire).height;
             this.openHUD();
@@ -66,13 +64,13 @@ export default class HUD {
     }
 
     setActionButton() {
-        let icon = document.getElementById("action-btn-icon");
-        let selectedIndex = this.inventory.inventoryWindow.selectedIndex;
-        let name = this.inventory.inventoryOrder[selectedIndex];
-        if (name) 
-            icon.src = this.scene.sys.game.textures.getBase64("item", name);
-        else
-            icon.src = ""
+        // let icon = document.getElementById("action-btn-icon");
+        // let selectedIndex = this.inventory.inventoryWindow.selectedIndex;
+        // let name = this.inventory.inventoryOrder[selectedIndex];
+        // if (name) 
+        //     icon.src = this.scene.sys.game.textures.getBase64("item", name);
+        // else
+        //     icon.src = ""
     }
 
     createCollectablesContainer(collectables) {
