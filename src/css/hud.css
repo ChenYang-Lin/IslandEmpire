@@ -63,13 +63,15 @@
     aspect-ratio: 1;
     background-color: rgba(49, 49, 49, 0.336);
     cursor: pointer;
+    pointer-events: auto;
 }
 
-.action-btn {
+.action-btn-img {
     width: 70%;
     position: absolute;
     top: 50%;
     left: 50%;
+    pointer-events: none;
     transform: translate(-50%, -50%);
 }
 

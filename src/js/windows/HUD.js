@@ -10,7 +10,7 @@ export default class HUD {
         this.hud = document.getElementById("hud");
         this.inventorySlotsContainer = document.getElementById("inventory-slots-container");
         this.collectableContainer = document.getElementById("collectables-container");
-        this.actionBtn = document.getElementById("action-btn");
+        this.actionBtnsContainer = document.getElementById("action-buttons-container");
 
         // UIs
         this.shopUI = document.getElementById("shop-ui");
@@ -124,10 +124,55 @@ export default class HUD {
         })
     }
 
+    openItemSwitchPanel() {
+        let itemSwitchPanel = document.getElementById("item-switch-panel");
+        itemSwitchPanel.style.display = "block";
+
+        let itemSwitchList = document.getElementById("item-switch-list");
+
+        itemSwitchList.innerHTML = "";
+
+        console.log(this.inventory.inventory)
+        for (const [key, value] of Object.entries(this.inventory.inventory)) {
+            if (ITEM_DATA[key].category !== "farming")
+                continue;
+
+            let item = document.createElement("div");
+            item.classList.add("panel-item");
+            item.setAttribute("key", `${key}`);
+            item.addEventListener("pointerdown", () => {
+                this.setFarmingBtn(key);
+                this.inventory.inventoryWindow.selectedFarmingItem = key;
+                this.closeItemSwitchPanel();
+            })
+
+            let itemImgWrapper = document.createElement("div");
+            itemImgWrapper.classList.add("panel-item-img-wrapper");
+
+            let itemImg = document.createElement("img");
+            itemImg.classList.add("panel-item-img")
+            itemImg.src = this.scene.sys.game.textures.getBase64("item", key);
+
+            let itemQuantity = document.createElement("div");
+            itemQuantity.classList.add("panel-item-quantity");
+            itemQuantity.innerHTML = value;
+
+            itemImgWrapper.appendChild(itemImg);
+            item.appendChild(itemImgWrapper)
+            item.appendChild(itemQuantity)
+            itemSwitchList.appendChild(item);
+        }
+    }
+
+    closeItemSwitchPanel() {
+        let itemSwitchPanel = document.getElementById("item-switch-panel");
+        itemSwitchPanel.style.display = "none";
+    }
+
     hideMainSceneUIs() {
         // this.inventorySlotsContainer.style.display = "none";
         this.collectableContainer.style.display = "none";
-        this.actionBtn.style.display = "none";
+        this.actionBtnsContainer.style.display = "none";
         this.shopUI.style.display = "none";
         this.constructionUI.style.display = "none";
     }
@@ -136,7 +181,7 @@ export default class HUD {
         this.hideConstructionSceneUIs();
         // this.inventorySlotsContainer.style.display = "flex";
         this.collectableContainer.style.display = "block";
-        this.actionBtn.style.display = "block";
+        this.actionBtnsContainer.style.display = "flex";
         this.shopUI.style.display = "block";
         this.constructionUI.style.display = "block";
     }

@@ -33,10 +33,22 @@ export default class InputController {
     }
 
     initMobileBtns() {
-        let actionBtn = document.getElementById("action-btn")
-        actionBtn.addEventListener("pointerdown", () => {
-            console.log("action")
-            this.beginAction();
+        let attackBtn = document.getElementById("attack-btn");
+        attackBtn.addEventListener("pointerdown", () => {
+            this.playAttackAnim("sword");
+        })
+
+        let farmingBtn = document.getElementById("farming-btn");
+        farmingBtn.addEventListener("pointerdown", () => {
+            this.beginFarmingAction();
+        })
+        let farmingBtnSwitcher = document.getElementById("farming-btn-switcher");
+        farmingBtnSwitcher.addEventListener("pointerdown", () => {
+            this.scene.hud.openItemSwitchPanel();
+        })
+        let itemSwitchExitBtn = document.getElementById("item-switch-exit-btn");
+        itemSwitchExitBtn.addEventListener("pointerdown", () => {
+            this.scene.hud.closeItemSwitchPanel();
         })
     }
 
@@ -106,35 +118,28 @@ export default class InputController {
         
     }
 
-    playToolUsageAnimation(type) {
-        switch (type) {
+
+    
+    playToolUsageAnimation(tool) {
+        switch (tool) {
             case "hoe":
                 this.player.animationController.hoe();
             default:
         }
     }
 
-    playItemUsageAnimaiton(type, selectedItem) {
-        switch (type) {
+    beginFarmingAction() {
+        // let selectedIndex = this.scene.hud.inventory.inventoryWindow.selectedIndex;
+        // let selectedItem = this.scene.hud.inventory.inventoryOrder[selectedIndex];
+
+        let selectedItem = this.scene.hud.inventory.inventoryWindow.selectedFarmingItem;
+
+        switch (ITEM_DATA[selectedItem].type) {
+            case "tool":
+                this.playToolUsageAnimation(selectedItem)
+                break;
             case "seed":
                 this.player.animationController.sow(selectedItem);
-            default:
-        }
-    }
-
-    beginAction() {
-        let selectedIndex = this.scene.hud.inventory.inventoryWindow.selectedIndex;
-        let selectedItem = this.scene.hud.inventory.inventoryOrder[selectedIndex];
-
-        switch (ITEM_DATA[selectedItem].category) {
-            case "weapon":
-                this.playAttackAnim(ITEM_DATA[selectedItem].type);
-                break;
-            case "tool":
-                this.playToolUsageAnimation(ITEM_DATA[selectedItem].type);
-                break;
-            case "item":
-                this.playItemUsageAnimaiton(ITEM_DATA[selectedItem].type, selectedItem);
                 break;
             default:
         }

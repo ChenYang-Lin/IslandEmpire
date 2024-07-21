@@ -7,9 +7,7 @@ export default class InventoryWindow {
         this.scene = scene;
         this.inventory = inventory;
 
-        this.selectedIndex = 0;
-        this.dragIndex = -1;
-        this.dropIndex = -1;
+        this.selectedFarmingItem = "hoe";
 
         this.selectedCategoryIndex = 0;
         this.selectedCategory = "weapon"
