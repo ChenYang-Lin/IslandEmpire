@@ -48,17 +48,25 @@
     display: flex;
 }
 
+.button-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+}
+
 .action-btn-wrapper {
     position: relative;
     border-radius: 50%;
     border: none;
-    width: 100%;
+    width: 90%;
+    margin-left: auto;
     aspect-ratio: 1;
-    background-color: rgba(141, 141, 141, 0.788);
+    background-color: rgba(49, 49, 49, 0.336);
+    cursor: pointer;
 }
 
 .action-btn {
-    width: 80%;
+    width: 70%;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -74,15 +82,26 @@
 }
 
 #col-3-btn-container {
-    width: 35%;
+    width: 33%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
 
 #col-4-btn-container {
-    width: 20%;
+    width: 22%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+}
+
+#farming-btn-switcher {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30%;
+    aspect-ratio: 1;
+    border-radius:10%;
+    background-color: rgba(49, 49, 49, 0.336);
+    cursor: pointer;
 }

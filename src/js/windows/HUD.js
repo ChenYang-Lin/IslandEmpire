@@ -1,4 +1,5 @@
 
+import { ITEM_DATA } from "../GameData.js";
 import Shop from "./Shop.js";
 import Inventory from "./inventory/Inventory.js";
 
@@ -41,6 +42,7 @@ export default class HUD {
         this.windowSizeSynchronization();
         this.setActionButton();
         this.showMainSceneUIs();
+        this.setFarmingBtn();
     }
 
 
@@ -71,6 +73,20 @@ export default class HUD {
         //     icon.src = this.scene.sys.game.textures.getBase64("item", name);
         // else
         //     icon.src = ""
+    }
+
+    setFarmingBtn(farrmingItem) {
+        let item = farrmingItem;
+        if (!item) {
+            for (const [key, value] of Object.entries(this.inventory.inventory)) {
+                if (ITEM_DATA[key].category !== "farming")
+                    continue;
+                item = key;
+                break;
+            }    
+        }
+        let farmingBtnImg = document.getElementById("farming-btn-img");
+        farmingBtnImg.src = this.scene.sys.game.textures.getBase64("item", item);
     }
 
     createCollectablesContainer(collectables) {

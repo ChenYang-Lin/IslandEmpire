@@ -42,6 +42,9 @@ body {
     touch-action: manipulation;
 }
 
+.img-rendering-pixelated {
+    image-rendering: pixelated;
+}
 
 
 
