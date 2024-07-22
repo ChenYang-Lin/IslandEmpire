@@ -42,7 +42,10 @@ export default class HUD {
         this.windowSizeSynchronization();
         this.setActionButton();
         this.showMainSceneUIs();
+
+        // Control btn uis
         this.setFarmingBtn();
+        this.setConsumableBtn();
     }
 
 
@@ -75,18 +78,34 @@ export default class HUD {
         //     icon.src = ""
     }
 
-    setFarmingBtn(farrmingItem) {
-        let item = farrmingItem;
+    setFarmingBtn(farmingItem) {
+        let item = farmingItem;
         if (!item) {
             for (const [key, value] of Object.entries(this.inventory.inventory)) {
                 if (ITEM_DATA[key].category !== "farming")
                     continue;
                 item = key;
+                this.inventory.inventoryWindow.selectedFarmingItem = key;
                 break;
             }    
         }
         let farmingBtnImg = document.getElementById("farming-btn-img");
         farmingBtnImg.src = this.scene.sys.game.textures.getBase64("item", item);
+    }
+
+    setConsumableBtn(consumableItem) {
+        let item = consumableItem;
+        if (!item) {
+            for (const [key, value] of Object.entries(this.inventory.inventory)) {
+                if (ITEM_DATA[key].category !== "consumable")
+                    continue;
+                item = key;
+                this.inventory.inventoryWindow.selectedConsumableItem = key;
+                break;
+            }    
+        }
+        let consumableBtnImg = document.getElementById("consumable-btn-img");
+        consumableBtnImg.src = this.scene.sys.game.textures.getBase64("item", item);
     }
 
     createCollectablesContainer(collectables) {
@@ -124,7 +143,7 @@ export default class HUD {
         })
     }
 
-    openItemSwitchPanel() {
+    openItemSwitchPanel(category) {
         let itemSwitchPanel = document.getElementById("item-switch-panel");
         itemSwitchPanel.style.display = "block";
 
@@ -132,17 +151,21 @@ export default class HUD {
 
         itemSwitchList.innerHTML = "";
 
-        console.log(this.inventory.inventory)
         for (const [key, value] of Object.entries(this.inventory.inventory)) {
-            if (ITEM_DATA[key].category !== "farming")
+            if (ITEM_DATA[key].category !== category)
                 continue;
 
             let item = document.createElement("div");
             item.classList.add("panel-item");
             item.setAttribute("key", `${key}`);
             item.addEventListener("pointerdown", () => {
-                this.setFarmingBtn(key);
-                this.inventory.inventoryWindow.selectedFarmingItem = key;
+                if (category === "farming") {
+                    this.setFarmingBtn(key);
+                    this.inventory.inventoryWindow.selectedFarmingItem = key;
+                } else if (category === "consumable") {
+                    this.setConsumableBtn(key);
+                    this.inventory.inventoryWindow.selectedConsumableItem = key;
+                }
                 this.closeItemSwitchPanel();
             })
 

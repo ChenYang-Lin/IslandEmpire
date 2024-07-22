@@ -44,8 +44,19 @@ export default class InputController {
         })
         let farmingBtnSwitcher = document.getElementById("farming-btn-switcher");
         farmingBtnSwitcher.addEventListener("pointerdown", () => {
-            this.scene.hud.openItemSwitchPanel();
+            this.scene.hud.openItemSwitchPanel("farming");
         })
+
+        let consumableBtn = document.getElementById("consumable-btn");
+        consumableBtn.addEventListener("pointerdown", () => {
+            this.beginFarmingAction();
+        })
+        let consumableBtnSwitcher = document.getElementById("consumable-btn-switcher");
+        consumableBtnSwitcher.addEventListener("pointerdown", () => {
+            this.scene.hud.openItemSwitchPanel("consumable");
+        })
+
+
         let itemSwitchExitBtn = document.getElementById("item-switch-exit-btn");
         itemSwitchExitBtn.addEventListener("pointerdown", () => {
             this.scene.hud.closeItemSwitchPanel();

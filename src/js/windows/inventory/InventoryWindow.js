@@ -7,7 +7,8 @@ export default class InventoryWindow {
         this.scene = scene;
         this.inventory = inventory;
 
-        this.selectedFarmingItem = "hoe";
+        this.selectedFarmingItem;
+        this.selectedConsumableItem;
 
         this.selectedCategoryIndex = 0;
         this.selectedCategory = "weapon"
