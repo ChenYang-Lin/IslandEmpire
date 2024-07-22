@@ -128,7 +128,6 @@ export default class InventoryWindow {
     renderInventoryPanel() {
         this.renderInventorySelectedCategory();
         this.renderInventoryList();
-        this.renderItemDetailBox("stone");
     }
 
     renderInventorySelectedCategory() {
@@ -148,12 +147,17 @@ export default class InventoryWindow {
         // Create Inventory Items
         inventoryList.innerHTML = "";
 
-
+        let firstItem = true;
         
         for (const [key, value] of Object.entries(this.inventory.inventory)) {
             if (ITEM_DATA[key].category !== this.selectedCategory)
                 continue;
 
+            if (firstItem) {
+                firstItem = false;
+                this.renderItemDetailBox(key);
+            }
+            
             let item = document.createElement("div");
             item.classList.add("panel-item");
             item.setAttribute("key", `${key}`);
@@ -177,6 +181,7 @@ export default class InventoryWindow {
             item.appendChild(itemQuantity)
             inventoryList.appendChild(item);
         }
+        
     }
 
     renderItemDetailBox(selectedItem) {
