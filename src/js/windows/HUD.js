@@ -25,7 +25,7 @@ export default class HUD {
         this.inventory = new Inventory(this.scene, this);
         this.shop = new Shop(this.scene, this);
 
-        this.scene.player.stats.initDisplay();
+        this.scene.player.stats.renderStatsDisplay();
 
         this.shopUI.addEventListener("pointerdown", () => {
             this.shop.openWindow();

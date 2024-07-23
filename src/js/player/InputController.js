@@ -49,7 +49,7 @@ export default class InputController {
 
         let consumableBtn = document.getElementById("consumable-btn");
         consumableBtn.addEventListener("pointerdown", () => {
-            this.beginFarmingAction();
+            this.scene.player.stats.useItem(this.scene.hud.inventory.inventoryWindow.selectedConsumableItem);
         })
         let consumableBtnSwitcher = document.getElementById("consumable-btn-switcher");
         consumableBtnSwitcher.addEventListener("pointerdown", () => {
@@ -140,9 +140,6 @@ export default class InputController {
     }
 
     beginFarmingAction() {
-        // let selectedIndex = this.scene.hud.inventory.inventoryWindow.selectedIndex;
-        // let selectedItem = this.scene.hud.inventory.inventoryOrder[selectedIndex];
-
         let selectedItem = this.scene.hud.inventory.inventoryWindow.selectedFarmingItem;
 
         switch (ITEM_DATA[selectedItem].type) {
@@ -156,9 +153,6 @@ export default class InputController {
         }
     }
 
-    renderHoveredGrid() {
-        
-    }
 
   
 
@@ -175,7 +169,6 @@ export default class InputController {
         if (this.keyP.isUp) {
             this.scene.hud.shop.inAction = false;
         }
-        this.renderHoveredGrid();
         
     }
 
