@@ -95,6 +95,9 @@ export default class ConstructionScene extends Phaser.Scene {
 
 
 
+        
+        this.add.grid(-16, -16, 2048, 2048, 32, 32).setOutlineStyle(0xbfbfbf);
+
     }
 
     isCommandExecutable() {
