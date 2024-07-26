@@ -22,6 +22,9 @@ export default class HUD {
     }
 
     initHUD() {
+
+
+
         this.inventory = new Inventory(this.scene, this);
         this.shop = new Shop(this.scene, this);
 
@@ -46,6 +49,10 @@ export default class HUD {
         // Control btn uis
         this.setFarmingBtn();
         this.setConsumableBtn();
+
+        
+        // this.showConstructionSceneUIs();
+        // this.scene.scene.start("ConstructionScene");
     }
 
 

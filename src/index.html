@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/invenotry.css">
     <link rel="stylesheet" href="css/panel.css">
     <link rel="stylesheet" href="css/stats.css">
+    <link rel="stylesheet" href="css/construct.css">
     
     <script src="js/utils/phaser.min.js"></script>
 
@@ -104,19 +105,6 @@
             </div>
         </div>
 
-        
-        <!-- Construction -->
-        <div id="construction-container">
-            <!-- <button id="placement-btn" class="construct-action-btns active">Placement</button>
-            <button id="removal-btn" class="construct-action-btns">Removal</button> -->
-            <div id="construction-confirmation-btns-container">
-                <button id="construction-confirm-btn" class="construct-action-btns">confirm</button>
-                <button id="construction-cancel-btn" class="construct-action-btns">Cancel</button>
-            </div>
-            <div id="construction-item-container">
-                <div id="construction-item-list"></div>
-            </div>
-        </div>
 
         <!-- Inventory Slots-->
         <!-- <div id="inventory-slots-container">
@@ -235,6 +223,30 @@
             <div id="item-switch-list" class="panel-body">
             </div>
          </div>
+    </div>
+
+
+    
+        
+    <!-- Construction -->
+    <div id="construction-container">
+        <!-- <button id="placement-btn" class="construct-action-btns active">Placement</button>
+        <button id="removal-btn" class="construct-action-btns">Removal</button> -->
+        <div id="construction-confirmation-btns-container">
+            <button id="construction-confirm-btn" class="construct-action-btns">confirm</button>
+            <button id="construction-cancel-btn" class="construct-action-btns">Cancel</button>
+        </div>
+        <div id="construction-action-container">
+            <div id="construction-main-actions-container">
+                <img id="selection-btn" class="construction-main-btn construction-item-selected" src="./assets/icons/construction/selection.png" alt="">
+                <img id="eraser-btn" class="construction-main-btn" src="./assets/icons/construction/eraser.png" alt="">
+                <img id="soil-btn" class="construction-main-btn" src="./assets/icons/construction/selection.png" alt="">
+            </div>
+            <div id="construction-item-container">
+                <div id="construction-item-list"></div>
+            </div>
+        </div>
+
     </div>
 
     <script>

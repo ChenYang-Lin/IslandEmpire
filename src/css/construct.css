@@ -1,0 +1,91 @@
+
+.construct-action-btns {
+    pointer-events: auto;
+    padding: 20px;
+    margin: 10px;
+}
+
+.construction-main-btn {
+    height: 64px;
+    object-fit: cover;
+    cursor: pointer;
+}
+.construction-main-btn:hover {
+    background-color: #000000b0;
+}
+
+.active {
+    background-color: cyan;
+}
+
+#construction-confirmation-btns-container {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Construction footer */
+#construction-action-container {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    pointer-events: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(8px);
+    /* background-color: black; */
+}
+
+#construction-main-actions-container {
+    position: relative;
+    height: 64px;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+#construction-item-container {
+    position: relative;
+    width: 60%;
+    margin-left: 0;
+}
+
+#construction-item-list {
+    position: relative;
+    width: 80%;
+    margin-right: auto;
+    overflow: auto;
+    white-space: nowrap;
+    border-style: solid;
+    border-color: white;
+}
+
+.construction-item-card {
+    display: inline-block;
+    text-align: center;
+    width: 64px;
+    height: 64px;
+    margin: 2px;
+    cursor: pointer;
+}
+.construction-item-card:hover {
+    background-color: #000000b0;
+}
+
+.construction-item-img {
+    max-width:100%;
+    max-height:100%;
+    image-rendering: crisp-edges;
+    pointer-events: none;
+}
+
+.construction-item-selected {
+    background-color: rgba(105, 105, 105, 0.37);
+    border-radius: 10%;
+    border: 2px solid rgb(0, 255, 0);
+}

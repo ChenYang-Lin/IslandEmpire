@@ -15,6 +15,9 @@ export default class ConstructionScene extends Phaser.Scene {
         this.selectedGrid = undefined;
         this.selectedItemIndex = undefined;
 
+        this.action = "selection";
+        this.isPointerDown = false;
+
 
         this.constructionItemContainer = document.getElementById("construction-item-container");
         this.constructionItemList = document.getElementById("construction-item-list");  
@@ -33,12 +36,39 @@ export default class ConstructionScene extends Phaser.Scene {
 
         this.load.atlas("construction", "assets/construction.png", "assets/construction_atlas.json");
         this.load.atlas("land", "assets/land.png", "assets/land_atlas.json");
+        this.load.atlas("item", "assets/item.png", "assets/item_atlas.json");
     }
 
     create() {
         this.worldManager = new WorldManager(this);
         this.worldManager.initWorld();
         
+
+        let selectionBtn = document.getElementById("selection-btn");
+        selectionBtn.addEventListener("pointerdown", () => {
+            this.action = "selection";
+            this.hideGridBackground();
+            this.resetSelectedItem();
+            selectionBtn.classList.add("construction-item-selected");
+        });
+
+        let eraserBtn = document.getElementById("eraser-btn");
+        eraserBtn.addEventListener("pointerdown", () => {
+            this.action = "eraser";
+            this.resetSelectedItem();
+            this.showGridBackground();
+            eraserBtn.classList.add("construction-item-selected");
+        })
+
+        let soilBtn = document.getElementById("soil-btn");
+        soilBtn.src = this.sys.game.textures.getBase64("construction", "soil");
+        soilBtn.addEventListener("pointerdown", () => {
+            this.action = "soil";
+            this.resetSelectedItem();
+            this.showGridBackground();
+            soilBtn.classList.add("construction-item-selected");
+        })
+
 
         this.initItemContainer();
         // this.initPlacementRemovalBtns();
@@ -52,52 +82,209 @@ export default class ConstructionScene extends Phaser.Scene {
         this.camera.scrollX -= 480;
         this.camera.scrollY -= 270;
 
+
+        this.initInputs();
+        
+
+    }
+
+    initInputs() {
+        // Pointer Move
         this.input.mousePointer.motionFactor = 0.5;
         this.input.pointer1.motionFactor = 0.5;
         this.input.on("pointermove", (pointer) => {
+
             this.gridX = Math.floor((pointer.x + this.camera.worldView.x + 16) / 32);
             this.gridY = Math.floor((pointer.y + this.camera.worldView.y + 16) / 32);
-            // only update indicater when there no grid currently selected
-            if (this.selectedGrid === undefined)
-                this.updatePointerOnGridIndicator(this.gridX, this.gridY);
-            // make it still count as clicked if pointer didn't move too much. 
-            if (Math.abs(pointer.x - pointer.prevPosition.x) >= 1 || Math.abs(pointer.y - pointer.prevPosition.y) >= 1 ) {
-                this.click = false;
+            // console.log(this.gridX, this.gridY);
+            
+            switch (this.action) {
+                case "selection":
+                    if (this.isPointerDown) {
+                        this.camera.scrollX -= (pointer.x - pointer.prevPosition.x) / this.camera.zoom;
+                        this.camera.scrollY -= (pointer.y - pointer.prevPosition.y) / this.camera.zoom;
+                    }
+                    break;
+                case "eraser":
+                    if (this.isPointerDown){
+                        this.updateLand(this.gridX, this.gridY, false);
+                    }
+                    break;
+                case "soil":
+                    if (this.isPointerDown) {
+                        this.updateLand(this.gridX, this.gridY, true);
+                    }
+                    break;
+                case "placement":
+                    this.drawEntity(this.gridX, this.gridY);
+                    break;
+                default:
             }
-            if (!pointer.isDown) return;
+
+            // // only update indicater when there no grid currently selected
+            // if (this.selectedGrid === undefined)
+            //     this.updatePointerOnGridIndicator(this.gridX, this.gridY);
+            // // make it still count as clicked if pointer didn't move too much. 
+            // if (Math.abs(pointer.x - pointer.prevPosition.x) >= 1 || Math.abs(pointer.y - pointer.prevPosition.y) >= 1 ) {
+            //     this.click = false;
+            // }
+            // if (!pointer.isDown) return;
         
-            this.camera.scrollX -= (pointer.x - pointer.prevPosition.x) / this.camera.zoom;
-            this.camera.scrollY -= (pointer.y - pointer.prevPosition.y) / this.camera.zoom;
+
         });
 
+
+        // PointerDown
         this.input.on("pointerdown", (pointer) => {
-            this.click = true;
-        })
-        this.input.on("pointerup", (pointer) => {
-            console.log(this.selectedGrid)
-            if (!this.click) 
-                return;
+            this.isPointerDown = true;
             this.gridX = Math.floor((pointer.x + this.camera.worldView.x + 16) / 32)
             this.gridY = Math.floor((pointer.y + this.camera.worldView.y + 16) / 32)
-            this.updatePointerOnGridIndicator(this.gridX, this.gridY);
+            // console.log(this.gridX, this.gridY);
+            // this.click = true;
+            switch (this.action) {
+                case "selection":
+                    break;
+                case "eraser":
+                    this.updateLand(this.gridX, this.gridY, false);
+                    break;
+                case "soil":
+                    this.updateLand(this.gridX, this.gridY, this.isPlacement);
+                    break;
+                    case "placement":
+                        this.getOccupiedLand(this.gridX, this.gridY);
+                        break;
+                default:
+            }
+
+        })
+        this.input.on("pointerup", (pointer) => {
+            this.isPointerDown = false;
+        //     console.log(this.selectedGrid)
+        //     if (!this.click) 
+        //         return;
+        //     this.gridX = Math.floor((pointer.x + this.camera.worldView.x + 16) / 32)
+        //     this.gridY = Math.floor((pointer.y + this.camera.worldView.y + 16) / 32)
+        //     this.updatePointerOnGridIndicator(this.gridX, this.gridY);
 
             
-            this.isPlacement = this.selectedItemIndex !== undefined ? true : false;
-            if (this.selectedGrid !== undefined) {
-                this.updateLand(this.selectedGrid.x, this.selectedGrid.y, !this.isPlacement);
-            }
-            if (this.isCommandExecutable() === true){
-                this.updateLand(this.gridX, this.gridY, this.isPlacement);
-                this.showConfirmationContainer();
-            }
+        //     this.isPlacement = this.selectedItemIndex !== undefined ? true : false;
+        //     if (this.selectedGrid !== undefined) {
+        //         this.updateLand(this.selectedGrid.x, this.selectedGrid.y, !this.isPlacement);
+        //     }
+        //     if (this.isCommandExecutable() === true){
+        //         this.updateLand(this.gridX, this.gridY, this.isPlacement);
+        //         this.showConfirmationContainer();
+        //     }
 
         })
 
 
+    }
 
+    
+    initItemContainer() {
+        this.constructionItemList.innerHTML = ``;
+
+        Object.entries(CONSTRUCTION_DATA).forEach(([key, value], i) => {
+            let item = document.createElement("div");
+            item.classList.add("construction-item-card");
+            item.setAttribute("index", `${i}`);
+
+            let itemImg = document.createElement("img");
+            itemImg.classList.add("construction-item-img");
+            itemImg.src = this.sys.game.textures.getBase64("construction", key);
+
+            item.addEventListener("pointerdown", (e) => {
+                this.resetSelectedItem();
+                item.classList.add("construction-item-selected");
+                this.selectedItemIndex = parseInt(e.target.getAttribute("index"), 10);
+                this.action = "placement";
+
+                let centerX = this.camera.worldView.x + this.camera.width / 2;
+                let centerY = this.camera.worldView.y + this.camera.height / 2;
+
+                let offsetX = centerX % 32;
+                let offsetY = centerY % 32;
+
+                centerX -= offsetX;
+                centerY -= offsetY;
+
+                this.drawEntity(centerX / 32, centerY / 32);
+                
+            })
+
+            item.appendChild(itemImg);
+            this.constructionItemList.appendChild(item);
+        })
+
+    }
+
+    drawEntity(gridX, gridY) {
+        let name = "tent";
+        this.house?.destroy();
+        this.gridEntity?.destroy();
+
+        let spriteOffsetX = CONSTRUCTION_DATA[name].spriteOffsetX;
+        let spriteOffsetY = CONSTRUCTION_DATA[name].spriteOffsetY;
+
+        // let spriteX = 
+        this.house = this.add.sprite(gridX * 32 + spriteOffsetX, gridY * 32 + spriteOffsetY, "construction", name);
+
+        let x = this.house.x + CONSTRUCTION_DATA[name].colliderOffsetX + CONSTRUCTION_DATA[name].offsetX;
+        let y = this.house.y + CONSTRUCTION_DATA[name].colliderOffsetY + CONSTRUCTION_DATA[name].offsetY;
+        let width = CONSTRUCTION_DATA[name].width * 32;
+        let height = CONSTRUCTION_DATA[name].height * 32;
+        this.gridEntity = this.add.grid(x, y, width, height, 32, 32, 0x00ff00, 0.5, 0xbfbfbf, 0 );
+
+    }
+
+    
+
+    getOccupiedLand(gridX, gridY) {
+        let name = "tent";
+        let width = CONSTRUCTION_DATA[name].width;
+        let height = CONSTRUCTION_DATA[name].height;
+
+        let occupiedLands = []
+
+        let left = gridX - (Math.ceil(width / 2) - 1);
+        let top = gridY;
+
+        for (let x = left; x < left + width; x++) {
+            for (let y = top; y < top + height; y++) {
+                occupiedLands.push(`${x},${y}`)
+            }
+        }
         
-        this.add.grid(-16, -16, 2048, 2048, 32, 32).setOutlineStyle(0xbfbfbf);
+        console.log(occupiedLands);
+    }
 
+
+    resetSelectedItem() {
+        console.log("called")
+        let mainActionContainer = document.getElementById("construction-main-actions-container");
+        let mainActionBtns = mainActionContainer.children;
+
+        // Reset selected item from main actions container
+        for (let i = 0; i < mainActionBtns.length; i++) {
+            mainActionBtns[i].classList.remove("construction-item-selected");
+        }
+
+        // Reset selected item from item container
+        if (this.selectedItemIndex !== undefined) {
+            this.constructionItemList.childNodes[this.selectedItemIndex]?.classList.remove("construction-item-selected");
+        }
+
+        this.hideGridBackground();
+    }
+
+    showGridBackground() {
+        // x, y, width, height, cellWidth, cellHeight, fillColor, fillAlpha, outlineFillColor, outlineFillAlpha
+        this.gridBackground = this.add.grid(-16, -16, 2048, 2048, 32, 32, 0x00ff00, 0, 0xbfbfbf, 0.7 );
+    }
+
+    hideGridBackground() {
+        this.gridBackground?.destroy();
     }
 
     isCommandExecutable() {
@@ -162,12 +349,14 @@ export default class ConstructionScene extends Phaser.Scene {
     }  
 
     updateMapData(gridX, gridY, isPlacement) {
+        console.log("updated")
         let isLand = isPlacement ? true : false 
         if (this.worldManager.map[`${gridX},${gridY}`] !== undefined) {
             this.worldManager.map[`${gridX},${gridY}`].isLand = isLand;
         } else {
             this.worldManager.map[`${gridX},${gridY}`] = { isLand: isLand};
         }
+        this.worldManager.saveMapToLocalStorage();
     }
 
     initPlacementRemovalBtns() {
@@ -205,34 +394,6 @@ export default class ConstructionScene extends Phaser.Scene {
         })
     }
 
-    initItemContainer() {
-        this.constructionItemList.innerHTML = ``;
-
-        Object.entries(CONSTRUCTION_DATA).forEach(([key, value], i) => {
-            let item = document.createElement("div");
-            item.classList.add("construction-item-card");
-            item.setAttribute("index", `${i}`);
-
-            let itemImg = document.createElement("img");
-            itemImg.classList.add("construction-item-img");
-            itemImg.src = this.sys.game.textures.getBase64("construction", key);
-
-            item.addEventListener("pointerdown", (e) => {
-                this.resetSelectedItem();
-                item.classList.add("construction-item-selected");
-                this.selectedItemIndex = parseInt(e.target.getAttribute("index"), 10);
-            })
-
-            item.appendChild(itemImg);
-            this.constructionItemList.appendChild(item);
-        })
-
-    }
-
-    resetSelectedItem() {
-        if (this.selectedItemIndex !== undefined)
-            this.constructionItemList.childNodes[this.selectedItemIndex]?.classList.remove("construction-item-selected");
-    }
 
     showConfirmationContainer() {
         this.selectedGrid = { x: this.gridX, y: this.gridY };
@@ -241,7 +402,7 @@ export default class ConstructionScene extends Phaser.Scene {
 
     hideConfirmationContainer() {
         console.log(this.constructionItemList)
-        this.resetSelectedItem();
+        // this.resetSelectedItem();
         this.selectedItemIndex = undefined;
         this.selectedGrid = undefined;
         this.ConfirmationBtnsContainer.style.display = "none";

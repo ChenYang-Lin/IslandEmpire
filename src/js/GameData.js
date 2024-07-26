@@ -219,14 +219,40 @@ const MAP_DATA = {
 }
 
 const CONSTRUCTION_DATA = {
-    "soil": {
-        width: 1,
-        height: 1,
+    // "soil": {
+    //     width: 1,
+    //     height: 1,
+    // },
+    "house": {
+        spriteWidth: 3,
+        spriteHeight: 3,
+        spriteOffsetX: 0,
+        spriteOffsetY: 0,
+        width: 3,
+        height: 2,
+        colliderOffsetX: 0,
+        colliderOffsetY: -16,
+        offsetX: 0,
+        offsetY: 32,
     },
-    // "house": {
-    //     width: 3,
-    //     height: 3,
-    // }
+    "tent": {
+        spriteWidth: 3,
+        spriteHeight: 3,
+        spriteOffsetX: 16,
+        spriteOffsetY: 0,
+        width: 2,
+        height: 2,
+        colliderOffsetX: 0,
+        colliderOffsetY: -16,
+        offsetX: 0,
+        offsetY: 32,
+    },
+    "test": {
+        width: 2,
+        height: 2,
+        offsetX: 0,
+        offsetY: 32,
+    },
 }
 
 export {

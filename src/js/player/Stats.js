@@ -34,7 +34,7 @@ export default class State {
         this.hungerBarValue.innerHTML = `${this.hunger} / ${this.maxHunger}`
 
         this.thirstBarCurrent.style.width = (this.thirst / this.maxThirst) * 100 + "%";
-        this.thirstBarValue.innerHTML = `${this.hp} / ${this.maxThirst}`
+        this.thirstBarValue.innerHTML = `${this.thirst} / ${this.maxThirst}`
     }
 
     useItem(itemName) {
