@@ -220,13 +220,15 @@ export default class ConstructionScene extends Phaser.Scene {
     }
 
     drawEntity(gridX, gridY) {
-        let name = "tent";
+        let name = "house";
         this.house?.destroy();
         this.gridEntity?.destroy();
 
         let spriteOffsetX = CONSTRUCTION_DATA[name].spriteOffsetX;
         let spriteOffsetY = CONSTRUCTION_DATA[name].spriteOffsetY;
 
+        this.getOccupiedLand(gridX, gridY);
+        let color = this.placeable ? 0x00ff00 : 0xff0000;
         // let spriteX = 
         this.house = this.add.sprite(gridX * 32 + spriteOffsetX, gridY * 32 + spriteOffsetY, "construction", name);
 
@@ -234,14 +236,14 @@ export default class ConstructionScene extends Phaser.Scene {
         let y = this.house.y + CONSTRUCTION_DATA[name].colliderOffsetY + CONSTRUCTION_DATA[name].offsetY;
         let width = CONSTRUCTION_DATA[name].width * 32;
         let height = CONSTRUCTION_DATA[name].height * 32;
-        this.gridEntity = this.add.grid(x, y, width, height, 32, 32, 0x00ff00, 0.5, 0xbfbfbf, 0 );
+        this.gridEntity = this.add.grid(x, y, width, height, 32, 32, color, 0.5, 0xbfbfbf, 0 );
 
     }
 
     
 
     getOccupiedLand(gridX, gridY) {
-        let name = "tent";
+        let name = "house";
         let width = CONSTRUCTION_DATA[name].width;
         let height = CONSTRUCTION_DATA[name].height;
 
@@ -250,9 +252,23 @@ export default class ConstructionScene extends Phaser.Scene {
         let left = gridX - (Math.ceil(width / 2) - 1);
         let top = gridY;
 
+        this.placeable = true;
+
+
         for (let x = left; x < left + width; x++) {
             for (let y = top; y < top + height; y++) {
                 occupiedLands.push(`${x},${y}`)
+                // Land does not exist
+                console.log(!this.worldManager.map[`${x},${y}`])
+                if (!this.worldManager.map[`${x},${y}`]?.isLand) {
+                    this.placeable = false;
+                    continue;
+                }
+                // Entity on land
+                this.worldManager.map[`${x},${y}`]?.entities?.forEach((entity) => {
+                    console.log(entity)
+                    this.placeable = false;
+                })
             }
         }
         
