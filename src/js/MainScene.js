@@ -21,6 +21,7 @@ export default class MainScene extends Phaser.Scene {
         this.load.plugin('rexoutlinepipelineplugin', 'js/utils/rexoutlinepipelineplugin.min.js', true); // outline plugin
         this.load.atlas("item", "assets/item.png", "assets/item_atlas.json");
         this.load.atlas("land", "assets/land.png", "assets/land_atlas.json");
+        this.load.atlas("construction", "assets/construction.png", "assets/construction_atlas.json");
 
     }
 

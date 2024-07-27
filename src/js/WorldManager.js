@@ -1,4 +1,4 @@
-import { ITEM_DATA, MAP_DATA, RESOURCE_DATA } from "./GameData.js";
+import { ITEM_DATA, MAP_DATA, ENTITY_DATA } from "./GameData.js";
 import Crop from "./entity/Crop.js";
 import Resource from "./entity/Resource.js";
 
@@ -55,8 +55,15 @@ export default class WorldManager {
         let x = gridX * 32;
         let y = gridY * 32;
         entities.forEach((entity) => {
-            if (RESOURCE_DATA[entity].category === "resource"){
+            console.log(entity)
+            if (ENTITY_DATA[entity].category === "resource"){
                 let resource = new Resource(this.scene, x, y, "resource", entity);
+            }
+            if (ENTITY_DATA[entity].category === "structure"){
+                let spriteOffsetX = ENTITY_DATA[entity].spriteOffsetX;
+                let spriteOffsetY = ENTITY_DATA[entity].spriteOffsetY;
+        
+                this.house = this.scene.add.sprite(gridX * 32 + spriteOffsetX, gridY * 32 + spriteOffsetY, "construction", entity);
             }
         })
     }

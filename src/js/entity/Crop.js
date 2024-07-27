@@ -6,19 +6,19 @@ export default class Crop extends Entity {
     constructor(scene, x, y, name, sowingTime) {
         let phase = (Math.random() < 0.5) ? "_0" : "_0_alt"; // randomly choose two seed image;
         let frame = name + phase;
-        const ENTITY_DATA = CROP_GROW_DATA[name];
-        super(scene, x, y, "crops_grow", frame, ENTITY_DATA)
+        const entityData = CROP_GROW_DATA[name];
+        super(scene, x, y, "crops_grow", frame, entityData)
 
         this.name = name;
 
-        this.collectable = this.ENTITY_DATA.collectable;
+        this.collectable = this.entityData.collectable;
 
         this.harvestable = false;
         this.sowingTime = sowingTime;
-        this.timeToGrow = this.ENTITY_DATA.timeToGrow;
+        this.timeToGrow = this.entityData.timeToGrow;
         this.growTime = Date.now() - this.sowingTime;
         this.harvestableTime = sowingTime + this.timeToGrow;
-        this.totalPhase = this.ENTITY_DATA.totalPhase;
+        this.totalPhase = this.entityData.totalPhase;
 
         this.isHovered = false;
         this.setInteractive(this.scene.input.makePixelPerfect());

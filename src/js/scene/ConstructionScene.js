@@ -1,4 +1,4 @@
-import { CONSTRUCTION_DATA } from "../GameData.js";
+import { ENTITY_DATA } from "../GameData.js";
 import WorldManager from "../WorldManager.js";
 import Crop from "../entity/Crop.js";
 import Resource from "../entity/Resource.js";
@@ -152,6 +152,7 @@ export default class ConstructionScene extends Phaser.Scene {
                     break;
                     case "placement":
                         this.getOccupiedLand(this.gridX, this.gridY);
+                        this.addStructureToWorld();
                         break;
                 default:
             }
@@ -185,7 +186,10 @@ export default class ConstructionScene extends Phaser.Scene {
     initItemContainer() {
         this.constructionItemList.innerHTML = ``;
 
-        Object.entries(CONSTRUCTION_DATA).forEach(([key, value], i) => {
+        Object.entries(ENTITY_DATA).forEach(([key, value], i) => {
+            if (ENTITY_DATA[key].category !== "structure") {
+                return;
+            }
             let item = document.createElement("div");
             item.classList.add("construction-item-card");
             item.setAttribute("index", `${i}`);
@@ -224,28 +228,33 @@ export default class ConstructionScene extends Phaser.Scene {
         this.house?.destroy();
         this.gridEntity?.destroy();
 
-        let spriteOffsetX = CONSTRUCTION_DATA[name].spriteOffsetX;
-        let spriteOffsetY = CONSTRUCTION_DATA[name].spriteOffsetY;
+        let spriteOffsetX = ENTITY_DATA[name].spriteOffsetX;
+        let spriteOffsetY = ENTITY_DATA[name].spriteOffsetY;
 
         this.getOccupiedLand(gridX, gridY);
         let color = this.placeable ? 0x00ff00 : 0xff0000;
         // let spriteX = 
         this.house = this.add.sprite(gridX * 32 + spriteOffsetX, gridY * 32 + spriteOffsetY, "construction", name);
 
-        let x = this.house.x + CONSTRUCTION_DATA[name].colliderOffsetX + CONSTRUCTION_DATA[name].offsetX;
-        let y = this.house.y + CONSTRUCTION_DATA[name].colliderOffsetY + CONSTRUCTION_DATA[name].offsetY;
-        let width = CONSTRUCTION_DATA[name].width * 32;
-        let height = CONSTRUCTION_DATA[name].height * 32;
+        let x = this.house.x + ENTITY_DATA[name].colliderOffsetX + ENTITY_DATA[name].offsetX;
+        let y = this.house.y + ENTITY_DATA[name].colliderOffsetY + ENTITY_DATA[name].offsetY;
+        let width = ENTITY_DATA[name].width * 32;
+        let height = ENTITY_DATA[name].height * 32;
         this.gridEntity = this.add.grid(x, y, width, height, 32, 32, color, 0.5, 0xbfbfbf, 0 );
 
+    }
+
+    addStructureToWorld() {
+        this.worldManager.map[`${this.gridX},${this.gridY}`]["entities"] = ["house"];
+        this.worldManager.saveMapToLocalStorage();
     }
 
     
 
     getOccupiedLand(gridX, gridY) {
         let name = "house";
-        let width = CONSTRUCTION_DATA[name].width;
-        let height = CONSTRUCTION_DATA[name].height;
+        let width = ENTITY_DATA[name].width;
+        let height = ENTITY_DATA[name].height;
 
         let occupiedLands = []
 

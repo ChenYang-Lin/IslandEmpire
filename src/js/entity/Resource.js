@@ -1,23 +1,23 @@
 import Drops from "./Drops.js";
-import { RESOURCE_DATA } from "../GameData.js";
+import { ENTITY_DATA } from "../GameData.js";
 import Entity from "./Entity.js";
 
 export default class Resource extends Entity {
 
     constructor(scene, x, y, texture, name) {
-        const ENTITY_DATA = RESOURCE_DATA[name];
-        super(scene, x, y, texture, name, ENTITY_DATA);
+        const entityData = ENTITY_DATA[name];
+        super(scene, x, y, texture, name, entityData);
 
         this.name = name;
         this.hasSecondPart = false;
         
 
-        if (this.ENTITY_DATA.type === "multiple"){
+        if (this.entityData.type === "multiple"){
             this.createSecondPart();
             this.hasSecondPart = true;
         }
 
-        this.maxHP = this.ENTITY_DATA.maxHP;
+        this.maxHP = this.entityData.maxHP;
         this.hp = this.maxHP;
 
         
@@ -45,7 +45,7 @@ export default class Resource extends Entity {
     }
 
     onDeath() {
-        this.ENTITY_DATA.drops.forEach((name) => {
+        this.entityData.drops.forEach((name) => {
             let drops = new Drops(this.scene, this.position.x + Math.floor(Math.random() * 20), this.position.y + Math.floor(Math.random() * 20), "item", name);
         })
         super.onDeath();

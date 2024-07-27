@@ -3,13 +3,13 @@ import Entity from "./Entity.js";
 
 export default class Drops extends Entity {
     constructor(scene, x, y, texture, name) {
-        const ENTITY_DATA = ITEM_DATA[name]
-        super(scene, x, y, texture, name, ENTITY_DATA);
+        const entityData = ITEM_DATA[name]
+        super(scene, x, y, texture, name, entityData);
 
         this.name = name;
 
         
-        this.collectable = this.ENTITY_DATA.collectable;
+        this.collectable = this.entityData.collectable;
 
         this.scene.worldManager.collectablesGroup.add(this);
 

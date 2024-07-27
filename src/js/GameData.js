@@ -1,6 +1,5 @@
 
-
-const RESOURCE_DATA = {
+const ENTITY_DATA = {
     // Resources
     tree: {
         category: "resource",
@@ -45,6 +44,33 @@ const RESOURCE_DATA = {
             "stone",
             "stone",
         ]
+    },
+
+    "house": {
+        category: "structure",
+        spriteWidth: 3,
+        spriteHeight: 3,
+        spriteOffsetX: 0,
+        spriteOffsetY: 0,
+        width: 3,
+        height: 2,
+        colliderOffsetX: 0,
+        colliderOffsetY: -16,
+        offsetX: 0,
+        offsetY: 32,
+    },
+    "tent": {
+        category: "structure",
+        spriteWidth: 3,
+        spriteHeight: 3,
+        spriteOffsetX: 16,
+        spriteOffsetY: 0,
+        width: 2,
+        height: 2,
+        colliderOffsetX: 0,
+        colliderOffsetY: -16,
+        offsetX: 0,
+        offsetY: 32,
     },
 
 }
@@ -218,48 +244,12 @@ const MAP_DATA = {
     },
 }
 
-const CONSTRUCTION_DATA = {
-    // "soil": {
-    //     width: 1,
-    //     height: 1,
-    // },
-    "house": {
-        spriteWidth: 3,
-        spriteHeight: 3,
-        spriteOffsetX: 0,
-        spriteOffsetY: 0,
-        width: 3,
-        height: 2,
-        colliderOffsetX: 0,
-        colliderOffsetY: -16,
-        offsetX: 0,
-        offsetY: 32,
-    },
-    "tent": {
-        spriteWidth: 3,
-        spriteHeight: 3,
-        spriteOffsetX: 16,
-        spriteOffsetY: 0,
-        width: 2,
-        height: 2,
-        colliderOffsetX: 0,
-        colliderOffsetY: -16,
-        offsetX: 0,
-        offsetY: 32,
-    },
-    "test": {
-        width: 2,
-        height: 2,
-        offsetX: 0,
-        offsetY: 32,
-    },
-}
+
 
 export {
-    RESOURCE_DATA,
+    ENTITY_DATA,
     ITEM_DATA,
     CROP_GROW_DATA,
     SHOP_DATA,
     MAP_DATA,
-    CONSTRUCTION_DATA
 }
