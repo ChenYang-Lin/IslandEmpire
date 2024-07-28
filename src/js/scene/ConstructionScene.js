@@ -16,6 +16,7 @@ export default class ConstructionScene extends Phaser.Scene {
         this.selectedItemIndex = undefined;
 
         this.action = "selection";
+        this.selectedStructure = "";
         this.isPointerDown = false;
 
 
@@ -151,7 +152,6 @@ export default class ConstructionScene extends Phaser.Scene {
                     this.updateLand(this.gridX, this.gridY, this.isPlacement);
                     break;
                     case "placement":
-                        this.getOccupiedLand(this.gridX, this.gridY);
                         this.addStructureToWorld();
                         break;
                 default:
@@ -202,6 +202,8 @@ export default class ConstructionScene extends Phaser.Scene {
                 this.resetSelectedItem();
                 item.classList.add("construction-item-selected");
                 this.selectedItemIndex = parseInt(e.target.getAttribute("index"), 10);
+                this.selectedStructure = key;
+                console.log(this.selectedItemIndex);
                 this.action = "placement";
 
                 let centerX = this.camera.worldView.x + this.camera.width / 2;
@@ -224,42 +226,58 @@ export default class ConstructionScene extends Phaser.Scene {
     }
 
     drawEntity(gridX, gridY) {
-        let name = "house";
+        let name = this.selectedStructure;
         this.house?.destroy();
-        this.gridEntity?.destroy();
+        this.gridEntity?.destroy(); 
 
-        let spriteOffsetX = ENTITY_DATA[name].spriteOffsetX;
-        let spriteOffsetY = ENTITY_DATA[name].spriteOffsetY;
+        let entity = ENTITY_DATA[name];
 
-        this.getOccupiedLand(gridX, gridY);
+        let adjustX = 0;
+        if (entity.width % 2 === 0) {
+            adjustX = 16;
+        }
+        let adjustY = 0;
+        if (entity.height % 2 === 0) {
+            adjustY = 16;
+        }
+        
+        let x = (gridX - entity.imageWidth / 2 + entity.offsetX + entity.width / 2) * 32 + adjustX; 
+        let y = (gridY + entity.imageHeight / 2 - entity.offsetY - entity.height / 2) * 32 + adjustY;
+        this.house = this.add.sprite(x, y, "construction", name);
+
+        this.isLandOccupied(gridX, gridY);
         let color = this.placeable ? 0x00ff00 : 0xff0000;
-        // let spriteX = 
-        this.house = this.add.sprite(gridX * 32 + spriteOffsetX, gridY * 32 + spriteOffsetY, "construction", name);
 
-        let x = this.house.x + ENTITY_DATA[name].colliderOffsetX + ENTITY_DATA[name].offsetX;
-        let y = this.house.y + ENTITY_DATA[name].colliderOffsetY + ENTITY_DATA[name].offsetY;
-        let width = ENTITY_DATA[name].width * 32;
-        let height = ENTITY_DATA[name].height * 32;
-        this.gridEntity = this.add.grid(x, y, width, height, 32, 32, color, 0.5, 0xbfbfbf, 0 );
+        let gx = gridX * 32 + adjustX; 
+        let gy = gridY * 32 + adjustY;
+        let width = entity.width * 32;
+        let height = entity.height * 32;
+        this.gridEntity = this.add.grid(gx, gy, width, height, 32, 32, color, 0.5, 0xbfbfbf, 0 );
 
     }
 
     addStructureToWorld() {
-        this.worldManager.map[`${this.gridX},${this.gridY}`]["entities"] = ["house"];
+        if (this.isLandOccupied(this.gridX, this.gridY)) {
+            return;
+        }
+        this.worldManager.map[`${this.gridX},${this.gridY}`]["entities"] = [this.selectedStructure];
         this.worldManager.saveMapToLocalStorage();
     }
 
     
 
-    getOccupiedLand(gridX, gridY) {
-        let name = "house";
+    isLandOccupied(gridX, gridY) {
+        let occupied = false;
+
+        let name = this.selectedStructure;
         let width = ENTITY_DATA[name].width;
         let height = ENTITY_DATA[name].height;
 
         let occupiedLands = []
 
-        let left = gridX - (Math.ceil(width / 2) - 1);
-        let top = gridY;
+        let left = (gridX - (Math.ceil(width / 2)) + 1);
+        let top = (gridY - (Math.ceil(height / 2)) + 1);
+        console.log(gridX, gridY, left, top)
 
         this.placeable = true;
 
@@ -268,20 +286,23 @@ export default class ConstructionScene extends Phaser.Scene {
             for (let y = top; y < top + height; y++) {
                 occupiedLands.push(`${x},${y}`)
                 // Land does not exist
-                console.log(!this.worldManager.map[`${x},${y}`])
+                // console.log(!this.worldManager.map[`${x},${y}`])
                 if (!this.worldManager.map[`${x},${y}`]?.isLand) {
                     this.placeable = false;
+                    occupied = true;
                     continue;
                 }
                 // Entity on land
                 this.worldManager.map[`${x},${y}`]?.entities?.forEach((entity) => {
-                    console.log(entity)
+                    // console.log(entity)
                     this.placeable = false;
+                    occupied = true;
                 })
             }
         }
         
-        console.log(occupiedLands);
+        return occupied;
+        // console.log(occupiedLands);
     }
 
 
@@ -296,8 +317,8 @@ export default class ConstructionScene extends Phaser.Scene {
         }
 
         // Reset selected item from item container
-        if (this.selectedItemIndex !== undefined) {
-            this.constructionItemList.childNodes[this.selectedItemIndex]?.classList.remove("construction-item-selected");
+        for (let i = 0; i < this.constructionItemList.children.length; i ++) {
+            this.constructionItemList.children[i]?.classList.remove("construction-item-selected");
         }
 
         this.hideGridBackground();

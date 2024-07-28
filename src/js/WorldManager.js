@@ -54,16 +54,26 @@ export default class WorldManager {
             return;
         let x = gridX * 32;
         let y = gridY * 32;
+        console.log(entities)
         entities.forEach((entity) => {
             console.log(entity)
             if (ENTITY_DATA[entity].category === "resource"){
                 let resource = new Resource(this.scene, x, y, "resource", entity);
             }
             if (ENTITY_DATA[entity].category === "structure"){
-                let spriteOffsetX = ENTITY_DATA[entity].spriteOffsetX;
-                let spriteOffsetY = ENTITY_DATA[entity].spriteOffsetY;
+                let structure = ENTITY_DATA[entity];
+                let adjustX = 0;
+                if (structure.width % 2 === 0) {
+                    adjustX = 16;
+                }
+                let adjustY = 0;
+                if (structure.height % 2 === 0) {
+                    adjustY = 16;
+                }
+                let x = (gridX - structure.imageWidth / 2 + structure.offsetX + structure.width / 2) * 32 + adjustX; 
+                let y = (gridY + structure.imageHeight / 2 - structure.offsetY - structure.height / 2) * 32 + adjustY;
+                this.house = this.scene.add.sprite(x, y, "construction", entity);
         
-                this.house = this.scene.add.sprite(gridX * 32 + spriteOffsetX, gridY * 32 + spriteOffsetY, "construction", entity);
             }
         })
     }
