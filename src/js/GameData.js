@@ -50,9 +50,9 @@ const ENTITY_DATA = {
         category: "structure",
         imageWidth: 5,
         imageHeight: 7,
-        width: 5,
-        height: 3,
-        offsetX: 0,
+        width: 7,
+        height: 4,
+        offsetX: 1,
         offsetY: 3,
     },
     "tent": {

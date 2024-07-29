@@ -3,6 +3,9 @@
     pointer-events: auto;
     padding: 20px;
     margin: 10px;
+    width: 96px;
+    border-radius: 30%;
+    background-color: rgba(0, 0, 0, 0.555);
 }
 
 .construction-main-btn {
@@ -17,6 +20,7 @@
 .active {
     background-color: cyan;
 }
+
 
 #construction-confirmation-btns-container {
     position: absolute;

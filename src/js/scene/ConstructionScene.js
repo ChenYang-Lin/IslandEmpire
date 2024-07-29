@@ -19,6 +19,12 @@ export default class ConstructionScene extends Phaser.Scene {
         this.selectedStructure = "";
         this.isPointerDown = false;
 
+        this.setX;
+        this.setY;
+
+        this.map;
+        this.tempMap;
+
 
         this.constructionItemContainer = document.getElementById("construction-item-container");
         this.constructionItemList = document.getElementById("construction-item-list");  
@@ -43,14 +49,17 @@ export default class ConstructionScene extends Phaser.Scene {
     create() {
         this.worldManager = new WorldManager(this);
         this.worldManager.initWorld();
+        this.map = Object.assign({}, this.worldManager.map);
+        this.tempMap = Object.assign({}, this.worldManager.map);
         
 
-        let selectionBtn = document.getElementById("selection-btn");
-        selectionBtn.addEventListener("pointerdown", () => {
+        this.selectionBtn = document.getElementById("selection-btn");
+        this.selectionBtn.addEventListener("pointerdown", () => {
             this.action = "selection";
-            this.hideGridBackground();
+            this.destroyTempObjects();
             this.resetSelectedItem();
-            selectionBtn.classList.add("construction-item-selected");
+            this.selectionBtn.classList.add("construction-item-selected");
+            this.hideConfirmationContainer();
         });
 
         let eraserBtn = document.getElementById("eraser-btn");
@@ -58,6 +67,7 @@ export default class ConstructionScene extends Phaser.Scene {
             this.action = "eraser";
             this.resetSelectedItem();
             this.showGridBackground();
+            this.showConfirmationContainer();
             eraserBtn.classList.add("construction-item-selected");
         })
 
@@ -67,6 +77,7 @@ export default class ConstructionScene extends Phaser.Scene {
             this.action = "soil";
             this.resetSelectedItem();
             this.showGridBackground();
+            this.showConfirmationContainer();
             soilBtn.classList.add("construction-item-selected");
         })
 
@@ -117,21 +128,12 @@ export default class ConstructionScene extends Phaser.Scene {
                     }
                     break;
                 case "placement":
-                    this.drawEntity(this.gridX, this.gridY);
+                    if (this.isPointerDown){
+                        this.drawEntity(this.gridX, this.gridY);
+                    }
                     break;
                 default:
             }
-
-            // // only update indicater when there no grid currently selected
-            // if (this.selectedGrid === undefined)
-            //     this.updatePointerOnGridIndicator(this.gridX, this.gridY);
-            // // make it still count as clicked if pointer didn't move too much. 
-            // if (Math.abs(pointer.x - pointer.prevPosition.x) >= 1 || Math.abs(pointer.y - pointer.prevPosition.y) >= 1 ) {
-            //     this.click = false;
-            // }
-            // if (!pointer.isDown) return;
-        
-
         });
 
 
@@ -152,33 +154,16 @@ export default class ConstructionScene extends Phaser.Scene {
                     this.updateLand(this.gridX, this.gridY, this.isPlacement);
                     break;
                     case "placement":
-                        this.addStructureToWorld();
+                        this.drawEntity(this.gridX, this.gridY);
                         break;
                 default:
             }
 
         })
+
         this.input.on("pointerup", (pointer) => {
             this.isPointerDown = false;
-        //     console.log(this.selectedGrid)
-        //     if (!this.click) 
-        //         return;
-        //     this.gridX = Math.floor((pointer.x + this.camera.worldView.x + 16) / 32)
-        //     this.gridY = Math.floor((pointer.y + this.camera.worldView.y + 16) / 32)
-        //     this.updatePointerOnGridIndicator(this.gridX, this.gridY);
-
-            
-        //     this.isPlacement = this.selectedItemIndex !== undefined ? true : false;
-        //     if (this.selectedGrid !== undefined) {
-        //         this.updateLand(this.selectedGrid.x, this.selectedGrid.y, !this.isPlacement);
-        //     }
-        //     if (this.isCommandExecutable() === true){
-        //         this.updateLand(this.gridX, this.gridY, this.isPlacement);
-        //         this.showConfirmationContainer();
-        //     }
-
         })
-
 
     }
 
@@ -216,6 +201,8 @@ export default class ConstructionScene extends Phaser.Scene {
                 centerY -= offsetY;
 
                 this.drawEntity(centerX / 32, centerY / 32);
+
+                this.showConfirmationContainer();
                 
             })
 
@@ -227,8 +214,10 @@ export default class ConstructionScene extends Phaser.Scene {
 
     drawEntity(gridX, gridY) {
         let name = this.selectedStructure;
-        this.house?.destroy();
-        this.gridEntity?.destroy(); 
+        this.destroyTempObjects();
+
+        this.setX = gridX;
+        this.setY = gridY;
 
         let entity = ENTITY_DATA[name];
 
@@ -241,9 +230,9 @@ export default class ConstructionScene extends Phaser.Scene {
             adjustY = 16;
         }
         
-        let x = (gridX - entity.imageWidth / 2 + entity.offsetX + entity.width / 2) * 32 + adjustX; 
+        let x = (gridX - entity.imageWidth / 2 - entity.offsetX + entity.width / 2) * 32 + adjustX; 
         let y = (gridY + entity.imageHeight / 2 - entity.offsetY - entity.height / 2) * 32 + adjustY;
-        this.house = this.add.sprite(x, y, "construction", name);
+        this.structureSprite = this.add.sprite(x, y, "construction", name);
 
         this.isLandOccupied(gridX, gridY);
         let color = this.placeable ? 0x00ff00 : 0xff0000;
@@ -257,10 +246,11 @@ export default class ConstructionScene extends Phaser.Scene {
     }
 
     addStructureToWorld() {
-        if (this.isLandOccupied(this.gridX, this.gridY)) {
+        if (this.isLandOccupied(this.setX, this.setY)) {
             return;
         }
-        this.worldManager.map[`${this.gridX},${this.gridY}`]["entities"] = [this.selectedStructure];
+        let structure = this.add.sprite(this.structureSprite.x, this.structureSprite.y, "construction", this.selectedStructure);
+        this.worldManager.map[`${this.setX},${this.setY}`]["entities"] = [this.selectedStructure];
         this.worldManager.saveMapToLocalStorage();
     }
 
@@ -321,17 +311,21 @@ export default class ConstructionScene extends Phaser.Scene {
             this.constructionItemList.children[i]?.classList.remove("construction-item-selected");
         }
 
-        this.hideGridBackground();
+        this.destroyTempObjects();
     }
+
 
     showGridBackground() {
         // x, y, width, height, cellWidth, cellHeight, fillColor, fillAlpha, outlineFillColor, outlineFillAlpha
         this.gridBackground = this.add.grid(-16, -16, 2048, 2048, 32, 32, 0x00ff00, 0, 0xbfbfbf, 0.7 );
     }
 
-    hideGridBackground() {
+    destroyTempObjects() {
         this.gridBackground?.destroy();
+        this.gridEntity?.destroy(); 
+        this.structureSprite?.destroy();
     }
+
 
     isCommandExecutable() {
         if (this.isPlacement) {
@@ -429,28 +423,40 @@ export default class ConstructionScene extends Phaser.Scene {
         this.hideConfirmationContainer();
 
         this.ConfirmBtn.addEventListener("pointerdown", () => { 
-            this.worldManager.saveMapToLocalStorage();
+            if (this.action === "placement") {
+                this.addStructureToWorld();
+            }
+            if (this.action === "soil" || this.action === "eraser") {
+                this.destroyTempObjects();
+            }
+            this.resetSelectedItem();
+            this.selectionBtn.classList.add("construction-item-selected");
+            this.action = "selection";
             this.hideConfirmationContainer();
         })
 
-        this.CancelBtn.addEventListener("pointerdown", () => {
-            console.log(this.selectedGrid)
-            this.updateLand(this.selectedGrid.x, this.selectedGrid.y, !this.isPlacement);
+        this.CancelBtn.addEventListener("pointerdown", () => { 
+            if (this.action === "placement") {
+                this.destroyTempObjects();
+            }
+            this.resetSelectedItem();
+            this.selectionBtn.classList.add("construction-item-selected");
+            this.action = "selection";
             this.hideConfirmationContainer();
         })
     }
 
 
     showConfirmationContainer() {
-        this.selectedGrid = { x: this.gridX, y: this.gridY };
         this.ConfirmationBtnsContainer.style.display = "flex";
+        if (this.action === "eraser" || this.action === "soil") {
+            this.CancelBtn.style.display = "none";
+        } else if (this.action === "placement") {
+            this.CancelBtn.style.display = "block";
+        } 
     }
 
     hideConfirmationContainer() {
-        console.log(this.constructionItemList)
-        // this.resetSelectedItem();
-        this.selectedItemIndex = undefined;
-        this.selectedGrid = undefined;
         this.ConfirmationBtnsContainer.style.display = "none";
     }
 
