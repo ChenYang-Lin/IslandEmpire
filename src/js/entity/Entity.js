@@ -12,17 +12,37 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
 
+        
+        
+
+
         this.repositionedX = this.entityData.repositionedX ?? 0;
         this.repositionedY = this.entityData.repositionedY ?? 0;
-        this.width = this.entityData.width ?? 32;
-        this.height = this.entityData.height ?? 32;
+        this.imageWidth = this.entityData.imageWidth ?? 1;
+        this.imageHeight = this.entityData.imageHeight ?? 1;
+        this.width = this.entityData.width ?? 1;
+        this.height = this.entityData.height ?? 1;
         this.offsetX = this.entityData.offsetX ?? 0;
         this.offsetY = this.entityData.offsetY ?? 0;
+
+        this.adjustX = 0;
+        if (this.width % 2 === 0) {
+            this.adjustX = 16;
+        }
+        this.adjustY = 0;
+        if (this.height % 2 === 0) {
+            this.adjustY = 16;
+        }
         
-        this.x += this.repositionedX;
-        this.y += this.repositionedY;
-        this.setSize(this.width, this.height);
-        this.setOffset(this.offsetX, this.offsetY);
+        // this.x += this.repositionedX;
+        // this.y += this.repositionedY;
+
+        let gridX = x / 32;
+        let gridY = y / 32
+        this.x = (gridX - this.imageWidth / 2 - this.offsetX + this.width / 2) * 32 + this.adjustX; 
+        this.y = (gridY + this.imageHeight / 2 - this.offsetY - this.height / 2) * 32 + this.adjustY;
+        this.setSize(this.width * 32, this.height * 32);
+        this.setOffset(this.offsetX * 32, this.offsetY * 32);
     }
 
     get position() {
