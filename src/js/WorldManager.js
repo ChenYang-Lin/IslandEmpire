@@ -1,6 +1,7 @@
 import { ITEM_DATA, MAP_DATA, ENTITY_DATA } from "./GameData.js";
 import Crop from "./entity/Crop.js";
 import Resource from "./entity/Resource.js";
+import Structure from "./entity/Structure.js";
 
 
 export default class WorldManager {
@@ -59,18 +60,19 @@ export default class WorldManager {
                 let resource = new Resource(this.scene, x, y, "resource", entity);
             }
             if (ENTITY_DATA[entity].category === "structure"){
-                let structure = ENTITY_DATA[entity];
-                let adjustX = 0;
-                if (structure.width % 2 === 0) {
-                    adjustX = 16;
-                }
-                let adjustY = 0;
-                if (structure.height % 2 === 0) {
-                    adjustY = 16;
-                }
-                let x = (gridX - structure.imageWidth / 2 - structure.offsetX + structure.width / 2) * 32 + adjustX; 
-                let y = (gridY + structure.imageHeight / 2 - structure.offsetY - structure.height / 2) * 32 + adjustY;
-                this.house = this.scene.add.sprite(x, y, "construction", entity);
+                // let entityData = ENTITY_DATA[entity];
+                // let adjustX = 0;
+                // if (entityData.width % 2 === 0) {
+                //     adjustX = 16;
+                // }
+                // let adjustY = 0;
+                // if (entityData.height % 2 === 0) {
+                //     adjustY = 16;
+                // }
+                // let x = (gridX - entityData.imageWidth / 2 - entityData.offsetX + entityData.width / 2) * 32 + adjustX; 
+                // let y = (gridY + entityData.imageHeight / 2 - entityData.offsetY - entityData.height / 2) * 32 + adjustY;
+                // this.house = this.scene.add.sprite(x, y, "construction", entity);
+                let structure = new Structure(this.scene, x, y, "construction", entity)
         
             }
         })
