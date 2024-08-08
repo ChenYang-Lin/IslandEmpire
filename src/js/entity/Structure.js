@@ -12,7 +12,7 @@ export default class Structure extends Entity {
         
 
         
-        this.scene.worldManager.resourceCollidersGroup.add(this);
+        this.scene.worldManager.obstacleCollidersGroup.add(this);
     }
     
 }

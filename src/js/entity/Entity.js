@@ -5,7 +5,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y, texture, frame, entityData) {
         super(scene, x, y, texture, frame);
 
-        this.scene = scene;
+        console.log(this.scene)
         this.entityData = entityData;
         this.depth = this.y;
 
@@ -37,19 +37,17 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         // this.x += this.repositionedX;
         // this.y += this.repositionedY;
 
-        let gridX = x / 32;
-        let gridY = y / 32
-        this.x = (gridX - this.imageWidth / 2 - this.offsetX + this.width / 2) * 32 + this.adjustX; 
-        this.y = (gridY + this.imageHeight / 2 - this.offsetY - this.height / 2) * 32 + this.adjustY;
+        this.x = x + (-this.imageWidth / 2 + this.offsetX + this.width / 2) * 32 + this.adjustX; 
+        this.y = y + (this.imageHeight / 2 - this.offsetY - this.height / 2) * 32 + this.adjustY;
         this.setSize(this.width * 32, this.height * 32);
         this.setOffset(this.offsetX * 32, this.offsetY * 32);
     }
 
     get position() {
         return {
-            x: this.x - this.repositionedX,
-            y: this.y - this.repositionedY,
-        }
+            x: this.x - this.adjustX - (-this.imageWidth / 2 + this.offsetX + this.width / 2) * 32,
+            y: this.y - this.adjustY - (this.imageHeight / 2 - this.offsetY - this.height / 2) * 32,
+        } 
     }
 
     get onGrid() {
@@ -62,6 +60,9 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
     
 
     onDeath() {
+        // console.log(`${this.onGrid.x},${this.onGrid.y}`)
+        this.scene.worldManager.map[`${this.onGrid.x},${this.onGrid.y}`].entities = [];
+        this.scene.worldManager.saveMapToLocalStorage();
         this.destroy();
     }
 }

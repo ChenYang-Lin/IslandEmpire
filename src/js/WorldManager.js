@@ -12,6 +12,7 @@ export default class WorldManager {
         this.landCollidersGroup = this.scene.physics.add.group({ immovable: true });
         this.landSpriteGroup = {};
         this.resourceCollidersGroup = this.scene.physics.add.group({ immovable: true });
+        this.obstacleCollidersGroup = this.scene.physics.add.group({ immovable: true });
         this.collectablesGroup = this.scene.physics.add.group({ immovable: true });
          
         this.hoedLandSpriteGroup = {};
@@ -195,6 +196,7 @@ export default class WorldManager {
 
     hoeLand(grid) {
         this.map[`${grid.x},${grid.y}`].isHoedLand = true;
+        this.saveMapToLocalStorage();
         this.createHoedLand(grid.x, grid.y);
 
         // Update surrounding hoed lands

@@ -12,6 +12,7 @@ export default class CollisionController {
         // Collisions and Overlaps
         this.scene.physics.add.collider(this.player, this.scene.worldManager.landCollidersGroup);
         this.scene.physics.add.collider(this.player, this.scene.worldManager.resourceCollidersGroup);
+        this.scene.physics.add.collider(this.player, this.scene.worldManager.obstacleCollidersGroup);
         
 
         this.initPlayerOverlapCollectables();

@@ -49,7 +49,7 @@ export default class InputController {
 
         let consumableBtn = document.getElementById("consumable-btn");
         consumableBtn.addEventListener("pointerdown", () => {
-            this.scene.player.stats.useItem(this.scene.hud.inventory.inventoryWindow.selectedConsumableItem);
+            this.scene.player.useItem(this.scene.hud.inventory.inventoryWindow.selectedConsumableItem);
         })
         let consumableBtnSwitcher = document.getElementById("consumable-btn-switcher");
         consumableBtnSwitcher.addEventListener("pointerdown", () => {

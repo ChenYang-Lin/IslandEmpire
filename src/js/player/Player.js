@@ -51,6 +51,20 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
+    useItem(itemName) {
+        if (!this.scene.hud.inventory.removeItem(itemName, 1)) {
+            console.log(itemName + " out")
+            return;
+        }
+        console.log("useItem: ", itemName)
+        this.stats.hp += 20;
+        if (this.stats.hp >= 100) {
+            this.stats.hp = 100;
+        }
+
+        this.stats.renderStatsDisplay();
+    }
+
     update(time, delta) {
         this.depth = this.y - this.repositionedY;
         this.sensors.update();

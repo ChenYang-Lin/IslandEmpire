@@ -5,29 +5,30 @@ export default class Inventory {
     constructor(scene) {
         this.scene = scene;
 
-        this.inventorySize = 8;
-        this.inventory = {
-            "sword": 1,
-            "hoe": 1,
-            "stone": 2,
-            "potato_seed": 3,
-            "drumstick_raw": 1,
-            "egg": 1,
-            "apple": 7,
-            "bagel": 1,
-            "banana": 3,
-            "bread": 1,
-            "burger": 1,
-            "burrito": 1,
-            "croissant": 1,
-            "doughnut": 1,
-            "eggplant_seed": 1,
+
+        if (localStorage.getItem("inventory")) {
+            this.inventory = this.loadInventoryToLocalStorage();
+        } else {
+            this.inventory = {
+                "sword": 1,
+                "hoe": 1,
+                "stone": 2,
+                "potato_seed": 3,
+                "drumstick_raw": 1,
+                "egg": 1,
+                "apple": 7,
+                "bagel": 1,
+                "banana": 3,
+                "bread": 1,
+                "burger": 1,
+                "burrito": 1,
+                "croissant": 1,
+                "doughnut": 1,
+                "eggplant_seed": 1,
+            }
+            this.saveInventoryToLocalStorage();
         }
-        this.inventoryOrder = [
-            "sword", 
-            "potato_seed",
-            "hoe", 
-            "stone"];
+
 
         this.inventoryWindow = new InventoryWindow(this.scene, this);
 
@@ -35,34 +36,34 @@ export default class Inventory {
     }
 
     addItem(name, quantity) {
-        // if (this.inventoryOrder.includes(name)) {
-        //     this.inventory[name] += quantity;
-        //     this.inventoryWindow.createInventoryWindow();
-        //     return;
-        // }
-
-        
-        // for (let i = 0; i < this.inventorySize; i++) {
-        //     if (this.inventoryOrder[i]) { // There is already an item in the current slot
-        //         if (i !== this.inventorySize - 1) 
-        //             continue;
-        //         else {
-        //             console.log("inventory is full")
-        //         }
-        //     } else { // Current slot is empty
-        //         this.inventoryOrder[i] = name;
-        //         this.inventory[name] = quantity;
-        //         this.inventoryWindow.createInventoryWindow();
-        //         console.log(this.inventory, this.inventoryOrder);
-        //         return;
-        //     }
-        // }
-
         if (this.inventory[name]) {
             this.inventory[name] += quantity
         } else {
             this.inventory[name] = quantity;
         }
+        this.saveInventoryToLocalStorage();
+    }
+
+    removeItem(name, quantity) {
+        if (this.inventory[name] >= quantity) {
+            this.inventory[name] -= quantity;
+            if (this.inventory[name] === 0) {
+                delete this.inventory[name];
+                this.scene.hud.setConsumableBtn();
+            }
+            this.saveInventoryToLocalStorage();
+        } else {
+            return false;
+        }
+        return true;
+    }
+
+    saveInventoryToLocalStorage() {
+        localStorage.setItem("inventory", JSON.stringify(this.inventory));
+    }
+
+    loadInventoryToLocalStorage() {
+        return JSON.parse(localStorage.getItem("inventory"));
     }
 
     swapItems(a, b) {

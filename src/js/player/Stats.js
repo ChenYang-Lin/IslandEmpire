@@ -37,14 +37,6 @@ export default class State {
         this.thirstBarValue.innerHTML = `${this.thirst} / ${this.maxThirst}`
     }
 
-    useItem(itemName) {
-        console.log("useItem: ", itemName)
-        this.hp += 20;
-        if (this.hp >= 100) {
-            this.hp = 100;
-        }
 
-        this.renderStatsDisplay();
-    }
 
 }
