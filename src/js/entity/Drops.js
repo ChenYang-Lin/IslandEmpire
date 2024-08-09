@@ -4,7 +4,8 @@ import Entity from "./Entity.js";
 export default class Drops extends Entity {
     constructor(scene, x, y, texture, name) {
         const entityData = ITEM_DATA[name]
-        super(scene, x, y, texture, name, entityData);
+        // scene, x, y, name, texture, frame, entityData
+        super(scene, x, y, name, texture, name, entityData);
 
         this.name = name;
 

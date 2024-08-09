@@ -7,7 +7,7 @@ export default class Crop extends Entity {
         let phase = (Math.random() < 0.5) ? "_0" : "_0_alt"; // randomly choose two seed image;
         let frame = name + phase;
         const entityData = CROP_GROW_DATA[name];
-        super(scene, x, y, "crops_grow", frame, entityData)
+        super(scene, x, y, name, "crops_grow", frame, entityData)
 
         this.name = name;
 

@@ -116,7 +116,7 @@ export default class HUD {
     }
 
     createCollectablesContainer(collectables) {
-        console.log("calling")
+        // console.log("calling")
         let collectablesContainer = document.getElementById("collectables-container");
         
         collectablesContainer.innerHTML = ""; // refresh container;

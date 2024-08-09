@@ -6,7 +6,7 @@ export default class Sensors {
         this.player = player;
 
         
-        this.nearbyCollectablesSensor = this.scene.physics.add.image(this.player.position.x, this.player.position.y);
+        this.nearbyCollectablesSensor = this.scene.physics.add.image(this.player.position.x - 16, this.player.position.y - 16);
         this.nearbyCollectablesSensor.body.setCircle(50, -33, -33);
         
         this.touchingNearbyCollectables = [];

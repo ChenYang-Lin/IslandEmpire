@@ -16,16 +16,16 @@ export default class Hitbox {
 
         switch(this.player.direction) {
             case "left":
-                x -= 32;
+                // x -= 32;
                 break;
             case "right":
-                x += 32;
+                // x += 32;
                 break;
             case "up":
-                y -= 32;
+                // y -= 32;
                 break;
             case "down":
-                y += 32;
+                // y += 32;
                 break;
         }
 

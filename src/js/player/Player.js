@@ -1,23 +1,22 @@
+import Character from "../entity/Character.js";
+import { ENTITY_DATA } from "../GameData.js";
 import AnimationController from "./AnimationController.js";
 import CollisionController from "./CollisionController.js";
 import Hitbox from "./Hitbox.js";
 import Sensors from "./Sensors.js";
 import Stats from "./Stats.js";
 
-export default class Player extends Phaser.Physics.Arcade.Sprite {
+export default class Player extends Character {
     constructor(scene) {
-        super(scene, 32, 32, "player")
+        const entityData = ENTITY_DATA["player"];
+        // scene, x, y, name, texture, frame
+        super(scene, 32, 32, "player", "player", "idle_right", entityData);
         this.scene = scene;
 
         
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
 
-        this.repositionedY = -22;
-        this.y += this.repositionedY;
-        this.depth = this.y - this.repositionedY;
-        this.setCircle(12)
-        this.setOffset(84, 84 - this.repositionedY);
 
         
         this.direction = "left";
@@ -27,7 +26,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.sensors = new Sensors(this.scene, this);
         this.collisionController = new CollisionController(this.scene, this);
         this.stats = new Stats(this.scene, this);
-        
 
     }
 
@@ -36,20 +34,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         scene.load.animation("player_anim", "assets/player_anim.json");
     }
 
-
-    get position() {
-        return {
-            x: this.x,
-            y: this.y - this.repositionedY,
-        }
-    }
-
-    get onGrid() {
-        return {
-            x: Math.floor((this.x + 16) / 32),
-            y: Math.floor((this.y - this.repositionedY + 16) / 32),
-        }
-    }
 
     useItem(itemName) {
         if (!this.scene.hud.inventory.removeItem(itemName, 1)) {
@@ -66,11 +50,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     update(time, delta) {
-        this.depth = this.y - this.repositionedY;
+        this.depth = this.position.y;
         this.sensors.update();
         this.animationController.update();
         this.collisionController.update(time, delta);
-
     }
 
 

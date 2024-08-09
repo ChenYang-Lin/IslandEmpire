@@ -189,7 +189,8 @@ export default class WorldManager {
         } 
 
         let hoedLandSprite = this.scene.add.sprite(x, y, "land", hoedLandSpriteName);
-        hoedLandSprite.depth = y - 10000;
+        hoedLandSprite.setDepth(hoedLandSprite.y - 1000);
+        
         this.hoedLandSpriteGroup[`${gridX},${gridY}`] = hoedLandSprite;
     }
 

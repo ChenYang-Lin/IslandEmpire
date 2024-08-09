@@ -6,7 +6,8 @@ export default class Resource extends Entity {
 
     constructor(scene, x, y, texture, name) {
         const entityData = ENTITY_DATA[name];
-        super(scene, x, y, texture, name, entityData);
+        // scene, x, y, name, texture, frame, entityData
+        super(scene, x, y, name, texture, name, entityData);
 
         this.name = name;
         this.hasSecondPart = false;

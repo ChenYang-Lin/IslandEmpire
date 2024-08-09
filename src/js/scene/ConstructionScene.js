@@ -86,7 +86,7 @@ export default class ConstructionScene extends Phaser.Scene {
         // this.initPlacementRemovalBtns();
         this.initConfirmationBtns();
 
-        this.graphics = this.add.graphics({ lineStyle: { width: 2, color: 0x00ff00 }})
+        this.graphics = this.add.graphics({ lineStyle: { colliderWidth: 2, color: 0x00ff00 }})
         this.postFxPlugin = this.plugins.get('rexoutlinepipelineplugin');
         this.pointerOnGridIndicator = new Phaser.Geom.Rectangle(0, 0, 32, 32);
 
@@ -222,16 +222,16 @@ export default class ConstructionScene extends Phaser.Scene {
         let entity = ENTITY_DATA[name];
 
         let adjustX = 0;
-        if (entity.width % 2 === 0) {
+        if (entity.colliderWidth % 2 === 0) {
             adjustX = 16;
         }
         let adjustY = 0;
-        if (entity.height % 2 === 0) {
+        if (entity.colliderHeight % 2 === 0) {
             adjustY = 16;
         }
         
-        let x = (gridX - entity.imageWidth / 2 - entity.offsetX + entity.width / 2) * 32 + adjustX; 
-        let y = (gridY + entity.imageHeight / 2 - entity.offsetY - entity.height / 2) * 32 + adjustY;
+        let x = (gridX - entity.imageWidth / 2 - entity.offsetX + entity.colliderWidth / 2) * 32 + adjustX; 
+        let y = (gridY + entity.imageHeight / 2 - entity.offsetY - entity.colliderHeight / 2) * 32 + adjustY;
         this.structureSprite = this.add.sprite(x, y, "construction", name);
 
         this.isLandOccupied(gridX, gridY);
@@ -239,9 +239,9 @@ export default class ConstructionScene extends Phaser.Scene {
 
         let gx = gridX * 32 + adjustX; 
         let gy = gridY * 32 + adjustY;
-        let width = entity.width * 32;
-        let height = entity.height * 32;
-        this.gridEntity = this.add.grid(gx, gy, width, height, 32, 32, color, 0.5, 0xbfbfbf, 0 );
+        let colliderWidth = entity.colliderWidth * 32;
+        let colliderHeight = entity.colliderHeight * 32;
+        this.gridEntity = this.add.grid(gx, gy, colliderWidth, colliderHeight, 32, 32, color, 0.5, 0xbfbfbf, 0 );
 
     }
 
@@ -260,20 +260,20 @@ export default class ConstructionScene extends Phaser.Scene {
         let occupied = false;
 
         let name = this.selectedStructure;
-        let width = ENTITY_DATA[name].width;
-        let height = ENTITY_DATA[name].height;
+        let colliderWidth = ENTITY_DATA[name].colliderWidth;
+        let colliderHeight = ENTITY_DATA[name].colliderHeight;
 
         let occupiedLands = []
 
-        let left = (gridX - (Math.ceil(width / 2)) + 1);
-        let top = (gridY - (Math.ceil(height / 2)) + 1);
+        let left = (gridX - (Math.ceil(colliderWidth / 2)) + 1);
+        let top = (gridY - (Math.ceil(colliderHeight / 2)) + 1);
         console.log(gridX, gridY, left, top)
 
         this.placeable = true;
 
 
-        for (let x = left; x < left + width; x++) {
-            for (let y = top; y < top + height; y++) {
+        for (let x = left; x < left + colliderWidth; x++) {
+            for (let y = top; y < top + colliderHeight; y++) {
                 occupiedLands.push(`${x},${y}`)
                 // Land does not exist
                 // console.log(!this.worldManager.map[`${x},${y}`])
@@ -316,7 +316,7 @@ export default class ConstructionScene extends Phaser.Scene {
 
 
     showGridBackground() {
-        // x, y, width, height, cellWidth, cellHeight, fillColor, fillAlpha, outlineFillColor, outlineFillAlpha
+        // x, y, colliderWidth, colliderHeight, cellWidth, cellHeight, fillColor, fillAlpha, outlineFillColor, outlineFillAlpha
         this.gridBackground = this.add.grid(-16, -16, 2048, 2048, 32, 32, 0x00ff00, 0, 0xbfbfbf, 0.7 );
     }
 

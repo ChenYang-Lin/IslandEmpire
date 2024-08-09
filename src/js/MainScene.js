@@ -5,6 +5,8 @@ import Player from "./player/Player.js";
 import Resource from "./entity/Resource.js";
 import Crop from "./entity/Crop.js";
 import ConstructionScene from "./scene/ConstructionScene.js"
+import Goblin from "./entity/Goblin.js";
+import Entity from "./entity/Entity.js";
 
 
 export default class MainScene extends Phaser.Scene {
@@ -16,6 +18,7 @@ export default class MainScene extends Phaser.Scene {
         Player.preload(this);
         Resource.preload(this);
         Crop.preload(this);
+        Entity.preload(this);
 
         this.load.plugin('rexvirtualjoystickplugin', "js/utils/rexvirtualjoystickplugin.min.js", true);
         this.load.plugin('rexoutlinepipelineplugin', 'js/utils/rexoutlinepipelineplugin.min.js', true); // outline plugin
@@ -38,6 +41,8 @@ export default class MainScene extends Phaser.Scene {
         this.camera.startFollow(this.player);
         // this.camera.setLerp(0.3, 0.3);
         // this.camera.roundPixels = true;
+
+        let goblin = new Goblin(this, 0, 32, "goblin", "goblin");
         
     }
 
