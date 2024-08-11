@@ -130,7 +130,7 @@ export default class HUD {
                 collectableBtn.remove();
                 this.inventory.addItem(collectable.collectable, 1);
                 this.scene.player.sensors.touchingNearbyCollectables[i].onDeath();
-                this.scene.player.collisionController.addCollectableCollected(collectable);
+                this.scene.collisionController.addCollectableCollected(collectable);
             })
 
             // Create collectable img

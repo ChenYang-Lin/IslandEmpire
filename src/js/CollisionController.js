@@ -6,8 +6,8 @@ export default class CollisionController {
         this.player = player;
         this.sensors = player.sensors;
 
-        
         this.timer = 0;
+        
 
         // Collisions and Overlaps
         this.scene.physics.add.collider(this.player, this.scene.worldManager.landCollidersGroup);

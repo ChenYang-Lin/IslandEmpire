@@ -9,8 +9,8 @@ export default class WorldManager {
         this.scene = scene;
 
         // Collider Groups
-        this.landCollidersGroup = this.scene.physics.add.group({ immovable: true });
         this.landSpriteGroup = {};
+        this.landCollidersGroup = this.scene.physics.add.group({ immovable: true });
         this.resourceCollidersGroup = this.scene.physics.add.group({ immovable: true });
         this.obstacleCollidersGroup = this.scene.physics.add.group({ immovable: true });
         this.collectablesGroup = this.scene.physics.add.group({ immovable: true });
@@ -79,19 +79,20 @@ export default class WorldManager {
         })
     }
 
-    createLand(gridX, gridY) {
+    createLand(gridX, gridY, landSprite) {
+        landSprite = landSprite ?? "land_all";
         let x = gridX * 32;
         let y = gridY * 32;
 
-        if (!this.map[`${gridX},${gridY}`]?.isLand) {
-            return;
-        }
-
-        let landSprite = "land_all";
-
         let land = this.scene.add.sprite(x, y, "land", landSprite);
+        this.landSpriteGroup[`${gridX},${gridY}`]?.destroy();
         this.landSpriteGroup[`${gridX},${gridY}`] = land;
         land.depth = y - 10000;
+
+        if (landSprite !== "land" && landSprite !== "land_all") {
+            let collider = this.scene.physics.add.sprite(x, y)
+            this.landCollidersGroup.add(collider);
+        }
     }
 
     createSurroundingLand(gridX, gridY) {
@@ -149,14 +150,7 @@ export default class WorldManager {
             return;
         }
 
-        let land = this.scene.add.sprite(x, y, "land", landSprite);
-        this.landSpriteGroup[`${gridX},${gridY}`]?.destroy();
-        this.landSpriteGroup[`${gridX},${gridY}`] = land;
-        land.depth = y - 10000;
-        if (landSprite !== "land" && landSprite !== "land_all") {
-            let collider = this.scene.physics.add.sprite(x, y)
-            this.landCollidersGroup.add(collider);
-        }
+        this.createLand(gridX, gridY, landSprite);
     }
 
     

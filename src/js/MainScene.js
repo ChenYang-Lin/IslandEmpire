@@ -4,9 +4,9 @@ import InputController from "./player/InputController.js";
 import Player from "./player/Player.js";
 import Resource from "./entity/Resource.js";
 import Crop from "./entity/Crop.js";
-import ConstructionScene from "./scene/ConstructionScene.js"
 import Goblin from "./entity/Goblin.js";
 import Entity from "./entity/Entity.js";
+import CollisionController from "./CollisionController.js";
 
 
 export default class MainScene extends Phaser.Scene {
@@ -32,17 +32,18 @@ export default class MainScene extends Phaser.Scene {
    
         // Initialization
         this.worldManager = new WorldManager(this);
-        this.worldManager.initWorld();
         this.player = new Player(this);
         this.inputController = new InputController(this, this.player);
         this.hud = new HUD(this);
+        this.collisionController = new CollisionController(this, this.player);
+        this.worldManager.initWorld();
 
         this.camera = this.cameras.main;
         this.camera.startFollow(this.player);
         // this.camera.setLerp(0.3, 0.3);
         // this.camera.roundPixels = true;
 
-        this.goblin = new Goblin(this, 64, 64, "goblin", "goblin");
+        // this.goblin = new Goblin(this, 64, 64, "goblin", "goblin");
         
     }
 
@@ -51,8 +52,9 @@ export default class MainScene extends Phaser.Scene {
         this.worldManager.update();
         this.inputController.update();
         this.hud.update();
+        this.collisionController.update(time, delta);
 
-        this.goblin.update(time, delta);
+        this.goblin?.update(time, delta);
     }
 
 

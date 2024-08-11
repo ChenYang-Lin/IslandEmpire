@@ -1,6 +1,5 @@
 import Character from "../entity/Character.js";
 import { ENTITY_DATA } from "../GameData.js";
-import CollisionController from "./CollisionController.js";
 import Sensors from "./Sensors.js";
 import Stats from "./Stats.js";
 
@@ -19,7 +18,6 @@ export default class Player extends Character {
         
 
         this.sensors = new Sensors(this.scene, this);
-        this.collisionController = new CollisionController(this.scene, this);
         this.stats = new Stats(this.scene, this);
 
     }
@@ -48,7 +46,6 @@ export default class Player extends Character {
         this.depth = this.position.y;
         this.sensors.update();
         this.animationController.update();
-        this.collisionController.update(time, delta);
     }
 
 
