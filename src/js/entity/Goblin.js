@@ -10,6 +10,7 @@ export default class Goblin extends Enemy {
 
         this.speed = 96;
         this.swordLength = 16;
+
         this.timer = 0;
         this.tempDir = 1;
         
@@ -29,6 +30,6 @@ export default class Goblin extends Enemy {
         velocity.normalize();
 
         // this.animationController.swordAttack(); 
-        this.animationController.move(velocity, "left", this)
+        // this.animationController.move(velocity, "left", this)
     }
 }

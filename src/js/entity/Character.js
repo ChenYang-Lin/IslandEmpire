@@ -17,6 +17,22 @@ export default class Character extends Entity {
 
     }
 
+    onHit(damage) {       
+        this.hp -= damage;
+        this.renderHealthBar();
+        if (this.hp <= 0) {
+            this.onDeath();
+        }
+        
+    }  
+
+    onDeath() {
+        this.anims.play(`goblin_death`, false);  
+        this.healthBarBG?.destroy();
+        this.healthBar?.destroy();
+        this.destroy();  
+    }
+
 
     update() {
         

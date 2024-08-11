@@ -3,12 +3,13 @@ import { ENTITY_DATA } from "../GameData.js";
 
 
 export default class Entity extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, x, y, name, texture, frame, entityData) {
+    constructor(scene, x, y, name, texture, frame, entityData, isAlly) {
         
         super(scene, x, y, texture, frame);
 
         this.entityData = entityData;
         this.name = name;
+        this.isAlly = isAlly;
         
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
@@ -22,8 +23,9 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.hpBarOffsetY = this.entityData.hpBarOffsetY ?? 20;
         this.hpBarWidth = this.entityData.hpBarWidth ?? 32;
 
-        this.setFriction(0,0)
-        
+        // Default stats
+        this.maxHp = 30;
+        this.hp = this.maxHp;
 
         this.adjustX = 0;
         if (this.colliderWidth % 2 === 0) {
@@ -44,9 +46,6 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.depth = this.position.y;
 
 
-        // 
-        this.maxHp = 100;
-        this.hp = 70;
 
     }
 
@@ -72,7 +71,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
-    renderHealthBar(isAlly) {
+    renderHealthBar() {
         this.graphics = this.scene.add.graphics();
 
         this.healthBarBG?.destroy();
@@ -93,14 +92,17 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
 
         // Healthbar
         this.graphics.fillStyle(0xff0000, 1);
-        if (isAlly === undefined) {
+        if (this.isAlly === undefined) {
             this.graphics.fillStyle(0x0000ff, 1);
-        } else if (isAlly) {
+        } else if (this.isAlly) {
             this.graphics.fillStyle(0x00ff00, 1);
         }
-        this.healthBar = this.graphics.fillRoundedRect(x+2, y+2, width-4, height-4, radius); // x, y, width, height, radius
+        console.log(this.hp, this.maxHp)
+        this.healthBar = this.graphics.fillRoundedRect(x+2, y+2, (this.hp/this.maxHp)*(width-4), height-4, 1); // x, y, width, height, radius
         this.healthBar.depth = this.depth + 2;
     }
+
+
 
     onDeath() {
         // console.log(`${this.onGrid.x},${this.onGrid.y}`)

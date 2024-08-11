@@ -64,7 +64,6 @@ const ENTITY_DATA = {
         offsetX: 2.75,
         offsetY: 3.5,
         hpBarOffsetY: 48,
-
     },
 
     "house": {

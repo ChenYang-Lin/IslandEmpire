@@ -9,12 +9,10 @@ export default class Enemy extends Character {
         this.scene.collisionController.enemyGroup.add(this);
 
         
-        this.renderHealthBar(this.isAlly);
+        this.renderHealthBar();
     }
 
-    onHit(damage) {
-        this.anims.play(`goblin_death`, false);
-    }
+
 
 
 }

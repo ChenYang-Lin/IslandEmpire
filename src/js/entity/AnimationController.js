@@ -85,7 +85,6 @@ export default class AnimationController {
         }   
 
         
-        this.character.renderHealthBar(this.character.isAlly);
 
     }
 

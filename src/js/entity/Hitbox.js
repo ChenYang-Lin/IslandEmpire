@@ -43,7 +43,7 @@ export default class Hitbox {
                 if (this.swordHitboxTouching.includes(entity))
                     return;
                 this.swordHitboxTouching.push(entity);
-                entity.onHit(this.character.stats.attackDmg);
+                entity.onHit(10);
         });
 
     }
