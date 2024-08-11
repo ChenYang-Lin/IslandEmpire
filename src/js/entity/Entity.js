@@ -19,6 +19,11 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.colliderHeight = this.entityData.colliderHeight ?? 1;
         this.offsetX = this.entityData.offsetX ?? 0;
         this.offsetY = this.entityData.offsetY ?? 0;
+        this.hpBarOffsetY = this.entityData.hpBarOffsetY ?? 20;
+        this.hpBarWidth = this.entityData.hpBarWidth ?? 32;
+
+        this.setFriction(0,0)
+        
 
         this.adjustX = 0;
         if (this.colliderWidth % 2 === 0) {
@@ -37,6 +42,12 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.setOffset(this.offsetX * 32, this.offsetY * 32);
         
         this.depth = this.position.y;
+
+
+        // 
+        this.maxHp = 100;
+        this.hp = 70;
+
     }
 
     static preload(scene) {
@@ -61,8 +72,35 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
+    renderHealthBar(isAlly) {
+        this.graphics = this.scene.add.graphics();
 
-    
+        this.healthBarBG?.destroy();
+        this.healthBar?.destroy();
+
+        let x = this.position.x - (this.hpBarWidth/2);
+        let y = this.position.y - this.hpBarOffsetY;
+        let width = this.hpBarWidth;
+        let height = 6;
+        let radius = 2;
+
+
+        // HealthBarBackground
+        this.graphics.fillStyle(0x000000, 1);
+        this.healthBarBG = this.graphics.fillRoundedRect(x, y, width, height, radius); // x, y, width, height, radius
+        this.healthBarBG.depth = this.depth + 1;
+        
+
+        // Healthbar
+        this.graphics.fillStyle(0xff0000, 1);
+        if (isAlly === undefined) {
+            this.graphics.fillStyle(0x0000ff, 1);
+        } else if (isAlly) {
+            this.graphics.fillStyle(0x00ff00, 1);
+        }
+        this.healthBar = this.graphics.fillRoundedRect(x+2, y+2, width-4, height-4, radius); // x, y, width, height, radius
+        this.healthBar.depth = this.depth + 2;
+    }
 
     onDeath() {
         // console.log(`${this.onGrid.x},${this.onGrid.y}`)

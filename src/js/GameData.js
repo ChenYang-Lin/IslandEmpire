@@ -53,6 +53,7 @@ const ENTITY_DATA = {
         colliderHeight: 0.5,
         offsetX: 2.75,
         offsetY: 3.5,
+        hpBarOffsetY: 48,
     },
 
     goblin: {
@@ -62,6 +63,7 @@ const ENTITY_DATA = {
         colliderHeight: 0.5,
         offsetX: 2.75,
         offsetY: 3.5,
+        hpBarOffsetY: 48,
 
     },
 

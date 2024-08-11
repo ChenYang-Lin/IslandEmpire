@@ -84,6 +84,9 @@ export default class AnimationController {
             this.character.anims.play(`${this.character.name}_idle_${this.character.direction}`, true);
         }   
 
+        
+        this.character.renderHealthBar(this.character.isAlly);
+
     }
 
     update() {

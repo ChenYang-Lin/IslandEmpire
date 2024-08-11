@@ -29,6 +29,6 @@ export default class Goblin extends Enemy {
         velocity.normalize();
 
         // this.animationController.swordAttack(); 
-        // this.animationController.move(velocity, "left", this)
+        this.animationController.move(velocity, "left", this)
     }
 }
