@@ -1,8 +1,6 @@
 import Character from "../entity/Character.js";
 import { ENTITY_DATA } from "../GameData.js";
-import AnimationController from "./AnimationController.js";
 import CollisionController from "./CollisionController.js";
-import Hitbox from "./Hitbox.js";
 import Sensors from "./Sensors.js";
 import Stats from "./Stats.js";
 
@@ -10,7 +8,7 @@ export default class Player extends Character {
     constructor(scene) {
         const entityData = ENTITY_DATA["player"];
         // scene, x, y, name, texture, frame
-        super(scene, 32, 32, "player", "player", "idle_right", entityData);
+        super(scene, 32, 32, "player", "player", "player_idle_right", entityData);
         this.scene = scene;
 
         
@@ -19,10 +17,7 @@ export default class Player extends Character {
 
 
         
-        this.direction = "left";
 
-        this.animationController = new AnimationController(this.scene, this);
-        this.hitbox = new Hitbox(this.scene, this);
         this.sensors = new Sensors(this.scene, this);
         this.collisionController = new CollisionController(this.scene, this);
         this.stats = new Stats(this.scene, this);

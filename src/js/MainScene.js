@@ -42,7 +42,7 @@ export default class MainScene extends Phaser.Scene {
         // this.camera.setLerp(0.3, 0.3);
         // this.camera.roundPixels = true;
 
-        let goblin = new Goblin(this, 0, 32, "goblin", "goblin");
+        this.goblin = new Goblin(this, 64, 64, "goblin", "goblin");
         
     }
 
@@ -52,7 +52,7 @@ export default class MainScene extends Phaser.Scene {
         this.inputController.update();
         this.hud.update();
 
-
+        this.goblin.update(time, delta);
     }
 
 

@@ -1,9 +1,9 @@
 
 
 export default class Hitbox {
-    constructor(scene, player) {
+    constructor(scene, character) {
         this.scene = scene;
-        this.player = player;
+        this.character = character;
 
         this.swordHitbox;
         this.swordHitboxTouching = [];
@@ -11,32 +11,32 @@ export default class Hitbox {
 
     
     createSwordHitBox() {
-        let x = this.player.position.x;
-        let y = this.player.position.y;
+        let x = this.character.position.x;
+        let y = this.character.position.y;
 
-        switch(this.player.direction) {
+        switch(this.character.direction) {
             case "left":
-                // x -= 32;
+                x -= 16;
                 break;
             case "right":
-                // x += 32;
+                x += 16;
                 break;
             case "up":
-                // y -= 32;
+                y -= 16;
                 break;
             case "down":
-                // y += 32;
+                y += 16;
                 break;
         }
 
         this.swordHitbox = this.scene.physics.add.image(x, y);
-        this.swordHitbox.setSize(32, 32);
+        this.swordHitbox.setSize(this.character.swordLength, this.character.swordLength);
 
         this.scene.physics.add.overlap(this.swordHitbox, this.scene.worldManager.resourceCollidersGroup, (swordHitbox, resource) => {
             if (this.swordHitboxTouching.includes(resource))
                 return;
             this.swordHitboxTouching.push(resource);
-            resource.onHit(this.player.stats.attackDmg);
+            resource.onHit(this.character.stats.attackDmg);
         });
     }
 
