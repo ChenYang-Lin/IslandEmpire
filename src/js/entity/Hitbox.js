@@ -7,6 +7,8 @@ export default class Hitbox {
 
         this.swordHitbox;
         this.swordHitboxTouching = [];
+
+        this.targetedCharacterGroup = this.character.isAlly ? this.scene.collisionController.enemyGroup : this.scene.collisionController.allyGroup
     }
 
     
@@ -32,12 +34,18 @@ export default class Hitbox {
         this.swordHitbox = this.scene.physics.add.image(x, y);
         this.swordHitbox.setSize(this.character.swordLength, this.character.swordLength);
 
-        this.scene.physics.add.overlap(this.swordHitbox, this.scene.worldManager.resourceCollidersGroup, (swordHitbox, resource) => {
-            if (this.swordHitboxTouching.includes(resource))
-                return;
-            this.swordHitboxTouching.push(resource);
-            resource.onHit(this.character.stats.attackDmg);
+        this.scene.physics.add.overlap(
+            this.swordHitbox, 
+            [
+                this.scene.worldManager.resourceCollidersGroup,
+                this.targetedCharacterGroup,
+            ], (swordHitbox, entity) => {
+                if (this.swordHitboxTouching.includes(entity))
+                    return;
+                this.swordHitboxTouching.push(entity);
+                entity.onHit(this.character.stats.attackDmg);
         });
+
     }
 
     destroySwordHitbox() {  

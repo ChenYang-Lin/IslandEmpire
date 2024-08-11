@@ -32,10 +32,11 @@ export default class MainScene extends Phaser.Scene {
    
         // Initialization
         this.worldManager = new WorldManager(this);
+        this.collisionController = new CollisionController(this);
         this.player = new Player(this);
         this.inputController = new InputController(this, this.player);
         this.hud = new HUD(this);
-        this.collisionController = new CollisionController(this, this.player);
+        this.collisionController.init();
         this.worldManager.initWorld();
 
         this.camera = this.cameras.main;
@@ -43,7 +44,7 @@ export default class MainScene extends Phaser.Scene {
         // this.camera.setLerp(0.3, 0.3);
         // this.camera.roundPixels = true;
 
-        // this.goblin = new Goblin(this, 64, 64, "goblin", "goblin");
+        this.goblin = new Goblin(this, 32, 64, "goblin", "goblin", "goblin");
         
     }
 

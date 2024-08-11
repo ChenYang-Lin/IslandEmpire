@@ -1,22 +1,39 @@
 
 
 export default class CollisionController {
-    constructor(scene, player) {
+    constructor(scene) {
         this.scene = scene;
-        this.player = player;
-        this.sensors = player.sensors;
 
         this.timer = 0;
+
+        this.player;
+        this.sensors;
+        this.allyGroup = this.scene.physics.add.group();
+        this.enemyGroup = this.scene.physics.add.group();
+        this.hitboxGroup = this.scene.physics.add.group();
         
 
-        // Collisions and Overlaps
-        this.scene.physics.add.collider(this.player, this.scene.worldManager.landCollidersGroup);
-        this.scene.physics.add.collider(this.player, this.scene.worldManager.resourceCollidersGroup);
-        this.scene.physics.add.collider(this.player, this.scene.worldManager.obstacleCollidersGroup);
         
+    }
+
+    init() {
+        this.sensors = this.player.sensors;
+        // Collisions and Overlaps
+        this.scene.physics.add.collider(
+            [
+                this.allyGroup, 
+                this.enemyGroup,
+            ],
+            [
+                this.scene.worldManager.landCollidersGroup,
+                this.scene.worldManager.resourceCollidersGroup,
+                this.scene.worldManager.obstacleCollidersGroup,
+            ]
+        );
+
+        // this.scene.physics.add.collider([this.heroGroup, this.enemyGroup], [])
 
         this.initPlayerOverlapCollectables();
-        
     }
 
     initPlayerOverlapCollectables() {

@@ -1,9 +1,10 @@
+import Ally from "../entity/Ally.js";
 import Character from "../entity/Character.js";
 import { ENTITY_DATA } from "../GameData.js";
 import Sensors from "./Sensors.js";
 import Stats from "./Stats.js";
 
-export default class Player extends Character {
+export default class Player extends Ally {
     constructor(scene) {
         const entityData = ENTITY_DATA["player"];
         // scene, x, y, name, texture, frame
@@ -20,12 +21,10 @@ export default class Player extends Character {
         this.sensors = new Sensors(this.scene, this);
         this.stats = new Stats(this.scene, this);
 
+        this.scene.collisionController.player = this;
     }
 
-    static preload(scene) {
-        scene.load.atlas("player", "assets/player.png", "assets/player_atlas.json");
-        scene.load.animation("player_anim", "assets/player_anim.json");
-    }
+
 
 
     useItem(itemName) {
