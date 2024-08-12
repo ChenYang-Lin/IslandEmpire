@@ -45,6 +45,17 @@ export default class MainScene extends Phaser.Scene {
         // this.camera.roundPixels = true;
 
         this.goblin = new Goblin(this, 32, 64, "goblin", "goblin", "goblin");
+
+        this.graphics = this.add.graphics()
+        this.pointerOnGridIndicator = new Phaser.Geom.Rectangle(0, 0, 32, 32);
+        this.input.on("pointerdown", (pointer) => {
+
+            this.gridX = Math.floor((pointer.x + this.camera.worldView.x + 16) / 32);
+            this.gridY = Math.floor((pointer.y + this.camera.worldView.y + 16) / 32);
+
+            this.updatePointerOnGridIndicator(this.gridX, this.gridY)
+            this.worldManager.astar.findPath(this.worldManager.map, {tx: this.player.onGrid.x, ty: this.player.onGrid.y}, {tx: this.gridX, ty: this.gridY}, this)
+        })
         
     }
 
@@ -55,9 +66,18 @@ export default class MainScene extends Phaser.Scene {
         this.hud.update();
         this.collisionController.update(time, delta);
 
+
+
+
         this.goblin?.update(time, delta);
     }
 
+    updatePointerOnGridIndicator(gridX, gridY) {
+        this.graphics.clear();
+        this.graphics.lineStyle(2, 0x0000ff);
+        this.pointerOnGridIndicator.setPosition(gridX * 32 - 16, gridY * 32 - 16);
+        this.graphics.strokeRectShape(this.pointerOnGridIndicator);
+    }
 
    
 }
