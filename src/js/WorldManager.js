@@ -1,4 +1,5 @@
 import { ITEM_DATA, MAP_DATA, ENTITY_DATA } from "./GameData.js";
+import { Astar } from "./Pathfinding.js";
 import Crop from "./entity/Crop.js";
 import Resource from "./entity/Resource.js";
 import Structure from "./entity/Structure.js";
@@ -7,6 +8,9 @@ import Structure from "./entity/Structure.js";
 export default class WorldManager {
     constructor(scene) {
         this.scene = scene;
+
+        // Pathfinding
+        this.astar = new Astar();
 
         // Collider Groups
         this.landSpriteGroup = {};
@@ -41,6 +45,7 @@ export default class WorldManager {
                 }
             }
         }
+        
     }
 
     saveMapToLocalStorage() {
@@ -57,10 +62,11 @@ export default class WorldManager {
         let x = gridX * 32;
         let y = gridY * 32;
         entities.forEach((entity) => {
-            if (ENTITY_DATA[entity].category === "resource"){
-                let resource = new Resource(this.scene, x, y, "resource", entity);
+            console.log(entity)
+            if (ENTITY_DATA[entity.name].category === "resource"){
+                let resource = new Resource(this.scene, x, y, "resource", entity.name);
             }
-            if (ENTITY_DATA[entity].category === "structure"){
+            if (ENTITY_DATA[entity.name].category === "structure"){
                 // let entityData = ENTITY_DATA[entity];
                 // let adjustX = 0;
                 // if (entityData.width % 2 === 0) {
@@ -73,7 +79,7 @@ export default class WorldManager {
                 // let x = (gridX - entityData.imageWidth / 2 - entityData.offsetX + entityData.width / 2) * 32 + adjustX; 
                 // let y = (gridY + entityData.imageHeight / 2 - entityData.offsetY - entityData.height / 2) * 32 + adjustY;
                 // this.house = this.scene.add.sprite(x, y, "construction", entity);
-                let structure = new Structure(this.scene, x, y, "construction", entity)
+                let structure = new Structure(this.scene, x, y, "construction", entity.name)
         
             }
         })

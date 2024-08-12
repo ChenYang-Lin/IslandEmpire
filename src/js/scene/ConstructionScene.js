@@ -250,7 +250,7 @@ export default class ConstructionScene extends Phaser.Scene {
             return;
         }
         let structure = this.add.sprite(this.structureSprite.x, this.structureSprite.y, "construction", this.selectedStructure);
-        this.worldManager.map[`${this.setX},${this.setY}`]["entities"] = [this.selectedStructure];
+        this.worldManager.map[`${this.setX},${this.setY}`]["entities"].push({ name: this.selectedStructure });
         this.worldManager.saveMapToLocalStorage();
     }
 
@@ -358,14 +358,14 @@ export default class ConstructionScene extends Phaser.Scene {
         let landSprite;
 
         if (isPlacement) {
-            // add land
+            // Exit add land if land exist on current grid cell;
             if (this.worldManager.map[`${gridX},${gridY}`]?.isLand) 
                 return;
             landSprite = "land_all";
             
         } else {
-            // remove land
-            if (!this.worldManager.map[`${gridX},${gridY}`]?.isLand) 
+            // Exit remove land if land not exist on current grid cell or entity exist on current grid cell
+            if (!this.worldManager.map[`${gridX},${gridY}`]?.isLand || this.worldManager.map[`${gridX},${gridY}`].entities.length > 0) 
                 return;
             landSprite = "land";
         }
@@ -394,7 +394,10 @@ export default class ConstructionScene extends Phaser.Scene {
         if (this.worldManager.map[`${gridX},${gridY}`] !== undefined) {
             this.worldManager.map[`${gridX},${gridY}`].isLand = isLand;
         } else {
-            this.worldManager.map[`${gridX},${gridY}`] = { isLand: isLand};
+            this.worldManager.map[`${gridX},${gridY}`] = { 
+                isLand: isLand,
+                entities: [],
+            };
         }
         this.worldManager.saveMapToLocalStorage();
     }

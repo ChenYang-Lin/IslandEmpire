@@ -153,7 +153,9 @@ const MAP_DATA = {
     "0,0": {
         isLand: true,
         entities: [
-            "tree",
+            {
+                name: "tree",
+            },
         ],
     },
     "0,1": {
@@ -203,7 +205,9 @@ const MAP_DATA = {
     "2,0": {
         isLand: true,
         entities: [
-            "rock",
+            {
+                name: "rock",
+            },
         ],
     },
     "2,1": {
@@ -215,7 +219,9 @@ const MAP_DATA = {
     "2,2": {
         isLand: true,
         entities: [
-            "tree",
+            {
+                name: "tree",
+            },
         ],
     },
     "2,3": {
@@ -245,13 +251,17 @@ const MAP_DATA = {
     "3,3": {
         isLand: true,
         entities: [
-            "bush"
+            {
+                name: "bush",
+            },
         ],
     },
     "-3,3": {
         isLand: true,
         entities: [
-            "bush"
+            {
+                name: "bush",
+            },
         ],
     },
 }
