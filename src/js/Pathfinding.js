@@ -193,25 +193,29 @@ class Astar {
     checkWalkable = function(n, dir) {
         let direction = dir || "";
         let is_walkable = true;
+        let gridCell;
 
         switch(direction.toLowerCase()) {
             case "left":
-                is_walkable = (this.GRID[`${n.tx-1},${n.ty}`] !== undefined && this.isObstacleOnGrid(this.GRID[`${n.tx-1},${n.ty}`]) ) ? false : true;
+                gridCell = this.GRID[`${n.tx-1},${n.ty}`];
                 break;
             case "right":
-                is_walkable = (this.GRID[`${n.tx+1},${n.ty}`] !== undefined && this.isObstacleOnGrid(this.GRID[`${n.tx+1},${n.ty}`]) ) ? false : true;
+                gridCell = this.GRID[`${n.tx+1},${n.ty}`];
                 break;
             case "up":
-                is_walkable = (this.GRID[`${n.tx},${n.ty-1}`] !== undefined && this.isObstacleOnGrid(this.GRID[`${n.tx},${n.ty-1}`]) ) ? false : true;
+                gridCell = this.GRID[`${n.tx},${n.ty-1}`];
                 break;
             case "down":
-                is_walkable = (this.GRID[`${n.tx},${n.ty+1}`] !== undefined && this.isObstacleOnGrid(this.GRID[`${n.tx},${n.ty+1}`]) ) ? false : true;
+                gridCell = this.GRID[`${n.tx},${n.ty+1}`];
                 break;
 
             default:
-                is_walkable = (this.GRID[`${n.tx},${n.ty}`] !== undefined && this.GRID[`${n.tx},${n.ty}`]?.entities) ? false : true;
+                gridCell = this.GRID[`${n.tx},${n.ty}`];
         }
 
+        // console.log(gridCell.isLand)
+        is_walkable = (!gridCell?.isLand || this.isObstacleOnGrid(gridCell) ) ? false : true;
+                
         return is_walkable;
     }
 
