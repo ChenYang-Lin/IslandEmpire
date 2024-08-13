@@ -17,7 +17,7 @@ export default class Goblin extends Enemy {
 
         this.anims.play(`goblin_idle_left`, true);
 
-        this.arriveNextGridCell;
+
     }
 
     getPathToPlayer() {
@@ -59,10 +59,6 @@ export default class Goblin extends Enemy {
         }
     }
 
-    onDeath() {
-        console.log("desth");
-        this.destroy();  
-    }
 
     update(time, delta) {
         // this.timer += delta;
@@ -74,8 +70,11 @@ export default class Goblin extends Enemy {
         // velocity.x += 1 * this.tempDir;
         // velocity.normalize();
 
-        this.moveToPlayer();
+        if (this.destroyed) return;
         
+        
+        
+        this.moveToPlayer();
 
         // this.animationController.swordAttack(); 
         // this.animationController.move(velocity, "left", this)

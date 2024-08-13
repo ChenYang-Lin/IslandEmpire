@@ -30,6 +30,7 @@ export default class Character extends Entity {
         this.anims.play(`goblin_death`, false);  
         this.healthBarBG?.destroy();
         this.healthBar?.destroy();
+        this.destroyed = true;
         this.destroy();  
     }
 
