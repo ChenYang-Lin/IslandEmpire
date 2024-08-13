@@ -48,14 +48,15 @@ export default class MainScene extends Phaser.Scene {
 
         this.graphics = this.add.graphics()
         this.pointerOnGridIndicator = new Phaser.Geom.Rectangle(0, 0, 32, 32);
-        this.input.on("pointerdown", (pointer) => {
 
-            this.gridX = Math.floor((pointer.x + this.camera.worldView.x + 16) / 32);
-            this.gridY = Math.floor((pointer.y + this.camera.worldView.y + 16) / 32);
+        // this.input.on("pointerdown", (pointer) => {
 
-            this.updatePointerOnGridIndicator(this.gridX, this.gridY)
-            this.worldManager.astar.findPath(this.worldManager.map, {tx: this.player.onGrid.x, ty: this.player.onGrid.y}, {tx: this.gridX, ty: this.gridY}, this)
-        })
+        //     this.gridX = Math.floor((pointer.x + this.camera.worldView.x + 16) / 32);
+        //     this.gridY = Math.floor((pointer.y + this.camera.worldView.y + 16) / 32);
+
+        //     this.updatePointerOnGridIndicator(this.gridX, this.gridY)
+        //     this.worldManager.astar.findPath(this.worldManager.map, {tx: this.player.onGrid.x, ty: this.player.onGrid.y}, {tx: this.gridX, ty: this.gridY}, this)
+        // })
         
     }
 
