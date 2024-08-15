@@ -23,9 +23,8 @@ export default class Player extends Ally {
 
         this.scene.collisionController.player = this;
         
-        console.log(this.onGrid.x, )
         let path = this.scene.worldManager.astar.findPath(this.scene.worldManager.map, {tx: this.onGrid.x, ty: this.onGrid.y}, {tx: -2, ty: 0}, this.scene)
-        console.log(path)
+        // console.log(path)
     }
 
 

@@ -13,6 +13,8 @@ import Raft from "./entity/Raft.js";
 export default class MainScene extends Phaser.Scene {
     constructor() {
         super({ key: "MainScene" });
+
+        this.version = "0.2";
     }
 
     preload() {
@@ -30,6 +32,7 @@ export default class MainScene extends Phaser.Scene {
     }
 
     create() {
+        this.checkVersion();
    
         // Initialization
         this.worldManager = new WorldManager(this);
@@ -61,6 +64,24 @@ export default class MainScene extends Phaser.Scene {
         this.raft = new Raft(this, 0, 500, "raft", "raft", "raft_move_down_0");
     }
 
+
+    updatePointerOnGridIndicator(gridX, gridY) {
+        this.graphics.clear();
+        this.graphics.lineStyle(2, 0x0000ff);
+        this.pointerOnGridIndicator.setPosition(gridX * 32 - 16, gridY * 32 - 16);
+        this.graphics.strokeRectShape(this.pointerOnGridIndicator);
+    }
+
+    checkVersion() {
+        let storageVersion = JSON.parse(localStorage.getItem("version"));
+        if (this.version !== storageVersion) {
+            if (confirm("New Version Detected: click OK to update")) {
+                localStorage.clear();
+                localStorage.setItem("version", JSON.stringify(this.version));
+            }
+        }
+    }
+
     update(time, delta) {
         this.player.update(time, delta);
         this.worldManager.update();
@@ -71,16 +92,7 @@ export default class MainScene extends Phaser.Scene {
 
 
 
-        this.goblin?.update(time, delta);
         this.raft?.update(time, delta);
     }
-
-    updatePointerOnGridIndicator(gridX, gridY) {
-        this.graphics.clear();
-        this.graphics.lineStyle(2, 0x0000ff);
-        this.pointerOnGridIndicator.setPosition(gridX * 32 - 16, gridY * 32 - 16);
-        this.graphics.strokeRectShape(this.pointerOnGridIndicator);
-    }
-
    
 }
