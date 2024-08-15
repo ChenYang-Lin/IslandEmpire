@@ -1,0 +1,100 @@
+{
+    "anims": [
+        {
+            "key": "raft_move_left",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "raft",
+                    "frame": "raft_move_left_0"
+                },
+                {
+                    "key": "raft",
+                    "frame": "raft_move_left_1"
+                },
+                {
+                    "key": "raft",
+                    "frame": "raft_move_left_2"
+                },
+                {
+                    "key": "raft",
+                    "frame": "raft_move_left_3"
+                }
+            ]
+        },
+        {
+            "key": "raft_move_right",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "raft",
+                    "frame": "raft_move_right_0"
+                },
+                {
+                    "key": "raft",
+                    "frame": "raft_move_right_1"
+                },
+                {
+                    "key": "raft",
+                    "frame": "raft_move_right_2"
+                },
+                {
+                    "key": "raft",
+                    "frame": "raft_move_right_3"
+                }
+            ]
+        },
+        {
+            "key": "raft_move_down",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "raft",
+                    "frame": "raft_move_down_0"
+                },
+                {
+                    "key": "raft",
+                    "frame": "raft_move_down_1"
+                },
+                {
+                    "key": "raft",
+                    "frame": "raft_move_down_2"
+                },
+                {
+                    "key": "raft",
+                    "frame": "raft_move_down_3"
+                }
+            ]
+        },
+        {
+            "key": "raft_move_up",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "raft",
+                    "frame": "raft_move_up_0"
+                },
+                {
+                    "key": "raft",
+                    "frame": "raft_move_up_1"
+                },
+                {
+                    "key": "raft",
+                    "frame": "raft_move_up_2"
+                },
+                {
+                    "key": "raft",
+                    "frame": "raft_move_up_3"
+                }
+            ]
+        }
+    ]
+}

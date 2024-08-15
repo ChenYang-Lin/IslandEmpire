@@ -66,6 +66,15 @@ const ENTITY_DATA = {
         hpBarOffsetY: 48,
     },
 
+    raft: {
+        imageWidth: 5,
+        imageHeight: 5,
+        colliderWidth: 1,
+        colliderHeight: 1,
+        offsetX: 2,
+        offsetY: 2,
+    },  
+
     "house": {
         category: "structure",
         imageWidth: 5,

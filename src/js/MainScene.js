@@ -7,6 +7,7 @@ import Crop from "./entity/Crop.js";
 import Goblin from "./entity/Goblin.js";
 import Entity from "./entity/Entity.js";
 import CollisionController from "./CollisionController.js";
+import Raft from "./entity/Raft.js";
 
 
 export default class MainScene extends Phaser.Scene {
@@ -58,6 +59,7 @@ export default class MainScene extends Phaser.Scene {
         //     this.worldManager.astar.findPath(this.worldManager.map, {tx: this.player.onGrid.x, ty: this.player.onGrid.y}, {tx: this.gridX, ty: this.gridY}, this)
         // })
         
+        this.raft = new Raft(this, 0, 500, "raft", "raft", "raft_move_down_0");
     }
 
     update(time, delta) {
@@ -71,6 +73,7 @@ export default class MainScene extends Phaser.Scene {
 
 
         this.goblin?.update(time, delta);
+        this.raft?.update(time, delta);
     }
 
     updatePointerOnGridIndicator(gridX, gridY) {

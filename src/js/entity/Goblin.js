@@ -21,7 +21,7 @@ export default class Goblin extends Enemy {
     }
 
     getPathToPlayer() {
-        console.log(this)
+        // console.log(this)
         return this.scene.worldManager.astar.findPath(
             this.scene.worldManager.map, 
             {tx: this.onGrid.x, ty: this.onGrid.y}, 
@@ -34,7 +34,7 @@ export default class Goblin extends Enemy {
         let velocity = new Phaser.Math.Vector2();
         if (this.pathToPlayer?.length > 0) {
             this.nextGridCell = this.pathToPlayer[0];
-            console.log(this.position.y, this.nextGridCell.ty*32)
+            // consols.log(this.position.y, this.nextGridCell.ty*32)
             if (this.position.x < this.nextGridCell.tx*32-4) {
                 velocity.x = 1;
                 this.direction = "right";
@@ -54,7 +54,7 @@ export default class Goblin extends Enemy {
             this.animationController.move(velocity, this.direction, this);
             
         } else {
-            console.log("finding path")
+            // console.log("finding path")
             this.pathToPlayer = this.getPathToPlayer();
         }
     }
