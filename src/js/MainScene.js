@@ -45,7 +45,6 @@ export default class MainScene extends Phaser.Scene {
         // this.camera.setLerp(0.3, 0.3);
         // this.camera.roundPixels = true;
 
-        this.goblin = new Goblin(this, 32, 64, "goblin", "goblin", "goblin");
 
         this.graphics = this.add.graphics()
         this.pointerOnGridIndicator = new Phaser.Geom.Rectangle(0, 0, 32, 32);

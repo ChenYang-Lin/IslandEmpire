@@ -9,7 +9,7 @@ export default class Character extends Entity {
 
         this.isAlly = isAlly;
         this.direction = "left"
-        this.speed = 96;
+        this.speed = 64;
         this.swordLength = 32;
         
         this.animationController = new AnimationController(this.scene, this);

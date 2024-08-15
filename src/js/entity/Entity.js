@@ -37,8 +37,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         }
         
 
-        this.x = x + (-this.imageWidth / 2 + this.offsetX + this.colliderWidth / 2) * 32 + this.adjustX; 
-        this.y = y + (this.imageHeight / 2 - this.offsetY - this.colliderHeight / 2) * 32 + this.adjustY;
+        this.setPosition(x, y);
         
         this.setSize(this.colliderWidth * 32, this.colliderHeight * 32);
         this.setOffset(this.offsetX * 32, this.offsetY * 32);
@@ -58,6 +57,11 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
 
         scene.load.atlas("raft", "assets/entity/raft.png", "assets/entity/raft_atlas.json")
         scene.load.animation("raft_anim", "assets/entity/raft_anim.json");
+    }
+
+    setPosition(x, y) {
+        this.x = x + (-this.imageWidth / 2 + this.offsetX + this.colliderWidth / 2) * 32 + this.adjustX; 
+        this.y = y + (this.imageHeight / 2 - this.offsetY - this.colliderHeight / 2) * 32 + this.adjustY;
     }
 
     get position() {

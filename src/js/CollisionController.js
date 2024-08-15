@@ -22,7 +22,6 @@ export default class CollisionController {
         this.scene.physics.add.collider(
             [
                 this.allyGroup, 
-                this.enemyGroup,
             ],
             [
                 this.scene.worldManager.landCollidersGroup,

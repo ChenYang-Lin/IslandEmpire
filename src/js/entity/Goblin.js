@@ -8,11 +8,14 @@ export default class Goblin extends Enemy {
         // scene, x, y, name, texture, frame
         super(scene, x, y, "goblin", "goblin", "goblin_idle_left", entityData);
 
-        this.speed = 96;
+        this.speed = 32;
         this.swordLength = 16;
 
         this.timer = 0;
         this.tempDir = 1;
+        this.action = "rest";
+        this.moveToLandX = 0;
+        this.moveToLandY = 0;
         
 
         this.anims.play(`goblin_idle_left`, true);
@@ -59,6 +62,18 @@ export default class Goblin extends Enemy {
         }
     }
 
+    moveToLand() {
+        let velocity = new Phaser.Math.Vector2();
+        if (this.onGrid.x === this.moveToLandX && this.onGrid.y === this.moveToLandY) {
+            console.log(this.onGrid.y, this.moveToLandY )   
+            this.action = "moveToPlayer";
+            this.animationController.move(velocity, "up", this);
+            return;
+        }
+        velocity.y = -1;
+        this.animationController.move(velocity, "up", this);
+    }
+
 
     update(time, delta) {
         // this.timer += delta;
@@ -71,10 +86,20 @@ export default class Goblin extends Enemy {
         // velocity.normalize();
 
         if (this.destroyed) return;
+
+        switch (this.action) {
+            case "rest":
+                break;
+            case "moveToPlayer":
+                this.moveToPlayer();
+                break;
+            case "moveToLand":
+                this.moveToLand();
+                break;
+            default:
+        }
         
         
-        
-        this.moveToPlayer();
 
         // this.animationController.swordAttack(); 
         // this.animationController.move(velocity, "left", this)
