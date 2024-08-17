@@ -42,7 +42,6 @@ export default class HUD {
             this.showConstructionSceneUIs();
             this.scene.scene.start("ConstructionScene");
         })
-        this.windowSizeSynchronization();
         this.setActionButton();
         this.showMainSceneUIs();
 
@@ -53,6 +52,9 @@ export default class HUD {
         
         // this.showConstructionSceneUIs();
         // this.scene.scene.start("ConstructionScene");
+
+        
+        this.windowSizeSynchronization();
     }
 
 
@@ -62,9 +64,23 @@ export default class HUD {
         this.closeHUD();
 
         setTimeout(() => {    
+            this.openHUD();
             hud.style.width = window.getComputedStyle(islandEmpire).width;
             hud.style.height = window.getComputedStyle(islandEmpire).height;
-            this.openHUD();
+
+            // Spinner 
+            let size;
+            if (hud.offsetHeight < hud.offsetWidth) {
+                size = hud.offsetHeight;
+            } else {
+                size = hud.offsetWidth;
+            }
+            console.log(size)
+            console.log(hud.offsetHeight, hud.offsetWidth)
+            let scale = size / 500;
+            scale *= 0.8
+            spinner.style.transform = `scale(${scale})`;
+
         }, 50);
     }
 
