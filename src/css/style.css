@@ -448,6 +448,7 @@ body {
     border: 15px solid #dde;
     overflow: hidden;
     transform: scale(0.7);
+    /* transition: 5s; */
 }
 
 .spinner-piece {
@@ -517,14 +518,10 @@ body {
     width: 20px;
     height: 30px;
     background-color: white;
+    pointer-events: none;
     z-index: 100;
 }
 
-#arrow::before {
-    /* content: '\2191'; */
-    /* content: '\1F817';
-    font-size: 50px; */
-}
 
 #spin-btn {
     position: absolute;
@@ -538,4 +535,7 @@ body {
     width: 50px;
     height: 50px;
     outline: none;
+    background-color: blue;
+    pointer-events: auto;
+    cursor: pointer;
 }

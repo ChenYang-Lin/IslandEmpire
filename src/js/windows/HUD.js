@@ -19,6 +19,12 @@ export default class HUD {
         this.exitUI = document.getElementById("exit-ui");
         this.constructionContainer = document.getElementById("construction-container");
         this.initHUD();
+
+        this.spinnerScale = 1;
+        this.spinnerDegree = 0;
+        this.spinnerAcceleration = 0;
+        this.spinnerLooper;
+        this.isSpinning = false;
     }
 
     initHUD() {
@@ -55,7 +61,33 @@ export default class HUD {
 
         
         this.windowSizeSynchronization();
+
+        let spinBtn = document.getElementById("spin-btn");
+        let spinner = document.getElementById("spinner");
+        console.log(this.number)
+        spinBtn.addEventListener("click", () => {
+            if (this.isSpinning) 
+                return;
+            this.spinnerAcceleration = 0;
+            this.spinnerDegree = 0;
+            this.spinnerLooper = setInterval(() => {
+                this.isSpinning = true;
+                spinner.style.transform = `rotate(${this.spinnerDegree}deg) scale(${this.spinnerScale})`
+                spinner.style.borderColor = `blue`;
+                if (this.spinnerAcceleration < 15) 
+                    this.spinnerAcceleration += 0.1;
+                this.spinnerDegree += this.spinnerAcceleration;
+                if(this.spinnerDegree > 359) {
+                    this.spinnerDegree = 0;
+                }
+            }, 20);
+            setTimeout(() => {
+                clearInterval(this.spinnerLooper);
+                this.isSpinning = false; 
+            }, 5000)
+        })
     }
+
 
 
     windowSizeSynchronization() {
@@ -75,11 +107,9 @@ export default class HUD {
             } else {
                 size = hud.offsetWidth;
             }
-            console.log(size)
-            console.log(hud.offsetHeight, hud.offsetWidth)
-            let scale = size / 500;
-            scale *= 0.8
-            spinner.style.transform = `scale(${scale})`;
+            this.spinnerScale = size / 500;
+            this.spinnerScale *= 0.8
+            spinner.style.transform = `scale(${this.spinnerScale})`;
 
         }, 50);
     }
