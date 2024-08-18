@@ -1,6 +1,7 @@
 
 import { ITEM_DATA } from "../GameData.js";
 import Shop from "./Shop.js";
+import Wish from "./Wish.js";
 import Inventory from "./inventory/Inventory.js";
 
 export default class HUD {
@@ -20,11 +21,6 @@ export default class HUD {
         this.constructionContainer = document.getElementById("construction-container");
         this.initHUD();
 
-        this.spinnerScale = 1;
-        this.spinnerDegree = 0;
-        this.spinnerAcceleration = 0;
-        this.spinnerLooper;
-        this.isSpinning = false;
     }
 
     initHUD() {
@@ -33,6 +29,7 @@ export default class HUD {
 
         this.inventory = new Inventory(this.scene, this);
         this.shop = new Shop(this.scene, this);
+        this.wish = new Wish(this.scene, this);
 
         this.scene.player.stats.renderStatsDisplay();
 
@@ -62,30 +59,7 @@ export default class HUD {
         
         this.windowSizeSynchronization();
 
-        let spinBtn = document.getElementById("spin-btn");
-        let spinner = document.getElementById("spinner");
-        console.log(this.number)
-        spinBtn.addEventListener("click", () => {
-            if (this.isSpinning) 
-                return;
-            this.spinnerAcceleration = 0;
-            this.spinnerDegree = 0;
-            this.spinnerLooper = setInterval(() => {
-                this.isSpinning = true;
-                spinner.style.transform = `rotate(${this.spinnerDegree}deg) scale(${this.spinnerScale})`
-                spinner.style.borderColor = `blue`;
-                if (this.spinnerAcceleration < 15) 
-                    this.spinnerAcceleration += 0.1;
-                this.spinnerDegree += this.spinnerAcceleration;
-                if(this.spinnerDegree > 359) {
-                    this.spinnerDegree = 0;
-                }
-            }, 20);
-            setTimeout(() => {
-                clearInterval(this.spinnerLooper);
-                this.isSpinning = false; 
-            }, 5000)
-        })
+
     }
 
 
@@ -97,19 +71,10 @@ export default class HUD {
 
         setTimeout(() => {    
             this.openHUD();
-            hud.style.width = window.getComputedStyle(islandEmpire).width;
-            hud.style.height = window.getComputedStyle(islandEmpire).height;
+            // hud.style.width = window.getComputedStyle(islandEmpire).width;
+            // hud.style.height = window.getComputedStyle(islandEmpire).height;
 
-            // Spinner 
-            let size;
-            if (hud.offsetHeight < hud.offsetWidth) {
-                size = hud.offsetHeight;
-            } else {
-                size = hud.offsetWidth;
-            }
-            this.spinnerScale = size / 500;
-            this.spinnerScale *= 0.8
-            spinner.style.transform = `scale(${this.spinnerScale})`;
+            this.wish.resize();
 
         }, 50);
     }
