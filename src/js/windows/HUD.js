@@ -15,6 +15,7 @@ export default class HUD {
 
         // UIs
         this.shopUI = document.getElementById("shop-ui");
+        this.wishUI = document.getElementById("wish-ui");
         this.inventoryUI = document.getElementById("inventory-ui");
         this.constructionUI = document.getElementById("construction-ui");
         this.exitUI = document.getElementById("exit-ui");
@@ -35,6 +36,10 @@ export default class HUD {
 
         this.shopUI.addEventListener("pointerdown", () => {
             this.shop.openWindow();
+        })
+
+        this.wishUI.addEventListener("pointerdown", () => {
+            this.wish.openWindow();
         })
 
         this.inventoryUI.addEventListener("pointerdown", () => {

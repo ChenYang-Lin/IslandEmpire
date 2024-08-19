@@ -1,0 +1,287 @@
+
+#wish-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #0000006b;
+    pointer-events: auto;
+    display: none;
+}
+
+
+
+/* Banner  */
+#banner-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#banner-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-image: url(../assets/wish/wish-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;   
+}
+
+/* Banner Sidebar */
+#banner-sidebar {
+    width: 20%;
+    background-color: rgba(0, 0, 0, 0.582);
+    border-right: 1px solid rgba(255, 255, 255, 0.651);
+    display: flex;
+    flex-direction: column;
+}
+
+#banner-tag {
+    position: relative;
+    height: 80px;
+}
+
+#banner-text {
+    position: absolute;
+    left: 20%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    font-weight: 600;
+    color: white;
+}
+
+#banner-choice-container {
+    /* background-color: white; */
+}
+
+.banner-choice-item {
+    margin: 10px;
+    margin-left: 15%;
+    padding: 15px;
+    width: 60%;
+    font-weight: 600;
+    text-align: center;
+    align-items: center;
+    border: white solid 2px;
+    color: rgb(230, 230, 230);
+    cursor: pointer;
+    background-color: rgb(51, 50, 50);
+}
+
+.banner-selected {
+    width: 80%;
+    margin-left: 10%;
+    padding: 20px;
+    color: rgb(51, 50, 50);
+    background-color: rgb(230, 230, 230);
+}
+
+/* Banner Body */
+#banner-body {
+    position: relative;
+    width: 80%;
+    background-color: rgba(0, 0, 0, 0.404);
+}
+
+#banner-header {
+    position: relative;
+    width: 100%;
+    height: 10%;
+}
+
+#banner-currency {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 10%;
+    display: flex;
+    color: white;
+}
+
+#banner-exit-btn {
+    position: absolute;
+    right: 0;
+    transform: scale(0.5);
+    height: 100%;
+    aspect-ratio: 1;
+    color: white;
+    image-rendering: auto;
+    transition: 0.1s;
+    cursor: pointer;
+}
+#banner-exit-btn:hover {
+    transform: scale(0.6);
+}
+
+/* Banner Footer */
+#banner-footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 10%;
+    width: 100%;
+    display: flex;
+    /* background-color: blue; */
+}
+
+#banner-helpers {
+    width: 50%;
+    /* background-color: green; */
+}
+
+#banner-wish-btns {
+    width: 50%;
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#banner-wish-btns:hover {
+    cursor: pointer;
+}
+
+.wish-btn {
+    position: relative;
+    width: 80%;
+    height: 80%;
+    background-color: rgb(243, 243, 243);
+    margin: 10px;
+    pointer-events: auto;
+}
+
+.wish-btn-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    font-weight: 600;
+    color: rgb(31, 31, 31);
+}
+
+/* Spinner */
+#spinner-container {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-image: url(../assets/wish/wish-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;   
+}
+
+#spinner-body {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-sizing: border-box;
+    /* background-color: red; */
+}
+
+#spinner {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background-color: #ccc;
+    border-radius: 50%;
+    border: 15px solid #dde;
+    overflow: hidden;
+    transform: scale(0.7);
+    /* transition: 5s; */
+}
+
+.spinner-piece {
+    height: 50%;
+    width: 200px;
+    position: absolute;
+    clip-path: polygon(100% 0, 50% 100%, 0 0);
+    transform: translateX(-50);
+    transform-origin: bottom;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    left: 135px;
+}
+
+.one {
+    background-color: #3f51b5;
+    transform: rotate(0deg);
+}
+
+.two {
+    background-color: #ff9800;
+    transform: rotate(45deg);
+}
+
+.three {
+    background-color: #4caf50;
+    transform: rotate(90deg);
+}
+
+.four {
+    background-color: #009688;
+    transform: rotate(135deg);
+}
+
+.five {
+    background-color: #795548;
+    transform: rotate(180deg);
+}
+
+.six {
+    background-color: #341d88;
+    transform: rotate(225deg);
+}
+
+.seven {
+    background-color: #711aa3;
+    transform: rotate(270deg);
+}
+
+.eight {
+    background-color: #e91e63;
+    transform: rotate(315deg);
+}
+
+#arrow {
+    position: absolute;
+    top: calc(50% + 30px);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    clip-path: polygon(100% 0, 50% 100%, 0 0);
+    width: 20px;
+    height: 30px;
+    background-color: white;
+    pointer-events: none;
+    z-index: 100;
+}
+
+
+#spin-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background-color: #fff;
+    border: 8px solid #fff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    outline: none;
+    background-color: rgb(255, 255, 255);
+    pointer-events: auto;
+    cursor: pointer;
+}

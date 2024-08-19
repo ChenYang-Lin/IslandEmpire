@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/panel.css">
     <link rel="stylesheet" href="css/stats.css">
     <link rel="stylesheet" href="css/construct.css">
+    <link rel="stylesheet" href="css/wish.css">
     
     <script src="js/utils/phaser.min.js"></script>
 
@@ -127,10 +128,11 @@
         </div>
         <!-- UIs -->
         <div class="ui-container">
-            <button id="shop-ui" class="ui-btn"><img src="assets/icons/shop.png" alt="" class="ui-img"></button>
-            <button id="inventory-ui" class="ui-btn"><img src="assets/icons/inventory.png" alt="" class="ui-img"></button>
-            <button id="construction-ui" class="ui-btn"><img src="assets/icons/construction.png" alt="" class="ui-img"></button>
-            <button id="exit-ui" class="ui-btn"><img src="assets/icons/exit.png" alt="" class="ui-img"></button>
+            <button id="shop-ui" class="ui-btn"><img src="assets/icons/hud/shop.png" alt="" class="ui-img"></button>
+            <button id="wish-ui" class="ui-btn"><img src="assets/icons/hud/wish.png" alt="" class="ui-img"></button>
+            <button id="inventory-ui" class="ui-btn"><img src="assets/icons/hud/inventory.png" alt="" class="ui-img"></button>
+            <button id="construction-ui" class="ui-btn"><img src="assets/icons/hud/construction.png" alt="" class="ui-img"></button>
+            <button id="exit-ui" class="ui-btn"><img src="assets/icons/hud/exit.png" alt="" class="ui-img"></button>
         </div>
         <!-- <button id="install-ui">Install</button> -->
         <!-- Inventory -->
@@ -145,7 +147,7 @@
                     <img id="inventory-category-farming" class="panel-category-element" src="assets/icons/panel/farming-icon-light.png" data-category="farming" ></img>
                     <img id="inventory-category-construction" class="panel-category-element" src="assets/icons/panel/construction-icon-light.png" data-category="construction" ></img>
                 </div>
-                <img src="assets//icons/panel/exit-btn.png" id="inventory-exit-btn" class="panel-exit-btn"></img>
+                <img src="assets/icons/panel/exit-btn.png" id="inventory-exit-btn" class="panel-exit-btn"></img>
             </div>
             <div id="inventory-body" class="panel-body">
                 <div id="inventory-list" class="panel-list"></div>
@@ -213,30 +215,67 @@
             </div>
         </div>
 
-        <!-- Spinner Container -->
-         <div id="spinner-container">
-            <div id="spinner-body">
-                <button id="spin-btn"></button>
-                <div id="arrow"></div>
-                <div id="spinner">
-                    <div class="spinner-piece one">1</div>
-                    <div class="spinner-piece two">2</div>
-                    <div class="spinner-piece three">3</div>
-                    <div class="spinner-piece four">4</div>
-                    <div class="spinner-piece five">5</div>
-                    <div class="spinner-piece six">6</div>
-                    <div class="spinner-piece seven">7</div>
-                    <div class="spinner-piece eight">8</div>
+        <!-- Wish Container -->
+         <div id="wish-container">
+            <!-- Banner -->
+            <div id="banner-container">
+                <div id="banner-wrapper">
+                    <div id="banner-sidebar">
+                        <div id="banner-tag">
+                            <div id="banner-text">Wish</div>
+                        </div>
+                        <div id="banner-choice-container">
+                            <div id="banner-novice" class="banner-choice-item banner-selected">Novice</div>
+                            <div id="banner-standard" class="banner-choice-item">Standard</div>
+                        </div>
+                    </div>
+                    <div id="banner-body">
+                        <div id="banner-header">
+                            <div id="banner-currency">
+                                <div id="banner-event-ball">Standard: x2</div>
+                                <div id="banner-standard-ball">Event: x4</div>
+                            </div>
+                            <img src="assets/icons/panel/exit-btn.png" id="banner-exit-btn"></img>
+                        </div>
+                        <div id="banner-descriptions"></div>
+                        <div id="banner-footer">
+                            <div id="banner-helpers"></div>
+                            <div id="banner-wish-btns">
+                                <div id="wish-one-btn" class="wish-btn"><div class="wish-btn-text">wish x1</div></div>
+                                <div id="wish-ten-btn" class="wish-btn"><div class="wish-btn-text">wish x10</div></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-         </div>
+            <!-- End Banner -->
+            <!-- Spinner -->
+            <div id="spinner-container">
+                <div id="spinner-body">
+                    <button id="spin-btn"></button>
+                    <div id="arrow"></div>
+                    <div id="spinner">
+                        <div class="spinner-piece one">1</div>
+                        <div class="spinner-piece two">2</div>
+                        <div class="spinner-piece three">3</div>
+                        <div class="spinner-piece four">4</div>
+                        <div class="spinner-piece five">5</div>
+                        <div class="spinner-piece six">6</div>
+                        <div class="spinner-piece seven">7</div>
+                        <div class="spinner-piece eight">8</div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Spinner -->
+        </div>
+
 
         
         <!-- Item Switch Panel -->
         <div id="item-switch-panel" class="panel-container">
             <div class="panel-header">
                 <div class="panel-tag">Switch Item</div>
-                <img src="assets//icons/panel/exit-btn.png" id="item-switch-exit-btn" class="panel-exit-btn"></img>
+                <img src="assets/icons/panel/exit-btn.png" id="item-switch-exit-btn" class="panel-exit-btn"></img>
             </div>
             <div id="item-switch-list" class="panel-body">
             </div>
