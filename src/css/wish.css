@@ -6,6 +6,7 @@
     background-color: #0000006b;
     pointer-events: auto;
     display: none;
+    /* display: block; */
 }
 
 
@@ -154,8 +155,8 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    font-size: 30px;
-    font-weight: 600;
+    font-size: calc(1.2vw + 1.2vh);
+    /* font-size: 100%; */
     color: rgb(31, 31, 31);
 }
 
@@ -169,7 +170,7 @@
     top: 0;
     background-image: url(../assets/wish/wish-bg.jpg);
     background-repeat: no-repeat;
-    background-size: cover;   
+    background-size: cover;  
 }
 
 #spinner-body {
@@ -183,7 +184,7 @@
     justify-content: center;
     overflow: hidden;
     box-sizing: border-box;
-    /* background-color: red; */
+    transition: 2s;
 }
 
 #spinner {
@@ -213,6 +214,14 @@
     font-weight: bold;
     color: #fff;
     left: 135px;
+    transition: 2s;
+}
+
+.spinner-piece-icon {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .one {
@@ -255,6 +264,18 @@
     transform: rotate(315deg);
 }
 
+.spinner-piece-blue {
+    background-color: blue;
+}
+
+.spinner-piece-purple {
+    background-color: purple;
+}
+
+.spinner-piece-gold {
+    background-color: gold;
+}
+
 #arrow {
     position: absolute;
     top: calc(50% + 30px);
@@ -263,7 +284,7 @@
     clip-path: polygon(100% 0, 50% 100%, 0 0);
     width: 20px;
     height: 30px;
-    background-color: white;
+    background-color: #ffffff;
     pointer-events: none;
     z-index: 100;
 }
@@ -275,13 +296,12 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
-    background-color: #fff;
     border: 8px solid #fff;
     border-radius: 50%;
     width: 50px;
     height: 50px;
     outline: none;
-    background-color: rgb(255, 255, 255);
+    background-color: #ffffff;
     pointer-events: auto;
     cursor: pointer;
 }
