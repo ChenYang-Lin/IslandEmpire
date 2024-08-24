@@ -36,7 +36,6 @@ export default class Reward {
         this.rewardItemsContainer.innerHTML = "";
 
         itemList.forEach((item) => {
-            this.hud.inventory.addItem(item.name, item.quantity);
 
             let rewardItem = document.createElement("div");
             rewardItem.classList.add("reward-item");

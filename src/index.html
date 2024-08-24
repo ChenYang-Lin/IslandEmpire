@@ -31,269 +31,284 @@
     </div>
     
     <div id="hud">
-        <!-- FPS -->
-        <div id="fps"></div>
-        <!-- HUD Footer -->
-        <div id="hud-footer">
-            <!-- Joy Stick -->
-            <div id="joy-stick-wrapper">
-            </div>
+        <div id="hud-wrapper">
+                
+            <!-- FPS -->
+            <div id="fps"></div>
+            <!-- HUD Footer -->
+            <div id="hud-footer">
+                <!-- Joy Stick -->
+                <div id="joy-stick-wrapper">
+                </div>
 
-            <!-- Player Stats -->
-            <div id="stats-container">
-                <div id="hunger-thirst-container">
-                    <div id="hunger-bar-container">
-                        <img src="assets/icons/stats/hunger.png" alt="" id="hunger-bar-icon">
-                        <div id="hunger-bar">
+                <!-- Player Stats -->
+                <div id="stats-container">
+                    <div id="hunger-thirst-container">
+                        <div id="hunger-bar-container">
+                            <img src="assets/icons/stats/hunger.png" alt="" id="hunger-bar-icon">
+                            <div id="hunger-bar">
+                                <div class="bar-background"></div>
+                                <div class="bar-foreground">
+                                    <div id="hunger-bar-current"></div>
+                                </div>
+                                <div id="hunger-bar-value" class="bar-value">100/100</div>
+                            </div>
+                        </div>
+                        <div id="thirst-bar-container">
+                            <img src="assets/icons/stats/thirst.png" alt="" id="thirst-bar-icon">
+                            <div id="thirst-bar">
+                                <div class="bar-background"></div>
+                                <div class="bar-foreground">
+                                    <div id="thirst-bar-current"></div>
+                                </div>
+                                <div id="thirst-bar-value" class="bar-value">100/100</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="health-bar-container">
+                        <!-- <img src="assets/icons/stats/health.png" alt="" id="health-bar-icon"> -->
+                        <div id="health-bar">
                             <div class="bar-background"></div>
                             <div class="bar-foreground">
-                                <div id="hunger-bar-current"></div>
+                                <div id="health-bar-current"></div>
                             </div>
-                            <div id="hunger-bar-value" class="bar-value">100/100</div>
+                            <div id="health-bar-value" class="bar-value">100/100</div>
                         </div>
                     </div>
-                    <div id="thirst-bar-container">
-                        <img src="assets/icons/stats/thirst.png" alt="" id="thirst-bar-icon">
-                        <div id="thirst-bar">
-                            <div class="bar-background"></div>
-                            <div class="bar-foreground">
-                                <div id="thirst-bar-current"></div>
+                </div>
+                <!-- Action Buttons Container -->
+                <div id="action-buttons-container">
+                    <div id="col-1-btn-container">
+                        <div class="button-container">
+                            <div class="action-btn-wrapper" id="consumable-btn">
+                                <img src="" alt="" id="consumable-btn-img" class="action-btn-img img-rendering-pixelated">
                             </div>
-                            <div id="thirst-bar-value" class="bar-value">100/100</div>
+                            <img src="./assets/icons/switch-btn.png" id="consumable-btn-switcher" class="btn-switcher"></img>
                         </div>
                     </div>
-                </div>
-                <div id="health-bar-container">
-                    <!-- <img src="assets/icons/stats/health.png" alt="" id="health-bar-icon"> -->
-                    <div id="health-bar">
-                        <div class="bar-background"></div>
-                        <div class="bar-foreground">
-                            <div id="health-bar-current"></div>
-                        </div>
-                        <div id="health-bar-value" class="bar-value">100/100</div>
-                    </div>
-                </div>
-            </div>
-            <!-- Action Buttons Container -->
-            <div id="action-buttons-container">
-                <div id="col-1-btn-container">
-                    <div class="button-container">
-                        <div class="action-btn-wrapper" id="consumable-btn">
-                            <img src="" alt="" id="consumable-btn-img" class="action-btn-img img-rendering-pixelated">
-                        </div>
-                        <img src="./assets/icons/switch-btn.png" id="consumable-btn-switcher" class="btn-switcher"></img>
-                    </div>
-                </div>
-                <div id="col-2-btn-container">
+                    <div id="col-2-btn-container">
 
-                </div>
-                <div id="col-3-btn-container">
-                    <div class="action-btn-wrapper" id="attack-btn">
-                        <img src="./assets/icons/control/attack-btn-icon.png" alt="" id="attack-btn-img" class="action-btn-img">
                     </div>
-                </div>
-                <div id="col-4-btn-container">
-                    <div class="button-container">
-                        <div class="action-btn-wrapper" id="farming-btn">
-                            <img src="" alt="" id="farming-btn-img" class="action-btn-img img-rendering-pixelated">
-                        </div>
-                        <img src="./assets/icons/switch-btn.png" id="farming-btn-switcher" class="btn-switcher"></img>
-                    </div>
-                    <div class="action-btn-wrapper" id="dash-btn">
-                        <img src="./assets/icons/control/dash-btn-icon.png" alt="" id="dash-btn-img" class="action-btn-img">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Inventory Slots-->
-        <!-- <div id="inventory-slots-container">
-        </div> -->
-
-        <!-- Collectables -->
-        <div id="collectables-container">
-            <!-- <button class="collectable-btn">
-                <img src="" alt="" class="collectable-img">
-                <div class="collectable-name">Wood</div>
-            </button> -->
-        </div>
-        <!-- Player Status -->
-        <div id="player-status-container">
-            <div id="hp-mp-container">
-                <div id="hp-container">
-                    
-                </div>
-            </div>
-        </div>
-        <!-- UIs -->
-        <div class="ui-container">
-            <button id="shop-ui" class="ui-btn"><img src="assets/icons/hud/shop.png" alt="" class="ui-img"></button>
-            <button id="wish-ui" class="ui-btn"><img src="assets/icons/hud/wish.png" alt="" class="ui-img"></button>
-            <button id="inventory-ui" class="ui-btn"><img src="assets/icons/hud/inventory.png" alt="" class="ui-img"></button>
-            <button id="construction-ui" class="ui-btn"><img src="assets/icons/hud/construction.png" alt="" class="ui-img"></button>
-            <button id="exit-ui" class="ui-btn"><img src="assets/icons/hud/exit.png" alt="" class="ui-img"></button>
-        </div>
-        <!-- <button id="install-ui">Install</button> -->
-        <!-- Inventory -->
-        
-        <div id="inventory-container" class="panel-container">
-            <div id="inventory-header" class="panel-header">
-                <div id="inventory-tag" class="panel-tag">Inventory</div>
-                <div id="inventory-category-container" class="panel-category-container">
-                    <img id="inventory-category-weapon" class="panel-category-element" src="assets/icons/panel/weapon-icon-light.png" data-category="weapon" ></img>
-                    <img id="inventory-category-material" class="panel-category-element" src="assets/icons/panel/material-icon-light.png" data-category="material" ></img>
-                    <img id="inventory-category-consumable" class="panel-category-element" src="assets/icons/panel/consumable-icon-light.png" data-category="consumable" ></img>
-                    <img id="inventory-category-farming" class="panel-category-element" src="assets/icons/panel/farming-icon-light.png" data-category="farming" ></img>
-                    <img id="inventory-category-construction" class="panel-category-element" src="assets/icons/panel/construction-icon-light.png" data-category="construction" ></img>
-                </div>
-                <img src="assets/icons/panel/exit-btn.png" id="inventory-exit-btn" class="panel-exit-btn"></img>
-            </div>
-            <div id="inventory-body" class="panel-body">
-                <div id="inventory-list" class="panel-list"></div>
-                <div id="inventory-detail" class="panel-detail"></div>
-            </div>
-        </div>
-        <!-- Shop -->
-        <div id="shop-container">
-            <div id="shop-header">
-                <div id="shop-name">Shop</div>
-                <div id="shop-exit-btn">X</div>
-            </div>
-            <div id="shop-content">
-                <div id="shop-item-list">
-                    <!-- <div class="shop-item">
-                        <img src="" alt="" class="shop-item-img">
-                        <div class="shop-item-descriptions">
-                            <div class="shop-item-descriptions-name">Wood</div>
-                            <div class="shop-item-descriptions-price">10 coins</div>
-                        </div>
-                        <div class="shop-item-limit">Unlimited</div>
-                    </div>
-                    <div class="shop-item"></div> -->
-                </div>
-                <div id="shop-item-info-wrapper">
-                    <div id="shop-item-info" class="panel-detail">
-                        <div id="shop-item-info-header" class="panel-detail-header">Wood</div>
-                        <div id="shop-item-info-img-container" class="panel-detail-body">
-                            <div id="shop-item-info-category" class="panel-detail-body-type">Resource</div>
-                            <img src="" alt="" id="shop-item-info-img" class="panel-detail-body-img">
-                        </div>
-                        <div id="shop-item-info-description" class="panel-detail-descriptions">some descriptions</div>
-                        <div id="shop-item-info-owned" class="panel-detail-owned">Owned: 20</div>
-                    </div>
-                </div>
-            </div>
-            <div id="shop-footer">
-                <button id="shop-purchase-btn" class="btn">Phurchase</button>
-            </div>
-            <!-- shop-quantity-window -->
-            <div id="shop-quantity-window">
-                <div id="shop-quantity-wrapper">
-                    <div id="shop-quantity-title">Item to purchase</div>
-                    <div id="shop-quantity-img-container">
-                        <img src="" alt="" id="shop-quantity-img">
-                    </div>
-                    <div id="shop-quantity-quantity">
-                        <div id="shop-quantity-quantity-text">Qty.</div>
-                        <div id="shop-quantity-quantity-value">1</div>
-                    </div>
-                    <div id="shop-quantity-selector">
-                        <button id="shop-quantity-decrease-btn" class="adjust-quantity-btn">-</button>
-                        <div id="shop-quantity-min-text">1</div>
-                        <input type="range" id="shop-quantity-range" name="shop-quantity-range" min="1" max="100" value="1" step="" />
-                        <div id="shop-quantity-max-text">100</div>
-                        <button id="shop-quantity-increase-btn" class="adjust-quantity-btn">+</button>
-                    </div>
-                    <div id="shop-quantity-cost">Cost: 10 coin</div>
-                    <hr>
-                    <div id="shop-quantity-btns">
-                        <button id="shop-quantity-cancel-btn" class="btn">Cancel</button>
-                        <button id="shop-quantity-confirm-btn" class="btn">Confirm</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Wish Container -->
-        <div id="wish-container">
-            <!-- Banner -->
-            <div id="banner-container">
-                <div id="banner-wrapper">
-                    <div id="banner-sidebar">
-                        <div id="banner-tag">
-                            <div id="banner-text">Wish</div>
-                        </div>
-                        <div id="banner-choice-container">
-                            <div id="banner-novice" class="banner-choice-item banner-selected">Novice</div>
-                            <div id="banner-standard" class="banner-choice-item">Standard</div>
+                    <div id="col-3-btn-container">
+                        <div class="action-btn-wrapper" id="attack-btn">
+                            <img src="./assets/icons/control/attack-btn-icon.png" alt="" id="attack-btn-img" class="action-btn-img">
                         </div>
                     </div>
-                    <div id="banner-body">
-                        <div id="banner-header">
-                            <div id="banner-currency">
-                                <div id="banner-event-ball">Standard: x2</div>
-                                <div id="banner-standard-ball">Event: x4</div>
+                    <div id="col-4-btn-container">
+                        <div class="button-container">
+                            <div class="action-btn-wrapper" id="farming-btn">
+                                <img src="" alt="" id="farming-btn-img" class="action-btn-img img-rendering-pixelated">
                             </div>
-                            <img src="assets/icons/panel/exit-btn.png" id="banner-exit-btn"></img>
+                            <img src="./assets/icons/switch-btn.png" id="farming-btn-switcher" class="btn-switcher"></img>
                         </div>
-                        <div id="banner-descriptions"></div>
-                        <div id="banner-footer">
-                            <div id="banner-helpers"></div>
-                            <div id="banner-wish-btns">
-                                <div id="wish-one-btn" class="wish-btn"><div class="wish-btn-text">wish x1</div></div>
-                                <div id="wish-ten-btn" class="wish-btn"><div class="wish-btn-text">wish x10</div></div>
+                        <div class="action-btn-wrapper" id="dash-btn">
+                            <img src="./assets/icons/control/dash-btn-icon.png" alt="" id="dash-btn-img" class="action-btn-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Inventory Slots-->
+            <!-- <div id="inventory-slots-container">
+            </div> -->
+
+            <!-- Collectables -->
+            <div id="collectables-container">
+                <!-- <button class="collectable-btn">
+                    <img src="" alt="" class="collectable-img">
+                    <div class="collectable-name">Wood</div>
+                </button> -->
+            </div>
+            <!-- Player Status -->
+            <div id="player-status-container">
+                <div id="hp-mp-container">
+                    <div id="hp-container">
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- UIs -->
+            <div class="ui-container">
+                <button id="shop-ui" class="ui-btn"><img src="assets/icons/hud/shop.png" alt="" class="ui-img"></button>
+                <button id="wish-ui" class="ui-btn"><img src="assets/icons/hud/wish.png" alt="" class="ui-img"></button>
+                <button id="inventory-ui" class="ui-btn"><img src="assets/icons/hud/inventory.png" alt="" class="ui-img"></button>
+                <button id="construction-ui" class="ui-btn"><img src="assets/icons/hud/construction.png" alt="" class="ui-img"></button>
+                <button id="exit-ui" class="ui-btn"><img src="assets/icons/hud/exit.png" alt="" class="ui-img"></button>
+            </div>
+            <!-- <button id="install-ui">Install</button> -->
+            <!-- Inventory -->
+            
+            <div id="inventory-container" class="panel-container">
+                <div id="inventory-header" class="panel-header">
+                    <div id="inventory-tag" class="panel-tag">Inventory</div>
+                    <div id="inventory-category-container" class="panel-category-container">
+                        <img id="inventory-category-weapon" class="panel-category-element" src="assets/icons/panel/weapon-icon-light.png" data-category="weapon" ></img>
+                        <img id="inventory-category-material" class="panel-category-element" src="assets/icons/panel/material-icon-light.png" data-category="material" ></img>
+                        <img id="inventory-category-consumable" class="panel-category-element" src="assets/icons/panel/consumable-icon-light.png" data-category="consumable" ></img>
+                        <img id="inventory-category-farming" class="panel-category-element" src="assets/icons/panel/farming-icon-light.png" data-category="farming" ></img>
+                        <img id="inventory-category-construction" class="panel-category-element" src="assets/icons/panel/construction-icon-light.png" data-category="construction" ></img>
+                    </div>
+                    <img src="assets/icons/panel/exit-btn.png" id="inventory-exit-btn" class="panel-exit-btn"></img>
+                </div>
+                <div id="inventory-body" class="panel-body">
+                    <div id="inventory-list" class="panel-list"></div>
+                    <div id="inventory-detail" class="panel-detail"></div>
+                </div>
+            </div>
+            <!-- Shop -->
+            <div id="shop-container">
+                <div id="shop-header">
+                    <div id="shop-name">Shop</div>
+                    <div id="shop-exit-btn">X</div>
+                </div>
+                <div id="shop-content">
+                    <div id="shop-item-list">
+                        <!-- <div class="shop-item">
+                            <img src="" alt="" class="shop-item-img">
+                            <div class="shop-item-descriptions">
+                                <div class="shop-item-descriptions-name">Wood</div>
+                                <div class="shop-item-descriptions-price">10 coins</div>
+                            </div>
+                            <div class="shop-item-limit">Unlimited</div>
+                        </div>
+                        <div class="shop-item"></div> -->
+                    </div>
+                    <div id="shop-item-info-wrapper">
+                        <div id="shop-item-info" class="panel-detail">
+                            <div id="shop-item-info-header" class="panel-detail-header">Wood</div>
+                            <div id="shop-item-info-img-container" class="panel-detail-body">
+                                <div id="shop-item-info-category" class="panel-detail-body-type">Resource</div>
+                                <img src="" alt="" id="shop-item-info-img" class="panel-detail-body-img">
+                            </div>
+                            <div id="shop-item-info-description" class="panel-detail-descriptions">some descriptions</div>
+                            <div id="shop-item-info-owned" class="panel-detail-owned">Owned: 20</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="shop-footer">
+                    <button id="shop-purchase-btn" class="btn">Phurchase</button>
+                </div>
+                <!-- shop-quantity-window -->
+                <div id="shop-quantity-window">
+                    <div id="shop-quantity-wrapper">
+                        <div id="shop-quantity-title">Item to purchase</div>
+                        <div id="shop-quantity-img-container">
+                            <img src="" alt="" id="shop-quantity-img">
+                        </div>
+                        <div id="shop-quantity-quantity">
+                            <div id="shop-quantity-quantity-text">Qty.</div>
+                            <div id="shop-quantity-quantity-value">1</div>
+                        </div>
+                        <div id="shop-quantity-selector">
+                            <button id="shop-quantity-decrease-btn" class="adjust-quantity-btn">-</button>
+                            <div id="shop-quantity-min-text">1</div>
+                            <input type="range" id="shop-quantity-range" name="shop-quantity-range" min="1" max="100" value="1" step="" />
+                            <div id="shop-quantity-max-text">100</div>
+                            <button id="shop-quantity-increase-btn" class="adjust-quantity-btn">+</button>
+                        </div>
+                        <div id="shop-quantity-cost">Cost: 10 coin</div>
+                        <hr>
+                        <div id="shop-quantity-btns">
+                            <button id="shop-quantity-cancel-btn" class="btn">Cancel</button>
+                            <button id="shop-quantity-confirm-btn" class="btn">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wish Container -->
+            <div id="wish-container">
+                <!-- Banner -->
+                <div id="banner-container">
+                    <div id="banner-wrapper">
+                        <div id="banner-sidebar">
+                            <div id="banner-tag">
+                                <div id="banner-text">Wish</div>
+                            </div>
+                            <div id="banner-choice-container">
+                                <div id="banner-novice" class="banner-choice-item banner-selected">Novice</div>
+                                <div id="banner-standard" class="banner-choice-item">Standard</div>
+                            </div>
+                        </div>
+                        <div id="banner-body">
+                            <div id="banner-header">
+                                <div id="banner-currency">
+                                    <div id="banner-gemstone-fragment" class="banner-currency-element">
+                                        <img src="./assets/wish/wish_gemstone_fragment.png" class="banner-gemstone-img">
+                                        <div id="fragment-quantity-text" class="banner-gemstone-quantity">1034</div>
+                                    </div>
+                                    <div id="banner-gemstone-event" class="banner-currency-element">
+                                        <img src="./assets/wish/wish_gemstone_event.png" class="banner-gemstone-img">
+                                        <div id="event-quantity-text" class="banner-gemstone-quantity">1</div>
+                                    </div>
+                                    <div id="banner-gemstone-standard" class="banner-currency-element">
+                                        <img src="./assets/wish/wish_gemstone_standard.png" class="banner-gemstone-img">
+                                        <div id="standard-quantity-text" class="banner-gemstone-quantity">1</div>
+                                    </div>
+                                </div>
+                                <img src="assets/icons/panel/exit-btn.png" id="banner-exit-btn"></img>
+                            </div>
+                            <div id="banner-descriptions"></div>
+                            <div id="banner-footer">
+                                <div id="banner-helpers"></div>
+                                <div id="banner-wish-btns">
+                                    <div id="wish-one-btn" class="wish-btn"><div class="wish-btn-text">wish x1</div></div>
+                                    <div id="wish-ten-btn" class="wish-btn"><div class="wish-btn-text">wish x10</div></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- End Banner -->
-            <!-- Spinner -->
-            <div id="spinner-container">
-                <div id="spinner-body">
-                    <button id="spin-btn"></button>
-                    <div id="arrow"></div>
-                    <div id="spinner">
-                        <div class="spinner-piece one"><img src="./assets/icons/hoe.png" class="spinner-piece-icon"></img></div>
-                        <div class="spinner-piece two"><img src="./assets/icons/hoe.png" class="spinner-piece-icon"></img></div>
-                        <div class="spinner-piece three"><img src="./assets/icons/hoe.png" class="spinner-piece-icon"></img></div>
-                        <div class="spinner-piece four"><img src="./assets/icons/hoe.png" class="spinner-piece-icon"></img></div>
-                        <div class="spinner-piece five"><img src="./assets/icons/hoe.png" class="spinner-piece-icon"></img></div>
-                        <div class="spinner-piece six"><img src="./assets/icons/hoe.png" class="spinner-piece-icon"></img></div>
-                        <div class="spinner-piece seven"><img src="./assets/icons/hoe.png" class="spinner-piece-icon"></img></div>
-                        <div class="spinner-piece eight"><img src="./assets/icons/hoe.png" class="spinner-piece-icon"></img></div>
+                <!-- End Banner -->
+                <!-- Spinner -->
+                <div id="spinner-container">
+                    <div id="spinner-body">
+                        <button id="spin-btn"></button>
+                        <div id="arrow"></div>
+                        <div id="spinner">
+                            <div class="spinner-piece one"><img src="./assets/icons/hoe.png" class="spinner-piece-icon"></img></div>
+                            <div class="spinner-piece two"><img src="./assets/icons/hoe.png" class="spinner-piece-icon"></img></div>
+                            <div class="spinner-piece three"><img src="./assets/icons/hoe.png" class="spinner-piece-icon"></img></div>
+                            <div class="spinner-piece four"><img src="./assets/icons/hoe.png" class="spinner-piece-icon"></img></div>
+                            <div class="spinner-piece five"><img src="./assets/icons/hoe.png" class="spinner-piece-icon"></img></div>
+                            <div class="spinner-piece six"><img src="./assets/icons/hoe.png" class="spinner-piece-icon"></img></div>
+                            <div class="spinner-piece seven"><img src="./assets/icons/hoe.png" class="spinner-piece-icon"></img></div>
+                            <div class="spinner-piece eight"><img src="./assets/icons/hoe.png" class="spinner-piece-icon"></img></div>
+                        </div>
                     </div>
                 </div>
+                <!-- End Spinner -->
             </div>
-            <!-- End Spinner -->
-        </div>
 
-        <!-- Reward Screen -->
-        <div id="reward-container">
-            <div id="reward-container-wrapper">
-                <div id="reward-header">&#9733    Obtained    &#9733</div>
-                <div id="reward-items-container">
-                    <div class="reward-item">
-                        <img src="./assets/temp-item.png" alt="" class="reward-item-img">
-                        <div class="reward-item-quantity">x2</div>
+            <!-- Reward Screen -->
+            <div id="reward-container">
+                <div id="reward-container-wrapper">
+                    <div id="reward-header">&#9733    Obtained    &#9733</div>
+                    <div id="reward-items-container">
+                        <div class="reward-item">
+                            <img src="./assets/temp-item.png" alt="" class="reward-item-img">
+                            <div class="reward-item-quantity">x2</div>
+                        </div>
                     </div>
+                    <div id="reward-footer">Click anywhere in the blank area to close</div>
                 </div>
-                <div id="reward-footer">Click anywhere in the blank area to close</div>
             </div>
-        </div>
-        <!-- End Reward Screen -->
+            <!-- End Reward Screen -->
 
-        
-        <!-- Item Switch Panel -->
-        <div id="item-switch-panel" class="panel-container">
-            <div class="panel-header">
-                <div class="panel-tag">Switch Item</div>
-                <img src="assets/icons/panel/exit-btn.png" id="item-switch-exit-btn" class="panel-exit-btn"></img>
+            
+            <!-- Item Switch Panel -->
+            <div id="item-switch-panel" class="panel-container">
+                <div class="panel-header">
+                    <div class="panel-tag">Switch Item</div>
+                    <img src="assets/icons/panel/exit-btn.png" id="item-switch-exit-btn" class="panel-exit-btn"></img>
+                </div>
+                <div id="item-switch-list" class="panel-body">
+                </div>
             </div>
-            <div id="item-switch-list" class="panel-body">
-            </div>
-         </div>
+            
+        </div>
+        <!-- End div-wrapper -->
     </div>
 
 

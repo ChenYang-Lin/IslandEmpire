@@ -26,6 +26,10 @@ export default class Wish {
     }
 
     initBanner() {
+        this.fragmentQuantityText = document.getElementById("fragment-quantity-text");
+        this.eventQuantityText = document.getElementById("event-quantity-text");
+        this.standardQuantityText = document.getElementById("standard-quantity-text");
+
         this.wishOneBtn = document.getElementById("wish-one-btn");
         this.wishOneBtn.addEventListener("pointerdown", () => {
             this.spinnerSpin(1);
@@ -34,6 +38,10 @@ export default class Wish {
         this.wishTenBtn.addEventListener("pointerdown", () => {
             this.spinnerSpin(10);
         })
+
+        this.updateCurrency();
+
+
     }
 
     initSpinner() {
@@ -57,6 +65,12 @@ export default class Wish {
         this.hideSpinnerContainer();
     }
 
+    updateCurrency() {
+        this.fragmentQuantityText.innerHTML = `${this.hud.inventory.wishFragment}`;
+        this.eventQuantityText.innerHTML = `${this.hud.inventory.wishEvent}`;
+        this.standardQuantityText.innerHTML = `${this.hud.inventory.wishStandard}`;
+    }
+
     wishOne() {
         // get chance
         let chance = Math.random();
@@ -77,6 +91,7 @@ export default class Wish {
         let itemName = items[Math.floor(Math.random() * items.length)]
         console.log(itemName)
         this.itemList.push({ name: itemName, quantity: 1 });
+        this.hud.inventory.addItem(itemName, 1);
     }
 
     spinnerSpin(wishQuantity) {
@@ -88,6 +103,7 @@ export default class Wish {
         for (let i = 0; i < wishQuantity; i++) {
             this.wishOne();
         }
+
 
         
         this.spinnerAcceleration = 0;

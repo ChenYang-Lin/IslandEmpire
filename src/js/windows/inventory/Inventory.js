@@ -5,6 +5,11 @@ export default class Inventory {
     constructor(scene) {
         this.scene = scene;
 
+        this.coin = 1000;
+        this.wishFragment = 1000;
+        this.wishEvent = 10;
+        this.wishStandard = 15;
+
 
         if (localStorage.getItem("inventory")) {
             this.inventory = this.loadInventoryToLocalStorage();
