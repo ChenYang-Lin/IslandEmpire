@@ -5,8 +5,8 @@
     height: 100%;
     background-color: #0000006b;
     pointer-events: auto;
-    display: none;
-    /* display: block; */
+    /* display: none; */
+    display: block;
 }
 
 

@@ -6,7 +6,8 @@ export default class Wish {
         this.scene = scene;
         this.hud = hud;
 
-        
+        this.quality = "blue";
+        this.itemList = []
 
 
         this.wishContainer = document.getElementById("wish-container");
@@ -26,10 +27,12 @@ export default class Wish {
 
     initBanner() {
         this.wishOneBtn = document.getElementById("wish-one-btn");
-
         this.wishOneBtn.addEventListener("pointerdown", () => {
-            console.log("wish one");
-            this.spinnerSpin();
+            this.spinnerSpin(1);
+        })
+        this.wishTenBtn = document.getElementById("wish-ten-btn");
+        this.wishTenBtn.addEventListener("pointerdown", () => {
+            this.spinnerSpin(10);
         })
     }
 
@@ -44,10 +47,6 @@ export default class Wish {
             icon.src = this.scene.sys.game.textures.getBase64("item", items[Math.floor(Math.random() * items.length)]);
         })
 
-        this.spinBtn = document.getElementById("spin-btn");
-        this.spinBtn.addEventListener("pointerdown", () => {
-            this.spinnerSpin();
-        })
 
         this.spinnerScale = 1;
         this.spinnerDegree = 0;
@@ -58,13 +57,8 @@ export default class Wish {
         this.hideSpinnerContainer();
     }
 
-    spinnerSpin() {
-        this.showSpinnerContainer();
-        if (this.isSpinning) 
-            return;
-
+    wishOne() {
         // get chance
-        this.quality = "blue";
         let chance = Math.random();
         // if (chance < 0.3) {
         if (chance < 0.1) {
@@ -77,6 +71,22 @@ export default class Wish {
         } else {
             // 5% Gold
             this.quality = "gold";
+        }
+
+        let items = Object.keys(ITEM_DATA);
+        let itemName = items[Math.floor(Math.random() * items.length)]
+        console.log(itemName)
+        this.itemList.push({ name: itemName, quantity: 1 });
+    }
+
+    spinnerSpin(wishQuantity) {
+        this.showSpinnerContainer();
+        if (this.isSpinning) 
+            return;
+
+        this.itemList = [];
+        for (let i = 0; i < wishQuantity; i++) {
+            this.wishOne();
         }
 
         
@@ -130,12 +140,8 @@ export default class Wish {
             this.spinnerBody.classList.remove("spinner-piece-purple")
             this.spinnerBody.classList.remove("spinner-piece-gold")
 
-            let itemList = [];
-            let item = { name: "wood", quantity: 2 };
-            itemList.push(item);
-            itemList.push({ name: "apple", quantity: 1 });
-            itemList.push({ name: "doughnut", quantity: 1 });
-            this.hud.reward.showRewardScreen(itemList);
+
+            this.hud.reward.showRewardScreen(this.itemList);
             this.hideSpinnerContainer();
         }, 5000)
     }
@@ -158,7 +164,6 @@ export default class Wish {
     }
 
     resizeSpinner() {
-        console.log(this.hud.hud.offsetHeight)
         let size;
         if (this.hud.hud.offsetHeight < this.hud.hud.offsetWidth) {
             size = this.hud.hud.offsetHeight;
