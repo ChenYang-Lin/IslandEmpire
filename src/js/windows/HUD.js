@@ -1,5 +1,6 @@
 
 import { ITEM_DATA } from "../GameData.js";
+import Reward from "./Reward.js";
 import Shop from "./Shop.js";
 import Wish from "./Wish.js";
 import Inventory from "./inventory/Inventory.js";
@@ -29,6 +30,7 @@ export default class HUD {
 
 
         this.inventory = new Inventory(this.scene, this);
+        this.reward = new Reward(this.scene, this);
         this.shop = new Shop(this.scene, this);
         this.wish = new Wish(this.scene, this);
 

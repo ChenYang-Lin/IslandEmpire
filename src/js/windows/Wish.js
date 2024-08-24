@@ -100,7 +100,6 @@ export default class Wish {
 
             if (this.alpha < 255 && !this.qualitySet) {
                 this.alpha += 2;
-                console.log(this.alpha)
                 spinner.style.borderColor = `${this.color}${this.alpha.toString(16)}`
             }
         }, 20);
@@ -131,6 +130,12 @@ export default class Wish {
             this.spinnerBody.classList.remove("spinner-piece-purple")
             this.spinnerBody.classList.remove("spinner-piece-gold")
 
+            let itemList = [];
+            let item = { name: "wood", quantity: 2 };
+            itemList.push(item);
+            itemList.push({ name: "apple", quantity: 1 });
+            itemList.push({ name: "doughnut", quantity: 1 });
+            this.hud.reward.showRewardScreen(itemList);
             this.hideSpinnerContainer();
         }, 5000)
     }
