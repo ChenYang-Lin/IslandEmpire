@@ -36,7 +36,7 @@ export default class Reward {
         this.rewardItemsContainer.innerHTML = "";
 
         itemList.forEach((item) => {
-            console.log(item.name, item.quantity);
+            this.hud.inventory.addItem(item.name, item.quantity);
 
             let rewardItem = document.createElement("div");
             rewardItem.classList.add("reward-item");
@@ -46,7 +46,6 @@ export default class Reward {
 
             let rewardItemImg = document.createElement("img");
             rewardItemImg.classList.add("reward-item-img");
-            console.log(this.scene)
             rewardItemImg.src = this.scene.sys.game.textures.getBase64("item", item.name);
 
             let rewardItemQuantity = document.createElement("div");
