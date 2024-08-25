@@ -33,8 +33,9 @@ export default class WorldManager {
 
 
     initWorld() {
-        for (let gridY = -20; gridY < 20; gridY++) {
-            for (let gridX = -20; gridX < 20; gridX++) {
+        for (let gridY = -30; gridY < 30; gridY++) {
+            for (let gridX = -30; gridX < 30; gridX++) {
+
                 if (this.map[`${gridX},${gridY}`] && this.map[`${gridX},${gridY}`].isLand) {
                     this.createLand(gridX, gridY);
                     this.createEntities(gridX, gridY, this.map[`${gridX},${gridY}`].entities);
@@ -62,7 +63,6 @@ export default class WorldManager {
         let x = gridX * 32;
         let y = gridY * 32;
         entities.forEach((entity) => {
-            console.log(entity)
             if (ENTITY_DATA[entity.name].category === "resource"){
                 let resource = new Resource(this.scene, x, y, "resource", entity.name);
             }
@@ -89,6 +89,39 @@ export default class WorldManager {
         landSprite = landSprite ?? "land_all";
         let x = gridX * 32;
         let y = gridY * 32;
+
+        // Forest
+        if (gridX < -1) {
+            // randomize resource in forest
+            let entities = [];
+            let chance = Math.random();
+            if (chance < 0.1) {
+                entities = [ { name: "tree" } ];
+            } else if (chance < 0.3) {
+                entities = [ { name: "rock" } ];
+            } else if (chance < 0.5) {
+                entities = [ { name: "bush" } ];
+            } else {
+                entities = [];
+            }
+            
+            landSprite = "land_all";
+            this.createEntities(gridX, gridY, entities);
+        }
+
+        if (gridX === -1) {
+            if (gridY > 1 || gridY < -4) {
+                landSprite = "land_l";
+            } else {
+                landSprite = "land_all"
+            }
+            if (gridY === 1) {
+                landSprite = "land_t_l"
+            }
+            if (gridY === -4) {
+                landSprite = "land_b_l"
+            }
+        }
 
         let land = this.scene.add.sprite(x, y, "land", landSprite);
         this.landSpriteGroup[`${gridX},${gridY}`]?.destroy();

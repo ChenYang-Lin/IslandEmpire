@@ -21,6 +21,7 @@ export default class Resource extends Entity {
         this.maxHP = this.entityData.maxHP;
         this.hp = this.maxHP;
 
+
         
         this.scene.worldManager.resourceCollidersGroup.add(this);
     }
@@ -30,14 +31,42 @@ export default class Resource extends Entity {
     }
 
     createSecondPart() {
-        this.secondPart = this.scene.add.sprite(this.x, this.y, "resource", "tree_top")
+        this.secondPart = this.scene.add.sprite(this.x, this.y, "resource", "tree_top");
         this.secondPart.depth = this.depth;
         this.secondPart.y -= 55;
+
+        this.transparentSprites = [];
+        let transparentHitBox = this.entityData.transparentHitBox;
+        transparentHitBox.forEach((hitbox) => {
+            let colliderBody = this.scene.add.sprite(this.secondPart.x, this.secondPart.y, "resource", "tree_top");
+            colliderBody.alpha = 0;
+            this.transparentSprites.push(colliderBody);
+            this.scene.physics.add.existing(colliderBody);
+
+            colliderBody.body.setSize(hitbox.transparentWidth * 32, hitbox.transparentHeight * 32);
+            colliderBody.body.setOffset(hitbox.transparentOffsetX * 32, hitbox.transparentOffsetY * 32);
+            
+            this.scene.physics.add.overlap(this.scene.player, colliderBody, (player, hitbox) => {
+                    this.secondPart.alpha = 0.3;
+                    setTimeout(() => {
+                        this.secondPart.alpha = 1;
+                    }, 50)
+                }
+            );
+        })
+
+
+
+
+        
     }
 
     onHit(damage) {
         this.hp -= damage;
         if (this.hasSecondPart && this.hp < this.maxHP / 2) {
+            this.transparentSprites.forEach((transparentSprite) => {
+                transparentSprite.destroy();
+            })
             this.secondPart.destroy();
         }
         if (this.hp <= 0) {

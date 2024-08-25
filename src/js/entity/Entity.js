@@ -112,9 +112,11 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
 
 
     onDeath() {
-        // console.log(`${this.onGrid.x},${this.onGrid.y}`)
-        this.scene.worldManager.map[`${this.onGrid.x},${this.onGrid.y}`].entities = [];
-        this.scene.worldManager.saveMapToLocalStorage();
+        console.log(`${this.onGrid.x},${this.onGrid.y}`)
+        if (this.onGrid.x >= 0) {
+            this.scene.worldManager.map[`${this.onGrid.x},${this.onGrid.y}`].entities = [];
+            this.scene.worldManager.saveMapToLocalStorage();
+        }
         this.destroy();
     }
 }

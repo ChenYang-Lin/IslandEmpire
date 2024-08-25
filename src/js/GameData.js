@@ -10,6 +10,20 @@ const ENTITY_DATA = {
         colliderHeight: 1,
         offsetX: 0,
         offsetY: 1,
+        transparentHitBox: [
+            {
+                transparentWidth: 1,
+                transparentHeight: 5,
+                transparentOffsetX: 1,
+                transparentOffsetY: 0,
+            },
+            {
+                transparentWidth: 3,
+                transparentHeight: 2,
+                transparentOffsetX: 0,
+                transparentOffsetY: 2,
+            },
+        ],
         maxHP: 1,
         drops: [
             "wood",
@@ -159,120 +173,26 @@ const SHOP_DATA = [
 ]
 
 const MAP_DATA = {
-    "0,0": {
-        isLand: true,
-        entities: [
-            {
-                name: "tree",
-            },
-        ],
-    },
-    "0,1": {
-        isLand: true,
-        entities: [
-            
-        ],
-    },
-    "0,2": {
-        isLand: true,
-        entities: [
+    "0,-3":  { isLand: true, entities: [ ], },
+    "0,-2":  { isLand: true, entities: [ ], },
+    "0,-1":  { isLand: true, entities: [ ], },
+    "0,0":   { isLand: true, entities: [ ], },
+ 
+    "1,-3":  { isLand: true, entities: [ ], },
+    "1,-2":  { isLand: true, entities: [ ], },
+    "1,-1":  { isLand: true, entities: [ ], },
+    "1,0":   { isLand: true, entities: [ ], },
+ 
+    "2,-3":  { isLand: true, entities: [ ], },
+    "2,-2":  { isLand: true, entities: [ ], },
+    "2,-1":  { isLand: true, entities: [ ], },
+    "2,0":   { isLand: true, entities: [ ], },
+ 
+    "3,-3":  { isLand: true, entities: [ ], },
+    "3,-2":  { isLand: true, entities: [ { name: "tree" }, ], },
+    "3,-1":  { isLand: true, entities: [ ], },
+    "3,0":   { isHoedLand: true, isLand: true, entities: [ ], },
 
-        ],
-    },
-    "0,3": {
-        isLand: true,
-        entities: [
-
-        ],
-    },
-    "1,0": {
-        isLand: true,
-        entities: [
-
-        ],
-    },
-    "1,1": {
-        isLand: true,
-        entities: [
-
-        ],
-    },
-    "1,2": {
-        isHoedLand: true,
-        isLand: true,
-        entities: [
-
-        ],
-    },
-    "1,3": {
-        isHoedLand: true,
-        isLand: true,
-        entities: [
-
-        ],
-    },
-    "2,0": {
-        isLand: true,
-        entities: [
-            {
-                name: "rock",
-            },
-        ],
-    },
-    "2,1": {
-        isLand: true,
-        entities: [
-
-        ],
-    },
-    "2,2": {
-        isLand: true,
-        entities: [
-            {
-                name: "tree",
-            },
-        ],
-    },
-    "2,3": {
-        isLand: true,
-        entities: [
-
-        ],
-    },
-    "3,0": {
-        isLand: true,
-        entities: [
-            
-        ],
-    },
-    "3,1": {
-        isLand: true,
-        entities: [
-
-        ],
-    },
-    "3,2": {
-        isLand: true,
-        entities: [
-
-        ],
-    },
-    "3,3": {
-        isLand: true,
-        entities: [
-            {
-                name: "bush",
-            },
-        ],
-    },
-    "-3,3": {
-        isLand: true,
-        entities: [
-            {
-                name: "bush",
-            },
-        ],
-    },
 }
 
 

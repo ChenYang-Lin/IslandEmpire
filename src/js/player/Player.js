@@ -8,7 +8,7 @@ export default class Player extends Ally {
     constructor(scene) {
         const entityData = ENTITY_DATA["player"];
         // scene, x, y, name, texture, frame
-        super(scene, 32, 32, "player", "player", "player_idle_right", entityData);
+        super(scene, 0, 0, "player", "player", "player_idle_right", entityData);
         this.scene = scene;
 
         

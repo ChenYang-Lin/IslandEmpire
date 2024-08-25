@@ -62,7 +62,7 @@ export default class MainScene extends Phaser.Scene {
         //     this.worldManager.astar.findPath(this.worldManager.map, {tx: this.player.onGrid.x, ty: this.player.onGrid.y}, {tx: this.gridX, ty: this.gridY}, this)
         // })
         
-        this.raft = new Raft(this, 0, 500, "raft", "raft", "raft_move_down_0");
+        // this.raft = new Raft(this, 0, 500, "raft", "raft", "raft_move_down_0");
     }
 
 
