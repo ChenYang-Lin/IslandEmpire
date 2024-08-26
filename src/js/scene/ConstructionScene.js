@@ -23,7 +23,6 @@ export default class ConstructionScene extends Phaser.Scene {
         this.setY;
 
         this.map;
-        this.tempMap;
 
 
         this.constructionItemContainer = document.getElementById("construction-item-container");
@@ -50,7 +49,6 @@ export default class ConstructionScene extends Phaser.Scene {
         this.worldManager = new WorldManager(this);
         this.worldManager.initWorld();
         this.map = Object.assign({}, this.worldManager.map);
-        this.tempMap = Object.assign({}, this.worldManager.map);
         
 
         this.selectionBtn = document.getElementById("selection-btn");

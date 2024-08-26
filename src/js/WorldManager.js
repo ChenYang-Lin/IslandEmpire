@@ -15,9 +15,10 @@ export default class WorldManager {
         // Collider Groups
         this.landSpriteGroup = {};
         this.landCollidersGroup = this.scene.physics.add.group({ immovable: true });
-        this.resourceCollidersGroup = this.scene.physics.add.group({ immovable: true });
         this.obstacleCollidersGroup = this.scene.physics.add.group({ immovable: true });
         this.collectablesGroup = this.scene.physics.add.group({ immovable: true });
+        this.resourceCollidersGroup = this.scene.physics.add.group({ immovable: true });
+        this.transparentHitboxGroup = this.scene.physics.add.group({ immovable: true });
          
         this.hoedLandSpriteGroup = {};
         this.growingCrops = {};
@@ -35,7 +36,6 @@ export default class WorldManager {
     initWorld() {
         for (let gridY = -30; gridY < 30; gridY++) {
             for (let gridX = -30; gridX < 30; gridX++) {
-
                 if (this.map[`${gridX},${gridY}`] && this.map[`${gridX},${gridY}`].isLand) {
                     this.createLand(gridX, gridY);
                     this.createEntities(gridX, gridY, this.map[`${gridX},${gridY}`].entities);
@@ -67,20 +67,7 @@ export default class WorldManager {
                 let resource = new Resource(this.scene, x, y, "resource", entity.name);
             }
             if (ENTITY_DATA[entity.name].category === "structure"){
-                // let entityData = ENTITY_DATA[entity];
-                // let adjustX = 0;
-                // if (entityData.width % 2 === 0) {
-                //     adjustX = 16;
-                // }
-                // let adjustY = 0;
-                // if (entityData.height % 2 === 0) {
-                //     adjustY = 16;
-                // }
-                // let x = (gridX - entityData.imageWidth / 2 - entityData.offsetX + entityData.width / 2) * 32 + adjustX; 
-                // let y = (gridY + entityData.imageHeight / 2 - entityData.offsetY - entityData.height / 2) * 32 + adjustY;
-                // this.house = this.scene.add.sprite(x, y, "construction", entity);
                 let structure = new Structure(this.scene, x, y, "construction", entity.name)
-        
             }
         })
     }
