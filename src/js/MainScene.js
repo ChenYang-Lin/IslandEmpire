@@ -14,7 +14,7 @@ export default class MainScene extends Phaser.Scene {
     constructor() {
         super({ key: "MainScene" });
 
-        this.version = "0.2";
+        this.version = "0.3";
     }
 
     preload() {
