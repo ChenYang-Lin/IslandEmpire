@@ -355,6 +355,10 @@ export default class ConstructionScene extends Phaser.Scene {
         let y = gridY * 32;
         let landSprite;
 
+        if (gridX <= 0) {
+            return;
+        }
+
         if (isPlacement) {
             // Exit add land if land exist on current grid cell;
             if (this.worldManager.map[`${gridX},${gridY}`]?.isLand) 
