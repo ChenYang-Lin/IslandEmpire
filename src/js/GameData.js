@@ -172,6 +172,24 @@ const SHOP_DATA = [
     { name: "wood", price: 10, limit: -1, },
 ]
 
+const QUEST_DATA = {
+    "beginner_quest": {
+        prev_quest: null,
+        tasks: [
+            {
+                type: "input",
+                restrictions: [
+                    {
+                        "box-shadow": "joystick",
+                    }
+                ],
+                description: "Move around",
+                hint: "move around"
+            }
+        ]
+    }
+}
+
 const MAP_DATA = {
     "0,-3":  { isLand: true, entities: [ ], },
     "0,-2":  { isLand: true, entities: [ ], },
