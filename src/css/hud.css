@@ -132,3 +132,11 @@
     /* box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.651); */
     transition: 1s;
 }
+#joyDiv2 {
+    position: absolute;
+    left: 10%;
+    top: 10%;
+    pointer-events: auto;
+    /* box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.651); */
+    transition: 1s;
+}

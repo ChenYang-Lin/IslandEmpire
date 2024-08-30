@@ -50,6 +50,16 @@ export default class InputController {
     }
 
     createJoyStick() {
+        this.joy2 = new JoyStick('joyDiv2', {
+            width: 150,
+            height: 150,
+            internalFillColor: '#9C9898',
+            internalLineWidth: 1,
+            internalStrokeColor: "#9C9898",
+            externalLineWidth: 1,
+            externalStrokeColor: "#9C9898",
+            autoReturnToCenter: 1,
+        })
         this.joy = new JoyStick('joyDiv', {
             width: 150,
             height: 150,
@@ -58,6 +68,7 @@ export default class InputController {
             internalStrokeColor: "#9C9898",
             externalLineWidth: 1,
             externalStrokeColor: "#9C9898",
+            autoReturnToCenter: 1,
         }, (stickData) => {
             this.joyLeft = false;
             this.joyRight = false;
