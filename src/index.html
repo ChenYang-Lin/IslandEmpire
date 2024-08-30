@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/wish.css">
     
     <script src="js/utils/phaser.min.js"></script>
+    <script src="js/utils/joy.min.js"></script>
 
     <!-- Meta Tags required for Progressive Web App -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -29,6 +30,8 @@
     <div id="island-empire">
         
     </div>
+
+
     
     <div id="hud">
         <div id="hud-wrapper">
@@ -332,6 +335,8 @@
             </div>
         </div>
 
+
+        
     </div>
 
     <script>
@@ -354,11 +359,15 @@
                     console.log('SW registration failed');
                 }
             }
+
         }
+
+        
     </script>
     <script src="sw.js"></script>
-    <script src="js/utils/joy.js"></script>
     <script type="module" src="js/index.js"></script>
+
+    <div id="joyDiv"></div>
 
 </body>
 </html>

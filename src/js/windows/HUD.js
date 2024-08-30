@@ -64,27 +64,16 @@ export default class HUD {
         // this.scene.scene.start("ConstructionScene");
 
         
-        this.windowSizeSynchronization();
-
-
-    }
-
-
-
-    windowSizeSynchronization() {
-        // Make sure the size of HUD window is same as game size.
-        let islandEmpire = document.getElementById("island-empire").children[0];
         this.closeHUD();
-
         setTimeout(() => {    
             this.openHUD();
-            // hud.style.width = window.getComputedStyle(islandEmpire).width;
-            // hud.style.height = window.getComputedStyle(islandEmpire).height;
-
             this.wish.resize();
-
         }, 50);
     }
+
+
+
+
 
     renderCurrentFPS() {
         let fps = Math.floor(this.scene.sys.game.loop.actualFps);

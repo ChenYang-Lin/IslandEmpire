@@ -8,28 +8,14 @@ export default class InputController {
         this.keyJ = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.J);
         this.keyP = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
 
-
-        this.joyLeft = false;
-        this.joyRight = false;
-        this.joyUp = false;
-        this.joyDown = false;
-
-        this.joyStick;
-        this.createJoyStick();
-
         window.addEventListener('resize', () => {
             console.log("window resized")
-            // this.scene.hud.renderHUD();
-            this.scene.hud.windowSizeSynchronization();
 
             this.scene.sys.game.scale.resize(window.innerWidth, window.innerHeight);
-            this.joyStick.x = 100;
-            this.joyStick.y = this.scene.sys.game.canvas.height - 100;
         });
 
         this.initMobileBtns();
-
-
+        this.createJoyStick();
     }
 
     initMobileBtns() {
@@ -64,26 +50,51 @@ export default class InputController {
     }
 
     createJoyStick() {
-        this.joyStick = this.scene.plugins.get('rexvirtualjoystickplugin').add(this.scene, {
-            x: 100,
-            y: this.scene.sys.game.canvas.height - 100,
-            radius: 70,
-            base: this.scene.add.circle(0, 0, 70, 0x888888),
-            thumb: this.scene.add.circle(0, 0, 20, 0xcccccc),
-            // dir: '8dir',   // 'up&down'|0|'left&right'|1|'4dir'|2|'8dir'|3
-            // forceMin: 16,
-            // enable: true
+        this.joy = new JoyStick('joyDiv', {
+            width: 150,
+            height: 150,
+            internalFillColor: '#9C9898',
+            internalLineWidth: 1,
+            internalStrokeColor: "#9C9898",
+            externalLineWidth: 1,
+            externalStrokeColor: "#9C9898",
+        }, (stickData) => {
+            this.joyLeft = false;
+            this.joyRight = false;
+            this.joyUp = false;
+            this.joyDown = false;
+            switch (stickData.cardinalDirection) {
+                case "N":
+                    this.joyUp = true;
+                    break;
+                case "NE":
+                    this.joyUp = true;
+                    this.joyRight = true;
+                    break;
+                case "E":
+                    this.joyRight = true;
+                    break;
+                case "SE":
+                    this.joyRight = true;
+                    this.joyDown = true;
+                    break;
+                case "S":
+                    this.joyDown = true;
+                    break;
+                case "SW":
+                    this.joyDown = true;
+                    this.joyLeft = true;
+                    break;
+                case "W":
+                    this.joyLeft = true;
+                    break;
+                case "NW":
+                    this.joyUp = true;
+                    this.joyLeft = true;
+                    break;
+                default:
+            }
         });
-        
-        this.joyStick.on('update', () => {
-            let cursorKeys = this.joyStick.createCursorKeys();
-            this.joyLeft = cursorKeys.left.isDown;
-            this.joyRight = cursorKeys.right.isDown;
-            this.joyUp = cursorKeys.up.isDown;
-            this.joyDown = cursorKeys.down.isDown;
-            console.log(window.innerWidth);
-            // this.joyStick.x = 400;
-        }, this);
 
     }
 
