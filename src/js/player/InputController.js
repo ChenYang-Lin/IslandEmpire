@@ -11,6 +11,7 @@ export default class InputController {
         window.addEventListener('resize', () => {
             console.log("window resized")
 
+            this.scene.hud.screenResizeUpdate();
             this.scene.sys.game.scale.resize(window.innerWidth, window.innerHeight);
         });
 
