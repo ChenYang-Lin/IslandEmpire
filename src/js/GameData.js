@@ -220,5 +220,6 @@ export {
     ITEM_DATA,
     CROP_GROW_DATA,
     SHOP_DATA,
+    QUEST_DATA,
     MAP_DATA,
 }

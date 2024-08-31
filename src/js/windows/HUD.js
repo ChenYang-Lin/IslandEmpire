@@ -1,6 +1,6 @@
 
 import { ITEM_DATA } from "../GameData.js";
-import Quest from "./Quest.js";
+import QuestManager from "./QuestManager.js";
 import Reward from "./Reward.js";
 import Shop from "./Shop.js";
 import Wish from "./Wish.js";
@@ -34,7 +34,7 @@ export default class HUD {
         this.reward = new Reward(this.scene, this);
         this.shop = new Shop(this.scene, this);
         this.wish = new Wish(this.scene, this);
-        this.quest = new Quest(this.scene, this);
+        this.questManager = new QuestManager(this.scene, this);
 
         this.scene.player.stats.renderStatsDisplay();
 
@@ -75,7 +75,7 @@ export default class HUD {
         setTimeout(() => {    
             this.openHUD();
             this.wish.resize();
-            this.quest.createBoxShadow();
+            this.questManager.createBoxShadow();
         }, 100);
     }
 
