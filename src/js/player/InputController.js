@@ -51,6 +51,7 @@ export default class InputController {
     }
 
     createJoyStick() {
+        
         this.joy = new JoyStick('joyDiv', {
             width: 150,
             height: 150,

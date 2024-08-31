@@ -229,6 +229,10 @@ export default class HUD {
     }
 
     showConstructionSceneUIs() {
+        let joystick = document.getElementById("joystick");
+        if (joystick) {
+            joystick.remove();
+        }
         this.hideMainSceneUIs();
         this.exitUI.style.display = "block";
         this.constructionContainer.style.display = "block";
