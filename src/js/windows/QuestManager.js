@@ -51,6 +51,7 @@ export default class QuestManager {
     }
 
     updateQuestPrompt() {
+        console.log(this.activeQuest)
         if (this.activeQuest) {
             this.questPrompt.style.display = "block";
             this.questPromptTaskName.innerHTML = this.activeQuest?.getTaskName();

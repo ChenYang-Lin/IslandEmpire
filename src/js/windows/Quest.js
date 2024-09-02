@@ -40,15 +40,16 @@ export default class Quest {
 
     startNextTask() {
         console.log(this.taskProgress, this.taskList.length)
-        this.questManager.updateQuestPrompt();
         if (this.taskProgress < this.taskList.length) {
             this.taskList[this.taskProgress].startTask();
         } else {
             this.questComplete();
         }
+        this.questManager.updateQuestPrompt();
     }
 
     questComplete() {
-        console.log("quest complete: ", this.questName)
+        console.log("quest complete: ", this.questName);
+        this.questManager.activeQuest = undefined;
     }
 }
