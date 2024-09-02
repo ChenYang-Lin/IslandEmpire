@@ -54,8 +54,8 @@ export default class InputController {
     createJoyStick() {
         
         this.joy = new JoyStick('joyDiv', {
-            width: 150,
-            height: 150,
+            width: 120,
+            height: 120,
             internalFillColor: '#9C9898',
             internalLineWidth: 1,
             internalStrokeColor: "#9C9898",

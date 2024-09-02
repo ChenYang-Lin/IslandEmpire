@@ -8,13 +8,21 @@ export default class QuestManager {
         this.hud = hud;
 
         this.questList = []
+        this.activeQuest;
         this.questStatus = {
-            "beginner_quest": {
+            "beginner quest": {
                 status: "inProgress",
                 taskProgress: 0,
             },
         }
+
         
+        this.questPrompt = document.getElementById("quest-prompt");
+        this.questPromptTaskName = document.getElementById("quest-prompt-task-name");
+        this.questPromptTaskName.addEventListener("pointerdown", () => {
+            this.activeQuest.showTaskDirection();
+        })
+
 
 
         setTimeout(() => {
@@ -23,6 +31,8 @@ export default class QuestManager {
         },100)
 
         this.initQuests();
+
+        this.updateQuestPrompt();
     }
 
     initQuests() {
@@ -33,8 +43,20 @@ export default class QuestManager {
                 this.questStatus[questName] = { status: "pending", taskProgress: 0 };
             } 
             let newQuest = new Quest(this, questName, quest, this.questStatus[questName]);
+            if (!this.activeQuest) {
+                this.activeQuest = newQuest;
+            }
             this.questList.push(newQuest);
         })
+    }
+
+    updateQuestPrompt() {
+        if (this.activeQuest) {
+            this.questPrompt.style.display = "block";
+            this.questPromptTaskName.innerHTML = this.activeQuest?.getTaskName();
+        } else {
+            this.questPrompt.style.display = "none";
+        }
     }
 
     restrictor(e) {

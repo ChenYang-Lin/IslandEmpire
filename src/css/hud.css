@@ -131,3 +131,43 @@
     pointer-events: auto;
     /* box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.651); */
 }
+
+/* Quest prompt */
+#quest-prompt {
+    position: absolute;
+    left: 0;
+    top: 45%;
+    margin-left: 20px;
+    width: 200px;
+    height: 30%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: start;
+    /* background-color: red; */
+}
+
+#quest-prompt-task-name {
+    color: rgb(245, 245, 245);
+    font-weight: 800;
+    font-size: large;
+    text-shadow: 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000;
+    border-bottom: 2px solid #8d8d8d;
+    pointer-events: auto;
+}
+
+#quest-prompt-task-hints {
+    display: flex;
+}
+
+#quest-prompt-task-distance {
+    color: orange;
+    font-size: small;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+
+/* #quest-prompt-task-direction-icon {
+    width: 10%;
+    image-rendering: auto;
+} */

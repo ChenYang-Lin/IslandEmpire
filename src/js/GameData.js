@@ -173,11 +173,11 @@ const SHOP_DATA = [
 ]
 
 const QUEST_DATA = {
-    "beginner_quest": {
+    "beginner quest": {
         prev_quest: null,
         tasks: [
             {
-                name: "move-around",
+                name: "move around",
                 description: "Move around",
                 hint: "move around",
                 type: "input",
@@ -187,7 +187,7 @@ const QUEST_DATA = {
                 },
             },
             {
-                name: "eat-food",
+                name: "eat food",
                 description: "Move around",
                 hint: "eat-food",
                 type: "input",

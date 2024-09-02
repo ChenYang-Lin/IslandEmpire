@@ -4,7 +4,7 @@ export default class QuestTask {
     constructor(quest, questManager, task) {
         this.quest = quest;
         this.questManager = questManager;
-        this.task = task
+        this.task = task;
     }
 
     startTask() {
@@ -17,8 +17,12 @@ export default class QuestTask {
         }
 
             
-        // this.questManager.restrictInput(this.task.target);
         
+    }
+
+    showDirection() {
+        console.log("showing direction")
+        this.questManager.restrictInput(this.task.target);
     }
 
     taskComplete() {

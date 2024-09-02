@@ -30,8 +30,17 @@ export default class Quest {
         }
     }
 
+    showTaskDirection() {
+        this.taskList[this.taskProgress].showDirection();
+    }
+
+    getTaskName() {
+        return this.taskList[this.taskProgress].task.name;
+    }
+
     startNextTask() {
         console.log(this.taskProgress, this.taskList.length)
+        this.questManager.updateQuestPrompt();
         if (this.taskProgress < this.taskList.length) {
             this.taskList[this.taskProgress].startTask();
         } else {
