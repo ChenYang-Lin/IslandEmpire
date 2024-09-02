@@ -36,6 +36,7 @@ export default class InputController {
 
         let consumableBtn = document.getElementById("consumable-btn");
         consumableBtn.addEventListener("pointerdown", () => {
+            this.scene.eventEmitter.emit("pointerdown-consumable-btn");
             this.scene.player.useItem(this.scene.hud.inventory.inventoryWindow.selectedConsumableItem);
         })
         let consumableBtnSwitcher = document.getElementById("consumable-btn-switcher");
@@ -62,6 +63,7 @@ export default class InputController {
             externalStrokeColor: "#9C9898",
             autoReturnToCenter: 1,
         }, (stickData) => {
+            this.scene.eventEmitter.emit("pointerdown-joystick");
             this.joyLeft = false;
             this.joyRight = false;
             this.joyUp = false;

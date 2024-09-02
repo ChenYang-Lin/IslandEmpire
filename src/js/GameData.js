@@ -177,14 +177,24 @@ const QUEST_DATA = {
         prev_quest: null,
         tasks: [
             {
-                type: "input",
-                restrictions: [
-                    {
-                        "box-shadow": "joystick",
-                    }
-                ],
+                name: "move-around",
                 description: "Move around",
-                hint: "move around"
+                hint: "move around",
+                type: "input",
+                target: "joystick",
+                direction: {
+                    type: "restriction",
+                },
+            },
+            {
+                name: "eat-food",
+                description: "Move around",
+                hint: "eat-food",
+                type: "input",
+                target: "consumable-btn",
+                direction: {
+                    type: "restriction",
+                }
             }
         ]
     }

@@ -1,4 +1,5 @@
 import { QUEST_DATA } from "../GameData.js";
+import Quest from "./Quest.js";
 
 
 export default class QuestManager {
@@ -6,10 +7,19 @@ export default class QuestManager {
         this.scene = scene;
         this.hud = hud;
 
+        this.questList = []
+        this.questStatus = {
+            "beginner_quest": {
+                status: "inProgress",
+                taskProgress: 0,
+            },
+        }
+        
+
 
         setTimeout(() => {
             // this.restrictInput("shop-ui");
-            this.restrictInput("joystick");
+            // this.restrictInput("joystick");
         },100)
 
         this.initQuests();
@@ -18,13 +28,17 @@ export default class QuestManager {
     initQuests() {
         this.questData = QUEST_DATA;
 
-        Object.entries(this.questData).forEach(([key, value]) => {
-            
+        Object.entries(this.questData).forEach(([questName, quest]) => {
+            if (!this.questStatus[questName]) {
+                this.questStatus[questName] = { status: "pending", taskProgress: 0 };
+            } 
+            let newQuest = new Quest(this, questName, quest, this.questStatus[questName]);
+            this.questList.push(newQuest);
         })
     }
 
     restrictor(e) {
-        console.log(e.target.id);
+        console.log("clicking: ", e.target.id);
         if (e.target.id !== e.currentTarget.unrestrictedInput) {
             e.preventDefault();
             e.stopPropagation();
@@ -61,8 +75,12 @@ export default class QuestManager {
         this.box.style.top = `${rect.top}px`;
         this.box.style.width = `${rect.right - rect.left}px`;
         this.box.style.height = `${rect.bottom - rect.top}px`;
-        this.box.style.border = "1px solid red"
-        this.box.style.boxShadow = "0 0 0 10000px rgba(0, 0, 0, 0.8)";
+        // this.box.style.boxShadow = "0 0 0 10000px rgba(0, 0, 0, 0.8)";
+        this.box.style.transition = "1s";
+
+        setTimeout(() => {
+            this.box.style.boxShadow = "0 0 0 10000px rgba(0, 0, 0, 0.8)";
+        },50)
 
         document.getElementById("hud-wrapper").appendChild(this.box);
     }

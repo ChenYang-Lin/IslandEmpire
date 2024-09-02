@@ -127,8 +127,7 @@
 #joyDiv {
     position: absolute;
     left: 10%;
-    bottom: 10%;
+    bottom: 5%;
     pointer-events: auto;
     /* box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.651); */
-    transition: 1s;
 }

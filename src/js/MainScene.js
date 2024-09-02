@@ -8,6 +8,7 @@ import Goblin from "./entity/Goblin.js";
 import Entity from "./entity/Entity.js";
 import CollisionController from "./CollisionController.js";
 import Raft from "./entity/Raft.js";
+import EventEmitter from "./EventEmitter.js";
 
 
 export default class MainScene extends Phaser.Scene {
@@ -35,6 +36,7 @@ export default class MainScene extends Phaser.Scene {
         this.checkVersion();
    
         // Initialization
+        this.eventEmitter = new EventEmitter();
         this.worldManager = new WorldManager(this);
         this.collisionController = new CollisionController(this);
         this.player = new Player(this);
