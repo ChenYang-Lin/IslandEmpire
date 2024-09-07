@@ -23,11 +23,13 @@ export default class InputController {
         let attackBtn = document.getElementById("attack-btn");
         attackBtn.addEventListener("pointerdown", () => {
             this.playAttackAnim("sword");
+            this.player.autoControl = false;
         })
 
         let farmingBtn = document.getElementById("farming-btn");
         farmingBtn.addEventListener("pointerdown", () => {
             this.beginFarmingAction();
+            this.player.autoControl = false;
         })
         let farmingBtnSwitcher = document.getElementById("farming-btn-switcher");
         farmingBtnSwitcher.addEventListener("pointerdown", () => {
@@ -38,6 +40,7 @@ export default class InputController {
         consumableBtn.addEventListener("pointerdown", () => {
             this.scene.eventEmitter.emit("pointerdown-consumable-btn");
             this.scene.player.useItem(this.scene.hud.inventory.inventoryWindow.selectedConsumableItem);
+            this.player.autoControl = false;
         })
         let consumableBtnSwitcher = document.getElementById("consumable-btn-switcher");
         consumableBtnSwitcher.addEventListener("pointerdown", () => {
@@ -63,7 +66,6 @@ export default class InputController {
             externalStrokeColor: "#9C9898",
             autoReturnToCenter: 1,
         }, (stickData) => {
-            this.scene.eventEmitter.emit("pointerdown-joystick");
             this.joyLeft = false;
             this.joyRight = false;
             this.joyUp = false;
@@ -71,31 +73,47 @@ export default class InputController {
             switch (stickData.cardinalDirection) {
                 case "N":
                     this.joyUp = true;
+                    this.player.autoControl = false;
+                    this.scene.eventEmitter.emit("pointerdown-joystick");
                     break;
                 case "NE":
                     this.joyUp = true;
                     this.joyRight = true;
+                    this.player.autoControl = false;
+                    this.scene.eventEmitter.emit("pointerdown-joystick");
                     break;
                 case "E":
                     this.joyRight = true;
+                    this.player.autoControl = false;
+                    this.scene.eventEmitter.emit("pointerdown-joystick");
                     break;
                 case "SE":
                     this.joyRight = true;
                     this.joyDown = true;
+                    this.player.autoControl = false;
+                    this.scene.eventEmitter.emit("pointerdown-joystick");
                     break;
                 case "S":
                     this.joyDown = true;
+                    this.player.autoControl = false;
+                    this.scene.eventEmitter.emit("pointerdown-joystick");
                     break;
                 case "SW":
                     this.joyDown = true;
                     this.joyLeft = true;
+                    this.player.autoControl = false;
+                    this.scene.eventEmitter.emit("pointerdown-joystick");
                     break;
                 case "W":
                     this.joyLeft = true;
+                    this.player.autoControl = false;
+                    this.scene.eventEmitter.emit("pointerdown-joystick");
                     break;
                 case "NW":
                     this.joyUp = true;
                     this.joyLeft = true;
+                    this.player.autoControl = false;
+                    this.scene.eventEmitter.emit("pointerdown-joystick");
                     break;
                 default:
             }
@@ -107,35 +125,44 @@ export default class InputController {
     movementController() {
         let velocity = new Phaser.Math.Vector2();
         let direction;
+        let moved = false;
         
 
         if (this.cursor.up.isDown || this.joyUp) {
             velocity.y -= 1;
             direction = "up";
+            moved = true;
         }
         
         if (this.cursor.down.isDown || this.joyDown) {
             velocity.y += 1;
             direction = "down";
+            moved = true;
         }
 
         if (this.cursor.right.isDown || this.joyRight) {
             velocity.x += 1;
             direction = "right";
+            moved = true;
         }
         
         if (this.cursor.left.isDown || this.joyLeft) {
             velocity.x -= 1;
             direction = "left";
+            moved = true;
         }
 
-        velocity.normalize();
 
+        velocity.normalize();
+        if (this.player.autoControl) {
+            return;
+        }
         this.player.animationController.move(velocity, direction);
 
     }
 
     playAttackAnim(type) {
+        this.scene.eventEmitter.emit("pointerdown-attack-btn");
         switch (type) {
             case "sword":
                 this.player.animationController.swordAttack(); 

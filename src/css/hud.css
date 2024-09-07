@@ -133,14 +133,36 @@
 }
 
 /* Quest prompt */
-#quest-prompt {
+
+#quest-prompt-container {
     position: absolute;
+    display: block;
     left: 0;
-    top: 45%;
+    top: 40%;
+    transform: translateY(-50%);
     margin-left: 5%;
     width: 200px;
     height: 30%;
-    transform: translateY(-50%);
+}
+
+#quest-prompt-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: top;
+}
+
+#quest-prompt-task-symbol {
+    width: 20%;
+    filter: hue-rotate();
+}
+
+#quest-prompt {
+    margin-left: 5px;
+    padding-left: 2px;
+    width: 80%;
     display: flex;
     flex-direction: column;
     justify-content: left;
@@ -148,13 +170,32 @@
     /* background-color: red; */
 }
 
-#quest-prompt-task-name {
-    color: rgb(245, 245, 245);
-    font-weight: 800;
-    font-size: large;
-    text-shadow: 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000;
-    border-bottom: 2px solid #8d8d8d;
+#quest-prompt-task-heading {
+    position: relative;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
     pointer-events: auto;
+}
+
+#quest-prompt-task-symbol {
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
+    image-rendering: auto;
+}
+
+
+#quest-prompt-task-name {
+    font-weight: 600;
+    font-size: 15px;
+    display: inline-block;
+    vertical-align: middle;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+    color: rgb(245, 245, 245);
+    border-bottom: 2px solid #8d8d8d;
+    pointer-events: none;
 }
 
 #quest-prompt-task-hints {
@@ -163,7 +204,7 @@
 
 #quest-prompt-task-distance {
     color: orange;
-    font-size: small;
+    font-size: 12px;
     text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
 }
 

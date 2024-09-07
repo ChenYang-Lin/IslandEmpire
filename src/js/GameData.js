@@ -177,25 +177,40 @@ const QUEST_DATA = {
         prev_quest: null,
         tasks: [
             {
-                name: "move around",
+                name: "Move around",
                 description: "Move around",
-                hint: "move around",
-                type: "input",
+                type: "pointerdown",
                 target: "joystick",
-                direction: {
-                    type: "restriction",
-                },
+                direction: null,
             },
             {
-                name: "eat food",
-                description: "Move around",
-                hint: "eat-food",
-                type: "input",
-                target: "consumable-btn",
-                direction: {
-                    type: "restriction",
-                }
-            }
+                name: "Attack",
+                description: "Attack",
+                type: "pointerdown",
+                target: "attack-btn",
+                direction: null,
+            },
+            {
+                name: "Move to the left side of the tree",
+                description: "Move to the left side of the tree",
+                type: "arrival",
+                target: "2,-3",
+                direction: "2,-3",
+            },
+            {
+                name: "Cut down the tree",
+                description: "Cut down the tree",
+                type: "teach-kill",
+                target: "tree",
+                direction: "3,-3",
+            },
+            {
+                name: "Pick up woods",
+                description: "Pick up woods",
+                type: "pickup",
+                target: "wood",
+                direction: null,
+            },
         ]
     }
 }
@@ -216,8 +231,8 @@ const MAP_DATA = {
     "2,-1":  { isLand: true, entities: [ ], },
     "2,0":   { isLand: true, entities: [ ], },
  
-    "3,-3":  { isLand: true, entities: [ ], },
-    "3,-2":  { isLand: true, entities: [ { name: "tree" }, ], },
+    "3,-3":  { isLand: true, entities: [ { name: "tree" }, ], },
+    "3,-2":  { isLand: true, entities: [ ], },
     "3,-1":  { isLand: true, entities: [ ], },
     "3,0":   { isHoedLand: true, isLand: true, entities: [ ], },
 

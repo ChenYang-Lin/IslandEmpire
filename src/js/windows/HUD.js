@@ -139,9 +139,10 @@ export default class HUD {
             collectableBtn.classList.add("collectable-btn");
             // collectableBtn.setAttribute("index", `${i}`);
             collectableBtn.addEventListener("pointerdown", () => {
+                this.scene.eventEmitter.emit(`pickup-${collectable.name}`);
                 collectableBtn.remove();
                 this.inventory.addItem(collectable.collectable, 1);
-                this.scene.player.sensors.touchingNearbyCollectables[i].onDeath();
+                this.scene.player.sensors.touchingNearbyCollectables[i].onDeath("player");
                 this.scene.collisionController.addCollectableCollected(collectable);
             })
 

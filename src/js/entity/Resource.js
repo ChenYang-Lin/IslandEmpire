@@ -57,7 +57,7 @@ export default class Resource extends Entity {
 
     }
 
-    onHit(damage) {
+    onHit(attacker, damage) {
         this.hp -= damage;
         if (this.hasSecondPart && this.hp < this.maxHP / 2) {
             this.transparentSprites.forEach((transparentSprite) => {
@@ -65,15 +65,17 @@ export default class Resource extends Entity {
             })
             this.secondPart.destroy();
         }
-        if (this.hp <= 0) {
-            this.onDeath();
-        }
+        super.onHit(attacker, damage);
     }
 
-    onDeath() {
+    onDeath(attacker) {
         this.entityData.drops.forEach((name) => {
             let drops = new Drops(this.scene, this.position.x + Math.floor(Math.random() * 20), this.position.y + Math.floor(Math.random() * 20), "item", name);
         })
-        super.onDeath();
+        if (this.onGrid.x >= 0 && this.scene.worldManager.map[`${this.onGrid.x},${this.onGrid.y}`]) {
+            this.scene.worldManager.map[`${this.onGrid.x},${this.onGrid.y}`].entities = [];
+            this.scene.worldManager.saveMapToLocalStorage();
+        }
+        super.onDeath(attacker);
     }
 }

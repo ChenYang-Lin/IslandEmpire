@@ -16,7 +16,7 @@ export default class Player extends Ally {
         this.scene.physics.add.existing(this);
 
 
-        
+        this.autoControl = false;
 
         this.sensors = new Sensors(this.scene, this);
         this.stats = new Stats(this.scene, this);
@@ -28,6 +28,10 @@ export default class Player extends Ally {
     }
 
 
+    autoMoveToGridCell(path) {
+        this.autoControl = true;
+        this.path = path;
+    }
 
 
     useItem(itemName) {
@@ -45,9 +49,12 @@ export default class Player extends Ally {
     }
 
     update(time, delta) {
-        this.depth = this.position.y;
+
+        super.update();
+        if (this.autoControl) {
+            this.moveToGridCell(this.path);
+        }
         this.sensors.update();
-        this.animationController.update();
     }
 
 

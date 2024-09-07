@@ -229,6 +229,9 @@ class Astar {
     }
 
     drawRectangle(scene, node, color) {
+
+        return;
+
         this.graphics = scene.add.graphics();
         this.graphics.lineStyle(1, color, 1); // this.graphics.lineStyle(thickness, color, alpha)
         this.indicators.push(this.graphics.strokeRect(node.tx*32-16, node.ty*32-16, 32, 32));

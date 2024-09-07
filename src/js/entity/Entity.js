@@ -109,14 +109,17 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.healthBar.depth = this.depth + 2;
     }
 
-
-
-    onDeath() {
-        console.log(`${this.onGrid.x},${this.onGrid.y}`)
-        if (this.onGrid.x >= 0 && this.scene.worldManager.map[`${this.onGrid.x},${this.onGrid.y}`]) {
-            this.scene.worldManager.map[`${this.onGrid.x},${this.onGrid.y}`].entities = [];
-            this.scene.worldManager.saveMapToLocalStorage();
+    onHit(attacker, damage) {    
+        if (this.hp <= 0) { 
+            console.log(attacker)
+            this.onDeath(attacker);
         }
+    }  
+
+
+    onDeath(attacker) {
+        this.scene.eventEmitter.emit(`${attacker}-destroy-${this.name}`);
         this.destroy();
+        
     }
 }

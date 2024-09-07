@@ -70,10 +70,10 @@ export default class Crop extends Entity {
         this.progressBar?.destroy();
     }
 
-    onDeath() {
+    onDeath(attacker) {
         delete this.scene.worldManager.growingCrops[`${this.onGrid.x},${this.onGrid.y}`]
         delete this.scene.worldManager.map[`${this.onGrid.x},${this.onGrid.y}`].crop 
-        super.onDeath();
+        super.onDeath(attacker);
     }
 
     update() {

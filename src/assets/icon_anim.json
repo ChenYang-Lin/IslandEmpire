@@ -1,0 +1,20 @@
+{
+    "anims": [
+        {
+            "key": "quest_icon",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "icon",
+                    "frame": "quest_icon_0"
+                },
+                {
+                    "key": "icon",
+                    "frame": "quest_icon_1"
+                }
+            ]
+        }
+    ]
+}

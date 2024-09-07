@@ -19,8 +19,10 @@ export default class QuestManager {
         
         this.questPrompt = document.getElementById("quest-prompt");
         this.questPromptTaskName = document.getElementById("quest-prompt-task-name");
-        this.questPromptTaskName.addEventListener("pointerdown", () => {
-            this.activeQuest.showTaskDirection();
+        this.questPromptTaskDistance = document.getElementById("quest-prompt-task-distance");
+        this.questPromptTaskHeading = document.getElementById("quest-prompt-task-heading");
+        this.questPromptTaskHeading.addEventListener("pointerdown", () => {
+            this.activeQuest.provideQuestAssistance();
         })
 
 
@@ -58,6 +60,41 @@ export default class QuestManager {
         } else {
             this.questPrompt.style.display = "none";
         }
+    }
+
+    showDirection(target) {
+        this.hideDirection();
+
+        this.updateDistance(target);
+
+        this.directionSymbol = this.scene.add.sprite(target.x * 32, target.y * 32, "icon", "quest_icon_0");
+        this.directionSymbol.depth = this.directionSymbol.y + 1000;
+        this.directionSymbol.anims.play("quest_icon", true);
+
+
+        this.playerMoveSub = this.scene.eventEmitter.subscribe(`player-move`, () => {
+            this.updateDistance(target);
+        });
+    }
+
+    updateDistance(target) {
+        let player = this.scene.player.onGrid;
+        let distance = Math.sqrt( Math.pow((target.x - player.x), 2) + Math.pow((target.y - player.y), 2));
+
+        if (distance <= 0) {
+            this.directionSymbol?.setAlpha(0);
+        } else {
+            this.directionSymbol?.setAlpha(1);
+        }
+        this.questPromptTaskDistance.innerHTML = `${Math.ceil(distance)}m`;
+    }
+
+    hideDirection() {
+        console.log("hide")
+        this.directionSymbol?.destroy();
+        this.directionSquare?.destroy();
+        this.playerMoveSub?.unsubscribe();
+        this.questPromptTaskDistance.innerHTML = `0m`;
     }
 
     restrictor(e) {

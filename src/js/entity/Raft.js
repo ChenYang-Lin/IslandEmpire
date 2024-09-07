@@ -36,5 +36,7 @@ export default class Raft extends Entity {
             this.goblin.setPosition(this.position.x, this.position.y);
         } 
         this.goblin?.update(time, delta);
+        this.depth = this.position.y -1000
+
     }
 }

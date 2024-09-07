@@ -30,8 +30,8 @@ export default class Quest {
         }
     }
 
-    showTaskDirection() {
-        this.taskList[this.taskProgress].showDirection();
+    provideQuestAssistance() {
+        this.taskList[this.taskProgress].provideAssistance();
     }
 
     getTaskName() {
@@ -39,7 +39,6 @@ export default class Quest {
     }
 
     startNextTask() {
-        console.log(this.taskProgress, this.taskList.length)
         if (this.taskProgress < this.taskList.length) {
             this.taskList[this.taskProgress].startTask();
         } else {

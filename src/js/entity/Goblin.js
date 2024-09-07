@@ -13,7 +13,7 @@ export default class Goblin extends Enemy {
 
         this.timer = 0;
         this.tempDir = 1;
-        this.action = "rest";
+        this.action = "idle";
         this.moveToLandX = 0;
         this.moveToLandY = 0;
         
@@ -34,33 +34,40 @@ export default class Goblin extends Enemy {
     }
 
     moveToPlayer() {
-        let velocity = new Phaser.Math.Vector2();
         if (this.pathToPlayer?.length > 0) {
-            this.nextGridCell = this.pathToPlayer[0];
-            // consols.log(this.position.y, this.nextGridCell.ty*32)
-            if (this.position.x < this.nextGridCell.tx*32-4) {
-                velocity.x = 1;
-                this.direction = "right";
-            } else if (this.position.x > this.nextGridCell.tx*32+4) {
-                velocity.x = -1;
-                this.direction = "left";
-            } else if (this.position.y > this.nextGridCell.ty*32+4) {
-                velocity.y = -1;
-                this.direction = "up";
-            } else if (this.position.y < this.nextGridCell.ty*32-4) {
-                velocity.y = 1;                
-                this.direction = "down";
-            } else {
-                this.pathToPlayer.shift();
-            }
-            
-            this.animationController.move(velocity, this.direction, this);
-            
+            this.moveToGridCell(this.pathToPlayer);
         } else {
-            // console.log("finding path")
             this.pathToPlayer = this.getPathToPlayer();
         }
     }
+    // moveToPlayer() {
+    //     let velocity = new Phaser.Math.Vector2();
+    //     if (this.pathToPlayer?.length > 0) {
+    //         this.nextGridCell = this.pathToPlayer[0];
+    //         // consols.log(this.position.y, this.nextGridCell.ty*32)
+    //         if (this.position.x < this.nextGridCell.tx*32-4) {
+    //             velocity.x = 1;
+    //             this.direction = "right";
+    //         } else if (this.position.x > this.nextGridCell.tx*32+4) {
+    //             velocity.x = -1;
+    //             this.direction = "left";
+    //         } else if (this.position.y > this.nextGridCell.ty*32+4) {
+    //             velocity.y = -1;
+    //             this.direction = "up";
+    //         } else if (this.position.y < this.nextGridCell.ty*32-4) {
+    //             velocity.y = 1;                
+    //             this.direction = "down";
+    //         } else {
+    //             this.pathToPlayer.shift();
+    //         }
+            
+    //         this.animationController.move(velocity, this.direction, this);
+            
+    //     } else {
+    //         // console.log("finding path")
+    //         this.pathToPlayer = this.getPathToPlayer();
+    //     }
+    // }
 
     moveToLand() {
         let velocity = new Phaser.Math.Vector2();
@@ -85,10 +92,10 @@ export default class Goblin extends Enemy {
         // velocity.x += 1 * this.tempDir;
         // velocity.normalize();
 
-        if (this.destroyed) return;
+        super.update();
 
-        switch (this.action) {
-            case "rest":
+        switch (this.action) {            
+            case "idle":
                 break;
             case "moveToPlayer":
                 this.moveToPlayer();
@@ -98,8 +105,7 @@ export default class Goblin extends Enemy {
                 break;
             default:
         }
-        
-        
+
 
         // this.animationController.swordAttack(); 
         // this.animationController.move(velocity, "left", this)

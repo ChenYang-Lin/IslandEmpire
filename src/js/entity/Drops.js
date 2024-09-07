@@ -16,8 +16,8 @@ export default class Drops extends Entity {
 
     }
 
-    onDeath() {
-        super.onDeath();
+    onDeath(attacker) {
+        super.onDeath(attacker);
     }
 
     
