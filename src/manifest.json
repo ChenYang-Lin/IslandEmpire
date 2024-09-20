@@ -20,8 +20,8 @@
     "type":"image/png"
     },
     {
-    "src":"./assets/icons/splash/splash_icon_888x888.png",                      
-    "sizes":"888x888",
+    "src":"./assets/icons/splash/splash_icon_512x512.png",                      
+    "sizes":"512x512",
     "type":"image/png"
     }
   ]
