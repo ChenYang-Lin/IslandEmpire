@@ -173,15 +173,25 @@ const SHOP_DATA = [
 ]
 
 const QUEST_DATA = {
-    "beginner quest": {
+    "beginner-quest-one": {
         prev_quest: null,
         tasks: [
             {
                 name: "Move around",
                 description: "Move around",
-                type: "pointerdown",
-                target: "joystick",
+                completion: {
+                    type: "pointerdown",
+                    target: "joystick",
+                },
+                hint: {
+                    type: "restriction",
+                    target: "joystick",
+                },
+                spawn: {
+                    
+                },
                 direction: null,
+                checkpoint: true,
             },
             {
                 name: "Attack",
@@ -209,6 +219,18 @@ const QUEST_DATA = {
                 description: "Pick up woods",
                 type: "pickup",
                 target: "wood",
+                direction: null,
+            },
+        ]
+    },
+    "beginner-quest-two": {
+        prev_quest: null,
+        tasks: [
+            {
+                name: "Harvest crop",
+                description: "Harvest crop",
+                type: "pickup",
+                target: "crop",
                 direction: null,
             },
         ]

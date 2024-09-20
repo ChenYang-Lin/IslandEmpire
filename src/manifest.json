@@ -10,13 +10,18 @@
     "description":"This is a pwa for Island Empire",
     "icons":[
     {
-    "src":"./assets/icons/hoe.png",                      
+    "src":"./assets/icons/splash/hoe.png",                      
     "sizes":"32x32",
     "type":"image/png"
     },
     {
-    "src":"./assets/icons/hoe_144x144.png",                      
+    "src":"./assets/icons/splash/hoe_144x144.png",                      
     "sizes":"144x144",
+    "type":"image/png"
+    },
+    {
+    "src":"./assets/icons/splash/splash_icon_888x888.png",                      
+    "sizes":"888x888",
     "type":"image/png"
     }
   ]

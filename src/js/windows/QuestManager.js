@@ -10,7 +10,7 @@ export default class QuestManager {
         this.questList = []
         this.activeQuest;
         this.questStatus = {
-            "beginner quest": {
+            "beginner-quest-one": {
                 status: "inProgress",
                 taskProgress: 0,
             },

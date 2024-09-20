@@ -9,10 +9,10 @@ export default class QuestTask {
     }
 
     startTask() {
-        switch (this.task.type) {
+        switch (this.task.completion.type) {
             case "pointerdown": 
-                console.log(`clicking: pointerdown-${this.task.target}`)
-                this.sub = this.questManager.scene.eventEmitter.subscribe(`pointerdown-${this.task.target}`, () => {
+                console.log(`clicking: pointerdown-${this.task.completion.target}`)
+                this.sub = this.questManager.scene.eventEmitter.subscribe(`pointerdown-${this.task.completion.target}`, () => {
                     this.sub.unsubscribe();
                     this.taskComplete();
                 });
