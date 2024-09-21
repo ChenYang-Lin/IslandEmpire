@@ -187,39 +187,76 @@ const QUEST_DATA = {
                     type: "restriction",
                     target: "joystick",
                 },
-                spawn: {
-                    
-                },
+                spawn: [],
                 direction: null,
                 checkpoint: true,
             },
             {
                 name: "Attack",
                 description: "Attack",
-                type: "pointerdown",
-                target: "attack-btn",
+                completion: {
+                    type: "pointerdown",
+                    target: "attack-btn",
+                },
+                hint: {
+                    type: "restriction",
+                    target: "attack-btn",
+                },
+                spawn: [],
                 direction: null,
+                checkpoint: true,
             },
             {
                 name: "Move to the left side of the tree",
                 description: "Move to the left side of the tree",
-                type: "arrival",
-                target: "2,-3",
+                completion: {
+                    type: "arrival",
+                    target: "2,-3",
+                },
+                hint: {
+                    type: "arrival",
+                    target: "2,-3",
+                },
+                spawn: [
+                    {
+                        name: "tree",
+                        location: "3,-3",
+                    }
+                ],
                 direction: "2,-3",
+                checkpoint: true,
             },
             {
                 name: "Cut down the tree",
                 description: "Cut down the tree",
-                type: "teach-kill",
-                target: "tree",
+                completion: {
+                    type: "kill",
+                    target: "tree",
+                },
+                hint: {
+                    type: "arrival",
+                    target: "3,-3",
+                },
+                spawn: [
+                    {
+                        name: "tree",
+                        location: "3,-3",
+                    }
+                ],
                 direction: "3,-3",
+                checkpoint: true,
             },
             {
                 name: "Pick up woods",
                 description: "Pick up woods",
-                type: "pickup",
-                target: "wood",
+                completion: {
+                    type: "pickup",
+                    target: "wood",
+                },
+                hint: {},
+                spawn: [],
                 direction: null,
+                checkpoint: true,
             },
         ]
     },

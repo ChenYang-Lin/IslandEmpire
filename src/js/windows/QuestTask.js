@@ -9,6 +9,25 @@ export default class QuestTask {
     }
 
     startTask() {
+        this.task?.spawn?.forEach((spawnEntity)  => {
+            let objectExist = false;
+            console.log(this.questManager.scene.worldManager.map[spawnEntity.location].entities);
+            this.questManager.scene.worldManager.map[spawnEntity.location].entities.forEach((entity) => {
+                console.log(entity.name, spawnEntity.name)
+                if (entity.name === spawnEntity.name) {
+                    objectExist = true;
+                }
+            })
+            if (!objectExist) {
+                console.log("SPAWN ENTITY")
+                let x = parseInt(spawnEntity.location.split(",")[0], 10) * 32;
+                let y = parseInt(spawnEntity.location.split(",")[1], 10) * 32;
+                new Resource(this.questManager.scene, x, y, "resource", spawnEntity.name);
+            }
+        })
+
+        
+
         switch (this.task.completion.type) {
             case "pointerdown": 
                 console.log(`clicking: pointerdown-${this.task.completion.target}`)
@@ -22,25 +41,13 @@ export default class QuestTask {
                     let player = this.questManager.scene.player;
                     let playerOnGrid = `${player.onGrid.x},${player.onGrid.y}`;
         
-                    if (this.task.target === playerOnGrid) {
+                    if (this.task.completion.target === playerOnGrid) {
                         this.sub.unsubscribe();
                         this.taskComplete();
                     }
                 });
                 break;
-            case "teach-kill":
-                console.log()
-                let objectExist = false;
-                this.questManager.scene.worldManager.map[this.task.direction].entities.forEach((entity) => {
-                    if (entity.name === this.task.target) {
-                        objectExist = true;
-                    }
-                })
-                if (!objectExist) {
-                    let x = parseInt(this.task.direction.split(",")[0], 10) * 32;
-                    let y = parseInt(this.task.direction.split(",")[1], 10) * 32;
-                    new Resource(this.questManager.scene, x, y, "resource", this.task.target);
-                }
+            case "kill":
                 this.sub = this.questManager.scene.eventEmitter.subscribe(`player-destroy-${this.task.target}`, () => {
                     this.sub.unsubscribe();
                     this.taskComplete();
@@ -70,20 +77,20 @@ export default class QuestTask {
 
 
 
-        switch (this.task.type) {
-            case "pointerdown":
-                this.questManager.restrictInput(this.task.target);
+        switch (this.task.hint.type) {
+            case "restriction":
+                this.questManager.restrictInput(this.task.hint.target);
                 break;
             case "arrival":
-                console.log(parseInt(this.task.target.split(",")[0]))
+                console.log(parseInt(this.task.hint.target.split(",")[0]))
                 let path = this.questManager.scene.worldManager.astar.findPath(
                     this.questManager.scene.worldManager.map, 
                     {tx: this.questManager.scene.player.onGrid.x, ty: this.questManager.scene.player.onGrid.y}, 
-                    {tx: parseInt(this.task.target.split(",")[0]), ty: parseInt(this.task.target.split(",")[1])}, 
+                    {tx: parseInt(this.task.hint.target.split(",")[0]), ty: parseInt(this.task.hint.target.split(",")[1])}, 
                     this.questManager.scene,
                 )
                 this.questManager.scene.player.autoMoveToGridCell(path);
-            case "teach-kill":
+            case "kill":
                 
             default:
         }
