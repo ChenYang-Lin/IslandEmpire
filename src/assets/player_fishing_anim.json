@@ -1,0 +1,292 @@
+{
+    "anims": [
+        {
+            "key": "player_end_fishing_up",
+            "type": "frames",
+            "repeat": 0,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "player_fishing",
+                    "frame": "player_end_fishing_up_0"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_end_fishing_up_1"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_end_fishing_up_2"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_end_fishing_up_3"
+                }
+            ]
+        },
+        {
+            "key": "player_end_fishing_left",
+            "type": "frames",
+            "repeat": 0,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "player_fishing",
+                    "frame": "player_end_fishing_left_0"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_end_fishing_left_1"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_end_fishing_left_2"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_end_fishing_left_3"
+                }
+            ]
+        },
+        {
+            "key": "player_end_fishing_right",
+            "type": "frames",
+            "repeat": 0,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "player_fishing",
+                    "frame": "player_end_fishing_right_0"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_end_fishing_right_1"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_end_fishing_right_2"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_end_fishing_right_3"
+                }
+            ]
+        },
+        {
+            "key": "player_end_fishing_down",
+            "type": "frames",
+            "repeat": 0,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "player_fishing",
+                    "frame": "player_end_fishing_down_0"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_end_fishing_down_1"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_end_fishing_down_2"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_end_fishing_down_3"
+                }
+            ]
+        },
+        {
+            "key": "player_fishing_up",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "player_fishing",
+                    "frame": "player_fishing_up_0"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_fishing_up_1"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_fishing_up_2"
+                }
+            ]
+        },
+        {
+            "key": "player_fishing_right",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "player_fishing",
+                    "frame": "player_fishing_right_0"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_fishing_right_1"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_fishing_right_2"
+                }
+            ]
+        },
+        {
+            "key": "player_fishing_left",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "player_fishing",
+                    "frame": "player_fishing_left_0"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_fishing_left_1"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_fishing_left_2"
+                }
+            ]
+        },
+        {
+            "key": "player_fishing_down",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "player_fishing",
+                    "frame": "player_fishing_down_0"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_fishing_down_1"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_fishing_down_2"
+                }
+            ]
+        },
+        {
+            "key": "player_start_fishing_up",
+            "type": "frames",
+            "repeat": 0,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "player_fishing",
+                    "frame": "player_start_fishing_up_0"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_start_fishing_up_1"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_start_fishing_up_2"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_start_fishing_up_3"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_start_fishing_up_4"
+                }
+            ]
+        },
+        {
+            "key": "player_start_fishing_right",
+            "type": "frames",
+            "repeat": 0,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "player_fishing",
+                    "frame": "player_start_fishing_right_0"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_start_fishing_right_1"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_start_fishing_right_2"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_start_fishing_right_3"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_start_fishing_right_4"
+                }
+            ]
+        },
+        {
+            "key": "player_start_fishing_left",
+            "type": "frames",
+            "repeat": 0,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "player_fishing",
+                    "frame": "player_start_fishing_left_0"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_start_fishing_left_1"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_start_fishing_left_2"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_start_fishing_left_3"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_start_fishing_left_4"
+                }
+            ]
+        },
+        {
+            "key": "player_start_fishing_down",
+            "type": "frames",
+            "repeat": 0,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "player_fishing",
+                    "frame": "player_start_fishing_down_0"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_start_fishing_down_1"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_start_fishing_down_2"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_start_fishing_down_3"
+                },
+                {
+                    "key": "player_fishing",
+                    "frame": "player_start_fishing_down_4"
+                }
+            ]
+        }
+    ]
+}

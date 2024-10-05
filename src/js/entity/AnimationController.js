@@ -29,7 +29,8 @@ export default class AnimationController {
         if (this.inAction) 
             return;
         this.inAction = true;
-        this.character.anims.play(`${this.character.name}_attack_${this.character.direction}`)
+        // this.character.anims.play(`${this.character.name}_attack_${this.character.direction}`)
+        this.character.anims.play(`${this.character.name}_start_fishing_${this.character.direction}`)
 
         this.character.hitbox.createSwordHitBox();
     }

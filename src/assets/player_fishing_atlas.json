@@ -1,0 +1,632 @@
+{
+    "frames": [
+        {
+            "filename": "player_start_fishing_down_4",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 0,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_start_fishing_down_0",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 128,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_start_fishing_down_2",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 0,
+                "y": 128
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_start_fishing_down_1",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 128,
+                "y": 128
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_start_fishing_down_3",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 256,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_start_fishing_left_4",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 256,
+                "y": 128
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_start_fishing_left_0",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 0,
+                "y": 256
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_start_fishing_left_1",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 128,
+                "y": 256
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_start_fishing_left_2",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 256,
+                "y": 256
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_start_fishing_left_3",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 384,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_start_fishing_right_4",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 384,
+                "y": 128
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_start_fishing_right_0",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 384,
+                "y": 256
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_start_fishing_right_1",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 0,
+                "y": 384
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_start_fishing_right_2",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 128,
+                "y": 384
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_start_fishing_right_3",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 256,
+                "y": 384
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_start_fishing_up_4",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 384,
+                "y": 384
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_start_fishing_up_0",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 512,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_start_fishing_up_1",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 512,
+                "y": 128
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_start_fishing_up_2",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 512,
+                "y": 256
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_start_fishing_up_3",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 512,
+                "y": 384
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_fishing_down_2",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 0,
+                "y": 512
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_fishing_down_0",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 128,
+                "y": 512
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_fishing_down_1",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 256,
+                "y": 512
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_fishing_left_2",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 384,
+                "y": 512
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_fishing_left_0",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 512,
+                "y": 512
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_fishing_left_1",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 640,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_fishing_right_0",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 640,
+                "y": 128
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_fishing_right_2",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 640,
+                "y": 256
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_fishing_right_1",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 640,
+                "y": 384
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_fishing_up_2",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 640,
+                "y": 512
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_fishing_up_0",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 0,
+                "y": 640
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_fishing_up_1",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 128,
+                "y": 640
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_end_fishing_down_3",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 256,
+                "y": 640
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_end_fishing_down_1",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 384,
+                "y": 640
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_end_fishing_down_0",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 512,
+                "y": 640
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_end_fishing_down_2",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 640,
+                "y": 640
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_end_fishing_left_3",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 768,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_end_fishing_left_0",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 768,
+                "y": 128
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_end_fishing_left_1",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 768,
+                "y": 256
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_end_fishing_left_2",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 768,
+                "y": 384
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_end_fishing_right_3",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 768,
+                "y": 512
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_end_fishing_right_0",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 768,
+                "y": 640
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_end_fishing_right_1",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 0,
+                "y": 768
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_end_fishing_right_2",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 128,
+                "y": 768
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_end_fishing_up_3",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 256,
+                "y": 768
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_end_fishing_up_0",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 384,
+                "y": 768
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_end_fishing_up_1",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 512,
+                "y": 768
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_end_fishing_up_2",
+            "frame": {
+                "w": 128,
+                "h": 128,
+                "x": 640,
+                "y": 768
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }
+    ],
+    "meta": {
+        "description": "Atlas generado con Atlas Packer Gamma V2",
+        "web": "https://gammafp.github.io/atlas-packer-phaser/"
+    }
+}

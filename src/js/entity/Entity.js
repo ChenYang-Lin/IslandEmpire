@@ -51,6 +51,8 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
     static preload(scene) {
         scene.load.atlas("player", "assets/player.png", "assets/player_atlas.json");
         scene.load.animation("player_anim", "assets/player_anim.json");
+        scene.load.atlas("player_fishing", "assets/player_fishing.png", "assets/player_fishing_atlas.json");
+        scene.load.animation("player_fishing_anim", "assets/player_fishing_anim.json");
         
         scene.load.atlas("goblin", "assets/character/goblin.png", "assets/character/goblin_atlas.json")
         scene.load.animation("goblin_anim", "assets/character/goblin_anim.json");
