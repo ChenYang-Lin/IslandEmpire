@@ -16,6 +16,7 @@ export default class Inventory {
         } else {
             this.inventory = {
                 "sword": 1,
+                "fishingrod": 1,
                 "hoe": 1,
                 "stone": 2,
                 "potato_seed": 3,

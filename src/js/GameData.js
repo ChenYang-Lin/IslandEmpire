@@ -144,6 +144,7 @@ const ITEM_DATA = {
     hoe: { category: "farming", type: "tool", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, },
     axe: { category: "farming", type: "tool", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, },
     pickaxe: { category: "farming", type: "tool", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, }, 
+    fishingrod: { category: "farming", type: "tool", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, }, 
 
     // Item - farming - seed
     "potato_seed": { category: "farming", type: "seed", imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, crop_grow: "potato_grow", },

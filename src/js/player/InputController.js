@@ -178,6 +178,8 @@ export default class InputController {
         switch (tool) {
             case "hoe":
                 this.player.animationController.hoe();
+            case "fishingrod":
+                this.player.animationController.startFishing();
             default:
         }
     }
