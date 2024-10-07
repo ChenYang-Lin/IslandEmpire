@@ -91,7 +91,6 @@ export default class Wish {
         let itemName = items[Math.floor(Math.random() * items.length)]
         console.log(itemName)
         this.itemList.push({ name: itemName, quantity: 1 });
-        this.hud.inventory.addItem(itemName, 1);
     }
 
     spinnerSpin(wishQuantity) {

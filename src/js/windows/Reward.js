@@ -1,3 +1,4 @@
+import { ITEM_DATA } from "../GameData.js";
 
 
 
@@ -36,6 +37,8 @@ export default class Reward {
         this.rewardItemsContainer.innerHTML = "";
 
         itemList.forEach((item) => {
+            
+            this.hud.inventory.addItem(item.name, item.quantity);
 
             let rewardItem = document.createElement("div");
             rewardItem.classList.add("reward-item");
@@ -55,6 +58,16 @@ export default class Reward {
             rewardItem.appendChild(rewardItemQuantity);
             this.rewardItemsContainer.appendChild(rewardItem);
         })
+    }
+
+    randomReward(num) {
+        let itemList = [];
+        let items = Object.keys(ITEM_DATA);
+        for (let i = 0; i < num; i++) {
+            let itemName = items[Math.floor(Math.random() * items.length)]
+            itemList.push({ name: itemName, quantity: 1 });
+        }
+        this.showRewardScreen(itemList);
     }
 
     hideRewardScreen() {

@@ -55,6 +55,8 @@ export default class AnimationController {
             if (this.isFishing) {
                 this.inAction = false;
                 this.isFishing = false;
+                clearInterval(this.fishingTimeout);
+                this.scene.hud.reward.randomReward(this.rewardCount);
             }
             return;
         }
@@ -77,8 +79,12 @@ export default class AnimationController {
         if (fishable) {
             this.inAction = true;
             this.isFishing = true;
+            this.rewardCount = 0;
             this.character.anims.play(`${this.character.name}_start_fishing_${this.character.direction}`, true);
-            // this.scene.worldManager.hoeLand(this.character.onGrid);
+            this.fishingTimeout = setInterval(() => {
+                console.log("fish reward");
+                this.rewardCount++;
+            }, 1000);
         }
     }
 
