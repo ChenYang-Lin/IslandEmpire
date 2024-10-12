@@ -1,3 +1,4 @@
+import Fishing from "../Fishing.js";
 import AnimationController from "./AnimationController.js";
 import Entity from "./Entity.js";
 import Hitbox from "./Hitbox.js";
@@ -16,6 +17,7 @@ export default class Character extends Entity {
         this.path;
         
         this.animationController = new AnimationController(this.scene, this);
+        this.fishing = new Fishing(this.scene, this);
         this.hitbox = new Hitbox(this.scene, this);
 
     }

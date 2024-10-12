@@ -35,7 +35,6 @@ export default class HUD {
         this.shop = new Shop(this.scene, this);
         this.wish = new Wish(this.scene, this);
         this.questManager = new QuestManager(this.scene, this);
-        // this.fishing = new this.fishing(this.scene, this);
 
         this.scene.player.stats.renderStatsDisplay();
 

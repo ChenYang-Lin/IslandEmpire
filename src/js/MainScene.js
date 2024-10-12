@@ -4,10 +4,8 @@ import InputController from "./player/InputController.js";
 import Player from "./player/Player.js";
 import Resource from "./entity/Resource.js";
 import Crop from "./entity/Crop.js";
-import Goblin from "./entity/Goblin.js";
 import Entity from "./entity/Entity.js";
 import CollisionController from "./CollisionController.js";
-import Raft from "./entity/Raft.js";
 import EventEmitter from "./EventEmitter.js";
 
 

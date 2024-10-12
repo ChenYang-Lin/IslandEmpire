@@ -179,7 +179,7 @@ export default class InputController {
             case "hoe":
                 this.player.animationController.hoe();
             case "fishingrod":
-                this.player.animationController.startFishing();
+                this.player.animationController.fishing();
             default:
         }
     }

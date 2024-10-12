@@ -50,41 +50,21 @@ export default class AnimationController {
         this.scene.worldManager.hoeLand(this.character.onGrid);
     }
 
-    startFishing() {
+    fishing() {
         if (this.inAction) {
             if (this.isFishing) {
                 this.inAction = false;
                 this.isFishing = false;
-                clearInterval(this.fishingTimeout);
-                this.scene.hud.reward.randomReward(this.rewardCount);
+                this.character.fishing.endFishing();
             }
             return;
         }
-        let fishable = false;
-        // return if no water surrounding
-        if (!this.scene.worldManager.map[`${this.character.onGrid.x},${this.character.onGrid.y - 1}`]?.isLand) {
-            this.character.direction = "up";
-            fishable = true;
-        } else if (!this.scene.worldManager.map[`${this.character.onGrid.x},${this.character.onGrid.y + 1}`]?.isLand) {
-            this.character.direction = "down";
-            fishable = true;
-        } else if (!this.scene.worldManager.map[`${this.character.onGrid.x - 1},${this.character.onGrid.y}`]?.isLand) {
-            this.character.direction = "left";
-            fishable = true;
-        } else if (!this.scene.worldManager.map[`${this.character.onGrid.x + 1},${this.character.onGrid.y}`]?.isLand) {
-            this.character.direction = "right";
-            fishable = true;
-        } 
-        
+        let fishable = this.character.fishing.checkFishable();
+
         if (fishable) {
             this.inAction = true;
             this.isFishing = true;
-            this.rewardCount = 0;
-            this.character.anims.play(`${this.character.name}_start_fishing_${this.character.direction}`, true);
-            this.fishingTimeout = setInterval(() => {
-                console.log("fish reward");
-                this.rewardCount++;
-            }, 1000);
+            this.character.fishing.startFishing();
         }
     }
 
