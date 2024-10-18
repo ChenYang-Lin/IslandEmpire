@@ -17,7 +17,7 @@ export default class CollisionController {
     }
 
     init() {
-        this.sensors = this.player.sensors;
+        this.sensors = this.scene.player.sensors;
         // Collisions and Overlaps
         this.scene.physics.add.collider(
             [
@@ -45,7 +45,7 @@ export default class CollisionController {
     initPlayerOverlapCollectables() {
         this.currentCollectables = [];
         this.collectableCollected = [];
-        this.scene.physics.add.overlap(this.player.sensors.nearbyCollectablesSensor, this.scene.worldManager.collectablesGroup, (player, nearbyCollectable) => {
+        this.scene.physics.add.overlap(this.scene.player.sensors.nearbyCollectablesSensor, this.scene.worldManager.collectablesGroup, (player, nearbyCollectable) => {
             if (!this.currentCollectables.includes(nearbyCollectable)) {
                 this.currentCollectables.push(nearbyCollectable)
             }

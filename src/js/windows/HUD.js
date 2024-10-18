@@ -52,6 +52,7 @@ export default class HUD {
         
         this.constructionUI.addEventListener("pointerdown", () => {
             this.showConstructionSceneUIs();
+            this.scene.endScene();
             this.scene.scene.start("ConstructionScene");
         })
         this.setActionButton();

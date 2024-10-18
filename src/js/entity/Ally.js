@@ -10,4 +10,8 @@ export default class Ally extends Character {
         this.scene.collisionController.allyGroup.add(this);
         
     }
+
+    update() {
+        super.update();
+    }
 }

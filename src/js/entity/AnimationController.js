@@ -51,6 +51,8 @@ export default class AnimationController {
     }
 
     fishing() {
+        if (this.character.destroyed === true) 
+            return;
         if (this.inAction) {
             if (this.isFishing) {
                 this.inAction = false;
@@ -64,11 +66,14 @@ export default class AnimationController {
         if (fishable) {
             this.inAction = true;
             this.isFishing = true;
+            console.log("character: ", this.character)
             this.character.fishing.startFishing();
         }
     }
 
     sow(seedName) {
+        if (this.character.destroyed === true) 
+            return;
         if (this.inAction) 
             return;
         // return if the land has not been hoed yet
@@ -87,6 +92,8 @@ export default class AnimationController {
 
 
     move(velocity, direction) {
+        if (this.character.destroyed === true) 
+            return;
         if (this.inAction) {
             this.character.setVelocity(0, 0);
             return;

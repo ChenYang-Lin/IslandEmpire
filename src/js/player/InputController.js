@@ -2,6 +2,10 @@ import { ITEM_DATA } from "../GameData.js";
 
 export default class InputController {
     constructor(scene, player) {
+        // if (InputController._instance) {
+        //     return InputController._instance;
+        // }
+
         this.scene = scene;
         this.player = player;
         this.cursor = this.scene.input.keyboard.createCursorKeys();
@@ -17,6 +21,8 @@ export default class InputController {
 
         this.initMobileBtns();
         this.createJoyStick();
+
+        // InputController._instance = this;
     }
 
     initMobileBtns() {

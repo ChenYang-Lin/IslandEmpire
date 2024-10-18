@@ -94,6 +94,9 @@ export default class Goblin extends Enemy {
 
         super.update();
 
+        if (this.destroyed) {
+            return;
+        }
         switch (this.action) {            
             case "idle":
                 break;

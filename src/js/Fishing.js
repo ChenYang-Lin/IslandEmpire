@@ -40,7 +40,7 @@ export default class Fishing {
         switch (this.character.direction) {
             case "up":
                 fishingLineSourceX = this.character.position.x + 45;
-                fishingLineSourceY = this.character.position.y - 47;
+                fishingLineSourceY = this.character.position.y - 48;
                 fishingLineDestY = (this.character.onGrid.y - 1) * 32;
                 break;
             case "right":

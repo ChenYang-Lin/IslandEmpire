@@ -6,6 +6,11 @@ import Stats from "./Stats.js";
 
 export default class Player extends Ally {
     constructor(scene) {
+
+        // if (Player._instance) {
+        //     return Player._instance;
+        // }
+
         const entityData = ENTITY_DATA["player"];
         // scene, x, y, name, texture, frame
         super(scene, 0, 0, "player", "player", "player_idle_right", entityData);
@@ -25,6 +30,8 @@ export default class Player extends Ally {
         
         let path = this.scene.worldManager.astar.findPath(this.scene.worldManager.map, {tx: this.onGrid.x, ty: this.onGrid.y}, {tx: -2, ty: 0}, this.scene)
         // console.log(path)
+
+        // Player._instance = this;
     }
 
 
@@ -49,6 +56,11 @@ export default class Player extends Ally {
     }
 
     update(time, delta) {
+
+        console.log(this.destroyed);
+        if (this.destroyed) {
+            return;
+        }
 
         super.update();
         if (this.autoControl) {

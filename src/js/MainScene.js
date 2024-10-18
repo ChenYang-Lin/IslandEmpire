@@ -7,6 +7,7 @@ import Crop from "./entity/Crop.js";
 import Entity from "./entity/Entity.js";
 import CollisionController from "./CollisionController.js";
 import EventEmitter from "./EventEmitter.js";
+import Raft from "./entity/Raft.js";
 
 
 export default class MainScene extends Phaser.Scene {
@@ -85,6 +86,10 @@ export default class MainScene extends Phaser.Scene {
                 localStorage.setItem("version", JSON.stringify(this.version));
             }
         }
+    }
+
+    endScene() {
+        // this.player.destroyed = true;
     }
 
     update(time, delta) {
