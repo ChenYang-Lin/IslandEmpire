@@ -199,6 +199,7 @@ export default class InputController {
                 break;
             case "seed":
                 this.player.animationController.sow(selectedItem);
+                
                 break;
             default:
         }
