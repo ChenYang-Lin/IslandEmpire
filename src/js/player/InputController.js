@@ -45,7 +45,12 @@ export default class InputController {
         let consumableBtn = document.getElementById("consumable-btn");
         consumableBtn.addEventListener("pointerdown", () => {
             this.scene.eventEmitter.emit("pointerdown-consumable-btn");
-            this.scene.player.useItem(this.scene.hud.inventory.inventoryWindow.selectedConsumableItem);
+            let itemName = this.scene.inventory.inventoryWindow.selectedConsumableItem
+            if (!this.scene.inventory.removeItem(itemName, 1)) {
+                console.log(itemName + " out")
+                return;
+            }
+            this.scene.player.useItem(itemName);
             this.player.autoControl = false;
         })
         let consumableBtnSwitcher = document.getElementById("consumable-btn-switcher");
@@ -191,7 +196,7 @@ export default class InputController {
     }
 
     beginFarmingAction() {
-        let selectedItem = this.scene.hud.inventory.inventoryWindow.selectedFarmingItem;
+        let selectedItem = this.scene.inventory.inventoryWindow.selectedFarmingItem;
 
         switch (ITEM_DATA[selectedItem].type) {
             case "tool":

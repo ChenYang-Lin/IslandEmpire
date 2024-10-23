@@ -32,6 +32,7 @@ export default class Wish {
 
         this.wishOneBtn = document.getElementById("wish-one-btn");
         this.wishOneBtn.addEventListener("pointerdown", () => {
+            
             this.spinnerSpin(1);
         })
         this.wishTenBtn = document.getElementById("wish-ten-btn");
@@ -66,9 +67,9 @@ export default class Wish {
     }
 
     updateCurrency() {
-        this.fragmentQuantityText.innerHTML = `${this.hud.inventory.wishFragment}`;
-        this.eventQuantityText.innerHTML = `${this.hud.inventory.wishEvent}`;
-        this.standardQuantityText.innerHTML = `${this.hud.inventory.wishStandard}`;
+        this.fragmentQuantityText.innerHTML = `${this.scene.inventory.wishFragment}`;
+        this.eventQuantityText.innerHTML = `${this.scene.inventory.wishEvent}`;
+        this.standardQuantityText.innerHTML = `${this.scene.inventory.wishStandard}`;
     }
 
     wishOne() {

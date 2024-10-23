@@ -1,4 +1,4 @@
-import { ITEM_DATA } from "../../GameData.js";
+import { ITEM_DATA } from "./GameData.js";
 
 
 

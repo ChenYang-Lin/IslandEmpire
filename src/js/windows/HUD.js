@@ -2,9 +2,8 @@
 import { ITEM_DATA } from "../GameData.js";
 import QuestManager from "./QuestManager.js";
 import Reward from "./Reward.js";
-import Shop from "./Shop.js";
+import Shop from "../Shop.js";
 import Wish from "./Wish.js";
-import Inventory from "./inventory/Inventory.js";
 
 export default class HUD {
     constructor(scene) {
@@ -30,7 +29,6 @@ export default class HUD {
 
 
 
-        this.inventory = new Inventory(this.scene, this);
         this.reward = new Reward(this.scene, this);
         this.shop = new Shop(this.scene, this);
         this.wish = new Wish(this.scene, this);
@@ -47,7 +45,7 @@ export default class HUD {
         })
 
         this.inventoryUI.addEventListener("pointerdown", () => {
-            this.inventory.openWindow();
+            this.scene.inventory.openWindow();
         })
         
         this.constructionUI.addEventListener("pointerdown", () => {
@@ -101,11 +99,11 @@ export default class HUD {
     setFarmingBtn(farmingItem) {
         let item = farmingItem;
         if (!item) {
-            for (const [key, value] of Object.entries(this.inventory.inventory)) {
+            for (const [key, value] of Object.entries(this.scene.inventory.inventory)) {
                 if (ITEM_DATA[key].category !== "farming")
                     continue;
                 item = key;
-                this.inventory.inventoryWindow.selectedFarmingItem = key;
+                this.scene.inventory.inventoryWindow.selectedFarmingItem = key;
                 break;
             }    
         }
@@ -116,11 +114,11 @@ export default class HUD {
     setConsumableBtn(consumableItem) {
         let item = consumableItem;
         if (!item) {
-            for (const [key, value] of Object.entries(this.inventory.inventory)) {
+            for (const [key, value] of Object.entries(this.scene.inventory.inventory)) {
                 if (ITEM_DATA[key].category !== "consumable")
                     continue;
                 item = key;
-                this.inventory.inventoryWindow.selectedConsumableItem = key;
+                this.scene.inventory.inventoryWindow.selectedConsumableItem = key;
                 break;
             }    
         }
@@ -142,7 +140,7 @@ export default class HUD {
             collectableBtn.addEventListener("pointerdown", () => {
                 this.scene.eventEmitter.emit(`pickup-${collectable.name}`);
                 collectableBtn.remove();
-                this.inventory.addItem(collectable.collectable, 1);
+                this.scene.inventory.addItem(collectable.collectable, 1);
                 this.scene.player.sensors.touchingNearbyCollectables[i].onDeath("player");
                 this.scene.collisionController.addCollectableCollected(collectable);
             })
@@ -172,7 +170,7 @@ export default class HUD {
 
         itemSwitchList.innerHTML = "";
 
-        for (const [key, value] of Object.entries(this.inventory.inventory)) {
+        for (const [key, value] of Object.entries(this.scene.inventory.inventory)) {
             if (ITEM_DATA[key].category !== category)
                 continue;
 
@@ -182,10 +180,10 @@ export default class HUD {
             item.addEventListener("pointerdown", () => {
                 if (category === "farming") {
                     this.setFarmingBtn(key);
-                    this.inventory.inventoryWindow.selectedFarmingItem = key;
+                    this.scene.inventory.inventoryWindow.selectedFarmingItem = key;
                 } else if (category === "consumable") {
                     this.setConsumableBtn(key);
-                    this.inventory.inventoryWindow.selectedConsumableItem = key;
+                    this.scene.inventory.inventoryWindow.selectedConsumableItem = key;
                 }
                 this.closeItemSwitchPanel();
             })

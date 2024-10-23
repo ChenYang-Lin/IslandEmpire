@@ -42,10 +42,7 @@ export default class Player extends Ally {
 
 
     useItem(itemName) {
-        if (!this.scene.hud.inventory.removeItem(itemName, 1)) {
-            console.log(itemName + " out")
-            return;
-        }
+        
         console.log("useItem: ", itemName)
         this.stats.hp += 20;
         if (this.stats.hp >= 100) {

@@ -8,6 +8,7 @@ import Entity from "./entity/Entity.js";
 import CollisionController from "./CollisionController.js";
 import EventEmitter from "./EventEmitter.js";
 import Raft from "./entity/Raft.js";
+import Inventory from "./Inventory.js";
 
 
 export default class MainScene extends Phaser.Scene {
@@ -43,6 +44,7 @@ export default class MainScene extends Phaser.Scene {
         this.eventEmitter = new EventEmitter();
         this.worldManager = new WorldManager(this);
         this.collisionController = new CollisionController(this);
+        this.inventory = new Inventory(this);
         this.player = new Player(this);
         this.inputController = new InputController(this, this.player);
         this.hud = new HUD(this);
