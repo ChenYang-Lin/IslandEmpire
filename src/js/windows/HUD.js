@@ -103,7 +103,7 @@ export default class HUD {
                 if (ITEM_DATA[key].category !== "farming")
                     continue;
                 item = key;
-                this.scene.inventory.inventoryWindow.selectedFarmingItem = key;
+                this.scene.inventory.selectedFarmingItem = key;
                 break;
             }    
         }
@@ -118,7 +118,7 @@ export default class HUD {
                 if (ITEM_DATA[key].category !== "consumable")
                     continue;
                 item = key;
-                this.scene.inventory.inventoryWindow.selectedConsumableItem = key;
+                this.scene.inventory.selectedConsumableItem = key;
                 break;
             }    
         }

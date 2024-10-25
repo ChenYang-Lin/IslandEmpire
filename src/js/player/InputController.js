@@ -196,7 +196,7 @@ export default class InputController {
     }
 
     beginFarmingAction() {
-        let selectedItem = this.scene.inventory.inventoryWindow.selectedFarmingItem;
+        let selectedItem = this.scene.inventory.selectedFarmingItem;
 
         switch (ITEM_DATA[selectedItem].type) {
             case "tool":
