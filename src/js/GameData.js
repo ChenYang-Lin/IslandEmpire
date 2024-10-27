@@ -111,40 +111,44 @@ const ENTITY_DATA = {
 }
 
 const ITEM_DATA = {
+    // default: 
     // Item - weapon
     sword: { quality: 4, category: "weapon", type: "sword", imageWidth: 0, imageHeight: 0, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, },
 
+    // Item - construction
+    house: { quality: 1, category: "construction", type: "structure", },
+
     // Item - material - material
-    wood: { quality: 1, category: "material", type: "material", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, collectable: "wood", },
-    fiber: { quality: 1, category: "material", type: "material", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, collectable: "fiber", },
-    stone: { quality: 1, category: "material", type: "material", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, collectable: "stone", },
+    wood: { quality: 1, category: "material", type: "material", collectable: "wood", },
+    fiber: { quality: 1, category: "material", type: "material", collectable: "fiber", },
+    stone: { quality: 1, category: "material", type: "material", collectable: "stone", },
 
     // Item - material - ingredient
-    potato: { quality: 1, category: "material", type: "ingredient", name: "potato", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, collectable: "potato", },
-    eggplant: { quality: 1, category: "material", type: "ingredient", name: "eggplant", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, collectable: "eggplant", },
-    cauliflower: { quality: 1, category: "material", type: "ingredient", name: "cauliflower", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, collectable: "cauliflower", },        
-    drumstick_raw: { quality: 1, category: "material", type: "ingredient", name: "drumstick raw", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, collectable: "drumstick_raw", },    
-    egg: { quality: 1, category: "material", type: "ingredient", name: "egg", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, collectable: "egg", },     
+    potato: { quality: 1, category: "material", type: "ingredient", name: "potato", collectable: "potato", },
+    eggplant: { quality: 1, category: "material", type: "ingredient", name: "eggplant", collectable: "eggplant", },
+    cauliflower: { quality: 1, category: "material", type: "ingredient", name: "cauliflower", collectable: "cauliflower", },        
+    drumstick_raw: { quality: 1, category: "material", type: "ingredient", name: "drumstick raw", collectable: "drumstick_raw", },    
+    egg: { quality: 1, category: "material", type: "ingredient", name: "egg", collectable: "egg", },     
 
     // Item - consumable - food
-    pumpkin: { quality: 1, category: "consumable", type: "food", name: "pumpkin", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, collectable: "pumpkin", },
-    corn: { quality: 1, category: "consumable", type: "food", name: "corn", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, collectable: "corn", },
-    apple: { quality: 1, category: "consumable", type: "food", name: "apple", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, collectable: "apple", },
-    bagel: { quality: 1, category: "consumable", type: "food", name: "bagel", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, collectable: "bagel", },        
-    banana: { quality: 1, category: "consumable", type: "food", name: "banana", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, collectable: "banana", },        
-    bread: { quality: 1, category: "consumable", type: "food", name: "bread", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, collectable: "bread", },        
-    burger: { quality: 1, category: "consumable", type: "food", name: "burger", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, collectable: "burger", },        
-    burrito: { quality: 1, category: "consumable", type: "food", name: "burrito", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, collectable: "burrito", },        
-    canned_food: { quality: 1, category: "consumable", type: "food", name: "canned food", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, collectable: "canned_food", },        
-    croissant: { quality: 1, category: "consumable", type: "food", name: "croissant", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, collectable: "croissant", },        
-    doughnut: { quality: 1, category: "consumable", type: "food", name: "doughnut", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, collectable: "doughnut", },        
-    drumstick_cooked: { quality: 1, category: "consumable", type: "food", name: "drumstick cooked", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, collectable: "drumstick_cooked", },       
+    pumpkin: { quality: 1, category: "consumable", type: "food", name: "pumpkin", collectable: "pumpkin", },
+    corn: { quality: 1, category: "consumable", type: "food", name: "corn", collectable: "corn", },
+    apple: { quality: 1, category: "consumable", type: "food", name: "apple", collectable: "apple", },
+    bagel: { quality: 1, category: "consumable", type: "food", name: "bagel", collectable: "bagel", },        
+    banana: { quality: 1, category: "consumable", type: "food", name: "banana", collectable: "banana", },        
+    bread: { quality: 1, category: "consumable", type: "food", name: "bread", collectable: "bread", },        
+    burger: { quality: 1, category: "consumable", type: "food", name: "burger", collectable: "burger", },        
+    burrito: { quality: 1, category: "consumable", type: "food", name: "burrito", collectable: "burrito", },        
+    canned_food: { quality: 1, category: "consumable", type: "food", name: "canned food", collectable: "canned_food", },        
+    croissant: { quality: 1, category: "consumable", type: "food", name: "croissant", collectable: "croissant", },        
+    doughnut: { quality: 1, category: "consumable", type: "food", name: "doughnut", collectable: "doughnut", },        
+    drumstick_cooked: { quality: 1, category: "consumable", type: "food", name: "drumstick cooked", collectable: "drumstick_cooked", },       
     
     // Item - farming - tool
-    hoe: { quality: 3, category: "farming", type: "tool", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, },
-    axe: { quality: 3, category: "farming", type: "tool", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, },
-    pickaxe: { quality: 3, category: "farming", type: "tool", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, }, 
-    fishingrod: { quality: 5, category: "farming", type: "tool", imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, }, 
+    hoe: { quality: 3, category: "farming", type: "tool", },
+    axe: { quality: 3, category: "farming", type: "tool", },
+    pickaxe: { quality: 3, category: "farming", type: "tool", }, 
+    fishingrod: { quality: 5, category: "farming", type: "tool", }, 
 
     // Item - farming - seed
     "potato_seed": { quality: 2, category: "farming", type: "seed", imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, crop_grow: "potato_grow", },

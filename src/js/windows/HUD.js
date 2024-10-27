@@ -180,10 +180,10 @@ export default class HUD {
             item.addEventListener("pointerdown", () => {
                 if (category === "farming") {
                     this.setFarmingBtn(key);
-                    this.scene.inventory.inventoryWindow.selectedFarmingItem = key;
+                    this.scene.inventory.selectedFarmingItem = key;
                 } else if (category === "consumable") {
                     this.setConsumableBtn(key);
-                    this.scene.inventory.inventoryWindow.selectedConsumableItem = key;
+                    this.scene.inventory.selectedConsumableItem = key;
                 }
                 this.closeItemSwitchPanel();
             })

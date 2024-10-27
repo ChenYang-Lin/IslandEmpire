@@ -23,11 +23,11 @@ export default class WorldCell {
         this.x = this.cellX * 32;
         this.y = this.cellY * 32;
 
-        this.initLand();
+        this.updateLand();
         this.createEntities();
     }
 
-    initLand() {
+    updateLand() {
         // Check if current grid cell is a land
         if (this.isLand) {
             this.createLand("land_all");
@@ -37,38 +37,6 @@ export default class WorldCell {
             return;
         }
 
-        // // Forest
-        // if (gridX < -1) {
-        //     // randomize resource in forest
-        //     let entities = [];
-        //     let chance = Math.random();
-        //     if (chance < 0.1) {
-        //         entities = [ { name: "tree" } ];
-        //     } else if (chance < 0.3) {
-        //         entities = [ { name: "rock" } ];
-        //     } else if (chance < 0.5) {
-        //         entities = [ { name: "bush" } ];
-        //     } else {
-        //         entities = [];
-        //     }
-            
-        //     landSprite = "land_all";
-        //     this.createEntities(gridX, gridY, entities);
-        // }
-
-        // if (gridX === -1) {
-        //     if (gridY > 1 || gridY < -4) {
-        //         landSprite = "land_l";
-        //     } else {
-        //         landSprite = "land_all"
-        //     }
-        //     if (gridY === 1) {
-        //         landSprite = "land_t_l"
-        //     }
-        //     if (gridY === -4) {
-        //         landSprite = "land_b_l"
-        //     }
-        // }
 
         let landSprite = "land";
 
@@ -132,6 +100,7 @@ export default class WorldCell {
             this.worldManager.landCollidersGroup.add(collider);
         }
     }
+
 
     createHoedLand() {
         let hoedLandSpriteName = "hoed";

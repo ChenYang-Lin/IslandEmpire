@@ -45,15 +45,32 @@ export default class WorldManager {
         
     }
 
-    saveMapToLocalStorage() {
-        localStorage.setItem("map", JSON.stringify(this.map));
+    updateLandOnWorldCell(cellX, cellY, isLand) {
+
+        console.log(this.map[`${cellX},${cellX}`])
+        if (this.map[`${cellX},${cellY}`]?.isLand) {
+            this.map[`${cellX},${cellY}`].isLand = isLand;
+        } else {
+            this.map[`${cellX},${cellY}`] = { 
+                isLand: isLand,
+                entities: [],
+            };
+        }
+        this.saveMapToLocalStorage();
+        
+        this.worldCells[`${cellX},${cellY}`].isLand = isLand;
+
+
+        this.worldCells[`${cellX-1},${cellY-1}`].updateLand();
+        this.worldCells[`${cellX-1},${cellY  }`].updateLand();
+        this.worldCells[`${cellX-1},${cellY+1}`].updateLand();
+        this.worldCells[`${cellX  },${cellY-1}`].updateLand();
+        this.worldCells[`${cellX  },${cellY  }`].updateLand();
+        this.worldCells[`${cellX  },${cellY+1}`].updateLand();
+        this.worldCells[`${cellX+1},${cellY-1}`].updateLand();
+        this.worldCells[`${cellX+1},${cellY  }`].updateLand();
+        this.worldCells[`${cellX+1},${cellY+1}`].updateLand();
     }
-
-    loadMapFromLocalStorage() {
-        return JSON.parse(localStorage.getItem("map"));
-    }
-
-
 
 
 
@@ -90,6 +107,13 @@ export default class WorldManager {
         this.growingCrops[`${grid.x},${grid.y}`] = new Crop(this.scene, x, y, cropGrowName, sowingTime);
     }
 
+    saveMapToLocalStorage() {
+        localStorage.setItem("map", JSON.stringify(this.map));
+    }
+
+    loadMapFromLocalStorage() {
+        return JSON.parse(localStorage.getItem("map"));
+    }
 
     update() {
         for (const [key, crop] of Object.entries(this.growingCrops)) {

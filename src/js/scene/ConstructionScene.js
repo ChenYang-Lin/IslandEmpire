@@ -372,37 +372,11 @@ export default class ConstructionScene extends Phaser.Scene {
             landSprite = "land";
         }
 
-        this.updateMapData(gridX, gridY, isPlacement)
+        this.worldManager.updateLandOnWorldCell(gridX, gridY, isPlacement)
 
-        let land = this.add.sprite(x, y, "land", landSprite);
-        this.worldManager.landSpriteGroup[`${gridX},${gridY}`]?.destroy();
-        this.worldManager.landSpriteGroup[`${gridX},${gridY}`] = land;
-        land.depth = y - 10000;
 
-        this.worldManager.createSurroundingLand(gridX-1, gridY-1);
-        this.worldManager.createSurroundingLand(gridX-1, gridY);
-        this.worldManager.createSurroundingLand(gridX-1, gridY+1);
-        this.worldManager.createSurroundingLand(gridX, gridY-1);
-        this.worldManager.createSurroundingLand(gridX, gridY);
-        this.worldManager.createSurroundingLand(gridX, gridY+1);
-        this.worldManager.createSurroundingLand(gridX+1, gridY-1);
-        this.worldManager.createSurroundingLand(gridX+1, gridY);
-        this.worldManager.createSurroundingLand(gridX+1, gridY+1);
     }  
 
-    updateMapData(gridX, gridY, isPlacement) {
-        console.log("updated")
-        let isLand = isPlacement ? true : false 
-        if (this.worldManager.map[`${gridX},${gridY}`] !== undefined) {
-            this.worldManager.map[`${gridX},${gridY}`].isLand = isLand;
-        } else {
-            this.worldManager.map[`${gridX},${gridY}`] = { 
-                isLand: isLand,
-                entities: [],
-            };
-        }
-        this.worldManager.saveMapToLocalStorage();
-    }
 
     initPlacementRemovalBtns() {
         this.placementBtn = document.getElementById("placement-btn");

@@ -42,6 +42,7 @@ export default class Inventory {
                 "croissant": 1,
                 "doughnut": 1,
                 "eggplant_seed": 1,
+                "house": 1,
             }
             this.saveInventoryToLocalStorage();
         }
@@ -88,6 +89,7 @@ export default class Inventory {
     }
 
     renderInventoryPanel() {
+        console.log("renderInventoryPanel()")
         this.renderInventorySelectedCategory();
         this.renderInventoryList();
     }
