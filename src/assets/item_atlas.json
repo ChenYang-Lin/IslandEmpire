@@ -1,10 +1,10 @@
 {
     "frames": [
         {
-            "filename": "sword",
+            "filename": "house",
             "frame": {
-                "w": 32,
-                "h": 32,
+                "w": 160,
+                "h": 224,
                 "x": 0,
                 "y": 0
             },
@@ -14,11 +14,11 @@
             }
         },
         {
-            "filename": "wateringcan",
+            "filename": "house2",
             "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 32,
+                "w": 96,
+                "h": 96,
+                "x": 160,
                 "y": 0
             },
             "anchor": {
@@ -27,12 +27,25 @@
             }
         },
         {
-            "filename": "axe",
+            "filename": "tent",
             "frame": {
-                "w": 32,
-                "h": 32,
+                "w": 64,
+                "h": 96,
+                "x": 160,
+                "y": 96
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "soil",
+            "frame": {
+                "w": 64,
+                "h": 64,
                 "x": 0,
-                "y": 32
+                "y": 224
             },
             "anchor": {
                 "x": 0.5,
@@ -40,128 +53,11 @@
             }
         },
         {
-            "filename": "fishingrod",
+            "filename": "croissant",
             "frame": {
                 "w": 32,
                 "h": 32,
-                "x": 32,
-                "y": 32
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "hoe",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 64,
-                "y": 0
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "pickaxe",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 64,
-                "y": 32
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "iron_ore",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 0,
-                "y": 64
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "stone",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 32,
-                "y": 64
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "wood",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 64,
-                "y": 64
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "coal",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 96,
-                "y": 0
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "copper_bar",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 96,
-                "y": 32
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "copper_ore",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 96,
-                "y": 64
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "fiber",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 0,
+                "x": 224,
                 "y": 96
             },
             "anchor": {
@@ -170,12 +66,12 @@
             }
         },
         {
-            "filename": "gold_bar",
+            "filename": "drumstick_cooked",
             "frame": {
                 "w": 32,
                 "h": 32,
-                "x": 32,
-                "y": 96
+                "x": 224,
+                "y": 128
             },
             "anchor": {
                 "x": 0.5,
@@ -183,12 +79,25 @@
             }
         },
         {
-            "filename": "gold_ore",
+            "filename": "drumstick_raw",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 224,
+                "y": 160
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "doughnut",
             "frame": {
                 "w": 32,
                 "h": 32,
                 "x": 64,
-                "y": 96
+                "y": 224
             },
             "anchor": {
                 "x": 0.5,
@@ -196,12 +105,25 @@
             }
         },
         {
-            "filename": "iron_bar",
+            "filename": "egg",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 64,
+                "y": 256
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "egg_fried",
             "frame": {
                 "w": 32,
                 "h": 32,
                 "x": 96,
-                "y": 96
+                "y": 224
             },
             "anchor": {
                 "x": 0.5,
@@ -209,38 +131,12 @@
             }
         },
         {
-            "filename": "pumpkin_seed",
+            "filename": "eggplant",
             "frame": {
                 "w": 32,
                 "h": 32,
-                "x": 128,
-                "y": 0
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "cauliflower_seed",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 128,
-                "y": 32
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "corn_seed",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 128,
-                "y": 64
+                "x": 96,
+                "y": 256
             },
             "anchor": {
                 "x": 0.5,
@@ -253,6 +149,188 @@
                 "w": 32,
                 "h": 32,
                 "x": 128,
+                "y": 224
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "fiber",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 128,
+                "y": 256
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "fishingrod",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 160,
+                "y": 192
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "gold_bar",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 160,
+                "y": 224
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "gold_ore",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 160,
+                "y": 256
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "grapes",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 192,
+                "y": 192
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "hoe",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 224,
+                "y": 192
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "hotdog",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 192,
+                "y": 224
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "icecream",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 192,
+                "y": 256
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "iron_bar",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 224,
+                "y": 224
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "iron_ore",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 224,
+                "y": 256
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "lettuce",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 256,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "onion_rings",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 256,
+                "y": 32
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "pickaxe",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 256,
+                "y": 64
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "pizza",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 256,
                 "y": 96
             },
             "anchor": {
@@ -261,63 +339,11 @@
             }
         },
         {
-            "filename": "potato_seed",
+            "filename": "popcorn",
             "frame": {
                 "w": 32,
                 "h": 32,
-                "x": 0,
-                "y": 128
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "pumpkin",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 32,
-                "y": 128
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "corn",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 64,
-                "y": 128
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "cauliflower",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 96,
-                "y": 128
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "eggplant",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 128,
+                "x": 256,
                 "y": 128
             },
             "anchor": {
@@ -330,72 +356,7 @@
             "frame": {
                 "w": 32,
                 "h": 32,
-                "x": 160,
-                "y": 0
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "croissant",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 160,
-                "y": 32
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "doughnut",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 160,
-                "y": 64
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "drumstick_cooked",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 160,
-                "y": 96
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "drumstick_raw",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 160,
-                "y": 128
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "egg",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 0,
+                "x": 256,
                 "y": 160
             },
             "anchor": {
@@ -404,12 +365,12 @@
             }
         },
         {
-            "filename": "grapes",
+            "filename": "potato_seed",
             "frame": {
                 "w": 32,
                 "h": 32,
-                "x": 32,
-                "y": 160
+                "x": 256,
+                "y": 192
             },
             "anchor": {
                 "x": 0.5,
@@ -417,12 +378,12 @@
             }
         },
         {
-            "filename": "egg_fried",
+            "filename": "pumpkin",
             "frame": {
                 "w": 32,
                 "h": 32,
-                "x": 64,
-                "y": 160
+                "x": 256,
+                "y": 224
             },
             "anchor": {
                 "x": 0.5,
@@ -430,77 +391,12 @@
             }
         },
         {
-            "filename": "hotdog",
+            "filename": "pumpkin_seed",
             "frame": {
                 "w": 32,
                 "h": 32,
-                "x": 96,
-                "y": 160
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "icecream",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 128,
-                "y": 160
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "lettuce",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 160,
-                "y": 160
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "onion_rings",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 192,
-                "y": 0
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "pizza",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 192,
-                "y": 32
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "popcorn",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 192,
-                "y": 64
+                "x": 256,
+                "y": 256
             },
             "anchor": {
                 "x": 0.5,
@@ -512,8 +408,8 @@
             "frame": {
                 "w": 32,
                 "h": 32,
-                "x": 192,
-                "y": 96
+                "x": 288,
+                "y": 0
             },
             "anchor": {
                 "x": 0.5,
@@ -525,8 +421,8 @@
             "frame": {
                 "w": 32,
                 "h": 32,
-                "x": 192,
-                "y": 128
+                "x": 288,
+                "y": 32
             },
             "anchor": {
                 "x": 0.5,
@@ -538,8 +434,8 @@
             "frame": {
                 "w": 32,
                 "h": 32,
-                "x": 192,
-                "y": 160
+                "x": 288,
+                "y": 64
             },
             "anchor": {
                 "x": 0.5,
@@ -551,8 +447,8 @@
             "frame": {
                 "w": 32,
                 "h": 32,
-                "x": 0,
-                "y": 192
+                "x": 288,
+                "y": 96
             },
             "anchor": {
                 "x": 0.5,
@@ -564,7 +460,33 @@
             "frame": {
                 "w": 32,
                 "h": 32,
-                "x": 32,
+                "x": 288,
+                "y": 128
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "steak_raw",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 288,
+                "y": 160
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "stone",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 288,
                 "y": 192
             },
             "anchor": {
@@ -577,8 +499,8 @@
             "frame": {
                 "w": 32,
                 "h": 32,
-                "x": 64,
-                "y": 192
+                "x": 288,
+                "y": 224
             },
             "anchor": {
                 "x": 0.5,
@@ -586,12 +508,12 @@
             }
         },
         {
-            "filename": "tofu",
+            "filename": "sword",
             "frame": {
                 "w": 32,
                 "h": 32,
-                "x": 96,
-                "y": 192
+                "x": 288,
+                "y": 256
             },
             "anchor": {
                 "x": 0.5,
@@ -603,8 +525,8 @@
             "frame": {
                 "w": 32,
                 "h": 32,
-                "x": 128,
-                "y": 192
+                "x": 0,
+                "y": 288
             },
             "anchor": {
                 "x": 0.5,
@@ -612,12 +534,38 @@
             }
         },
         {
-            "filename": "bagel",
+            "filename": "tofu",
             "frame": {
                 "w": 32,
                 "h": 32,
-                "x": 160,
-                "y": 192
+                "x": 32,
+                "y": 288
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "wateringcan",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 64,
+                "y": 288
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "wood",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 96,
+                "y": 288
             },
             "anchor": {
                 "x": 0.5,
@@ -629,8 +577,8 @@
             "frame": {
                 "w": 32,
                 "h": 32,
-                "x": 192,
-                "y": 192
+                "x": 128,
+                "y": 288
             },
             "anchor": {
                 "x": 0.5,
@@ -638,12 +586,25 @@
             }
         },
         {
-            "filename": "steak_raw",
+            "filename": "axe",
             "frame": {
                 "w": 32,
                 "h": 32,
-                "x": 224,
-                "y": 0
+                "x": 160,
+                "y": 288
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bagel",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 192,
+                "y": 288
             },
             "anchor": {
                 "x": 0.5,
@@ -656,33 +617,7 @@
                 "w": 32,
                 "h": 32,
                 "x": 224,
-                "y": 32
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "bread",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 224,
-                "y": 64
-            },
-            "anchor": {
-                "x": 0.5,
-                "y": 0.5
-            }
-        },
-        {
-            "filename": "burrito",
-            "frame": {
-                "w": 32,
-                "h": 32,
-                "x": 224,
-                "y": 96
+                "y": 288
             },
             "anchor": {
                 "x": 0.5,
@@ -694,8 +629,34 @@
             "frame": {
                 "w": 32,
                 "h": 32,
-                "x": 224,
-                "y": 128
+                "x": 256,
+                "y": 288
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "bread",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 288,
+                "y": 288
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "burrito",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 320,
+                "y": 0
             },
             "anchor": {
                 "x": 0.5,
@@ -707,8 +668,99 @@
             "frame": {
                 "w": 32,
                 "h": 32,
-                "x": 224,
+                "x": 320,
+                "y": 32
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "cauliflower",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 320,
+                "y": 64
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "cauliflower_seed",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 320,
+                "y": 96
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "coal",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 320,
+                "y": 128
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "copper_bar",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 320,
                 "y": 160
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "copper_ore",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 320,
+                "y": 192
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "corn",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 320,
+                "y": 224
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "corn_seed",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 320,
+                "y": 256
             },
             "anchor": {
                 "x": 0.5,
