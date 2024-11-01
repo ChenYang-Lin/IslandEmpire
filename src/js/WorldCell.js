@@ -134,7 +134,6 @@ export default class WorldCell {
     }
 
     createEntities() {
-        console.log(this.entities)
         if (!this.entities) 
             return;
         

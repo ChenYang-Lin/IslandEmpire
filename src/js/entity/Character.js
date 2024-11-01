@@ -66,6 +66,13 @@ export default class Character extends Entity {
         super.onDeath(attacker);
     }
 
+    destroySelf() {
+        delete this.animationController;
+        delete this.fishing;
+        delete this.hitbox;
+        super.destroySelf();
+    }
+
 
     update() {
 

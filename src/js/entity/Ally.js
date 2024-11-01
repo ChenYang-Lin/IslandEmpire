@@ -11,6 +11,10 @@ export default class Ally extends Character {
         
     }
 
+    destroySelf() {
+        super.destroySelf();
+    }
+    
     update() {
         super.update();
     }

@@ -52,18 +52,25 @@ export default class Player extends Ally {
         this.stats.renderStatsDisplay();
     }
 
+    destroySelf() {
+
+        super.destroySelf();
+    }
+
     update(time, delta) {
 
-        console.log(this.destroyed);
-        if (this.destroyed) {
-            return;
-        }
+        // console.log(this.destroyed);
+        // if (this.destroyed) {
+        //     return;
+        // }
 
         super.update();
         if (this.autoControl) {
             this.moveToGridCell(this.path);
         }
         this.sensors.update();
+
+        console.log("player updating")
     }
 
 

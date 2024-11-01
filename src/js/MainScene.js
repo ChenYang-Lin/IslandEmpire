@@ -1,6 +1,6 @@
 import WorldManager from "./WorldManager.js";
 import HUD from "./windows/HUD.js";
-import InputController from "./player/InputController.js";
+import InputController from "./InputController.js";
 import Player from "./player/Player.js";
 import Resource from "./entity/Resource.js";
 import Crop from "./entity/Crop.js";
@@ -91,7 +91,8 @@ export default class MainScene extends Phaser.Scene {
     }
 
     endScene() {
-        // this.player.destroyed = true;
+        this.player.destroySelf();
+        this.inputController.destroySelf();
     }
 
     update(time, delta) {

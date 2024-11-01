@@ -1,4 +1,4 @@
-import { ITEM_DATA } from "../GameData.js";
+import { ITEM_DATA } from "./GameData.js";
 
 export default class InputController {
     constructor(scene, player) {
@@ -8,61 +8,40 @@ export default class InputController {
 
         this.scene = scene;
         this.player = player;
-        this.cursor = this.scene.input.keyboard.createCursorKeys();
-        this.keyJ = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.J);
-        this.keyP = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
 
-        window.addEventListener('resize', () => {
-            console.log("window resized")
 
-            this.scene.hud.screenResizeUpdate();
-            this.scene.sys.game.scale.resize(window.innerWidth, window.innerHeight);
-        });
 
-        this.initMobileBtns();
-        this.createJoyStick();
+        this.init();
 
+        
         // InputController._instance = this;
     }
 
-    initMobileBtns() {
-        let attackBtn = document.getElementById("attack-btn");
-        attackBtn.addEventListener("pointerdown", () => {
-            this.playAttackAnim("sword");
-            this.player.autoControl = false;
-        })
+    init() {
+        this.attackBtn = document.getElementById("attack-btn");
+        this.farmingBtn = document.getElementById("farming-btn");
+        this.farmingSwitcherBtn = document.getElementById("farming-btn-switcher");
+        this.consumableBtn = document.getElementById("consumable-btn");
+        this.consumableSwitcherBtn = document.getElementById("consumable-btn-switcher");
+        this.itemSwitchExitBtn = document.getElementById("item-switch-exit-btn");
 
-        let farmingBtn = document.getElementById("farming-btn");
-        farmingBtn.addEventListener("pointerdown", () => {
-            this.beginFarmingAction();
-            this.player.autoControl = false;
-        })
-        let farmingBtnSwitcher = document.getElementById("farming-btn-switcher");
-        farmingBtnSwitcher.addEventListener("pointerdown", () => {
-            this.scene.hud.openItemSwitchPanel("farming");
-        })
+        this.attackBtn.addEventListener("pointerdown", this.handleAttackBtnClickBind)
+        this.farmingBtn.addEventListener("pointerdown", this.handleFarmingBtnClickBind);
+        this.farmingSwitcherBtn.addEventListener("pointerdown", this.handleFarmingSwitcherBtnClickBind);
+        this.consumableBtn.addEventListener("pointerdown", this.handleConsumableBtnClickBind);
+        this.consumableSwitcherBtn.addEventListener("pointerdown", this.handleConsumableSwitcherBtnClickBind);
+        this.itemSwitchExitBtn.addEventListener("pointerdown", this.handleItemSwitchExitBtnClickBind);
 
-        let consumableBtn = document.getElementById("consumable-btn");
-        consumableBtn.addEventListener("pointerdown", () => {
-            this.scene.eventEmitter.emit("pointerdown-consumable-btn");
-            let itemName = this.scene.inventory.inventoryWindow.selectedConsumableItem
-            if (!this.scene.inventory.removeItem(itemName, 1)) {
-                console.log(itemName + " out")
-                return;
-            }
-            this.scene.player.useItem(itemName);
-            this.player.autoControl = false;
-        })
-        let consumableBtnSwitcher = document.getElementById("consumable-btn-switcher");
-        consumableBtnSwitcher.addEventListener("pointerdown", () => {
-            this.scene.hud.openItemSwitchPanel("consumable");
-        })
+        window.addEventListener('resize', this.handleWindowResizeBind);
 
 
-        let itemSwitchExitBtn = document.getElementById("item-switch-exit-btn");
-        itemSwitchExitBtn.addEventListener("pointerdown", () => {
-            this.scene.hud.closeItemSwitchPanel();
-        })
+        this.cursor = this.scene.input.keyboard.createCursorKeys();
+        this.keyJ = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.J);
+        this.keyP = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
+        this.keyX = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
+
+        
+        this.createJoyStick();
     }
 
     createJoyStick() {
@@ -134,6 +113,7 @@ export default class InputController {
 
 
     movementController() {
+
         let velocity = new Phaser.Math.Vector2();
         let direction;
         let moved = false;
@@ -186,6 +166,7 @@ export default class InputController {
 
     
     playToolUsageAnimation(tool) {
+        console.log(this)
         switch (tool) {
             case "hoe":
                 this.player.animationController.hoe();
@@ -210,10 +191,71 @@ export default class InputController {
         }
     }
 
+    handleAttackBtnClickBind = this.handleAttackBtnClick.bind(this);
+    handleFarmingBtnClickBind = this.handleFarmingBtnClick.bind(this);
+    handleFarmingSwitcherBtnClickBind = this.handleFarmingSwitcherBtnClick.bind(this);
+    handleConsumableBtnClickBind = this.handleConsumableBtnClick.bind(this);
+    handleConsumableSwitcherBtnClickBind = this.handleConsumableSwitcherBtnClick.bind(this);
+    handleItemSwitchExitBtnClickBind = this.handleItemSwitchExitBtnClick.bind(this);
+    handleWindowResizeBind = this.handleWindowResize.bind(this);
 
-  
+
+    handleAttackBtnClick() {
+        this.playAttackAnim("sword");
+        this.player.autoControl = false;
+    }
+
+    handleFarmingBtnClick() {
+        this.beginFarmingAction();
+        this.player.autoControl = false;
+    }
+
+    handleFarmingSwitcherBtnClick() {
+        this.scene.hud.openItemSwitchPanel("farming");
+    }
+
+    handleConsumableBtnClick() {
+        this.scene.eventEmitter.emit("pointerdown-consumable-btn");
+        let itemName = this.scene.inventory.selectedConsumableItem;
+        if (!this.scene.inventory.removeItem(itemName, 1)) {
+            console.log(itemName + " out")
+            return;
+        }
+        this.scene.player.useItem(itemName);
+        this.player.autoControl = false;
+    }
+
+    handleConsumableSwitcherBtnClick() {
+        this.scene.hud.openItemSwitchPanel("consumable");
+    }
+
+    handleItemSwitchExitBtnClick() {
+        this.scene.hud.closeItemSwitchPanel();
+    }
+
+    handleWindowResize() {
+        console.log("window resized")
+        this.scene.hud.screenResizeUpdate();
+        this.scene.sys.game.scale.resize(window.innerWidth, window.innerHeight);
+    }
+
+
+
+    destroySelf() {
+        this.attackBtn.removeEventListener("pointerdown", this.handleAttackBtnClickBind);
+        this.farmingBtn.removeEventListener("pointerdown", this.handleFarmingBtnClickBind);
+        this.farmingSwitcherBtn.removeEventListener("pointerdown", this.handleFarmingSwitcherBtnClickBind);
+        this.consumableBtn.removeEventListener("pointerdown", this.handleConsumableBtnClickBind);
+        this.consumableSwitcherBtn.removeEventListener("pointerdown", this.handleConsumableSwitcherBtnClickBind);
+        this.itemSwitchExitBtn.removeEventListener("pointerdown", this.handleItemSwitchExitBtnClickBind);
+
+        window.removeEventListener("resize", this.handleWindowResizeBind)
+    }
 
     update() {
+        if (this.destroyed) {
+            return;
+        }
         this.movementController();
         if (this.keyJ.isDown) {
             this.beginAction();
@@ -225,6 +267,16 @@ export default class InputController {
         }
         if (this.keyP.isUp) {
             this.scene.hud.shop.inAction = false;
+        }
+
+
+        if (this.keyX.isDown && this.testX === false) {
+            this.testX = true;
+            console.log("test");
+            this.scene.player.destroySelf();
+        }
+        if (this.keyX.isUp && this.testX === true) {
+            this.testX = false;
         }
         
     }

@@ -124,4 +124,8 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.destroy();
         
     }
+    
+    destroySelf() {
+        this.destroy();
+    }
 }

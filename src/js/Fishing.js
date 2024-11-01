@@ -8,6 +8,8 @@ export default class Fishing {
         // variables
         this.inAction = false;
         this.isFishing = false;
+
+        this.rewardTime = 1000 * 2;
     }
 
     checkFishable() {
@@ -32,6 +34,19 @@ export default class Fishing {
     }
 
     startFishing() {
+        console.log("start fishing")
+
+        this.showFishingLine();
+        
+        this.rewardCount = 0;
+        this.character.anims.play(`${this.character.name}_start_fishing_${this.character.direction}`, true);
+        this.fishingTimeout = setInterval(() => {
+            this.fishingReward();
+        }, this.rewardTime);
+    
+    }
+
+    showFishingLine() {
         let fishingLineSourceX = 0;
         let fishingLineSourceY = 0;
         let fishingLineDestX = (this.character.onGrid.x) * 32;
@@ -68,16 +83,11 @@ export default class Fishing {
             this.fishingLineGraphics.strokeLineShape(line);
             this.fishingLineGraphics.setDepth(this.character.y)
         }, 400)
+    }
 
-
-        console.log("start fishing")
-        this.rewardCount = 0;
-        this.character.anims.play(`${this.character.name}_start_fishing_${this.character.direction}`, true);
-        this.fishingTimeout = setInterval(() => {
-            console.log("fish reward");
-            this.rewardCount++;
-        }, 1000);
-    
+    fishingReward() {
+        console.log("fish reward");
+        this.rewardCount++;
     }
 
     endFishing() {
