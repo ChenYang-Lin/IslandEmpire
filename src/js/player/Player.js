@@ -70,7 +70,7 @@ export default class Player extends Ally {
         }
         this.sensors.update();
 
-        console.log("player updating")
+        // console.log("player updating")
     }
 
 

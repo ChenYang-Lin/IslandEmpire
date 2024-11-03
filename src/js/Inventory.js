@@ -18,6 +18,8 @@ export default class Inventory {
     
         // this.renderInventoryPanel();
 
+        this.listeners = [];
+
         this.init();
     }
 
@@ -48,22 +50,25 @@ export default class Inventory {
         }
         
         // Inventory Window
-        let inventoryContainer = document.getElementById("inventory-container");
-        let exitBtn = document.getElementById("inventory-exit-btn");
+        this.inventoryContainer = document.getElementById("inventory-container");
+        this.exitBtn = document.getElementById("inventory-exit-btn");
 
-        exitBtn.addEventListener("pointerdown", () => {
-            inventoryContainer.style.display = "none";
+        this.addNewEventListener(this.listeners, this.exitBtn, "pointerdown", () => {
+            console.log("exit")
+            this.inventoryContainer.style.display = "none";
         })
 
-        let categoryElements = document.querySelectorAll(".panel-category-element");
-        for (let i = 0; i < categoryElements.length; i++) {
-            categoryElements[i].addEventListener("pointerdown", () => {
+        this.categoryElements = document.querySelectorAll(".panel-category-element");
+        for (let i = 0; i < this.categoryElements.length; i++) {
+            this.addNewEventListener(this.listeners, this.categoryElements[i], "pointerdown", () => {
+                console.log("categoryElements: ", i)
                 this.selectedCategoryIndex = i;
-                this.selectedCategory = categoryElements[i].getAttribute("data-category");
+                this.selectedCategory = this.categoryElements[i].getAttribute("data-category");
                 this.renderInventoryPanel();
-            })
+            });
         }
     }
+
 
     addItem(name, quantity) {
         if (this.inventory[name]) {
@@ -96,13 +101,13 @@ export default class Inventory {
 
     renderInventorySelectedCategory() {
         let inventoryCategoryContainer = document.getElementById("inventory-category-container");
-        let categoryElements = inventoryCategoryContainer.children
+        let categoryChildren = inventoryCategoryContainer.children
         
-        for (let i = 0; i < categoryElements.length; i++) {
-            categoryElements[i].classList.remove("panel-category-element-selected");
+        for (let i = 0; i < categoryChildren.length; i++) {
+            categoryChildren[i].classList.remove("panel-category-element-selected");
         }
 
-        categoryElements[this.selectedCategoryIndex].classList.add("panel-category-element-selected");
+        categoryChildren[this.selectedCategoryIndex].classList.add("panel-category-element-selected");
     }
 
     renderInventoryList() {
@@ -125,7 +130,7 @@ export default class Inventory {
             let item = document.createElement("div");
             item.classList.add("panel-item");
             item.setAttribute("key", `${key}`);
-            item.addEventListener("pointerdown", () => {
+            this.addNewEventListener(this.listeners, item, "pointerdown", () => {
                 this.renderItemDetailBox(key)
             })
 
@@ -185,6 +190,24 @@ export default class Inventory {
 
     closeWindow() {
         document.getElementById("inventory-container").style.display = "none";
+    }
+
+    addNewEventListener(listeners, element, eventType, listener) {
+        element.addEventListener(eventType, listener);
+        listeners.push({ element, eventType, listener });
+    }
+
+    removeAllEventListeners(listeners) {
+        for (const { element, eventType, listener } of listeners) {
+            element.removeEventListener(eventType, listener);
+        }
+    }
+
+
+
+    destroySelf() {
+        this.removeAllEventListeners(this.listeners);
+        this.scene = null;
     }
 
 }

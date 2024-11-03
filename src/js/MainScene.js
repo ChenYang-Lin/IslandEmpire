@@ -51,8 +51,11 @@ export default class MainScene extends Phaser.Scene {
         this.collisionController.init();
         this.worldManager.initWorld();
 
+
         this.camera = this.cameras.main;
+        // this.cameraDolly = new Phaser.Geom.Point(this.player.x, this.player.y);
         this.camera.startFollow(this.player);
+        // this.camera.startFollow(this.cameraDolly);
         // this.camera.setLerp(0.3, 0.3);
         // this.camera.roundPixels = true;
 
@@ -93,6 +96,7 @@ export default class MainScene extends Phaser.Scene {
     endScene() {
         this.player.destroySelf();
         this.inputController.destroySelf();
+        this.inventory.destroySelf();
     }
 
     update(time, delta) {
@@ -102,7 +106,9 @@ export default class MainScene extends Phaser.Scene {
         this.hud.update();
         this.collisionController.update(time, delta);
 
-
+        // // update
+        // this.cameraDolly.x = Math.floor(this.player.x);
+        // this.cameraDolly.y = Math.floor(this.player.y);
 
 
         this.raft?.update(time, delta);

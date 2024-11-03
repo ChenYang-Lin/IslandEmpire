@@ -107,6 +107,15 @@ const ENTITY_DATA = {
         offsetX: 0,
         offsetY: 1,
     },
+    "water_collector": {
+        category: "structure",
+        imageWidth: 1,
+        imageHeight: 1,
+        colliderWidth: 1,
+        colliderHeight: 1,
+        offsetX: 0,
+        offsetY: 0,
+    }
 
 }
 
