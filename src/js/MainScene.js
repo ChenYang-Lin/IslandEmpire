@@ -51,8 +51,8 @@ export default class MainScene extends Phaser.Scene {
         this.collisionController.init();
         this.worldManager.initWorld();
 
-
         this.camera = this.cameras.main;
+        this.camera.setZoom(2);
         // this.cameraDolly = new Phaser.Geom.Point(this.player.x, this.player.y);
         this.camera.startFollow(this.player);
         // this.camera.startFollow(this.cameraDolly);

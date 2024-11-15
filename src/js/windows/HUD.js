@@ -72,6 +72,20 @@ export default class HUD {
     screenResizeUpdate() {
         this.closeHUD();
         setTimeout(() => {    
+            // zoom depends on screen resolution
+            let islandEmpire = document.getElementById("island-empire").children[0];
+            let width = window.getComputedStyle(islandEmpire).width;
+            width = parseInt(width, 10)
+            console.log("screen width: ", width);
+            if (width > 1200) {
+                console.log("zoom: 2");
+                this.scene.camera.setZoom(2);
+            } else {
+                console.log("zoom: 1");
+                this.scene.camera.setZoom(1);
+            }
+
+
             this.openHUD();
             this.wish.resize();
             this.questManager.createBoxShadow();

@@ -22,7 +22,7 @@ const config = {
         ConstructionScene,
     ],
     pixelArt: true,
-    roundPixels: true,
+    // roundPixels: false,
     // fps: {
     //     forceSetTimeOut: true,
     //     target: 60,

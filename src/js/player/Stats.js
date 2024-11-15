@@ -5,6 +5,8 @@ export default class State {
         this.scene = scene;
         this.player = player;
 
+        this.lastWorkingTime = Date.now();
+
         // Player status
         this.maxHp = 100;
         this.hp = 50;
@@ -37,6 +39,12 @@ export default class State {
         this.thirstBarValue.innerHTML = `${this.thirst} / ${this.maxThirst}`
     }
 
-
+    update() {
+        if (Date.now() - this.lastWorkingTime > 1000) {
+            this.hunger--;
+            this.renderStatsDisplay();
+            this.lastWorkingTime += 1000;
+        }
+    }
 
 }

@@ -140,17 +140,17 @@ const ITEM_DATA = {
     egg: { quality: 1, category: "material", type: "ingredient", name: "egg", collectable: "egg", },     
 
     // Item - consumable - food
-    pumpkin: { quality: 1, category: "consumable", type: "food", name: "pumpkin", collectable: "pumpkin", },
-    corn: { quality: 1, category: "consumable", type: "food", name: "corn", collectable: "corn", },
-    apple: { quality: 1, category: "consumable", type: "food", name: "apple", collectable: "apple", },
-    bagel: { quality: 1, category: "consumable", type: "food", name: "bagel", collectable: "bagel", },        
-    banana: { quality: 1, category: "consumable", type: "food", name: "banana", collectable: "banana", },        
-    bread: { quality: 1, category: "consumable", type: "food", name: "bread", collectable: "bread", },        
-    burger: { quality: 1, category: "consumable", type: "food", name: "burger", collectable: "burger", },        
-    burrito: { quality: 1, category: "consumable", type: "food", name: "burrito", collectable: "burrito", },        
+    pumpkin:    { quality: 1, category: "consumable", type: "food", name: "pumpkin", collectable: "pumpkin", },
+    corn:       { quality: 1, category: "consumable", type: "food", name: "corn", collectable: "corn", },
+    apple:      { quality: 1, category: "consumable", type: "food", name: "apple", collectable: "apple", },
+    bagel:      { quality: 1, category: "consumable", type: "food", name: "bagel", collectable: "bagel", },        
+    banana:     { quality: 1, category: "consumable", type: "food", name: "banana", collectable: "banana", },        
+    bread:      { quality: 1, category: "consumable", type: "food", name: "bread", collectable: "bread", },        
+    burger:     { quality: 1, category: "consumable", type: "food", name: "burger", collectable: "burger", },        
+    burrito:    { quality: 1, category: "consumable", type: "food", name: "burrito", collectable: "burrito", },        
     canned_food: { quality: 1, category: "consumable", type: "food", name: "canned food", collectable: "canned_food", },        
-    croissant: { quality: 1, category: "consumable", type: "food", name: "croissant", collectable: "croissant", },        
-    doughnut: { quality: 1, category: "consumable", type: "food", name: "doughnut", collectable: "doughnut", },        
+    croissant:  { quality: 1, category: "consumable", type: "food", name: "croissant", collectable: "croissant", },        
+    doughnut:   { quality: 1, category: "consumable", type: "food", name: "doughnut", collectable: "doughnut", },        
     drumstick_cooked: { quality: 1, category: "consumable", type: "food", name: "drumstick cooked", collectable: "drumstick_cooked", },       
     
     // Item - farming - tool
@@ -165,6 +165,12 @@ const ITEM_DATA = {
     "cauliflower_seed": { quality: 2, category: "farming", type: "seed", imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, crop_grow: "cauliflower_grow", },
     "pumpkin_seed": { quality: 2, category: "farming", type: "seed", imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, crop_grow: "pumpkin_grow", },
     "corn_seed": { quality: 2, category: "farming", type: "seed", imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, crop_grow: "corn_grow", },
+}
+
+const ITEM_ON_USE_DATA = {
+    banana: { hunger: 20 },
+    bread: { hunger: 20 },
+    burger: { hp: 20 },
 }
 
 const CROP_GROW_DATA = {
@@ -316,6 +322,7 @@ const MAP_DATA = {
 export {
     ENTITY_DATA,
     ITEM_DATA,
+    ITEM_ON_USE_DATA,
     CROP_GROW_DATA,
     SHOP_DATA,
     QUEST_DATA,
