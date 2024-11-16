@@ -14,6 +14,9 @@ export default class InputController {
         
         this.init();
 
+        this.selectedEntityREXOutline = this.scene.plugins.get('rexoutlinepipelineplugin');
+        this.selectedEntity;
+
         // InputController._instance = this;
     }
 
@@ -58,6 +61,12 @@ export default class InputController {
         this.addNewEventListener(this.listeners, this.itemSwitchExitBtn, "pointerdown", () => {
             this.scene.hud.closeItemSwitchPanel();
         });
+
+        // Clear selected entity highlight
+        this.addNewEventListener(this.listeners, window, "pointerdown", () => {
+            if (this.selectedEntity)
+                this.selectedEntityREXOutline.remove(this.selectedEntity);
+        })
 
         // Window Resize Listener
         this.addNewEventListener(this.listeners, window, "resize", () => {

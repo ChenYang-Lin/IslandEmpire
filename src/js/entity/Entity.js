@@ -45,6 +45,20 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.depth = this.position.y;
 
 
+        // Selected
+        this.setInteractive(this.scene.input.makePixelPerfect());
+ 
+        this.on('pointerdown', () => {
+            // Add postfx pipeline
+            this.scene.inputController.selectedEntity = this;
+            this.scene.inputController.selectedEntityREXOutline.add(this, {
+                thickness: 1,
+                outlineColor: 0xFF0000
+            });
+            console.log('clicked: ', this.name)
+        })
+
+
 
     }
 

@@ -39,9 +39,7 @@ export default class Crop extends Entity {
             this.isHovered = false;
             this.destroyProgressBar()
         })
-        this.on('pointerdown', () => {
-            // 
-        })
+
     }
 
     static preload(scene) {

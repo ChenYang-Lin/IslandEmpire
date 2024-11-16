@@ -400,8 +400,8 @@ body {
 }
 
 .ui-btn {
-    width: 64px;
-    height: 64px;
+    width: 48px;
+    height: 48px;
     background-color: #00000000;
     pointer-events: auto;
     border: none;
@@ -410,8 +410,8 @@ body {
 
 .ui-img {
     image-rendering: auto;
-    width: 64px;
-    height: 64px;
+    width: 48px;
+    height: 48px;
     pointer-events: none;
 }
 
