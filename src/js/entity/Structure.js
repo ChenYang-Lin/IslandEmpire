@@ -11,9 +11,15 @@ export default class Structure extends Entity {
 
         this.name = name;
         
+        // Transparent hitbox
+        this.initTransparentHitBox(this);
 
         
         this.scene.worldManager.obstacleCollidersGroup.add(this);
+    }
+
+    setTransparent(opacity) {
+        this.alpha = opacity;
     }
     
 }

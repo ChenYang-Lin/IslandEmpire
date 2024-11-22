@@ -40,10 +40,12 @@ export default class State {
     }
 
     update() {
-        if (Date.now() - this.lastWorkingTime > 1000) {
-            this.hunger--;
-            this.renderStatsDisplay();
-            this.lastWorkingTime += 1000;
+        if (Date.now() - this.lastWorkingTime > 5000) {
+            if (this.hunger >= 0) {
+                this.hunger--;
+                this.renderStatsDisplay();
+                this.lastWorkingTime += 5000;
+            }
         }
     }
 

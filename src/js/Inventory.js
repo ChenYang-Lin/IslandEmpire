@@ -30,21 +30,6 @@ export default class Inventory {
             this.inventory = {
                 "sword": 1,
                 "fishingrod": 1,
-                "hoe": 1,
-                "stone": 2,
-                "potato_seed": 3,
-                "drumstick_raw": 1,
-                "egg": 1,
-                "apple": 7,
-                "bagel": 1,
-                "banana": 3,
-                "bread": 1,
-                "burger": 1,
-                "burrito": 1,
-                "croissant": 1,
-                "doughnut": 1,
-                "eggplant_seed": 1,
-                "house": 1,
             }
             this.saveInventoryToLocalStorage();
         }

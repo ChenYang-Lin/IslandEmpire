@@ -52,7 +52,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
             // Add postfx pipeline
             this.scene.inputController.selectedEntity = this;
             this.scene.inputController.selectedEntityREXOutline.add(this, {
-                thickness: 1,
+                thickness: 3,
                 outlineColor: 0xFF0000
             });
             console.log('clicked: ', this.name)
@@ -123,6 +123,26 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         console.log(this.hp, this.maxHp)
         this.healthBar = this.graphics.fillRoundedRect(x+2, y+2, (this.hp/this.maxHp)*(width-4), height-4, 1); // x, y, width, height, radius
         this.healthBar.depth = this.depth + 2;
+    }
+
+    initTransparentHitBox(object) {
+        this.transparentSprites = [];
+        let transparentHitBox = this.entityData.transparentHitBox;
+        
+        transparentHitBox.forEach((hitbox) => {
+            let colliderBody = this.scene.add.sprite(object.x, object.y, "resource", "tree_top");
+            colliderBody.parent = this;
+            colliderBody.alpha = 0;
+            this.transparentSprites.push(colliderBody);
+            this.scene.physics.add.existing(colliderBody);
+
+            colliderBody.body.setSize(hitbox.transparentWidth * 32, hitbox.transparentHeight * 32);
+            colliderBody.body.setOffset(hitbox.transparentOffsetX * 32, hitbox.transparentOffsetY * 32);
+
+            this.scene.worldManager.transparentHitboxGroup.add(colliderBody);
+            
+
+        });
     }
 
     onHit(attacker, damage) {    

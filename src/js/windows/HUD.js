@@ -137,7 +137,10 @@ export default class HUD {
             }    
         }
         let consumableBtnImg = document.getElementById("consumable-btn-img");
-        consumableBtnImg.src = this.scene.sys.game.textures.getBase64("item", item);
+        if (item) {
+            consumableBtnImg.src = this.scene.sys.game.textures.getBase64("item", item);
+        } 
+        
     }
 
     createCollectablesContainer(collectables) {

@@ -36,26 +36,16 @@ export default class Resource extends Entity {
         this.secondPart.y -= 55;
 
         // Transparent hitbox
-        this.transparentSprites = [];
-        let transparentHitBox = this.entityData.transparentHitBox;
-        
-        transparentHitBox.forEach((hitbox) => {
-            let colliderBody = this.scene.add.sprite(this.secondPart.x, this.secondPart.y, "resource", "tree_top");
-            colliderBody.parent = this;
-            colliderBody.alpha = 0;
-            this.transparentSprites.push(colliderBody);
-            this.scene.physics.add.existing(colliderBody);
-
-            colliderBody.body.setSize(hitbox.transparentWidth * 32, hitbox.transparentHeight * 32);
-            colliderBody.body.setOffset(hitbox.transparentOffsetX * 32, hitbox.transparentOffsetY * 32);
-
-            this.scene.worldManager.transparentHitboxGroup.add(colliderBody);
-            
-
-        });
+        this.initTransparentHitBox(this.secondPart);
 
 
     }
+
+    setTransparent(opacity) {
+        this.secondPart.alpha = opacity;
+    }
+
+
 
     onHit(attacker, damage) {
         this.hp -= damage;

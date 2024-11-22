@@ -35,9 +35,9 @@ export default class CollisionController {
         this.initPlayerOverlapCollectables();
 
         this.scene.physics.add.overlap(this.scene.player, this.scene.worldManager.transparentHitboxGroup, (player, colliderBody) => {
-            colliderBody.parent.secondPart.alpha = 0.3;
+            colliderBody.parent.setTransparent(0.3);
             setTimeout(() => {
-                colliderBody.parent.secondPart.alpha = 1;
+                colliderBody.parent.setTransparent(1);
             }, 50)
         });
     }

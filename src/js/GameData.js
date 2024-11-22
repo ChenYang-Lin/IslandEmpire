@@ -115,8 +115,34 @@ const ENTITY_DATA = {
         colliderHeight: 1,
         offsetX: 0,
         offsetY: 0,
-    }
-
+    },
+    "home_0": {
+        category: "structure",
+        imageWidth: 2,
+        imageHeight: 3,
+        colliderWidth: 2,
+        colliderHeight: 2,
+        offsetX: 0,
+        offsetY: 1,
+        transparentHitBox: [
+            {
+                transparentWidth: 0.5,
+                transparentHeight: 0.5,
+                transparentOffsetX: 1.25,
+                transparentOffsetY: 2,
+            },
+        ],
+    },
+    "home_1": {
+        category: "structure",
+        imageWidth: 2,
+        imageHeight: 3,
+        colliderWidth: 2,
+        colliderHeight: 2,
+        offsetX: 0,
+        offsetY: 1,
+    },
+    
 }
 
 const ITEM_DATA = {
@@ -301,7 +327,7 @@ const MAP_DATA = {
     "0,0":   { isLand: true, entities: [ ], },
  
     "1,-3":  { isLand: true, entities: [ ], },
-    "1,-2":  { isLand: true, entities: [ ], },
+    "1,-2":  { isLand: true, entities: [ { name: "home_0" }, ], },
     "1,-1":  { isLand: true, entities: [ ], },
     "1,0":   { isLand: true, entities: [ ], },
  
