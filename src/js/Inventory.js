@@ -70,6 +70,7 @@ export default class Inventory {
             if (this.inventory[name] === 0) {
                 delete this.inventory[name];
                 this.scene.hud.setConsumableBtn();
+                this.scene.hud.setFarmingBtn();
             }
             this.saveInventoryToLocalStorage();
         } else {

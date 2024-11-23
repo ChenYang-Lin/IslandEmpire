@@ -73,21 +73,22 @@ export default class AnimationController {
 
     sow(seedName) {
         if (this.character.destroyed === true) 
-            return;
+            return false;
         if (this.inAction) 
-            return;
+            return false;
         // return if the land has not been hoed yet
         if (!this.scene.worldManager.map[`${this.character.onGrid.x},${this.character.onGrid.y}`].isHoedLand)
-            return;
+            return false;
         // return if the land already has growing crop 
         if (this.scene.worldManager.map[`${this.character.onGrid.x},${this.character.onGrid.y}`].crop) 
-            return;
+            return false;
         this.inAction = true;
         this.character.anims.play(`idle_${this.character.direction}`, true);
         setTimeout(() => {
             this.inAction = false;
         }, 500);
         this.scene.worldManager.sowingSeedOnLand(this.character.onGrid, seedName);
+        return true;
     }
 
 

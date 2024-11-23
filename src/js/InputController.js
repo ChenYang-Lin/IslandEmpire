@@ -224,7 +224,9 @@ export default class InputController {
                 this.playToolUsageAnimation(selectedItem)
                 break;
             case "seed":
-                this.player.animationController.sow(selectedItem);
+                if (this.player.animationController.sow(selectedItem)) {
+                    this.scene.inventory.removeItem(selectedItem, 1);
+                }
                 
                 break;
             default:
