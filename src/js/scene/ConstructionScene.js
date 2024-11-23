@@ -1,4 +1,5 @@
 import { ENTITY_DATA } from "../GameData.js";
+import Inventory from "../Inventory.js";
 import WorldManager from "../WorldManager.js";
 import Crop from "../entity/Crop.js";
 import Resource from "../entity/Resource.js";
@@ -49,6 +50,7 @@ export default class ConstructionScene extends Phaser.Scene {
         this.worldManager = new WorldManager(this);
         this.worldManager.initWorld();
         this.map = Object.assign({}, this.worldManager.map);
+        this.inventory = new Inventory(this);
         
 
         this.selectionBtn = document.getElementById("selection-btn");
@@ -78,6 +80,8 @@ export default class ConstructionScene extends Phaser.Scene {
             this.showConfirmationContainer();
             soilBtn.classList.add("construction-item-selected");
         })
+        this.soilQuantityText = document.getElementById("soil-quantity-text");
+        this.updateSoilQuantityText();
 
 
         this.initItemContainer();
@@ -295,13 +299,11 @@ export default class ConstructionScene extends Phaser.Scene {
 
 
     resetSelectedItem() {
-        console.log("called")
-        let mainActionContainer = document.getElementById("construction-main-actions-container");
-        let mainActionBtns = mainActionContainer.children;
+        let mainActionBtns = document.querySelectorAll(".construction-main-actions-element");
 
-        // Reset selected item from main actions container
-        for (let i = 0; i < mainActionBtns.length; i++) {
-            mainActionBtns[i].classList.remove("construction-item-selected");
+        // Reset selected item from item container
+        for (let i = 0; i < mainActionBtns.length; i ++) {
+            mainActionBtns[i]?.children[0]?.classList.remove("construction-item-selected");
         }
 
         // Reset selected item from item container
@@ -315,7 +317,7 @@ export default class ConstructionScene extends Phaser.Scene {
 
     showGridBackground() {
         // x, y, colliderWidth, colliderHeight, cellWidth, cellHeight, fillColor, fillAlpha, outlineFillColor, outlineFillAlpha
-        this.gridBackground = this.add.grid(-16, -16, 2048, 2048, 32, 32, 0x00ff00, 0, 0xbfbfbf, 0.7 );
+        this.gridBackground = this.add.grid(-16 + 1024, -16 + 1024, 2048, 2048, 32, 32, 0x00ff00, 0, 0xbfbfbf, 0.7 );
     }
 
     destroyTempObjects() {
@@ -355,7 +357,7 @@ export default class ConstructionScene extends Phaser.Scene {
         let y = gridY * 32;
         let landSprite;
 
-        if (gridX <= 0) {
+        if (gridX <= 0 || gridY <= 0) {
             return;
         }
 
@@ -375,7 +377,12 @@ export default class ConstructionScene extends Phaser.Scene {
         this.worldManager.updateLandOnWorldCell(gridX, gridY, isPlacement)
 
 
+        
     }  
+
+    updateSoilQuantityText() {
+        this.soilQuantityText.innerHTML = `${this.worldManager.soil} / ${this.worldManager.soil + this.worldManager.landSize}`
+    }
 
 
     initPlacementRemovalBtns() {

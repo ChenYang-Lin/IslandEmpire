@@ -10,6 +10,10 @@ export default class WorldManager {
     constructor(scene) {
         this.scene = scene;
 
+        
+        this.landSize = 0;
+        this.soil = 10;
+
         // Pathfinding
         this.astar = new Astar();
 
@@ -48,15 +52,29 @@ export default class WorldManager {
     updateLandOnWorldCell(cellX, cellY, isLand) {
 
         console.log(this.map[`${cellX},${cellX}`])
+        // if current cell is land, remove land and add soil to inventory
         if (this.map[`${cellX},${cellY}`]?.isLand) {
+            console.log("remove land")
             this.map[`${cellX},${cellY}`].isLand = isLand;
+            this.soil++;
+            this.landSize--;
+        
+        // if current cell is not land, add land if there is soil in inventory
         } else {
+            if (this.soil <= 0) 
+                return;
+            console.log("add land")
             this.map[`${cellX},${cellY}`] = { 
                 isLand: isLand,
                 entities: [],
             };
+            this.soil--;
+            this.landSize++;
         }
         this.saveMapToLocalStorage();
+
+        // update quantity text of soil
+        this.scene.updateSoilQuantityText();
         
         this.worldCells[`${cellX},${cellY}`].isLand = isLand;
 
@@ -108,10 +126,14 @@ export default class WorldManager {
     }
 
     saveMapToLocalStorage() {
+        localStorage.setItem("landSize", this.landSize.toString());
+        localStorage.setItem("soil", this.soil.toString());
         localStorage.setItem("map", JSON.stringify(this.map));
     }
 
     loadMapFromLocalStorage() {
+        this.landSize = parseInt(localStorage.getItem("landSize"), 10);
+        this.soil = parseInt(localStorage.getItem("soil"), 10);
         return JSON.parse(localStorage.getItem("map"));
     }
 

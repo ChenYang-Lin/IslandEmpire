@@ -34,6 +34,7 @@
 /* Construction footer */
 #construction-action-container {
     position: absolute;
+    /* padding-top: 2%; */
     width: 100%;
     bottom: 0;
     pointer-events: auto;
@@ -42,16 +43,31 @@
     align-items: center;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    /* background-color: black; */
 }
 
 #construction-main-actions-container {
     position: relative;
-    height: 64px;
+    height: 100%;
     width: 40%;
     display: flex;
     align-items: center;
     justify-content: end;
+}
+
+
+
+.construction-main-actions-element {
+    position: relative;
+}
+
+
+#soil-quantity-text {
+    position: absolute;
+    right: 3px;
+    bottom: 1px;
+    font-size: small;
+    color: white;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
 }
 
 #construction-item-container {
