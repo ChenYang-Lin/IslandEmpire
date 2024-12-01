@@ -39,12 +39,27 @@ export default class WorldManager {
 
 
 
-    initWorld() {
-        for (let gridY = -30; gridY < 30; gridY++) {
-            for (let gridX = -30; gridX < 30; gridX++) {
-                let worldCell = new WorldCell(gridX, gridY, this.map[`${gridX},${gridY}`], this);
-                this.worldCells[`${gridX},${gridY}`] = worldCell;
-            }
+    initWorld(map) {
+        if (!map) {
+            map = "island"
+        }
+        switch(map) {
+            case "island": 
+                for (let gridY = -30; gridY < 30; gridY++) {
+                    for (let gridX = -30; gridX < 30; gridX++) {
+                        let worldCell = new WorldCell(gridX, gridY, this.map[`${gridX},${gridY}`], this);
+                        this.worldCells[`${gridX},${gridY}`] = worldCell;
+                    }
+                }
+            break;
+            case "home": 
+                for (let gridY = -5; gridY < 5; gridY++) {
+                    for (let gridX = -5; gridX < 5; gridX++) {
+                        let worldCell = new WorldCell(gridX, gridY, this.map[`${gridX},${gridY}`], this);
+                        this.worldCells[`${gridX},${gridY}`] = worldCell;
+                    }
+                }
+            break;
         }
         
     }

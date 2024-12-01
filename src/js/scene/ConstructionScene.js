@@ -32,7 +32,9 @@ export default class ConstructionScene extends Phaser.Scene {
         this.exitUI = document.getElementById("exit-ui");
         this.exitUI.addEventListener("pointerdown", () => {
             
-            this.scene.start("MainScene");
+            this.scene.start("MainScene", { map: "home" });
+            
+            // this.scene.start("HomeScene");
         })
 
     }

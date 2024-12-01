@@ -1,21 +1,26 @@
-import WorldManager from "./WorldManager.js";
-import HUD from "./windows/HUD.js";
-import InputController from "./InputController.js";
-import Player from "./player/Player.js";
-import Resource from "./entity/Resource.js";
-import Crop from "./entity/Crop.js";
-import Entity from "./entity/Entity.js";
-import CollisionController from "./CollisionController.js";
-import EventEmitter from "./EventEmitter.js";
-import Raft from "./entity/Raft.js";
-import Inventory from "./Inventory.js";
+import WorldManager from "../WorldManager.js";
+import HUD from "../windows/HUD.js";
+import InputController from "../InputController.js";
+import Player from "../player/Player.js";
+import Resource from "../entity/Resource.js";
+import Crop from "../entity/Crop.js";
+import Entity from "../entity/Entity.js";
+import CollisionController from "../CollisionController.js";
+import EventEmitter from "../EventEmitter.js";
+import Raft from "../entity/Raft.js";
+import Inventory from "../Inventory.js";
 
 
 export default class MainScene extends Phaser.Scene {
     constructor() {
         super({ key: "MainScene" });
 
+        this.currentMap;
         this.version = "0.3";
+    }
+
+    init(data) {
+        this.currentMap = data.map;
     }
 
     preload() {
@@ -49,7 +54,7 @@ export default class MainScene extends Phaser.Scene {
         this.inputController = new InputController(this, this.player);
         this.hud = new HUD(this);
         this.collisionController.init();
-        this.worldManager.initWorld();
+        this.worldManager.initWorld(this.currentMap);
 
         this.camera = this.cameras.main;
         this.camera.setZoom(2);

@@ -129,7 +129,8 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.transparentSprites = [];
         let transparentHitBox = this.entityData.transparentHitBox;
         
-        transparentHitBox.forEach((hitbox) => {
+        
+        transparentHitBox?.forEach((hitbox) => {
             let colliderBody = this.scene.add.sprite(object.x, object.y, "resource", "tree_top");
             colliderBody.parent = this;
             colliderBody.alpha = 0;

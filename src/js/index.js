@@ -1,5 +1,6 @@
-import MainScene from "./MainScene.js";
+import MainScene from "./scene/MainScene.js";
 import ConstructionScene from "./scene/ConstructionScene.js";
+import HomeScene from "./scene/HomeScene.js";
 
 const config = {
     type: Phaser.AUTO,
@@ -20,6 +21,7 @@ const config = {
     scene: [
         MainScene,
         ConstructionScene,
+        HomeScene
     ],
     pixelArt: true,
     // roundPixels: false,

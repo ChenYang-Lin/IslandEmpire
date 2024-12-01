@@ -340,7 +340,10 @@ const MAP_DATA = {
     "3,-2":  { isLand: true, entities: [ ], },
     "3,-1":  { isLand: true, entities: [ ], },
     "3,0":   { isHoedLand: true, isLand: true, entities: [ ], },
+}
 
+const HOME_DATA = {
+    "0,0":   { entities: [ { name: "bed" }, ], },
 }
 
 
