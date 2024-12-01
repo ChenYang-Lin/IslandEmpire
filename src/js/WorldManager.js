@@ -13,6 +13,8 @@ export default class WorldManager {
         
         this.landSize = 0;
         this.soil = 10;
+        this.map;
+        this.currMap = "island";
 
         // Pathfinding
         this.astar = new Astar();
@@ -29,21 +31,23 @@ export default class WorldManager {
         this.hoedLandSpriteGroup = {};
         this.growingCrops = {};
 
-        if (localStorage.getItem("map")) {
-            this.map = this.loadMapFromLocalStorage();
+        if (localStorage.getItem("mapData")) {
+            this.mapData = this.loadMapFromLocalStorage();
         } else {
-            this.map = MAP_DATA;
+            this.mapData = MAP_DATA;
             this.saveMapToLocalStorage();
         }
     }
 
 
 
-    initWorld(map) {
-        if (!map) {
-            map = "island"
-        }
-        switch(map) {
+    initWorld(currMap) {
+        this.currMap = currMap;
+        if (!currMap) {
+            this.currMap = "island"
+        } 
+        this.map = this.mapData[this.currMap];
+        switch(this.currMap) {
             case "island": 
                 for (let gridY = -30; gridY < 30; gridY++) {
                     for (let gridX = -30; gridX < 30; gridX++) {
@@ -143,13 +147,13 @@ export default class WorldManager {
     saveMapToLocalStorage() {
         localStorage.setItem("landSize", this.landSize.toString());
         localStorage.setItem("soil", this.soil.toString());
-        localStorage.setItem("map", JSON.stringify(this.map));
+        localStorage.setItem("mapData", JSON.stringify(this.mapData));
     }
 
     loadMapFromLocalStorage() {
         this.landSize = parseInt(localStorage.getItem("landSize"), 10);
         this.soil = parseInt(localStorage.getItem("soil"), 10);
-        return JSON.parse(localStorage.getItem("map"));
+        return JSON.parse(localStorage.getItem("mapData"));
     }
 
     update() {

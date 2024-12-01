@@ -37,6 +37,13 @@ export default class WorldCell {
             return;
         }
 
+        // Check if current map on island
+        if (this.worldManager.currMap !== "island") {
+            let collider = this.worldManager.scene.physics.add.sprite(this.x, this.y)
+            this.worldManager.landCollidersGroup.add(collider);
+            return;
+        }
+
 
         let landSprite = "land";
 

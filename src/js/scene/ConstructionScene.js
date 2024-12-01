@@ -51,7 +51,7 @@ export default class ConstructionScene extends Phaser.Scene {
     create() {
         this.worldManager = new WorldManager(this);
         this.worldManager.initWorld();
-        this.map = Object.assign({}, this.worldManager.map);
+        this.map = Object.assign({}, this.worldManager.map["island"]);
         this.inventory = new Inventory(this);
         
 

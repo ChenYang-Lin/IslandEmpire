@@ -321,25 +321,35 @@ const QUEST_DATA = {
 }
 
 const MAP_DATA = {
-    "0,-3":  { isLand: true, entities: [ ], },
-    "0,-2":  { isLand: true, entities: [ ], },
-    "0,-1":  { isLand: true, entities: [ ], },
-    "0,0":   { isLand: true, entities: [ ], },
- 
-    "1,-3":  { isLand: true, entities: [ ], },
-    "1,-2":  { isLand: true, entities: [ { name: "home_0" }, ], },
-    "1,-1":  { isLand: true, entities: [ ], },
-    "1,0":   { isLand: true, entities: [ ], },
- 
-    "2,-3":  { isLand: true, entities: [ ], },
-    "2,-2":  { isLand: true, entities: [ ], },
-    "2,-1":  { isLand: true, entities: [ ], },
-    "2,0":   { isLand: true, entities: [ ], },
- 
-    "3,-3":  { isLand: true, entities: [ { name: "tree" }, ], },
-    "3,-2":  { isLand: true, entities: [ ], },
-    "3,-1":  { isLand: true, entities: [ ], },
-    "3,0":   { isHoedLand: true, isLand: true, entities: [ ], },
+    "island": {
+        "0,-3":  { isLand: true, entities: [ ], },
+        "0,-2":  { isLand: true, entities: [ ], },
+        "0,-1":  { isLand: true, entities: [ ], },
+        "0,0":   { isLand: true, entities: [ ], },
+     
+        "1,-3":  { isLand: true, entities: [ ], },
+        "1,-2":  { isLand: true, entities: [ { name: "home_0" }, ], },
+        "1,-1":  { isLand: true, entities: [ ], },
+        "1,0":   { isLand: true, entities: [ ], },
+     
+        "2,-3":  { isLand: true, entities: [ ], },
+        "2,-2":  { isLand: true, entities: [ ], },
+        "2,-1":  { isLand: true, entities: [ ], },
+        "2,0":   { isLand: true, entities: [ ], },
+     
+        "3,-3":  { isLand: true, entities: [ { name: "tree" }, ], },
+        "3,-2":  { isLand: true, entities: [ ], },
+        "3,-1":  { isLand: true, entities: [ ], },
+        "3,0":   { isHoedLand: true, isLand: true, entities: [ ], },
+    },
+    "home": {
+        "0,-1":  { isLand: true, entities: [ ], },
+        "0,0":   { isLand: true, entities: [ ], },
+     
+        "1,-1":  { isLand: true, entities: [ ], },
+        "1,0":   { isLand: true, entities: [ ], },
+    },
+
 }
 
 const HOME_DATA = {
