@@ -26,6 +26,7 @@ export default class WorldManager {
         this.collectablesGroup = this.scene.physics.add.group({ immovable: true });
         this.resourceCollidersGroup = this.scene.physics.add.group({ immovable: true });
         this.transparentHitboxGroup = this.scene.physics.add.group({ immovable: true });
+        this.interactionHitboxGroup = this.scene.physics.add.group({ immovable: true });
          
         this.worldCells = {};
         this.hoedLandSpriteGroup = {};

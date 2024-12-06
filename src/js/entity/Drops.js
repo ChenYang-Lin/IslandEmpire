@@ -12,11 +12,13 @@ export default class Drops extends Entity {
         
         this.collectable = this.entityData.collectable;
 
-        this.scene.worldManager.collectablesGroup.add(this);
+        // this.scene.worldManager.collectablesGroup.add(this);
+        this.initInteractionHitBox(this);
 
     }
 
     onDeath(attacker) {
+        this.destroyInteractionHitBox();
         super.onDeath(attacker);
     }
 

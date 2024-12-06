@@ -131,7 +131,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         
         
         transparentHitBox?.forEach((hitbox) => {
-            let colliderBody = this.scene.add.sprite(object.x, object.y, "resource", "tree_top");
+            let colliderBody = this.scene.add.sprite(object.x, object.y, "resource", "");
             colliderBody.parent = this;
             colliderBody.alpha = 0;
             this.transparentSprites.push(colliderBody);
@@ -144,6 +144,49 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
             
 
         });
+    }
+
+    destroyTransparentHitBox() {
+        this.transparentSprites.forEach((hitbox) => {
+            hitbox.destroy();
+            this.scene.worldManager.transparentHitboxGroup.remove(hitbox);
+        })
+    }
+
+    initInteractionHitBox(object) {
+        this.interactionSprites = [];
+        let interactionHitBox = this.entityData.interaction;
+        
+        console.log(interactionHitBox)
+        
+        interactionHitBox?.forEach((hitbox) => {
+            let colliderBody = this.scene.add.sprite(object.x, object.y);
+            colliderBody.type = hitbox.type;
+            colliderBody.parent = this;
+            colliderBody.interactionData = hitbox;
+            this.interactionSprites.push(colliderBody);
+            this.scene.physics.add.existing(colliderBody);0
+
+            let width = hitbox.interactionWidth ?? 1;
+            let height = hitbox.interactionHeight ?? 1;
+            let offsetX = hitbox.interactionOffsetX ?? 0;
+            let offsetY = hitbox.interactionOffsetY ?? 0;
+
+            colliderBody.body.setSize(width * 32, height * 32);
+            colliderBody.body.setOffset(offsetX * 32, offsetY * 32);
+
+            this.scene.worldManager.interactionHitboxGroup.add(colliderBody);
+            
+
+        });
+
+    }
+
+    destroyInteractionHitBox() {
+        this.interactionSprites.forEach((hitbox) => {
+            hitbox?.destroy();
+            this.scene.worldManager.interactionHitboxGroup.remove(hitbox);
+        })
     }
 
     onHit(attacker, damage) {    

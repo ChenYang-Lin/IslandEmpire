@@ -132,6 +132,17 @@ const ENTITY_DATA = {
                 transparentOffsetY: 2,
             },
         ],
+        interaction: [
+            {
+                type: "entrance",
+                name: "entrance",
+                destination: "home",
+                interactionWidth: 0.5,
+                interactionHeight: 0.5,
+                interactionOffsetX: .25,
+                interactionOffsetY: 1.5,
+            }
+        ]
     },
     "home_1": {
         category: "structure",
@@ -154,7 +165,7 @@ const ITEM_DATA = {
     house: { quality: 1, category: "construction", type: "structure", },
 
     // Item - material - material
-    wood: { quality: 1, category: "material", type: "material", collectable: "wood", },
+    wood: { quality: 1, category: "material", type: "material", interaction: [ { type: "collectable", name: "wood", quantity: 1 }, ]  },
     fiber: { quality: 1, category: "material", type: "material", collectable: "fiber", },
     stone: { quality: 1, category: "material", type: "material", collectable: "stone", },
 
@@ -200,7 +211,7 @@ const ITEM_ON_USE_DATA = {
 }
 
 const CROP_GROW_DATA = {
-    "potato_grow": { imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, totalPhase: 5, timeToGrow: 6 * 1000, collectable: "potato", },
+    "potato_grow": { imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, totalPhase: 5, timeToGrow: 6 * 1000, interaction: [ { type: "collectable", name: "potato", quantity: 1 }, ]  },
     "eggplant_grow": { imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, totalPhase: 5, timeToGrow: 6 * 1000, collectable: "eggplant", },
     "cauliflower_grow": { imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, totalPhase: 5, timeToGrow: 6 * 1000, collectable: "cauliflower", },
     "pumpkin_grow": { imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, totalPhase: 5, timeToGrow: 6 * 1000, collectable: "pumpkin", },
@@ -322,7 +333,7 @@ const QUEST_DATA = {
 
 const MAP_DATA = {
     "island": {
-        "0,-3":  { isLand: true, entities: [ ], },
+        "0,-3":  { isLand: true, entities: [ { name: "tree" }, ], },
         "0,-2":  { isLand: true, entities: [ ], },
         "0,-1":  { isLand: true, entities: [ ], },
         "0,0":   { isLand: true, entities: [ ], },

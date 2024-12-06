@@ -1,3 +1,4 @@
+import Drops from "./entity/Drops.js";
 import Resource from "./entity/Resource.js";
 import Structure from "./entity/Structure.js";
 import { ENTITY_DATA } from "./GameData.js";
@@ -151,6 +152,7 @@ export default class WorldCell {
             if (ENTITY_DATA[entity.name].category === "structure"){
                 let structure = new Structure(this.worldManager.scene, this.x, this.y, "construction", entity.name)
             }
+
         })
     }
 

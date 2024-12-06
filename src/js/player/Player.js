@@ -70,7 +70,8 @@ export default class Player extends Ally {
     }
 
     destroySelf() {
-
+        delete this.sensors;
+        delete this.stats;
         super.destroySelf();
     }
 

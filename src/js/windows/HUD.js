@@ -129,7 +129,7 @@ export default class HUD {
         let item = consumableItem;
         if (!item) {
             for (const [key, value] of Object.entries(this.scene.inventory.inventory)) {
-                if (ITEM_DATA[key].category !== "consumable")
+                if (ITEM_DATA[key]?.category !== "consumable")
                     continue;
                 item = key;
                 this.scene.inventory.selectedConsumableItem = key;
@@ -151,26 +151,38 @@ export default class HUD {
 
         // Create collectables button
         collectables.forEach((collectable, i) => {
+            let interactable = collectable.interactionData;
             let collectableBtn = document.createElement("button");
             collectableBtn.classList.add("collectable-btn");
             // collectableBtn.setAttribute("index", `${i}`);
             collectableBtn.addEventListener("pointerdown", () => {
-                this.scene.eventEmitter.emit(`pickup-${collectable.name}`);
-                collectableBtn.remove();
-                this.scene.inventory.addItem(collectable.collectable, 1);
-                this.scene.player.sensors.touchingNearbyCollectables[i].onDeath("player");
-                this.scene.collisionController.addCollectableCollected(collectable);
+                console.log(interactable)
+                switch (interactable.type) {
+                    case "collectable":
+                        this.scene.eventEmitter.emit(`pickup-${interactable.name}`);
+                        collectableBtn.remove();
+                        this.scene.inventory.addItem(interactable.name, interactable.quantity);
+                        console.log(this.scene.player.sensors.touchingNearbyObjects[i].parent)
+                        this.scene.player.sensors.touchingNearbyObjects[i].parent.onDeath("player");
+                        this.scene.collisionController.addCollectableCollected(collectable);
+                        break;
+                    case "entrance":
+                        console.log("moving to new map");
+                        this.scene.scene.start("MainScene", { map: interactable.destination });
+                        break;
+                    default:
+                }
             })
 
             // Create collectable img
             let collectableImg = document.createElement('img');
             collectableImg.classList.add("collectable-img");
-            collectableImg.src = this.scene.sys.game.textures.getBase64("item", collectable.collectable);
+            collectableImg.src = this.scene.sys.game.textures.getBase64("item", interactable.name);
 
             // Create collectable text
             let collectableText = document.createElement("div");
             collectableText.classList.add("collectable-name");
-            collectableText.innerHTML = `${collectable.collectable}`;
+            collectableText.innerHTML = `${interactable.name}`;
     
             collectableBtn.appendChild(collectableImg);
             collectableBtn.appendChild(collectableText);
@@ -188,7 +200,7 @@ export default class HUD {
         itemSwitchList.innerHTML = "";
 
         for (const [key, value] of Object.entries(this.scene.inventory.inventory)) {
-            if (ITEM_DATA[key].category !== category)
+            if (ITEM_DATA[key]?.category !== category)
                 continue;
 
             let item = document.createElement("div");

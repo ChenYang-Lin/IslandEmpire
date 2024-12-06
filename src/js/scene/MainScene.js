@@ -16,7 +16,7 @@ export default class MainScene extends Phaser.Scene {
         super({ key: "MainScene" });
 
         this.currentMap;
-        this.version = "0.3";
+        this.version = "0.31";
     }
 
     init(data) {
@@ -91,6 +91,7 @@ export default class MainScene extends Phaser.Scene {
     checkVersion() {
         let storageVersion = JSON.parse(localStorage.getItem("version"));
         if (this.version !== storageVersion) {
+        // if (this.version === storageVersion) {
             if (confirm("New Version Detected: click OK to update")) {
                 localStorage.clear();
                 localStorage.setItem("version", JSON.stringify(this.version));
