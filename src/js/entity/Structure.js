@@ -14,8 +14,6 @@ export default class Structure extends Entity {
         // Transparent hitbox
         this.initTransparentHitBox(this);
 
-        // Interaction hitbox
-        this.initInteractionHitBox(this);
 
         
         this.scene.worldManager.obstacleCollidersGroup.add(this);
@@ -24,7 +22,6 @@ export default class Structure extends Entity {
     onDeath(attacker) {
 
         this.destroyTransparentHitBox();
-        this.destroyInteractionHitBox();
         super.destroySelf();
     }
 

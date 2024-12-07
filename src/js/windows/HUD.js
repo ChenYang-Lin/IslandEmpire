@@ -168,6 +168,7 @@ export default class HUD {
                         break;
                     case "entrance":
                         console.log("moving to new map");
+                        this.scene.endScene();
                         this.scene.scene.start("MainScene", { map: interactable.destination });
                         break;
                     default:

@@ -21,6 +21,7 @@ export default class MainScene extends Phaser.Scene {
 
     init(data) {
         this.currentMap = data.map;
+        // this.currentMap = "home";
     }
 
     preload() {
@@ -38,6 +39,7 @@ export default class MainScene extends Phaser.Scene {
         this.load.atlas("currency", "assets/currency.png", "assets/currency_atlas.json");
         this.load.atlas("land", "assets/land.png", "assets/land_atlas.json");
         this.load.atlas("construction", "assets/construction.png", "assets/construction_atlas.json");
+        this.load.atlas("entity", "assets/entity.png", "assets/entity_atlas.json");
 
 
     }

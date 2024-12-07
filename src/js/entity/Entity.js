@@ -14,14 +14,22 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
 
-        this.imageWidth = this.entityData.imageWidth ?? 1;
-        this.imageHeight = this.entityData.imageHeight ?? 1;
-        this.colliderWidth = this.entityData.colliderWidth ?? 1;
-        this.colliderHeight = this.entityData.colliderHeight ?? 1;
-        this.offsetX = this.entityData.offsetX ?? 0;
-        this.offsetY = this.entityData.offsetY ?? 0;
-        this.hpBarOffsetY = this.entityData.hpBarOffsetY ?? 20;
-        this.hpBarWidth = this.entityData.hpBarWidth ?? 32;
+        if (!this.entityData) {
+            this.entityData = ENTITY_DATA[this.name]
+        }
+
+        console.log(this.entityData)
+
+        this.imageWidth = this?.entityData?.imageWidth ?? 1;
+        this.imageHeight = this?.entityData?.imageHeight ?? 1;
+        this.colliderWidth = this?.entityData?.colliderWidth ?? 1;
+        this.colliderHeight = this?.entityData?.colliderHeight ?? 1;
+        this.offsetX = this?.entityData?.offsetX ?? 0;
+        this.offsetY = this?.entityData?.offsetY ?? 0;
+        this.hpBarOffsetY = this?.entityData?.hpBarOffsetY ?? 20;
+        this.hpBarWidth = this?.entityData?.hpBarWidth ?? 32;
+
+
 
         // Default stats
         this.maxHp = 30;
@@ -43,7 +51,9 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.setOffset(this.offsetX * 32, this.offsetY * 32);
         
         this.depth = this.position.y;
-
+        if (this?.entityData.offsetDepth) {
+            this.depth += this.entityData.offsetDepth;
+        }
 
         // Selected
         this.setInteractive(this.scene.input.makePixelPerfect());
@@ -59,6 +69,9 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         })
 
 
+        if (this.entityData.interaction) {
+            this.initInteractionHitBox(this);
+        }
 
     }
 
@@ -175,6 +188,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
             colliderBody.body.setSize(width * 32, height * 32);
             colliderBody.body.setOffset(offsetX * 32, offsetY * 32);
 
+            console.log(colliderBody)
             this.scene.worldManager.interactionHitboxGroup.add(colliderBody);
             
 
@@ -183,7 +197,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
     }
 
     destroyInteractionHitBox() {
-        this.interactionSprites.forEach((hitbox) => {
+        this.interactionSprites?.forEach((hitbox) => {
             hitbox?.destroy();
             this.scene.worldManager.interactionHitboxGroup.remove(hitbox);
         })
@@ -204,6 +218,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
     }
     
     destroySelf() {
+        this.destroyInteractionHitBox();
         this.destroy();
     }
 }

@@ -153,6 +153,36 @@ const ENTITY_DATA = {
         offsetX: 0,
         offsetY: 1,
     },
+
+    "bed": {
+        imageWidth: 1,
+        imageHeight: 2,
+        colliderWidth: 1,
+        colliderHeight: 1,
+        offsetX: 0,
+        offsetY: 1,
+    },
+
+    "entrance_rug": {
+        imageWidth: 2,
+        imageHeight: 1,
+        colliderWidth: 2,
+        colliderHeight: 1,
+        offsetX: 0,
+        offsetY: 0,
+        offsetDepth: -100,
+        interaction: [
+            {
+                type: "entrance",
+                name: "entrance",
+                destination: "island",
+                interactionWidth: 0.25,
+                interactionHeight: 0.25,
+                interactionOffsetX: 0.375,
+                interactionOffsetY: 0.75,
+            }
+        ]
+    },
     
 }
 
@@ -354,18 +384,16 @@ const MAP_DATA = {
         "3,0":   { isHoedLand: true, isLand: true, entities: [ ], },
     },
     "home": {
-        "0,-1":  { isLand: true, entities: [ ], },
-        "0,0":   { isLand: true, entities: [ ], },
+        "0,0":   { isLand: true, entities: [ { name: "entrance_rug" }, ], },
+        "0,-1":   { isLand: true, entities: [ ], },
      
-        "1,-1":  { isLand: true, entities: [ ], },
-        "1,0":   { isLand: true, entities: [ ], },
+        "1,0":   { isLand: true, entities: [  ], },
+        "1,-1":  { isLand: true, entities: [{ name: "bed" },  ], },
+
     },
 
 }
 
-const HOME_DATA = {
-    "0,0":   { entities: [ { name: "bed" }, ], },
-}
 
 
 

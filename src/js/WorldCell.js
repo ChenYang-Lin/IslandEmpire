@@ -1,4 +1,5 @@
 import Drops from "./entity/Drops.js";
+import Entity from "./entity/Entity.js";
 import Resource from "./entity/Resource.js";
 import Structure from "./entity/Structure.js";
 import { ENTITY_DATA } from "./GameData.js";
@@ -146,6 +147,10 @@ export default class WorldCell {
             return;
         
         this.entities.forEach((entity) => {
+            if (!ENTITY_DATA[entity.name].category) {
+                console.log(entity.name)
+                let entityObject = new Entity(this.worldManager.scene, this.x, this.y, entity.name, "entity", entity.name)
+            }
             if (ENTITY_DATA[entity.name].category === "resource") {
                 let resource = new Resource(this.worldManager.scene, this.x, this.y, "resource", entity.name);
             }
