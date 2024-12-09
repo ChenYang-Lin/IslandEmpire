@@ -251,6 +251,8 @@ export default class InputController {
 
     destroySelf() {
         this.removeAllEventListeners(this.listeners);
+        document.getElementById("joyDiv").innerHTML = ``
+        this.joy = null;
         this.scene = null;
         this.player = null;
     }
