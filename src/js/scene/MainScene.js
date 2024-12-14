@@ -9,6 +9,7 @@ import CollisionController from "../CollisionController.js";
 import EventEmitter from "../EventEmitter.js";
 import Raft from "../entity/Raft.js";
 import Inventory from "../Inventory.js";
+import Civilian from "../entity/Civilian.js";
 
 
 export default class MainScene extends Phaser.Scene {
@@ -16,7 +17,7 @@ export default class MainScene extends Phaser.Scene {
         super({ key: "MainScene" });
 
         this.currentMap;
-        this.version = "0.31";
+        this.version = "0.3";
     }
 
     init(data) {
@@ -80,6 +81,7 @@ export default class MainScene extends Phaser.Scene {
         // })
         
         // this.raft = new Raft(this, 0, 500, "raft", "raft", "raft_move_down_0");
+        this.civilian = new Civilian(this, 0, -32, "civilian", "civilian", "civilian_idle_left");
     }
 
 
@@ -118,6 +120,7 @@ export default class MainScene extends Phaser.Scene {
         // this.cameraDolly.x = Math.floor(this.player.x);
         // this.cameraDolly.y = Math.floor(this.player.y);
 
+        this.civilian?.update(time, delta);
 
         this.raft?.update(time, delta);
     }

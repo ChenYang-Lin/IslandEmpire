@@ -147,6 +147,9 @@ export default class WorldCell {
             return;
         
         this.entities.forEach((entity) => {
+            if (!entity.name) {
+                return;
+            }
             if (!ENTITY_DATA[entity.name].category) {
                 console.log(entity.name)
                 let entityObject = new Entity(this.worldManager.scene, this.x, this.y, entity.name, "entity", entity.name)

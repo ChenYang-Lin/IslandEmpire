@@ -1,0 +1,212 @@
+{
+    "anims": [
+        {
+            "key": "civilian_walk_right",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_right_0"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_right_1"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_right_2"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_right_3"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_right_4"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_right_5"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_right_6"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_right_7"
+                }
+            ]
+        },
+        {
+            "key": "civilian_walk_left",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_left_0"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_left_1"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_left_2"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_left_3"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_left_4"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_left_5"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_left_6"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_left_7"
+                }
+            ]
+        },
+        {
+            "key": "civilian_walk_down",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_down_0"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_down_1"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_down_2"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_down_3"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_down_4"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_down_5"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_down_6"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_down_7"
+                }
+            ]
+        },
+        {
+            "key": "civilian_walk_up",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_up_0"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_up_1"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_up_2"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_up_3"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_up_4"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_up_5"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_up_6"
+                },
+                {
+                    "key": "civilian",
+                    "frame": "civilian_walk_up_7"
+                }
+            ]
+        },
+        {
+            "key": "civilian_idle_right",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "civilian",
+                    "frame": "civilian_idle_right"
+                }
+            ]
+        },
+        {
+            "key": "civilian_idle_left",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "civilian",
+                    "frame": "civilian_idle_left"
+                }
+            ]
+        },
+        {
+            "key": "civilian_idle_down",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "civilian",
+                    "frame": "civilian_idle_down"
+                }
+            ]
+        },
+        {
+            "key": "civilian_idle_up",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "civilian",
+                    "frame": "civilian_idle_up"
+                }
+            ]
+        }
+    ]
+}

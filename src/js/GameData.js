@@ -70,6 +70,15 @@ const ENTITY_DATA = {
         hpBarOffsetY: 48,
     },
 
+    civilian: {
+        imageWidth: 6,
+        imageHeight: 6,
+        colliderWidth: 0.5, 
+        colliderHeight: 0.5,
+        offsetX: 2.75,
+        offsetY: 3.5,
+        hpBarOffsetY: 48,
+    },
     goblin: {
         imageWidth: 6,
         imageHeight: 6,

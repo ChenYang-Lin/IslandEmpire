@@ -31,6 +31,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
 
 
 
+
         // Default stats
         this.maxHp = 30;
         this.hp = this.maxHp;
@@ -54,6 +55,22 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         if (this?.entityData.offsetDepth) {
             this.depth += this.entityData.offsetDepth;
         }
+
+        if (this.colliderWidth > 1 || this.colliderHeight > 1) {
+            let halfWidth = (this.colliderWidth - 1) / 2;
+            let halfHeight = (this.colliderHeight - 1) / 2;
+
+            let left = this.onGrid.x - Math.floor(halfWidth);
+            let right = this.onGrid.x + Math.ceil(halfWidth);
+            let top = this.onGrid.y - Math.floor(halfHeight);
+            let bottom = this.onGrid.y + Math.ceil(halfHeight);
+            
+            for (let x = left; x <= right; x++) {
+                for (let y = top; y <= bottom; y++) {
+                    this.scene.worldManager.map[`${x},${y}`].entities.push({ collide: true });
+                }
+            }
+        } 
 
         // Selected
         this.setInteractive(this.scene.input.makePixelPerfect());
@@ -81,6 +98,9 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         scene.load.atlas("player_fishing", "assets/player_fishing.png", "assets/player_fishing_atlas.json");
         scene.load.animation("player_fishing_anim", "assets/player_fishing_anim.json");
         
+        scene.load.atlas("civilian", "assets/civilian.png", "assets/civilian_atlas.json");
+        scene.load.animation("civilian_anim", "assets/civilian_anim.json");
+
         scene.load.atlas("goblin", "assets/character/goblin.png", "assets/character/goblin_atlas.json")
         scene.load.animation("goblin_anim", "assets/character/goblin_anim.json");
 
