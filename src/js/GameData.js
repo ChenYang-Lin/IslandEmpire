@@ -4,6 +4,7 @@ const ENTITY_DATA = {
     tree: {
         category: "resource",
         type: "multiple",
+        collidable: true,
         imageWidth: 1,
         imageHeight: 2,
         colliderWidth: 1,
@@ -33,6 +34,7 @@ const ENTITY_DATA = {
     bush: {
         category: "resource",
         type: "single",
+        collidable: true,
         imageWidth: 1,
         imageHeight: 1,
         colliderWidth: 1,
@@ -47,6 +49,7 @@ const ENTITY_DATA = {
     rock: {
         category: "resource",
         type: "single",
+        collidable: true,
         imageWidth: 1,
         imageHeight: 1,
         colliderWidth: 1,
@@ -100,6 +103,7 @@ const ENTITY_DATA = {
 
     "house": {
         category: "structure",
+        collidable: true,
         imageWidth: 5,
         imageHeight: 7,
         colliderWidth: 5,
@@ -109,6 +113,7 @@ const ENTITY_DATA = {
     },
     "tent": {
         category: "structure",
+        collidable: true,
         imageWidth: 2,
         imageHeight: 3,
         colliderWidth: 2,
@@ -118,6 +123,7 @@ const ENTITY_DATA = {
     },
     "water_collector": {
         category: "structure",
+        collidable: true,
         imageWidth: 1,
         imageHeight: 1,
         colliderWidth: 1,
@@ -127,6 +133,7 @@ const ENTITY_DATA = {
     },
     "home_0": {
         category: "structure",
+        collidable: true,
         imageWidth: 2,
         imageHeight: 3,
         colliderWidth: 2,
@@ -155,6 +162,7 @@ const ENTITY_DATA = {
     },
     "home_1": {
         category: "structure",
+        collidable: true,
         imageWidth: 2,
         imageHeight: 3,
         colliderWidth: 2,
@@ -164,6 +172,7 @@ const ENTITY_DATA = {
     },
 
     "bed": {
+        collidable: true,
         imageWidth: 1,
         imageHeight: 2,
         colliderWidth: 1,

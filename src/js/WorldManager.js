@@ -145,6 +145,27 @@ export default class WorldManager {
         this.growingCrops[`${grid.x},${grid.y}`] = new Crop(this.scene, x, y, cropGrowName, sowingTime);
     }
 
+    isCellCollidable(x, y) {
+        let currCellData = this.map[`${x},${y}`];
+        if (!currCellData?.isLand) {
+            return true;
+        }
+        if (currCellData?.entities.length <= 0) {
+            return false;
+        }
+        
+        let collidable = false;
+        currCellData.entities.forEach((entity) => {
+            if (entity.collidable) {
+                collidable = true;
+            }
+            if (entity.name && ENTITY_DATA[entity.name].collidable) {
+                collidable = true;
+            }
+        })
+        return collidable;
+    }
+
     saveMapToLocalStorage() {
         localStorage.setItem("landSize", this.landSize.toString());
         localStorage.setItem("soil", this.soil.toString());

@@ -51,7 +51,7 @@ class Astar {
 
     findPath = function(grid, start, goal, scene) {
         this.indicators.forEach(rect => rect.destroy())
-        
+        this.scene = scene;
         // Init
         this.GRID = {...grid};
 
@@ -64,13 +64,17 @@ class Astar {
         let coordinate = `${this.GOAL.tx},${this.GOAL.ty}`;
 
         // Empty grid
-        if (this.GRID.length <= 0) return;
+        if (this.GRID.length <= 0) {
+            console.log("grid is empty")
+            return;
+        }
         // Start and goal are the same time
         if (this.START.tx === this.GOAL.tx && this.START.ty === this.GOAL.ty) return;
         // Goal undefined
         if (this.GRID[coordinate] === undefined) return;
         // Goal is not a land or GOAL is on a blocked tile 
-        if (!this.GRID[coordinate].isLand || this.isObstacleOnGrid(this.GRID[coordinate])) 
+        // if (!this.GRID[coordinate].isLand || this.isObstacleOnGrid(this.GRID[coordinate])) 
+        if (!this.GRID[coordinate].isLand || this.scene.worldManager.isCellCollidable(this.GOAL.tx, this.GOAL.ty)) 
             return;
 
         // 
@@ -194,27 +198,40 @@ class Astar {
         let direction = dir || "";
         let is_walkable = true;
         let gridCell;
+        let x;
+        let y;
 
         switch(direction.toLowerCase()) {
             case "left":
                 gridCell = this.GRID[`${n.tx-1},${n.ty}`];
+                x = n.tx-1;
+                y = n.ty;
                 break;
             case "right":
                 gridCell = this.GRID[`${n.tx+1},${n.ty}`];
+                x = n.tx+1;
+                y = n.ty;
                 break;
             case "up":
                 gridCell = this.GRID[`${n.tx},${n.ty-1}`];
+                x = n.tx;
+                y = n.ty-1;
                 break;
             case "down":
                 gridCell = this.GRID[`${n.tx},${n.ty+1}`];
+                x = n.tx;
+                y = n.ty+1;
                 break;
 
             default:
                 gridCell = this.GRID[`${n.tx},${n.ty}`];
+                x = n.tx;
+                y = n.ty;
         }
 
         // console.log(gridCell.isLand)
-        is_walkable = (!gridCell?.isLand || this.isObstacleOnGrid(gridCell) ) ? false : true;
+        // is_walkable = (!gridCell?.isLand || this.isObstacleOnGrid(gridCell) ) ? false : true;
+        is_walkable = (!gridCell?.isLand || this.scene.worldManager.isCellCollidable(x, y) ) ? false : true;
                 
         return is_walkable;
     }

@@ -23,22 +23,25 @@ export default class Civilian extends Ally {
 
 
     findAnEmptyCell(range) {
-        let emptyCell = [];
-        console.log("current", this.onGrid)
+        let emptyCells = [];
+        // console.log("current", this.onGrid)
         for (let x = this.onGrid.x - range; x <= this.onGrid.x + range; x++) {
             for (let y = this.onGrid.y - range; y <= this.onGrid.y + range; y++) {
                 if (x === this.onGrid.x && y === this.onGrid.y) {
                     continue;
                 }
                 let currCellData = this.scene.worldManager.map[`${x},${y}`];
-                // Current cell is empty 
-                if (currCellData?.isLand && currCellData?.entities.length <= 0) {
-                    emptyCell.push({ x, y })
+                // Current cell is not collidable
+                if (!this.scene.worldManager.isCellCollidable(x, y)) {
+                    emptyCells.push({ x, y })
                 }
             }
         }
-        return emptyCell[Math.floor(Math.random() * emptyCell.length)]
+        // console.log(emptyCells)
+        return emptyCells[Math.floor(Math.random() * emptyCells.length)]
     }
+
+
 
 
 
@@ -47,7 +50,7 @@ export default class Civilian extends Ally {
         super.update();
         
         
-        console.log(this.currPath)
+        // console.log(this.currPath)
         if (this.currPath && this.currPath.length > 0) {
             this.moveToGridCell(this.currPath);
             this.timer = 0;
@@ -55,7 +58,9 @@ export default class Civilian extends Ally {
             this.timer += delta;
             if (this.timer >= 1000){
                 let emptyCell = this.findAnEmptyCell(2);
+                // console.log(emptyCell)
                 this.currPath = this.findPathToCell(emptyCell);
+                // console.log(this.currPath)
             }
         }
         // let velocity = new Phaser.Math.Vector2();

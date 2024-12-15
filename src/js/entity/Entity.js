@@ -20,6 +20,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
 
         console.log(this.entityData)
 
+        this.collidable = this?.entityData?.collidable ?? false;
         this.imageWidth = this?.entityData?.imageWidth ?? 1;
         this.imageHeight = this?.entityData?.imageHeight ?? 1;
         this.colliderWidth = this?.entityData?.colliderWidth ?? 1;
@@ -56,7 +57,8 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
             this.depth += this.entityData.offsetDepth;
         }
 
-        if (this.colliderWidth > 1 || this.colliderHeight > 1) {
+        console.log(this.name, this.collidable)
+        if (this.collidable && (this.colliderWidth > 1 || this.colliderHeight > 1)) {
             let halfWidth = (this.colliderWidth - 1) / 2;
             let halfHeight = (this.colliderHeight - 1) / 2;
 
@@ -67,7 +69,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
             
             for (let x = left; x <= right; x++) {
                 for (let y = top; y <= bottom; y++) {
-                    this.scene.worldManager.map[`${x},${y}`].entities.push({ collide: true });
+                    this.scene.worldManager.map[`${x},${y}`].entities.push({ collidable: true });
                 }
             }
         } 
