@@ -41,6 +41,9 @@ export default class Civilian extends Ally {
         return emptyCells[Math.floor(Math.random() * emptyCells.length)]
     }
 
+    destroySelf() {
+        super.destroySelf();
+    }
 
 
 
@@ -48,6 +51,7 @@ export default class Civilian extends Ally {
 
     update(time, delta) {
         super.update();
+        console.log("update")
         
         
         // console.log(this.currPath)

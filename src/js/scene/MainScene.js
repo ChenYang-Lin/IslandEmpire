@@ -10,6 +10,7 @@ import EventEmitter from "../EventEmitter.js";
 import Raft from "../entity/Raft.js";
 import Inventory from "../Inventory.js";
 import Civilian from "../entity/Civilian.js";
+import CharacterManager from "../entity/CharacterManager.js";
 
 
 export default class MainScene extends Phaser.Scene {
@@ -22,6 +23,8 @@ export default class MainScene extends Phaser.Scene {
 
     init(data) {
         this.currentMap = data.map;
+        if (!this.currentMap) 
+            this.currentMap = "island"
         // this.currentMap = "home";
     }
 
@@ -54,6 +57,7 @@ export default class MainScene extends Phaser.Scene {
         this.collisionController = new CollisionController(this);
         this.inventory = new Inventory(this);
         this.player = new Player(this);
+        this.characterManager = new CharacterManager(this);
         this.inputController = new InputController(this, this.player);
         this.hud = new HUD(this);
         this.collisionController.init();
@@ -81,7 +85,7 @@ export default class MainScene extends Phaser.Scene {
         // })
         
         // this.raft = new Raft(this, 0, 500, "raft", "raft", "raft_move_down_0");
-        this.civilian = new Civilian(this, 0, -32, "civilian", "civilian", "civilian_idle_left");
+
     }
 
 
@@ -107,10 +111,12 @@ export default class MainScene extends Phaser.Scene {
         this.player.destroySelf();
         this.inputController.destroySelf();
         this.inventory.destroySelf();
+        this.civilian?.destroySelf();
     }
 
     update(time, delta) {
         this.player.update(time, delta);
+        this.characterManager.update(time, delta);
         this.worldManager.update();
         this.inputController.update();
         this.hud.update();
@@ -120,7 +126,6 @@ export default class MainScene extends Phaser.Scene {
         // this.cameraDolly.x = Math.floor(this.player.x);
         // this.cameraDolly.y = Math.floor(this.player.y);
 
-        this.civilian?.update(time, delta);
 
         this.raft?.update(time, delta);
     }

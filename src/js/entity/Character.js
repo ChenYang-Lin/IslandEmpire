@@ -70,11 +70,13 @@ export default class Character extends Entity {
         delete this.animationController;
         delete this.fishing;
         delete this.hitbox;
+        this.scene.characterManager.characterGroup.remove(this);
         super.destroySelf();
     }
 
 
     update() {
+        // console.log(this.x, this.y)
 
         if (this.destroyed) return;
 
