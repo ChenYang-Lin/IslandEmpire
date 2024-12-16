@@ -62,7 +62,8 @@ export default class Resource extends Entity {
         this.entityData.drops.forEach((name) => {
             let drops = new Drops(this.scene, this.position.x + Math.floor(Math.random() * 20), this.position.y + Math.floor(Math.random() * 20), "item", name);
         })
-        if (this.onGrid.x >= 0 && this.scene.worldManager.map[`${this.onGrid.x},${this.onGrid.y}`]) {
+        
+        if (this.scene.currentMap !== "infinite-forest" && this.onGrid.x >= 0 && this.scene.worldManager.map[`${this.onGrid.x},${this.onGrid.y}`]) {
             this.scene.worldManager.map[`${this.onGrid.x},${this.onGrid.y}`].entities = [];
             this.scene.worldManager.saveMapToLocalStorage();
         }

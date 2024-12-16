@@ -214,8 +214,8 @@ const ITEM_DATA = {
 
     // Item - material - material
     wood: { quality: 1, category: "material", type: "material", interaction: [ { type: "collectable", name: "wood", quantity: 1 }, ]  },
-    fiber: { quality: 1, category: "material", type: "material", collectable: "fiber", },
-    stone: { quality: 1, category: "material", type: "material", collectable: "stone", },
+    fiber: { quality: 1, category: "material", type: "material", interaction: [ { type: "collectable", name: "fiber", quantity: 1 }, ] },
+    stone: { quality: 1, category: "material", type: "material", interaction: [ { type: "collectable", name: "stone", quantity: 1 }, ] },
 
     // Item - material - ingredient
     potato: { quality: 1, category: "material", type: "ingredient", name: "potato", collectable: "potato", },
@@ -225,18 +225,18 @@ const ITEM_DATA = {
     egg: { quality: 1, category: "material", type: "ingredient", name: "egg", collectable: "egg", },     
 
     // Item - consumable - food
-    pumpkin:    { quality: 1, category: "consumable", type: "food", name: "pumpkin", collectable: "pumpkin", },
-    corn:       { quality: 1, category: "consumable", type: "food", name: "corn", collectable: "corn", },
-    apple:      { quality: 1, category: "consumable", type: "food", name: "apple", collectable: "apple", },
-    bagel:      { quality: 1, category: "consumable", type: "food", name: "bagel", collectable: "bagel", },        
-    banana:     { quality: 1, category: "consumable", type: "food", name: "banana", collectable: "banana", },        
-    bread:      { quality: 1, category: "consumable", type: "food", name: "bread", collectable: "bread", },        
-    burger:     { quality: 1, category: "consumable", type: "food", name: "burger", collectable: "burger", },        
-    burrito:    { quality: 1, category: "consumable", type: "food", name: "burrito", collectable: "burrito", },        
-    canned_food: { quality: 1, category: "consumable", type: "food", name: "canned food", collectable: "canned_food", },        
-    croissant:  { quality: 1, category: "consumable", type: "food", name: "croissant", collectable: "croissant", },        
-    doughnut:   { quality: 1, category: "consumable", type: "food", name: "doughnut", collectable: "doughnut", },        
-    drumstick_cooked: { quality: 1, category: "consumable", type: "food", name: "drumstick cooked", collectable: "drumstick_cooked", },       
+    pumpkin:    { quality: 1, category: "consumable", type: "food", name: "pumpkin", interaction: [ { type: "collectable", name: "wood", quantity: 1 }, ] },
+    corn:       { quality: 1, category: "consumable", type: "food", name: "corn", interaction: [ { type: "collectable", name: "corn", quantity: 1 }, ] },
+    apple:      { quality: 1, category: "consumable", type: "food", name: "apple", interaction: [ { type: "collectable", name: "apple", quantity: 1 }, ] },
+    bagel:      { quality: 1, category: "consumable", type: "food", name: "bagel", interaction: [ { type: "collectable", name: "bagel", quantity: 1 }, ] },        
+    banana:     { quality: 1, category: "consumable", type: "food", name: "banana", interaction: [ { type: "collectable", name: "banana", quantity: 1 }, ] },        
+    bread:      { quality: 1, category: "consumable", type: "food", name: "bread", interaction: [ { type: "collectable", name: "bread", quantity: 1 }, ] },        
+    burger:     { quality: 1, category: "consumable", type: "food", name: "burger", interaction: [ { type: "collectable", name: "burger", quantity: 1 }, ] },        
+    burrito:    { quality: 1, category: "consumable", type: "food", name: "burrito", interaction: [ { type: "collectable", name: "burrito", quantity: 1 }, ] },        
+    canned_food: { quality: 1, category: "consumable", type: "food", name: "canned food", interaction: [ { type: "collectable", name: "canned_food", quantity: 1 }, ] },        
+    croissant:  { quality: 1, category: "consumable", type: "food", name: "croissant", interaction: [ { type: "collectable", name: "croissant", quantity: 1 }, ] },        
+    doughnut:   { quality: 1, category: "consumable", type: "food", name: "doughnut", interaction: [ { type: "collectable", name: "doughnut", quantity: 1 }, ] },        
+    drumstick_cooked: { quality: 1, category: "consumable", type: "food", name: "drumstick cooked", interaction: [ { type: "collectable", name: "drumstick_cooked", quantity: 1 }, ] },       
     
     // Item - farming - tool
     hoe: { quality: 3, category: "farming", type: "tool", },
@@ -260,10 +260,10 @@ const ITEM_ON_USE_DATA = {
 
 const CROP_GROW_DATA = {
     "potato_grow": { imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, totalPhase: 5, timeToGrow: 6 * 1000, interaction: [ { type: "collectable", name: "potato", quantity: 1 }, ]  },
-    "eggplant_grow": { imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, totalPhase: 5, timeToGrow: 6 * 1000, collectable: "eggplant", },
-    "cauliflower_grow": { imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, totalPhase: 5, timeToGrow: 6 * 1000, collectable: "cauliflower", },
-    "pumpkin_grow": { imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, totalPhase: 5, timeToGrow: 6 * 1000, collectable: "pumpkin", },
-    "corn_grow": { imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, totalPhase: 5, timeToGrow: 6 * 1000, collectable: "corn", },
+    "eggplant_grow": { imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, totalPhase: 5, timeToGrow: 6 * 1000, interaction: [ { type: "collectable", name: "eggplant", quantity: 1 }, ]},
+    "cauliflower_grow": { imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, totalPhase: 5, timeToGrow: 6 * 1000, interaction: [ { type: "collectable", name: "cauliflower", quantity: 1 }, ] },
+    "pumpkin_grow": { imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, totalPhase: 5, timeToGrow: 6 * 1000, interaction: [ { type: "collectable", name: "pumpkin", quantity: 1 }, ] },
+    "corn_grow": { imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, totalPhase: 5, timeToGrow: 6 * 1000, interaction: [ { type: "collectable", name: "corn", quantity: 1 }, ]  },
 }
 
 const SHOP_DATA = [

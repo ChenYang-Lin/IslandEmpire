@@ -65,6 +65,24 @@ export default class WorldManager {
                     }
                 }
             break;
+            case "infinite-forest":
+                for (let x = -30; x < 30; x++) {
+                    for (let y = -30; y < 30; y++) {
+
+                        let possibleEntity = [[{ name: "tree"}], [{ name: "rock"}], [{ name: "bush"}]];
+                        let chosenEntity = possibleEntity[Math.floor(Math.random() * possibleEntity.length)]
+                        if (Math.random() < 0.7) {
+                            chosenEntity = undefined;
+                        }
+                        if ((x < 5 && x > -5) && (y < 5 && y > -5)) {
+                            chosenEntity = undefined
+                        }
+                        let cellData = { isLand: true, entities: chosenEntity, };
+                        let worldCell = new WorldCell(x, y, cellData, this);
+                        this.worldCells[`${x},${y}`] = worldCell;
+                    }
+                }
+            break;
         }
         
     }

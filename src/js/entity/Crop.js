@@ -12,6 +12,8 @@ export default class Crop extends Entity {
         this.name = name;
 
         this.collectable = this.entityData.collectable;
+        console.log(this.entityData)
+        console.log(this.entityData.interaction)
 
         this.harvestable = false;
         this.sowingTime = sowingTime;
