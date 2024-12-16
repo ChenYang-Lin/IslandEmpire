@@ -1,0 +1,36 @@
+{
+    "anims": [
+        {
+            "key": "portal",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "portal",
+                    "frame": "portal_0"
+                },
+                {
+                    "key": "portal",
+                    "frame": "portal_1"
+                },
+                {
+                    "key": "portal",
+                    "frame": "portal_2"
+                },
+                {
+                    "key": "portal",
+                    "frame": "portal_3"
+                },
+                {
+                    "key": "portal",
+                    "frame": "portal_4"
+                },
+                {
+                    "key": "portal",
+                    "frame": "portal_5"
+                }
+            ]
+        }
+    ]
+}

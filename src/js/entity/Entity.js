@@ -4,8 +4,16 @@ import { ENTITY_DATA } from "../GameData.js";
 
 export default class Entity extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y, name, texture, frame, entityData, isAlly) {
+
+        if (!entityData) {
+            entityData = ENTITY_DATA[name];
+        }
         
-        super(scene, x, y, texture, frame);
+        let entityTexture = entityData?.texture ?? texture;
+        let entityFrame = entityData?.frame ?? frame;
+
+        console.log(entityData, entityFrame)
+        super(scene, x, y, entityTexture, entityFrame);
 
         this.entityData = entityData;
         this.name = name;
@@ -27,6 +35,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.colliderHeight = this?.entityData?.colliderHeight ?? 1;
         this.offsetX = this?.entityData?.offsetX ?? 0;
         this.offsetY = this?.entityData?.offsetY ?? 0;
+        this.animation = this?.entityData?.animation;
         this.hpBarOffsetY = this?.entityData?.hpBarOffsetY ?? 20;
         this.hpBarWidth = this?.entityData?.hpBarWidth ?? 32;
 
@@ -55,6 +64,11 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.depth = this.position.y;
         if (this?.entityData.offsetDepth) {
             this.depth += this.entityData.offsetDepth;
+        }
+
+        if (this.animation) {
+            console.log(this.animation)
+            this.anims.play(this.animation, true );  
         }
 
         // console.log(this.name, this.collidable)
@@ -105,6 +119,9 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
 
         scene.load.atlas("goblin", "assets/character/goblin.png", "assets/character/goblin_atlas.json")
         scene.load.animation("goblin_anim", "assets/character/goblin_anim.json");
+
+        scene.load.atlas("portal", "assets/portal.png", "assets/portal_atlas.json")
+        scene.load.animation("portal_anim", "assets/portal_anim.json");
 
         scene.load.atlas("raft", "assets/entity/raft.png", "assets/entity/raft_atlas.json")
         scene.load.animation("raft_anim", "assets/entity/raft_anim.json");

@@ -151,7 +151,7 @@ const ENTITY_DATA = {
         interaction: [
             {
                 type: "entrance",
-                name: "entrance",
+                name: "home",
                 destination: "home",
                 interactionWidth: 0.5,
                 interactionHeight: 0.5,
@@ -192,12 +192,57 @@ const ENTITY_DATA = {
         interaction: [
             {
                 type: "entrance",
-                name: "entrance",
+                name: "island",
                 destination: "island",
                 interactionWidth: 0.25,
                 interactionHeight: 0.25,
                 interactionOffsetX: 0.375,
                 interactionOffsetY: 0.75,
+            }
+        ]
+    },
+
+    "portal-infinite-forest": {
+        imageWidth: 1,
+        imageHeight: 1,
+        colliderWidth: 1,
+        colliderHeight: 1,
+        offsetX: 0,
+        offsetY: 0,
+        texture: "portal",
+        frame: "portal_0",
+        animation: "portal",
+        interaction: [
+            {
+                type: "entrance",
+                name: "infinite-forest",
+                destination: "infinite-forest",
+                interactionWidth: 1,
+                interactionHeight: 1,
+                interactionOffsetX: 0,
+                interactionOffsetY: 0,
+            }
+        ]
+    },
+    "portal-island": {
+        imageWidth: 1,
+        imageHeight: 1,
+        colliderWidth: 1,
+        colliderHeight: 1,
+        offsetX: 0,
+        offsetY: 0,
+        texture: "portal",
+        frame: "portal_0",
+        animation: "portal",
+        interaction: [
+            {
+                type: "entrance",
+                name: "island",
+                destination: "island",
+                interactionWidth: 1,
+                interactionHeight: 1,
+                interactionOffsetX: 0,
+                interactionOffsetY: 0,
             }
         ]
     },
@@ -382,7 +427,7 @@ const QUEST_DATA = {
 const MAP_DATA = {
     "island": {
         "0,-3":  { isLand: true, entities: [ { name: "tree" }, ], },
-        "0,-2":  { isLand: true, entities: [ ], },
+        "0,-2":  { isLand: true, entities: [ { name: "portal-infinite-forest"} ], },
         "0,-1":  { isLand: true, entities: [ ], },
         "0,0":   { isLand: true, entities: [ ], },
      

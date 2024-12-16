@@ -18,7 +18,7 @@ export default class MainScene extends Phaser.Scene {
         super({ key: "MainScene" });
 
         this.currentMap;
-        this.version = "0.3";
+        this.version = "0.31";
     }
 
     init(data) {

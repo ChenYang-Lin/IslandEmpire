@@ -77,6 +77,9 @@ export default class WorldManager {
                         if ((x < 5 && x > -5) && (y < 5 && y > -5)) {
                             chosenEntity = undefined
                         }
+                        if (x === 0 && y === 0 ) {
+                            chosenEntity = [ { name: "portal-island"} ]
+                        }
                         let cellData = { isLand: true, entities: chosenEntity, };
                         let worldCell = new WorldCell(x, y, cellData, this);
                         this.worldCells[`${x},${y}`] = worldCell;
