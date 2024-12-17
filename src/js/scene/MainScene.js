@@ -24,7 +24,7 @@ export default class MainScene extends Phaser.Scene {
     init(data) {
         this.currentMap = data.map;
         if (!this.currentMap) 
-            this.currentMap = "infinite-forest"
+            this.currentMap = "island"
         // this.currentMap = "home";
     }
 

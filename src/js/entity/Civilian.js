@@ -10,6 +10,13 @@ export default class Civilian extends Ally {
         this.timer = 0;
         this.speed = 32;
 
+        setInterval(() => {
+            if (Math.random() < 0.5) {
+                this.animationController.hoe();
+            } else {
+                this.animationController.sow("potato_seed");
+            }
+        }, 2000);
     }
 
     findPathToCell(goalCell) {
@@ -46,15 +53,7 @@ export default class Civilian extends Ally {
     }
 
 
-
-
-
-    update(time, delta) {
-        super.update();
-        console.log("update")
-        
-        
-        // console.log(this.currPath)
+    movePlayerRandomly(time, delta) {
         if (this.currPath && this.currPath.length > 0) {
             this.moveToGridCell(this.currPath);
             this.timer = 0;
@@ -70,5 +69,17 @@ export default class Civilian extends Ally {
         // let velocity = new Phaser.Math.Vector2();
         // velocity.y = -1;
         // this.animationController.move(velocity, "up", this);
+    }
+
+ 
+
+
+    update(time, delta) {
+        super.update();
+        console.log("update")
+        
+        
+        // console.log(this.currPath)
+        this.movePlayerRandomly(time, delta);
     }
 }
