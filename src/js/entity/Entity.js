@@ -12,7 +12,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         let entityTexture = entityData?.texture ?? texture;
         let entityFrame = entityData?.frame ?? frame;
 
-        console.log(entityData, entityFrame)
+        // console.log(entityData, entityFrame)
         super(scene, x, y, entityTexture, entityFrame);
 
         this.entityData = entityData;
@@ -103,7 +103,15 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
 
 
         if (this.entityData.interaction) {
-            this.initInteractionHitBox(this);
+            let isDelay = false;
+            this.entityData.interaction?.forEach((hitbox) => {
+                if (hitbox?.delay) {
+                    isDelay = true;
+                }
+            });
+            if (!isDelay){
+                this.initInteractionHitBox(this);
+            }
         }
 
     }
@@ -209,10 +217,11 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.interactionSprites = [];
         let interactionHitBox = this.entityData.interaction;
         
-        console.log(interactionHitBox)
+        // console.log(interactionHitBox)
         
         interactionHitBox?.forEach((hitbox) => {
-            console.log("created interaction hit box")
+            
+            // console.log("created interaction hit box")
             let colliderBody = this.scene.add.sprite(object.x, object.y);
             colliderBody.type = hitbox.type;
             colliderBody.parent = this;
@@ -228,7 +237,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
             colliderBody.body.setSize(width * 32, height * 32);
             colliderBody.body.setOffset(offsetX * 32, offsetY * 32);
 
-            console.log(colliderBody)
+            // console.log(colliderBody)
             this.scene.worldManager.interactionHitboxGroup.add(colliderBody);
             
 

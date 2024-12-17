@@ -12,8 +12,10 @@ export default class Civilian extends Ally {
 
         setInterval(() => {
             if (Math.random() < 0.5) {
+                console.log(this.name, "hoe")
                 this.animationController.hoe();
             } else {
+                console.log(this.name, "sow")
                 this.animationController.sow("potato_seed");
             }
         }, 2000);
