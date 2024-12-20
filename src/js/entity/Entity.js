@@ -62,7 +62,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.setOffset(this.offsetX * 32, this.offsetY * 32);
         
         this.depth = this.position.y;
-        if (this?.entityData.offsetDepth) {
+        if (this?.entityData?.offsetDepth) {
             this.depth += this.entityData.offsetDepth;
         }
 
@@ -102,7 +102,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         })
 
 
-        if (this.entityData.interaction) {
+        if (this.entityData?.interaction) {
             let isDelay = false;
             this.entityData.interaction?.forEach((hitbox) => {
                 if (hitbox?.delay) {
@@ -130,6 +130,9 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
 
         scene.load.atlas("portal", "assets/portal.png", "assets/portal_atlas.json")
         scene.load.animation("portal_anim", "assets/portal_anim.json");
+
+        scene.load.atlas("animal", "assets/animal.png", "assets/animal_atlas.json")
+        scene.load.animation("animal_anim", "assets/animal_anim.json");
 
         scene.load.atlas("raft", "assets/entity/raft.png", "assets/entity/raft_atlas.json")
         scene.load.animation("raft_anim", "assets/entity/raft_anim.json");

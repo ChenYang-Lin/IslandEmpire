@@ -82,6 +82,15 @@ const ENTITY_DATA = {
         offsetY: 3.5,
         hpBarOffsetY: 48,
     },
+    piglet: {
+        imageWidth: 1,
+        imageHeight: 1,
+        colliderWidth: 1, 
+        colliderHeight: 1,
+        offsetX: 0,
+        offsetY: 0,
+        hpBarOffsetY: 48,
+    },
     goblin: {
         imageWidth: 6,
         imageHeight: 6,

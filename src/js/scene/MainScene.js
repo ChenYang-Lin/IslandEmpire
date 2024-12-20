@@ -11,6 +11,7 @@ import Raft from "../entity/Raft.js";
 import Inventory from "../Inventory.js";
 import Civilian from "../entity/Civilian.js";
 import CharacterManager from "../entity/CharacterManager.js";
+import Animal from "../entity/Animal.js";
 
 
 export default class MainScene extends Phaser.Scene {
@@ -85,6 +86,7 @@ export default class MainScene extends Phaser.Scene {
         // })
         
         // this.raft = new Raft(this, 0, 500, "raft", "raft", "raft_move_down_0");
+        this.piglet = new Animal(this, 0, 0, "piglet", "animal", "piglet_idle_left");
 
     }
 
@@ -128,6 +130,7 @@ export default class MainScene extends Phaser.Scene {
 
 
         this.raft?.update(time, delta);
+        this.piglet?.update(time, delta);
     }
    
 }
