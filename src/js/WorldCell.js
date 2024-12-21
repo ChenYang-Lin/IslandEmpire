@@ -150,9 +150,9 @@ export default class WorldCell {
             if (!entity.name) {
                 return;
             }
-            console.log(entity)
+            // console.log(entity)
             if (!ENTITY_DATA[entity.name].category) {
-                console.log(entity.name)
+                // console.log(entity.name)
                 let entityObject = new Entity(this.worldManager.scene, this.x, this.y, entity.name, "entity", entity.name)
             }
             if (ENTITY_DATA[entity.name].category === "resource") {

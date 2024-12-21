@@ -12,8 +12,8 @@ export default class Crop extends Entity {
         this.name = name;
 
         this.collectable = this.entityData.collectable;
-        console.log(this.entityData)
-        console.log(this.entityData.interaction)
+        // console.log(this.entityData)
+        // console.log(this.entityData.interaction)
 
         this.harvestable = false;
         this.sowingTime = sowingTime;
@@ -77,23 +77,34 @@ export default class Crop extends Entity {
         super.onDeath(attacker);
     }
 
+    setHarvestable() {
+        this.harvestable = true;
+        this.scene.worldManager.collectablesGroup.add(this);
+        this.initInteractionHitBox(this);
+    }
+
     update() {
         // Update progress bar
+
             
         if (this.isHovered) {
             this.destroyProgressBar();
             this.createProgressBar();
         }
-        if (this.harvestable)
+        if (this.harvestable) {
             return;
-        if (Date.now() > this.harvestableTime) {
-            this.harvestable = true;
-            this.scene.worldManager.collectablesGroup.add(this);
-            this.initInteractionHitBox(this);
         }
+        if (Date.now() > this.harvestableTime) {
+            this.setHarvestable();
+        }
+
         this.growTime = Date.now() - this.sowingTime;
         let phase = Math.floor((this.growTime / this.timeToGrow) * this.totalPhase);
-        this.setFrame(this.name + "_" + phase);
+        if (phase > this.totalPhase) {
+            this.setFrame(this.name + "_" + this.totalPhase)
+        } else {
+            this.setFrame(this.name + "_" + phase);
+        }
 
     }
 }

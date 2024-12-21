@@ -40,7 +40,7 @@ export default class AnimationController {
         if (this.inAction)
             return
         // return if the land has been hoed 
-        console.log(this.scene.worldManager)
+        // console.log(this.scene.worldManager)
         if (this.scene.worldManager.map[`${this.character.onGrid.x},${this.character.onGrid.y}`].isHoedLand)
             return;
         this.inAction = true;

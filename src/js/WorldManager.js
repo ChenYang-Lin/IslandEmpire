@@ -54,6 +54,10 @@ export default class WorldManager {
                     for (let gridX = -30; gridX < 30; gridX++) {
                         let worldCell = new WorldCell(gridX, gridY, this.map[`${gridX},${gridY}`], this);
                         this.worldCells[`${gridX},${gridY}`] = worldCell;
+                        let crop = this.map[`${gridX},${gridY}`]?.crop;
+                        if (crop) {
+                            this.renderCrop(crop.cellX, crop.cellY, crop.cropGrowName, crop.sowingTime);
+                        }
                     }
                 }
             break;
@@ -132,6 +136,9 @@ export default class WorldManager {
     }
 
 
+    renderCrop(cellX, cellY, cropGrowName, sowingTime) {
+        this.growingCrops[`${cellX},${cellY}`] = new Crop(this.scene, cellX * 32, cellY * 32, cropGrowName, sowingTime);
+    }
 
     hoeLand(grid) {
         this.map[`${grid.x},${grid.y}`].isHoedLand = true;
@@ -153,18 +160,19 @@ export default class WorldManager {
     }
 
     sowingSeedOnLand(grid, seedName) {
-        let x = grid.x * 32;
-        let y = grid.y * 32;
+        let cellX = grid.x;
+        let cellY = grid.y;
         let cropGrowName = ITEM_DATA[seedName].crop_grow;
         let sowingTime = Date.now();
         this.map[`${grid.x},${grid.y}`].crop = {
-            x,
-            y,
+            cellX,
+            cellY,
             cropGrowName,
             sowingTime,
         };
-        this.growingCrops[`${grid.x},${grid.y}`] = new Crop(this.scene, x, y, cropGrowName, sowingTime);
-    }
+        this.renderCrop(cellX, cellY, cropGrowName, sowingTime);
+        this.saveMapToLocalStorage();
+     }
 
     isCellCollidable(x, y) {
         let currCellData = this.map[`${x},${y}`];
