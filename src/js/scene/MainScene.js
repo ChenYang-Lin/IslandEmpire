@@ -86,7 +86,8 @@ export default class MainScene extends Phaser.Scene {
         // })
         
         // this.raft = new Raft(this, 0, 500, "raft", "raft", "raft_move_down_0");
-        this.piglet = new Animal(this, 0, 0, "piglet", "animal", "piglet_idle_left");
+        if (this.currentMap === "island")
+            this.piglet = new Animal(this, 0, 0, "piglet", "animal", "piglet_idle_left");
 
     }
 
@@ -110,9 +111,13 @@ export default class MainScene extends Phaser.Scene {
     }
 
     endScene() {
+        console.log("end scene")
         this.player.destroySelf();
         this.inputController.destroySelf();
         this.inventory.destroySelf();
+        this.characterManager.destroySelf();
+        this.piglet?.destroySelf();
+
         this.civilian?.destroySelf();
     }
 

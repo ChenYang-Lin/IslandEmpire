@@ -80,7 +80,7 @@ export default class Crop extends Entity {
     setHarvestable() {
         this.harvestable = true;
         this.scene.worldManager.collectablesGroup.add(this);
-        this.initInteractionHitBox(this);
+        this.initInteractionHitBox(this, true);
     }
 
     update() {

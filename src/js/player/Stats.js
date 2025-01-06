@@ -10,10 +10,10 @@ export default class State {
         // Player status
         this.maxHp = 100;
         this.hp = 50;
-        this.maxHunger = 100;
-        this.hunger = 50;
-        this.maxThirst = 100;
-        this.thirst = 50;
+        this.maxHunger = 10;
+        this.hunger = 10;
+        this.maxThirst = 10;
+        this.thirst = 10;
 
         this.energy = 100;
         this.speed = 96;
@@ -40,11 +40,13 @@ export default class State {
     }
 
     update() {
-        if (Date.now() - this.lastWorkingTime > 5000) {
+        if (Date.now() - this.lastWorkingTime > 60 * 1000) {
             if (this.hunger >= 0) {
                 this.hunger--;
                 this.renderStatsDisplay();
                 this.lastWorkingTime += 5000;
+            } else {
+                console.log("need food!!!!!!!!!!")
             }
         }
     }

@@ -2,6 +2,7 @@ import Drops from "./entity/Drops.js";
 import Entity from "./entity/Entity.js";
 import Resource from "./entity/Resource.js";
 import Structure from "./entity/Structure.js";
+import WaterCollector from "./entity/WaterCollector.js";
 import { ENTITY_DATA } from "./GameData.js";
 
 
@@ -158,8 +159,16 @@ export default class WorldCell {
             if (ENTITY_DATA[entity.name].category === "resource") {
                 let resource = new Resource(this.worldManager.scene, this.x, this.y, "resource", entity.name);
             }
-            if (ENTITY_DATA[entity.name].category === "structure"){
-                let structure = new Structure(this.worldManager.scene, this.x, this.y, "construction", entity.name)
+            if (ENTITY_DATA[entity.name].category === "craftable"){
+                switch(ENTITY_DATA[entity.name].type) {
+                    case "water_collector":
+                        console.log("create Water Collector");
+                        let waterCollector = new WaterCollector(this.worldManager.scene, this.x, this.y, "construction", entity.name)
+                        break;
+                    case "structure": 
+                        let structure = new Structure(this.worldManager.scene, this.x, this.y, "construction", entity.name)
+                        break;
+                }
             }
 
         })

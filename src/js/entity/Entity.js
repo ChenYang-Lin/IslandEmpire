@@ -1,4 +1,4 @@
-import { ENTITY_DATA } from "../GameData.js";
+import { ENTITY_DATA, INTERACTION_HITBOX_DATA, TRANSPARENT_HITBOX_DATA } from "../GameData.js";
 
 
 
@@ -92,27 +92,11 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.setInteractive(this.scene.input.makePixelPerfect());
  
         this.on('pointerdown', () => {
-            // Add postfx pipeline
-            this.scene.inputController.selectedEntity = this;
-            this.scene.inputController.selectedEntityREXOutline.add(this, {
-                thickness: 3,
-                outlineColor: 0xFF0000
-            });
-            console.log('clicked: ', this.name)
+            this.handleSelected();
         })
 
+        this.initInteractionHitBox(this);
 
-        if (this.entityData?.interaction) {
-            let isDelay = false;
-            this.entityData.interaction?.forEach((hitbox) => {
-                if (hitbox?.delay) {
-                    isDelay = true;
-                }
-            });
-            if (!isDelay){
-                this.initInteractionHitBox(this);
-            }
-        }
 
     }
 
@@ -157,6 +141,20 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
+    handleSelected() {
+        // Add postfx pipeline
+        this.scene.inputController.selectedEntity = this;
+        this.scene.inputController.selectedEntityREXOutline.add(this, {
+            thickness: 3,
+            outlineColor: 0xFF0000
+        });
+        console.log('clicked: ', this.name)
+    }
+
+    handleDeselect() {
+        this.scene.inputController.selectedEntityREXOutline.remove(this);
+    }
+
     renderHealthBar() {
         this.graphics = this.scene.add.graphics();
 
@@ -190,8 +188,8 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
 
     initTransparentHitBox(object) {
         this.transparentSprites = [];
-        let transparentHitBox = this.entityData.transparentHitBox;
         
+        let transparentHitBox = TRANSPARENT_HITBOX_DATA[this.name];
         
         transparentHitBox?.forEach((hitbox) => {
             let colliderBody = this.scene.add.sprite(object.x, object.y, "resource", "");
@@ -216,13 +214,16 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         })
     }
 
-    initInteractionHitBox(object) {
+    initInteractionHitBox(object, delayExempt) {
         this.interactionSprites = [];
-        let interactionHitBox = this.entityData.interaction;
-        
-        // console.log(interactionHitBox)
+
+        let interactionHitBox = INTERACTION_HITBOX_DATA[this.name]
         
         interactionHitBox?.forEach((hitbox) => {
+
+            if (!delayExempt && hitbox.delay) {
+                return;
+            }
             
             // console.log("created interaction hit box")
             let colliderBody = this.scene.add.sprite(object.x, object.y);
@@ -262,14 +263,18 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         }
     }  
 
-
+    setTransparent(opacity) {
+        this.alpha = opacity;
+    }
+    
     onDeath(attacker) {
         this.scene.eventEmitter.emit(`${attacker}-destroy-${this.name}`);
-        this.destroy();
+        this.destroySelf();
         
     }
     
     destroySelf() {
+        this.destroyed = true;
         this.destroyInteractionHitBox();
         this.destroy();
     }

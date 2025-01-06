@@ -1,6 +1,6 @@
 import Ally from "../entity/Ally.js";
 import Character from "../entity/Character.js";
-import { ENTITY_DATA, ITEM_DATA, ITEM_ON_USE_DATA } from "../GameData.js";
+import { ENTITY_DATA, ITEM_ON_USE_DATA } from "../GameData.js";
 import Sensors from "./Sensors.js";
 import Stats from "./Stats.js";
 
@@ -44,7 +44,7 @@ export default class Player extends Ally {
     useItem(itemName) {
         
         console.log("useItem: ", itemName)
-        console.log(ITEM_DATA[itemName])
+        console.log(ENTITY_DATA[itemName])
         console.log(ITEM_ON_USE_DATA[itemName] )
 
         let deltaHunger = ITEM_ON_USE_DATA[itemName]?.hunger ?? 0

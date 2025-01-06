@@ -1,4 +1,4 @@
-import { ITEM_DATA } from "./GameData.js";
+import { ENTITY_DATA } from "./GameData.js";
 
 export default class Inventory {
     constructor(scene) {
@@ -106,7 +106,7 @@ export default class Inventory {
         let firstItem = true;
         
         for (const [key, value] of Object.entries(this.inventory)) {
-            if (ITEM_DATA[key].category !== this.selectedCategory)
+            if (ENTITY_DATA[key].category !== this.selectedCategory)
                 continue;
 
             if (firstItem) {
@@ -146,7 +146,7 @@ export default class Inventory {
 
         let image = this.scene.sys.game.textures.getBase64('item', selectedItem)
         let owned = this.inventory[selectedItem];
-        let type = ITEM_DATA[selectedItem].type;
+        let type = ENTITY_DATA[selectedItem].type;
         inventoryItemDetail.innerHTML = 
         `
         <div class="panel-detail-header">${selectedItem}</div>

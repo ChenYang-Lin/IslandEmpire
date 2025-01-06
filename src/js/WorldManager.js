@@ -1,4 +1,4 @@
-import { ITEM_DATA, MAP_DATA, ENTITY_DATA } from "./GameData.js";
+import { ENTITY_DATA, MAP_DATA } from "./GameData.js";
 import { Astar } from "./Pathfinding.js";
 import WorldCell from "./WorldCell.js";
 import Crop from "./entity/Crop.js";
@@ -162,7 +162,7 @@ export default class WorldManager {
     sowingSeedOnLand(grid, seedName) {
         let cellX = grid.x;
         let cellY = grid.y;
-        let cropGrowName = ITEM_DATA[seedName].crop_grow;
+        let cropGrowName = ENTITY_DATA[seedName].crop_grow;
         let sowingTime = Date.now();
         this.map[`${grid.x},${grid.y}`].crop = {
             cellX,

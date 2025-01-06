@@ -1,4 +1,4 @@
-import { ITEM_DATA, SHOP_DATA } from "./GameData.js";
+import { ENTITY_DATA, SHOP_DATA } from "./GameData.js";
 
 
 
@@ -104,7 +104,7 @@ export default class Shop {
         let shopItemInfoOwned = document.getElementById("shop-item-info-owned");
 
         shopItemInfoHeader.innerHTML = `${SHOP_DATA[this.selectedItem].name}`;
-        shopItemInfoCategory.innerHTML = `${ITEM_DATA[SHOP_DATA[this.selectedItem].name].category}`;
+        shopItemInfoCategory.innerHTML = `${ENTITY_DATA[SHOP_DATA[this.selectedItem].name].category}`;
         shopItemInfoImg.src = this.scene.sys.game.textures.getBase64("item", SHOP_DATA[this.selectedItem].name);
 
         let owned = this.scene.inventory.inventory[SHOP_DATA[this.selectedItem].name];

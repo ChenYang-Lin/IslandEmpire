@@ -1,4 +1,4 @@
-import { ITEM_DATA } from "./GameData.js";
+import { ENTITY_DATA } from "./GameData.js";
 
 export default class InputController {
     constructor(scene, player) {
@@ -64,8 +64,9 @@ export default class InputController {
 
         // Clear selected entity highlight
         this.addNewEventListener(this.listeners, window, "pointerdown", () => {
-            if (this.selectedEntity)
-                this.selectedEntityREXOutline.remove(this.selectedEntity);
+            if (this.selectedEntity) {
+                this.selectedEntity.handleDeselect();
+            }
         })
 
         // Window Resize Listener
@@ -219,7 +220,7 @@ export default class InputController {
     beginFarmingAction() {
         let selectedItem = this.scene.inventory.selectedFarmingItem;
 
-        switch (ITEM_DATA[selectedItem].type) {
+        switch (ENTITY_DATA[selectedItem].type) {
             case "tool":
                 this.playToolUsageAnimation(selectedItem)
                 break;

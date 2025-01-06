@@ -1,4 +1,4 @@
-import { ITEM_DATA } from "../GameData.js";
+import { ENTITY_DATA } from "../GameData.js";
 
 
 
@@ -59,7 +59,7 @@ export default class Reward {
             this.rewardItemsContainer.appendChild(rewardItem);
 
             // quality border shadow
-            let quality = ITEM_DATA[item.name].quality;
+            let quality = ENTITY_DATA[item.name].quality;
             switch (quality) {
                 case 1: 
                     rewardItem.style.boxShadow = "0 0 2px 1px rgb(255, 255, 255)";
@@ -114,7 +114,7 @@ export default class Reward {
 
             
             let items = Object.fromEntries(
-                Object.entries(ITEM_DATA).filter(([key, value]) => value.quality === quality)
+                Object.entries(ENTITY_DATA).filter(([key, value]) => value.quality === quality)
             )
 
             items = Object.keys(items)

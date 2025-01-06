@@ -1,265 +1,28 @@
 
 const ENTITY_DATA = {
+    player:   { imageWidth: 6, imageHeight: 6, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 2.75, offsetY: 3.5, hpBarOffsetY: 48, },
+    civilian: { imageWidth: 6, imageHeight: 6, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 2.75, offsetY: 3.5, hpBarOffsetY: 48, },
+    piglet:   { imageWidth: 1, imageHeight: 1, colliderWidth: 1,   colliderHeight: 1,   offsetX: 0,    offsetY: 0,   hpBarOffsetY: 48, },
+    goblin:   { imageWidth: 6, imageHeight: 6, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 2.75, offsetY: 3.5, hpBarOffsetY: 48, },
+    raft:     { imageWidth: 5, imageHeight: 5, colliderWidth: 1,   colliderHeight: 1,   offsetX: 2,    offsetY: 2, },  
+
     // Resources
-    tree: {
-        category: "resource",
-        type: "multiple",
-        collidable: true,
-        imageWidth: 1,
-        imageHeight: 2,
-        colliderWidth: 1,
-        colliderHeight: 1,
-        offsetX: 0,
-        offsetY: 1,
-        transparentHitBox: [
-            {
-                transparentWidth: 1,
-                transparentHeight: 5,
-                transparentOffsetX: 1,
-                transparentOffsetY: 0,
-            },
-            {
-                transparentWidth: 3,
-                transparentHeight: 2,
-                transparentOffsetX: 0,
-                transparentOffsetY: 2,
-            },
-        ],
-        maxHP: 1,
-        drops: [
-            "wood",
-            "wood",
-        ],
-    },
-    bush: {
-        category: "resource",
-        type: "single",
-        collidable: true,
-        imageWidth: 1,
-        imageHeight: 1,
-        colliderWidth: 1,
-        colliderHeight: 1,
-        offsetX: 0,
-        offsetY: 0,
-        maxHP: 1,
-        drops: [
-            "fiber",
-        ],
-    },
-    rock: {
-        category: "resource",
-        type: "single",
-        collidable: true,
-        imageWidth: 1,
-        imageHeight: 1,
-        colliderWidth: 1,
-        colliderHeight: 1,
-        offsetX: 0,
-        offsetY: 0,
-        maxHP: 1,
-        drops: [
-            "stone",
-            "stone",
-        ]
-    },
+    tree: { category: "resource", type: "multiple", collidable: true, imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, maxHP: 1, drops: [ "wood", "wood", ], },
+    bush: { category: "resource", type: "single",   collidable: true, imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, maxHP: 1, drops: [ "fiber", ], },
+    rock: { category: "resource", type: "single",   collidable: true, imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, maxHP: 1, drops: [ "stone", "stone", ] },
 
-    player: {
-        imageWidth: 6,
-        imageHeight: 6,
-        colliderWidth: 0.5, 
-        colliderHeight: 0.5,
-        offsetX: 2.75,
-        offsetY: 3.5,
-        hpBarOffsetY: 48,
-    },
+    "water_collector": { type: "water_collector", category: "craftable", collidable: true, imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, },
+    "house":  { type: "structure", category: "craftable", collidable: true, imageWidth: 5, imageHeight: 7, colliderWidth: 5, colliderHeight: 3, offsetX: 0, offsetY: 3, },
+    "tent":   { type: "structure", category: "craftable", collidable: true, imageWidth: 2, imageHeight: 3, colliderWidth: 2, colliderHeight: 2, offsetX: 0, offsetY: 1, },
+    "home_0": { type: "structure", category: "craftable", collidable: true, imageWidth: 2, imageHeight: 3, colliderWidth: 2, colliderHeight: 2, offsetX: 0, offsetY: 1, },
+    "home_1": { type: "structure", category: "craftable", collidable: true, imageWidth: 2, imageHeight: 3, colliderWidth: 2, colliderHeight: 2, offsetX: 0, offsetY: 1, },
+    "bed":    { type: "structure", category: "craftable", collidable: true, imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, texture: "entity", frame: "bed", },
+    "entrance_rug": { imageWidth: 2, imageHeight: 1, colliderWidth: 2, colliderHeight: 1, offsetX: 0, offsetY: 0, offsetDepth: -100, },
 
-    civilian: {
-        imageWidth: 6,
-        imageHeight: 6,
-        colliderWidth: 0.5, 
-        colliderHeight: 0.5,
-        offsetX: 2.75,
-        offsetY: 3.5,
-        hpBarOffsetY: 48,
-    },
-    piglet: {
-        imageWidth: 1,
-        imageHeight: 1,
-        colliderWidth: 1, 
-        colliderHeight: 1,
-        offsetX: 0,
-        offsetY: 0,
-        hpBarOffsetY: 48,
-    },
-    goblin: {
-        imageWidth: 6,
-        imageHeight: 6,
-        colliderWidth: 0.5, 
-        colliderHeight: 0.5,
-        offsetX: 2.75,
-        offsetY: 3.5,
-        hpBarOffsetY: 48,
-    },
+    "portal-infinite-forest": { imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, texture: "portal", frame: "portal_0", animation: "portal", },
+    "portal-island": { imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, texture: "portal", frame: "portal_0", animation: "portal",},
 
-    raft: {
-        imageWidth: 5,
-        imageHeight: 5,
-        colliderWidth: 1,
-        colliderHeight: 1,
-        offsetX: 2,
-        offsetY: 2,
-    },  
 
-    "house": {
-        category: "structure",
-        collidable: true,
-        imageWidth: 5,
-        imageHeight: 7,
-        colliderWidth: 5,
-        colliderHeight: 3,
-        offsetX: 0,
-        offsetY: 3,
-    },
-    "tent": {
-        category: "structure",
-        collidable: true,
-        imageWidth: 2,
-        imageHeight: 3,
-        colliderWidth: 2,
-        colliderHeight: 2,
-        offsetX: 0,
-        offsetY: 1,
-    },
-    "water_collector": {
-        category: "structure",
-        collidable: true,
-        imageWidth: 1,
-        imageHeight: 1,
-        colliderWidth: 1,
-        colliderHeight: 1,
-        offsetX: 0,
-        offsetY: 0,
-    },
-    "home_0": {
-        category: "structure",
-        collidable: true,
-        imageWidth: 2,
-        imageHeight: 3,
-        colliderWidth: 2,
-        colliderHeight: 2,
-        offsetX: 0,
-        offsetY: 1,
-        transparentHitBox: [
-            {
-                transparentWidth: 0.5,
-                transparentHeight: 0.5,
-                transparentOffsetX: 1.25,
-                transparentOffsetY: 2,
-            },
-        ],
-        interaction: [
-            {
-                type: "entrance",
-                name: "home",
-                destination: "home",
-                interactionWidth: 0.5,
-                interactionHeight: 0.5,
-                interactionOffsetX: .25,
-                interactionOffsetY: 1.5,
-            }
-        ]
-    },
-    "home_1": {
-        category: "structure",
-        collidable: true,
-        imageWidth: 2,
-        imageHeight: 3,
-        colliderWidth: 2,
-        colliderHeight: 2,
-        offsetX: 0,
-        offsetY: 1,
-    },
-
-    "bed": {
-        collidable: true,
-        imageWidth: 1,
-        imageHeight: 2,
-        colliderWidth: 1,
-        colliderHeight: 1,
-        offsetX: 0,
-        offsetY: 1,
-    },
-
-    "entrance_rug": {
-        imageWidth: 2,
-        imageHeight: 1,
-        colliderWidth: 2,
-        colliderHeight: 1,
-        offsetX: 0,
-        offsetY: 0,
-        offsetDepth: -100,
-        interaction: [
-            {
-                type: "entrance",
-                name: "island",
-                destination: "island",
-                interactionWidth: 0.25,
-                interactionHeight: 0.25,
-                interactionOffsetX: 0.375,
-                interactionOffsetY: 0.75,
-            }
-        ]
-    },
-
-    "portal-infinite-forest": {
-        imageWidth: 1,
-        imageHeight: 1,
-        colliderWidth: 1,
-        colliderHeight: 1,
-        offsetX: 0,
-        offsetY: 0,
-        texture: "portal",
-        frame: "portal_0",
-        animation: "portal",
-        interaction: [
-            {
-                type: "entrance",
-                name: "infinite-forest",
-                destination: "infinite-forest",
-                interactionWidth: 1,
-                interactionHeight: 1,
-                interactionOffsetX: 0,
-                interactionOffsetY: 0,
-            }
-        ]
-    },
-    "portal-island": {
-        imageWidth: 1,
-        imageHeight: 1,
-        colliderWidth: 1,
-        colliderHeight: 1,
-        offsetX: 0,
-        offsetY: 0,
-        texture: "portal",
-        frame: "portal_0",
-        animation: "portal",
-        interaction: [
-            {
-                type: "entrance",
-                name: "island",
-                destination: "island",
-                interactionWidth: 1,
-                interactionHeight: 1,
-                interactionOffsetX: 0,
-                interactionOffsetY: 0,
-            }
-        ]
-    },
-    
-}
-
-const ITEM_DATA = {
-    // default: 
     // Item - weapon
     sword: { quality: 4, category: "weapon", type: "sword", imageWidth: 0, imageHeight: 0, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, },
 
@@ -271,6 +34,7 @@ const ITEM_DATA = {
     fiber: { quality: 1, category: "material", type: "material", interaction: [ { type: "collectable", name: "fiber", quantity: 1 }, ] },
     stone: { quality: 1, category: "material", type: "material", interaction: [ { type: "collectable", name: "stone", quantity: 1 }, ] },
 
+
     // Item - material - ingredient
     potato: { quality: 1, category: "material", type: "ingredient", name: "potato", collectable: "potato", },
     eggplant: { quality: 1, category: "material", type: "ingredient", name: "eggplant", collectable: "eggplant", },
@@ -278,6 +42,7 @@ const ITEM_DATA = {
     drumstick_raw: { quality: 1, category: "material", type: "ingredient", name: "drumstick raw", collectable: "drumstick_raw", },    
     egg: { quality: 1, category: "material", type: "ingredient", name: "egg", collectable: "egg", },     
 
+    
     // Item - consumable - food
     pumpkin:    { quality: 1, category: "consumable", type: "food", name: "pumpkin", interaction: [ { type: "collectable", name: "wood", quantity: 1 }, ] },
     corn:       { quality: 1, category: "consumable", type: "food", name: "corn", interaction: [ { type: "collectable", name: "corn", quantity: 1 }, ] },
@@ -306,6 +71,26 @@ const ITEM_DATA = {
     "corn_seed": { quality: 2, category: "farming", type: "seed", imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, crop_grow: "corn_grow", },
 }
 
+const TRANSPARENT_HITBOX_DATA = {
+    tree: [ 
+        { transparentWidth: 1, transparentHeight: 5, transparentOffsetX: 1, transparentOffsetY: 0, },
+        { transparentWidth: 3, transparentHeight: 2, transparentOffsetX: 0, transparentOffsetY: 2, },
+    ],
+    "home_0": [
+        { transparentWidth: 0.5, transparentHeight: 0.5, transparentOffsetX: 1.25, transparentOffsetY: 2, },
+    ],
+}
+
+const INTERACTION_HITBOX_DATA = {
+    "home_0":        [ { type: "entrance", name: "home",   destination: "home",   interactionWidth: 0.5,  interactionHeight: 0.5,  interactionOffsetX: .25,   interactionOffsetY: 1.5, }, ],
+    "entrance_rug":  [ { type: "entrance", name: "island", destination: "island", interactionWidth: 0.25, interactionHeight: 0.25, interactionOffsetX: 0.375, interactionOffsetY: 0.75, }, ],
+    "portal-island": [ { type: "entrance", name: "island", destination: "island", interactionWidth: 1,    interactionHeight: 1,    interactionOffsetX: 0,     interactionOffsetY: 0, } ],
+    "portal-infinite-forest":  [ { type: "entrance", name: "infinite-forest", destination: "infinite-forest", interactionWidth: 1, interactionHeight: 1, interactionOffsetX: 0, interactionOffsetY: 0, } ],
+    
+    "potato_grow":   [ { type: "collectable", delay: true, name: "potato", quantity: 1 }, ] 
+}
+
+
 const ITEM_ON_USE_DATA = {
     banana: { hunger: 20 },
     bread: { hunger: 20 },
@@ -313,7 +98,7 @@ const ITEM_ON_USE_DATA = {
 }
 
 const CROP_GROW_DATA = {
-    "potato_grow": { imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, totalPhase: 5, timeToGrow: 1 * 60 * 1000, interaction: [ { type: "collectable", delay: true, name: "potato", quantity: 1 }, ]  },
+    "potato_grow": { imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, totalPhase: 5, timeToGrow: 1 * 60 * 1000, },
     "eggplant_grow": { imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, totalPhase: 5, timeToGrow: 1 * 60 * 1000, interaction: [ { type: "collectable", delay: true, name: "eggplant", quantity: 1 }, ]},
     "cauliflower_grow": { imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, totalPhase: 5, timeToGrow: 1 * 60 * 1000, interaction: [ { type: "collectable", delay: true, name: "cauliflower", quantity: 1 }, ] },
     "pumpkin_grow": { imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, totalPhase: 5, timeToGrow: 1 * 60 * 1000, interaction: [ { type: "collectable", delay: true, name: "pumpkin", quantity: 1 }, ] },
@@ -471,10 +256,11 @@ const MAP_DATA = {
 
 export {
     ENTITY_DATA,
-    ITEM_DATA,
     ITEM_ON_USE_DATA,
     CROP_GROW_DATA,
     SHOP_DATA,
     QUEST_DATA,
     MAP_DATA,
+    TRANSPARENT_HITBOX_DATA,
+    INTERACTION_HITBOX_DATA,
 }

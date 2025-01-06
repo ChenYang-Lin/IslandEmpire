@@ -1,4 +1,4 @@
-import { ENTITY_DATA, ITEM_DATA } from "../GameData.js";
+import { ENTITY_DATA } from "../GameData.js";
 
 
 export default class Wish {
@@ -52,7 +52,7 @@ export default class Wish {
         this.spinnerPiece = document.querySelectorAll(".spinner-piece")
         this.spinnerPieceIcon = document.querySelectorAll(".spinner-piece-icon");
         this.spinnerPieceIcon.forEach((icon) => {
-            let items = Object.keys(ITEM_DATA);
+            let items = Object.keys(ENTITY_DATA);
             icon.src = this.scene.sys.game.textures.getBase64("item", items[Math.floor(Math.random() * items.length)]);
         })
 
@@ -88,7 +88,7 @@ export default class Wish {
             this.quality = "gold";
         }
 
-        let items = Object.keys(ITEM_DATA);
+        let items = Object.keys(ENTITY_DATA);
         let itemName = items[Math.floor(Math.random() * items.length)]
         console.log(itemName)
         this.itemList.push({ name: itemName, quantity: 1 });

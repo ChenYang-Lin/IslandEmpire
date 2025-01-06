@@ -15,6 +15,12 @@ export default class CharacterManager {
         }
     }
 
+    destroySelf() {
+        this.characterGroup.getChildren().forEach((character) => {
+            character.destroySelf();
+        })
+    }
+
 
     update(time, delta) {
         this.characterGroup.getChildren().forEach((character) => {

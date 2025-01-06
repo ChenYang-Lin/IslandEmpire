@@ -1,9 +1,9 @@
-import { ITEM_DATA } from "../GameData.js";
+import { ENTITY_DATA } from "../GameData.js";
 import Entity from "./Entity.js";
 
 export default class Drops extends Entity {
     constructor(scene, x, y, texture, name) {
-        const entityData = ITEM_DATA[name]
+        const entityData = ENTITY_DATA[name]
         // scene, x, y, name, texture, frame, entityData
         super(scene, x, y, name, texture, name, entityData);
 

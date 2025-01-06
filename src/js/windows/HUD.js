@@ -1,5 +1,5 @@
 
-import { ITEM_DATA } from "../GameData.js";
+import { ENTITY_DATA } from "../GameData.js";
 import QuestManager from "./QuestManager.js";
 import Reward from "./Reward.js";
 import Shop from "../Shop.js";
@@ -114,7 +114,7 @@ export default class HUD {
         let item = farmingItem;
         if (!item) {
             for (const [key, value] of Object.entries(this.scene.inventory.inventory)) {
-                if (ITEM_DATA[key].category !== "farming")
+                if (ENTITY_DATA[key].category !== "farming")
                     continue;
                 item = key;
                 this.scene.inventory.selectedFarmingItem = key;
@@ -129,7 +129,7 @@ export default class HUD {
         let item = consumableItem;
         if (!item) {
             for (const [key, value] of Object.entries(this.scene.inventory.inventory)) {
-                if (ITEM_DATA[key]?.category !== "consumable")
+                if (ENTITY_DATA[key]?.category !== "consumable")
                     continue;
                 item = key;
                 this.scene.inventory.selectedConsumableItem = key;
@@ -169,6 +169,7 @@ export default class HUD {
                     case "entrance":
                         console.log("moving to new map");
                         this.scene.endScene();
+                        console.log("new destination", interactable.destination)
                         this.scene.scene.start("MainScene", { map: interactable.destination });
                         break;
                     default:
@@ -201,7 +202,9 @@ export default class HUD {
         itemSwitchList.innerHTML = "";
 
         for (const [key, value] of Object.entries(this.scene.inventory.inventory)) {
-            if (ITEM_DATA[key]?.category !== category)
+            // if (!ENTITY_DATA[key]?.category)
+            //     continue;
+            if (ENTITY_DATA[key]?.category !== category)
                 continue;
 
             let item = document.createElement("div");

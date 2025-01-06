@@ -11,7 +11,13 @@ export default class Animal extends Character {
         this.speed = 16;
     }
 
+    destroySelf() {
+        super.destroySelf();
+    }
+
     update(time, delta) {
+        
+        if (this.destroyed) return;
         super.update();
         this.moveRandomly(time, delta);
     }
