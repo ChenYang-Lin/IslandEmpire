@@ -137,7 +137,7 @@ export default class WorldManager {
 
 
     renderCrop(cellX, cellY, cropGrowName, sowingTime) {
-        this.growingCrops[`${cellX},${cellY}`] = new Crop(this.scene, cellX * 32, cellY * 32, cropGrowName, sowingTime);
+        this.growingCrops[`${cellX},${cellY}`] = new Crop(this.scene, cropGrowName, cellX * 32, cellY * 32, sowingTime);
     }
 
     hoeLand(grid) {

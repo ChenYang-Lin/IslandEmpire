@@ -156,13 +156,13 @@ export default class HUD {
             collectableBtn.classList.add("collectable-btn");
             // collectableBtn.setAttribute("index", `${i}`);
             collectableBtn.addEventListener("pointerdown", () => {
-                console.log(interactable)
+                // console.log(interactable)
                 switch (interactable.type) {
                     case "collectable":
                         this.scene.eventEmitter.emit(`pickup-${interactable.name}`);
                         collectableBtn.remove();
                         this.scene.inventory.addItem(interactable.name, interactable.quantity);
-                        console.log(this.scene.player.sensors.touchingNearbyObjects[i].parent)
+                        // console.log(this.scene.player.sensors.touchingNearbyObjects[i].parent)
                         this.scene.player.sensors.touchingNearbyObjects[i].parent.onDeath("player");
                         this.scene.collisionController.addCollectableCollected(collectable);
                         break;
@@ -244,6 +244,8 @@ export default class HUD {
         itemSwitchPanel.style.display = "none";
     }
 
+    
+
     hideMainSceneUIs() {
         // this.inventorySlotsContainer.style.display = "none";
         this.collectableContainer.style.display = "none";
@@ -274,6 +276,16 @@ export default class HUD {
     hideConstructionSceneUIs() {
         this.exitUI.style.display = "none";
         this.constructionContainer.style.display = "none";
+    }
+
+    showEntityGeneralInfoHUD() {
+        let entityGeneralInfoContainer = document.getElementById("entity-general-info-container");
+        entityGeneralInfoContainer.style.display = "block";
+    }
+
+    hideEntityGeneralInfoHUD() {
+        let entityGeneralInfoContainer = document.getElementById("entity-general-info-container");
+        entityGeneralInfoContainer.style.display = "none";
     }
 
     closeHUD () {

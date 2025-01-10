@@ -14,6 +14,7 @@
     <!-- css -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/hud.css">
+    <link rel="stylesheet" href="css/entityGeneralInfo.css">
     <link rel="stylesheet" href="css/invenotry.css">
     <link rel="stylesheet" href="css/panel.css">
     <link rel="stylesheet" href="css/stats.css">
@@ -66,6 +67,31 @@
                 </div>
             </div>
 
+            <!-- Entity General Information window -->
+             <div id="entity-general-info-container">
+                <div id="entity-general-info-wrapper">
+                    <div id="entity-general-info-heading"><div id="entity-general-info-name">Name</div></div>
+                    <div id="entity-general-info-body">
+                        <img id="entity-general-info-img"></img>
+                        <div id="entity-general-info-list">
+                            <div id="entity-general-info-hp"></div>
+                            <div id="entity-general-info-remaining-time"></div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+
+
+            
+            <!-- UIs -->
+            <div class="ui-container">
+                <button id="shop-ui" class="ui-btn"><img src="assets/icons/hud/shop.png" alt="" class="ui-img"></button>
+                <button id="wish-ui" class="ui-btn"><img src="assets/icons/hud/wish.png" alt="" class="ui-img"></button>
+                <button id="wish-ui" class="ui-btn"><img src="assets/icons/hud/quest.png" alt="" class="ui-img"></button>
+                <button id="inventory-ui" class="ui-btn"><img src="assets/icons/hud/inventory.png" alt="" class="ui-img"></button>
+                <button id="construction-ui" class="ui-btn"><img src="assets/icons/hud/construction.png" alt="" class="ui-img"></button>
+                <button id="exit-ui" class="ui-btn"><img src="assets/icons/hud/exit.png" alt="" class="ui-img"></button>
+            </div>
 
             <!-- HUD Footer -->
             <div id="hud-footer">
@@ -152,24 +178,7 @@
                     <div class="collectable-name">Wood</div>
                 </button> -->
             </div>
-            <!-- Player Status -->
-            <div id="player-status-container">
-                <div id="hp-mp-container">
-                    <div id="hp-container">
-                        
-                    </div>
-                </div>
-            </div>
-            <!-- UIs -->
-            <div class="ui-container">
-                <button id="shop-ui" class="ui-btn"><img src="assets/icons/hud/shop.png" alt="" class="ui-img"></button>
-                <button id="wish-ui" class="ui-btn"><img src="assets/icons/hud/wish.png" alt="" class="ui-img"></button>
-                <button id="wish-ui" class="ui-btn"><img src="assets/icons/hud/quest.png" alt="" class="ui-img"></button>
-                <button id="inventory-ui" class="ui-btn"><img src="assets/icons/hud/inventory.png" alt="" class="ui-img"></button>
-                <button id="construction-ui" class="ui-btn"><img src="assets/icons/hud/construction.png" alt="" class="ui-img"></button>
-                <button id="exit-ui" class="ui-btn"><img src="assets/icons/hud/exit.png" alt="" class="ui-img"></button>
-            </div>
-            <!-- <button id="install-ui">Install</button> -->
+
             <!-- Inventory -->
             
             <div id="inventory-container" class="panel-container">

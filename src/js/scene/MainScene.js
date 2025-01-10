@@ -19,7 +19,7 @@ export default class MainScene extends Phaser.Scene {
         super({ key: "MainScene" });
 
         this.currentMap;
-        this.version = "0.31";
+        this.version = "0.31d";
     }
 
     init(data) {
@@ -87,7 +87,7 @@ export default class MainScene extends Phaser.Scene {
         
         // this.raft = new Raft(this, 0, 500, "raft", "raft", "raft_move_down_0");
         if (this.currentMap === "island")
-            this.piglet = new Animal(this, 0, 0, "piglet", "animal", "piglet_idle_left");
+            this.piglet = new Animal(this, "piglet", 0, 0, "animal", "piglet_idle_left");
 
     }
 

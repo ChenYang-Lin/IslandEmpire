@@ -4,10 +4,10 @@ import Entity from "./Entity.js";
 
 export default class Resource extends Entity {
 
-    constructor(scene, x, y, texture, name) {
-        const entityData = ENTITY_DATA[name];
+    constructor(scene, name, x, y, texture) {
+        // const entityData = ENTITY_DATA[name];
         // scene, x, y, name, texture, frame, entityData
-        super(scene, x, y, name, texture, name, entityData);
+        super(scene, name, x, y, texture, name);
 
         this.name = name;
         this.hasSecondPart = false;

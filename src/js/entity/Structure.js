@@ -4,9 +4,9 @@ import Entity from "./Entity.js";
 
 
 export default class Structure extends Entity {
-    constructor(scene, x, y, texture, name) {
+    constructor(scene, name, x, y, texture) {
         // scene, x, y, name, texture, frame
-        super(scene, x, y, name, texture, name, );
+        super(scene, name, x, y, texture, name, );
 
         this.name = name;
 

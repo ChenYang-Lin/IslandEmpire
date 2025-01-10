@@ -3,13 +3,14 @@ import { CROP_GROW_DATA } from "../GameData.js";
 import Entity from "./Entity.js";
 
 export default class Crop extends Entity {
-    constructor(scene, x, y, name, sowingTime) {
+    constructor(scene, name, x, y, sowingTime) {
         let phase = (Math.random() < 0.5) ? "_0" : "_0_alt"; // randomly choose two seed image;
         let frame = name + phase;
-        const entityData = CROP_GROW_DATA[name];
-        super(scene, x, y, name, "crops_grow", frame, entityData)
-
+        super(scene, name, x, y, "crops_grow", name)
+        
         this.name = name;
+        console.log(this.name)
+        this.entityData = CROP_GROW_DATA[this.name];
 
         this.collectable = this.entityData.collectable;
         // console.log(this.entityData)
@@ -23,7 +24,6 @@ export default class Crop extends Entity {
         this.totalPhase = this.entityData.totalPhase;
 
         this.isHovered = false;
-        this.setInteractive(this.scene.input.makePixelPerfect());
         this.graphics = this.scene.add.graphics();
         this.postFxPlugin = this.scene.plugins.get('rexoutlinepipelineplugin');
         this.on('pointerover', () => {

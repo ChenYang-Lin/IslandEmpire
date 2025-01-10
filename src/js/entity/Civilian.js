@@ -3,9 +3,9 @@ import Ally from "./Ally.js";
 
 
 export default class Civilian extends Ally {
-    constructor(scene, x, y, name, texture, frame) {
+    constructor(scene, name, x, y, texture, frame) {
         const entityData = ENTITY_DATA[name];
-        super(scene, x, y, "civilian", "civilian", "civilian_idle_left", entityData);
+        super(scene, "civilian", x, y, "civilian", "civilian_idle_left", entityData);
         
         this.speed = 32;
 

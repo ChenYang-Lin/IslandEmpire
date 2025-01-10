@@ -4,9 +4,9 @@ import Character from "./Character.js";
 
 
 export default class Animal extends Character {
-    constructor(scene, x, y, name, texture, frame) {
+    constructor(scene, name, x, y, texture, frame) {
         const entityData = ENTITY_DATA[name];
-        super(scene, x, y, name, texture, frame, entityData);
+        super(scene, name, x, y, texture, frame, entityData);
 
         this.speed = 16;
     }

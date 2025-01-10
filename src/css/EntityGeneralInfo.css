@@ -1,0 +1,40 @@
+
+
+#entity-general-info-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 30%;
+    height: 30%;
+    transform: translate(-50%, 0%);
+    background-color: white;
+}
+
+#entity-general-info-wrapper {
+    position: relative;
+    width: 100%;
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+}
+
+#entity-general-info-heading {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#entity-general-info-body {
+    display: flex;
+}
+
+#entity-general-info-img {
+    background-color: blue;
+    width: 30%;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+}
+
+#entity-general-info-list {
+    background-color: green;
+    width: 70%;
+}

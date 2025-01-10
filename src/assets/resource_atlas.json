@@ -1,7 +1,7 @@
 {
     "frames": [
         {
-            "filename": "tree_top",
+            "filename": "tree_whole",
             "frame": {
                 "w": 96,
                 "h": 192,
@@ -14,10 +14,10 @@
             }
         },
         {
-            "filename": "tree",
+            "filename": "tree_top",
             "frame": {
-                "w": 32,
-                "h": 64,
+                "w": 96,
+                "h": 192,
                 "x": 96,
                 "y": 0
             },
@@ -27,12 +27,51 @@
             }
         },
         {
-            "filename": "bush",
+            "filename": "tree",
+            "frame": {
+                "w": 32,
+                "h": 64,
+                "x": 192,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "copper_node",
             "frame": {
                 "w": 32,
                 "h": 32,
-                "x": 96,
+                "x": 192,
                 "y": 64
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "iron_node",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 192,
+                "y": 96
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "gold_node",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 192,
+                "y": 128
             },
             "anchor": {
                 "x": 0.5,
@@ -44,8 +83,21 @@
             "frame": {
                 "w": 32,
                 "h": 32,
-                "x": 96,
-                "y": 96
+                "x": 192,
+                "y": 160
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "weeds",
+            "frame": {
+                "w": 32,
+                "h": 32,
+                "x": 0,
+                "y": 192
             },
             "anchor": {
                 "x": 0.5,

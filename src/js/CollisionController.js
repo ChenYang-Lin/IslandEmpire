@@ -66,7 +66,7 @@ export default class CollisionController {
     }
 
     addCollectableCollected(collectableCollected) {
-        console.log(collectableCollected)
+        // console.log(collectableCollected)
         if (collectableCollected)
             this.collectableCollected.push(collectableCollected);
     }

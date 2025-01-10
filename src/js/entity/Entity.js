@@ -3,21 +3,28 @@ import { ENTITY_DATA, INTERACTION_HITBOX_DATA, TRANSPARENT_HITBOX_DATA } from ".
 
 
 export default class Entity extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, x, y, name, texture, frame, entityData, isAlly) {
+    constructor(scene, name, x, y, texture, frame, entityData, isAlly) {
 
         if (!entityData) {
             entityData = ENTITY_DATA[name];
         }
         
-        let entityTexture = entityData?.texture ?? texture;
-        let entityFrame = entityData?.frame ?? frame;
+
+        console.log(name, texture, frame)
 
         // console.log(entityData, entityFrame)
-        super(scene, x, y, entityTexture, entityFrame);
+        super(scene, x, y, texture, frame);
 
-        this.entityData = entityData;
         this.name = name;
+        this.entityData = ENTITY_DATA[this.name];
         this.isAlly = isAlly;
+
+
+        console.log(this.name, this.entityData)
+        this.entityTexture = this.entityData.texture;
+        this.entityFrame = this.entityData.frame;
+
+        console.log(this.entityData)
         
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
@@ -149,10 +156,33 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
             outlineColor: 0xFF0000
         });
         console.log('clicked: ', this.name)
+
+        this.showGeneralInfoHUD();
     }
 
     handleDeselect() {
         this.scene.inputController.selectedEntityREXOutline.remove(this);
+        this.hideGeneralInfoHUD();
+    }
+
+    showGeneralInfoHUD() {
+        console.log(this.name, this.entityTexture, this.entityFrame);
+        let name = document.getElementById("entity-general-info-name");
+        let img = document.getElementById("entity-general-info-img");
+        let hp = document.getElementById("entity-general-info-hp");
+        let remainingTime = document.getElementById("entity-general-info-remaining-time");
+
+        name.innerHTML = `${this.name}`;
+        // img.src = this.scene.sys.game.textures.getBase64("item", "potatoe");
+        img.src = this.scene.sys.game.textures.getBase64(this.entityTexture, this.entityFrame);
+
+
+
+        this.scene.hud.showEntityGeneralInfoHUD();
+    }
+
+    hideGeneralInfoHUD() {
+        this.scene.hud.hideEntityGeneralInfoHUD();
     }
 
     renderHealthBar() {
@@ -185,6 +215,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.healthBar = this.graphics.fillRoundedRect(x+2, y+2, (this.hp/this.maxHp)*(width-4), height-4, 1); // x, y, width, height, radius
         this.healthBar.depth = this.depth + 2;
     }
+    
 
     initTransparentHitBox(object) {
         this.transparentSprites = [];

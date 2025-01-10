@@ -5,7 +5,7 @@ export default class WaterCollector extends Entity {
     constructor(scene, x, y, texture, name) {
         
         // scene, x, y, name, texture, frame
-        super(scene, x, y, name, texture, name, );
+        super(scene, name, x, y, texture, name, );
 
         this.name = name;
 

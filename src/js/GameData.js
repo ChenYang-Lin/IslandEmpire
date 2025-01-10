@@ -1,27 +1,33 @@
 
 const ENTITY_DATA = {
-    player:   { imageWidth: 6, imageHeight: 6, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 2.75, offsetY: 3.5, hpBarOffsetY: 48, },
-    civilian: { imageWidth: 6, imageHeight: 6, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 2.75, offsetY: 3.5, hpBarOffsetY: 48, },
-    piglet:   { imageWidth: 1, imageHeight: 1, colliderWidth: 1,   colliderHeight: 1,   offsetX: 0,    offsetY: 0,   hpBarOffsetY: 48, },
-    goblin:   { imageWidth: 6, imageHeight: 6, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 2.75, offsetY: 3.5, hpBarOffsetY: 48, },
-    raft:     { imageWidth: 5, imageHeight: 5, colliderWidth: 1,   colliderHeight: 1,   offsetX: 2,    offsetY: 2, },  
+    player:   { texture: "player",   frame: "player_idle_right",  imageWidth: 6, imageHeight: 6, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 2.75, offsetY: 3.5, hpBarOffsetY: 48, },
+    civilian: { texture: "civilian", frame: "civilian_idle_down", imageWidth: 6, imageHeight: 6, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 2.75, offsetY: 3.5, hpBarOffsetY: 48, },
+    piglet:   { texture: "animal",   frame: "piglet_idle_down",   imageWidth: 1, imageHeight: 1, colliderWidth: 1,   colliderHeight: 1,   offsetX: 0,    offsetY: 0,   hpBarOffsetY: 48, },
+    goblin:   { texture: "goblin",   frame: "goblin_idle_down",   imageWidth: 6, imageHeight: 6, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 2.75, offsetY: 3.5, hpBarOffsetY: 48, },
+    raft:     { texture: "raft",     frame: "raft_move_right_0",  imageWidth: 5, imageHeight: 5, colliderWidth: 1,   colliderHeight: 1,   offsetX: 2,    offsetY: 2, },  
 
     // Resources
-    tree: { category: "resource", type: "multiple", collidable: true, imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, maxHP: 1, drops: [ "wood", "wood", ], },
-    bush: { category: "resource", type: "single",   collidable: true, imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, maxHP: 1, drops: [ "fiber", ], },
-    rock: { category: "resource", type: "single",   collidable: true, imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, maxHP: 1, drops: [ "stone", "stone", ] },
+    tree:  {category: "resource", type: "multiple", texture: "resource", frame: "tree_whole", collidable: true, imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, maxHP: 1, drops: [ "wood", "wood", ], },
+    weeds: {category: "resource", type: "single",   texture: "resource", frame: "weeds",    collidable: true, imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, maxHP: 1, drops: [ "fiber", ], },
+    rock:  {category: "resource", type: "single",   texture: "resource", frame: "rock",     collidable: true, imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, maxHP: 1, drops: [ "stone", "stone", ] },
 
-    "water_collector": { type: "water_collector", category: "craftable", collidable: true, imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, },
-    "house":  { type: "structure", category: "craftable", collidable: true, imageWidth: 5, imageHeight: 7, colliderWidth: 5, colliderHeight: 3, offsetX: 0, offsetY: 3, },
-    "tent":   { type: "structure", category: "craftable", collidable: true, imageWidth: 2, imageHeight: 3, colliderWidth: 2, colliderHeight: 2, offsetX: 0, offsetY: 1, },
-    "home_0": { type: "structure", category: "craftable", collidable: true, imageWidth: 2, imageHeight: 3, colliderWidth: 2, colliderHeight: 2, offsetX: 0, offsetY: 1, },
-    "home_1": { type: "structure", category: "craftable", collidable: true, imageWidth: 2, imageHeight: 3, colliderWidth: 2, colliderHeight: 2, offsetX: 0, offsetY: 1, },
-    "bed":    { type: "structure", category: "craftable", collidable: true, imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, texture: "entity", frame: "bed", },
-    "entrance_rug": { imageWidth: 2, imageHeight: 1, colliderWidth: 2, colliderHeight: 1, offsetX: 0, offsetY: 0, offsetDepth: -100, },
+    "water_collector": { type: "water_collector", category: "craftable", texture: "resource", frame: "water_collector", collidable: true, imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, },
+    "house":           { type: "structure", category: "craftable", texture: "construction", frame: "house", collidable: true, imageWidth: 5, imageHeight: 7, colliderWidth: 5, colliderHeight: 3, offsetX: 0, offsetY: 3, },
+    "tent":            { type: "structure", category: "craftable", texture: "construction", frame: "tent", collidable: true, imageWidth: 2, imageHeight: 3, colliderWidth: 2, colliderHeight: 2, offsetX: 0, offsetY: 1, },
+    "home_0":          { type: "structure", category: "craftable", texture: "construction", frame: "home_0", collidable: true, imageWidth: 2, imageHeight: 3, colliderWidth: 2, colliderHeight: 2, offsetX: 0, offsetY: 1, },
+    "home_1":          { type: "structure", category: "craftable", texture: "construction", frame: "home_1", collidable: true, imageWidth: 2, imageHeight: 3, colliderWidth: 2, colliderHeight: 2, offsetX: 0, offsetY: 1, },
+    "bed":             { type: "decoration", category: "craftable", texture: "entity", frame: "bed", collidable: true, imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, },
+    "entrance_rug":    { imageWidth: 2, imageHeight: 1, colliderWidth: 2, colliderHeight: 1, offsetX: 0, offsetY: 0, offsetDepth: -100, },
 
     "portal-infinite-forest": { imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, texture: "portal", frame: "portal_0", animation: "portal", },
     "portal-island": { imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, texture: "portal", frame: "portal_0", animation: "portal",},
 
+    // Crops entity
+    "potato_grow":      { texture: "item", frame: "potato",       imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, },
+    "eggplant_grow":    { texture: "item", frame: "eggplant",     imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, },
+    "cauliflower_grow": { texture: "item", frame: "cauliflower",  imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, },
+    "pumpkin_grow":     { texture: "item", frame: "pumpkin",      imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, },
+    "corn_grow":        { texture: "item", frame: "corn",         imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, },
 
     // Item - weapon
     sword: { quality: 4, category: "weapon", type: "sword", imageWidth: 0, imageHeight: 0, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, },
@@ -30,32 +36,32 @@ const ENTITY_DATA = {
     house: { quality: 1, category: "construction", type: "structure", },
 
     // Item - material - material
-    wood: { quality: 1, category: "material", type: "material", interaction: [ { type: "collectable", name: "wood", quantity: 1 }, ]  },
+    wood:  { quality: 1, category: "material", type: "material", interaction: [ { type: "collectable", name: "wood", quantity: 1 }, ]  },
     fiber: { quality: 1, category: "material", type: "material", interaction: [ { type: "collectable", name: "fiber", quantity: 1 }, ] },
     stone: { quality: 1, category: "material", type: "material", interaction: [ { type: "collectable", name: "stone", quantity: 1 }, ] },
 
 
     // Item - material - ingredient
-    potato: { quality: 1, category: "material", type: "ingredient", name: "potato", collectable: "potato", },
-    eggplant: { quality: 1, category: "material", type: "ingredient", name: "eggplant", collectable: "eggplant", },
-    cauliflower: { quality: 1, category: "material", type: "ingredient", name: "cauliflower", collectable: "cauliflower", },        
-    drumstick_raw: { quality: 1, category: "material", type: "ingredient", name: "drumstick raw", collectable: "drumstick_raw", },    
-    egg: { quality: 1, category: "material", type: "ingredient", name: "egg", collectable: "egg", },     
+    potato:        { quality: 1, type: "ingredient", category: "material", name: "potato", texture: "item", frame: "potato", collectable: "potato", },
+    eggplant:      { quality: 1, type: "ingredient", category: "material", name: "eggplant", collectable: "eggplant", },
+    cauliflower:   { quality: 1, type: "ingredient", category: "material", name: "cauliflower", collectable: "cauliflower", },        
+    drumstick_raw: { quality: 1, type: "ingredient", category: "material", name: "drumstick raw", collectable: "drumstick_raw", },    
+    egg:           { quality: 1, type: "ingredient", category: "material", name: "egg", collectable: "egg", },     
 
     
     // Item - consumable - food
-    pumpkin:    { quality: 1, category: "consumable", type: "food", name: "pumpkin", interaction: [ { type: "collectable", name: "wood", quantity: 1 }, ] },
-    corn:       { quality: 1, category: "consumable", type: "food", name: "corn", interaction: [ { type: "collectable", name: "corn", quantity: 1 }, ] },
-    apple:      { quality: 1, category: "consumable", type: "food", name: "apple", interaction: [ { type: "collectable", name: "apple", quantity: 1 }, ] },
-    bagel:      { quality: 1, category: "consumable", type: "food", name: "bagel", interaction: [ { type: "collectable", name: "bagel", quantity: 1 }, ] },        
-    banana:     { quality: 1, category: "consumable", type: "food", name: "banana", interaction: [ { type: "collectable", name: "banana", quantity: 1 }, ] },        
-    bread:      { quality: 1, category: "consumable", type: "food", name: "bread", interaction: [ { type: "collectable", name: "bread", quantity: 1 }, ] },        
-    burger:     { quality: 1, category: "consumable", type: "food", name: "burger", interaction: [ { type: "collectable", name: "burger", quantity: 1 }, ] },        
-    burrito:    { quality: 1, category: "consumable", type: "food", name: "burrito", interaction: [ { type: "collectable", name: "burrito", quantity: 1 }, ] },        
-    canned_food: { quality: 1, category: "consumable", type: "food", name: "canned food", interaction: [ { type: "collectable", name: "canned_food", quantity: 1 }, ] },        
-    croissant:  { quality: 1, category: "consumable", type: "food", name: "croissant", interaction: [ { type: "collectable", name: "croissant", quantity: 1 }, ] },        
-    doughnut:   { quality: 1, category: "consumable", type: "food", name: "doughnut", interaction: [ { type: "collectable", name: "doughnut", quantity: 1 }, ] },        
-    drumstick_cooked: { quality: 1, category: "consumable", type: "food", name: "drumstick cooked", interaction: [ { type: "collectable", name: "drumstick_cooked", quantity: 1 }, ] },       
+    pumpkin:    { quality: 1, type: "food", category: "consumable", name: "pumpkin", interaction: [ { type: "collectable", name: "wood", quantity: 1 }, ] },
+    corn:       { quality: 1, type: "food", category: "consumable", name: "corn", interaction: [ { type: "collectable", name: "corn", quantity: 1 }, ] },
+    apple:      { quality: 1, type: "food", category: "consumable", name: "apple", interaction: [ { type: "collectable", name: "apple", quantity: 1 }, ] },
+    bagel:      { quality: 1, type: "food", category: "consumable", name: "bagel", interaction: [ { type: "collectable", name: "bagel", quantity: 1 }, ] },        
+    banana:     { quality: 1, type: "food", category: "consumable", name: "banana", interaction: [ { type: "collectable", name: "banana", quantity: 1 }, ] },        
+    bread:      { quality: 1, type: "food", category: "consumable", name: "bread", interaction: [ { type: "collectable", name: "bread", quantity: 1 }, ] },        
+    burger:     { quality: 1, type: "food", category: "consumable", name: "burger", interaction: [ { type: "collectable", name: "burger", quantity: 1 }, ] },        
+    burrito:    { quality: 1, type: "food", category: "consumable", name: "burrito", interaction: [ { type: "collectable", name: "burrito", quantity: 1 }, ] },        
+    canned_food: { quality: 1, type: "food", category: "consumable", name: "canned food", interaction: [ { type: "collectable", name: "canned_food", quantity: 1 }, ] },        
+    croissant:  { quality: 1, type: "food", category: "consumable", name: "croissant", interaction: [ { type: "collectable", name: "croissant", quantity: 1 }, ] },        
+    doughnut:   { quality: 1, type: "food", category: "consumable", name: "doughnut", interaction: [ { type: "collectable", name: "doughnut", quantity: 1 }, ] },        
+    drumstick_cooked: { quality: 1, type: "food", category: "consumable", name: "drumstick cooked", interaction: [ { type: "collectable", name: "drumstick_cooked", quantity: 1 }, ] },       
     
     // Item - farming - tool
     hoe: { quality: 3, category: "farming", type: "tool", },
@@ -98,11 +104,11 @@ const ITEM_ON_USE_DATA = {
 }
 
 const CROP_GROW_DATA = {
-    "potato_grow": { imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, totalPhase: 5, timeToGrow: 1 * 60 * 1000, },
-    "eggplant_grow": { imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, totalPhase: 5, timeToGrow: 1 * 60 * 1000, interaction: [ { type: "collectable", delay: true, name: "eggplant", quantity: 1 }, ]},
-    "cauliflower_grow": { imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, totalPhase: 5, timeToGrow: 1 * 60 * 1000, interaction: [ { type: "collectable", delay: true, name: "cauliflower", quantity: 1 }, ] },
-    "pumpkin_grow": { imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, totalPhase: 5, timeToGrow: 1 * 60 * 1000, interaction: [ { type: "collectable", delay: true, name: "pumpkin", quantity: 1 }, ] },
-    "corn_grow": { imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, totalPhase: 5, timeToGrow: 1 * 60 * 1000, interaction: [ { type: "collectable", delay: true, name: "corn", quantity: 1 }, ]  },
+    "potato_grow": { totalPhase: 5, timeToGrow: 24 * 60 * 60 * 1000, },
+    "eggplant_grow": { totalPhase: 5, timeToGrow: 1 * 60 * 1000, interaction: [ { type: "collectable", delay: true, name: "eggplant", quantity: 1 }, ]},
+    "cauliflower_grow": { totalPhase: 5, timeToGrow: 1 * 60 * 1000, interaction: [ { type: "collectable", delay: true, name: "cauliflower", quantity: 1 }, ] },
+    "pumpkin_grow": { totalPhase: 5, timeToGrow: 1 * 60 * 1000, interaction: [ { type: "collectable", delay: true, name: "pumpkin", quantity: 1 }, ] },
+    "corn_grow": {  totalPhase: 5, timeToGrow: 1 * 60 * 1000, interaction: [ { type: "collectable", delay: true, name: "corn", quantity: 1 }, ]  },
 }
 
 const SHOP_DATA = [
@@ -235,9 +241,9 @@ const MAP_DATA = {
         "2,-1":  { isLand: true, entities: [ ], },
         "2,0":   { isLand: true, entities: [ ], },
      
-        "3,-3":  { isLand: true, entities: [ { name: "tree" }, ], },
+        "3,-3":  { isLand: true, entities: [ { name: "rock" }, ], },
         "3,-2":  { isLand: true, entities: [ ], },
-        "3,-1":  { isLand: true, entities: [ ], },
+        "3,-1":  { isLand: true, entities: [  { name: "weeds" }, ], },
         "3,0":   { isHoedLand: true, isLand: true, entities: [ ], },
     },
     "home": {
