@@ -299,5 +299,6 @@ export default class HUD {
     update() {
         // this.renderCurrentFPS();
         this.setActionButton();
+        this.scene.inputController.selectedEntity?.showGeneralInfoHUD();
     }   
 }

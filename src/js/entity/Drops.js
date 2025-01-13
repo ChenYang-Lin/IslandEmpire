@@ -2,17 +2,16 @@ import { ENTITY_DATA } from "../GameData.js";
 import Entity from "./Entity.js";
 
 export default class Drops extends Entity {
-    constructor(scene, x, y, texture, name) {
-        const entityData = ENTITY_DATA[name]
-        // scene, x, y, name, texture, frame, entityData
-        super(scene, x, y, name, texture, name, entityData);
+    constructor(scene, name, x, y, texture, frame) {
+        // scene, name, x, y, texture, frame
+        super(scene, name, x, y, texture, frame);
 
-        this.name = name;
 
-        
+        console.log("new drop: ", this.name);
         this.collectable = this.entityData.collectable;
 
-        // this.scene.worldManager.collectablesGroup.add(this);
+        this.scene.worldManager.collectablesGroup.add(this);
+        this.initInteractionHitBox(this, true);
 
     }
 

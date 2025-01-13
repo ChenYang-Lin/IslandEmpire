@@ -3,26 +3,19 @@ import { ENTITY_DATA, INTERACTION_HITBOX_DATA, TRANSPARENT_HITBOX_DATA } from ".
 
 
 export default class Entity extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, name, x, y, texture, frame, entityData, isAlly) {
+    constructor(scene, name, x, y, texture, frame, isAlly) {
 
-        if (!entityData) {
-            entityData = ENTITY_DATA[name];
-        }
-        
-
-        console.log(name, texture, frame)
-
-        // console.log(entityData, entityFrame)
         super(scene, x, y, texture, frame);
 
+        
         this.name = name;
+        
         this.entityData = ENTITY_DATA[this.name];
         this.isAlly = isAlly;
 
 
-        console.log(this.name, this.entityData)
-        this.entityTexture = this.entityData.texture;
-        this.entityFrame = this.entityData.frame;
+        this.entityTexture = this?.entityData?.texture ?? texture;
+        this.entityFrame = this?.entityData?.frame ?? frame;
 
         console.log(this.entityData)
         
@@ -50,8 +43,6 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
 
 
         // Default stats
-        this.maxHp = 30;
-        this.hp = this.maxHp;
 
         this.adjustX = 0;
         if (this.colliderWidth % 2 === 0) {
@@ -161,21 +152,46 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
     }
 
     handleDeselect() {
-        this.scene.inputController.selectedEntityREXOutline.remove(this);
+        this.scene.inputController.selectedEntityREXOutline?.remove(this);
+        this.scene.inputController.selectedEntity = null;
         this.hideGeneralInfoHUD();
     }
 
     showGeneralInfoHUD() {
-        console.log(this.name, this.entityTexture, this.entityFrame);
+        // console.log(this.name, this.entityTexture, this.entityFrame);
         let name = document.getElementById("entity-general-info-name");
         let img = document.getElementById("entity-general-info-img");
-        let hp = document.getElementById("entity-general-info-hp");
-        let remainingTime = document.getElementById("entity-general-info-remaining-time");
 
         name.innerHTML = `${this.name}`;
         // img.src = this.scene.sys.game.textures.getBase64("item", "potatoe");
         img.src = this.scene.sys.game.textures.getBase64(this.entityTexture, this.entityFrame);
 
+        if (this.stats) {
+            let hpDiv = document.getElementById("entity-general-info-hp");
+            // hp.innerHTML = `HP: ${this.stats.hp}`
+            console.log( `HP: ${this.stats.hp}`)
+
+            hpDiv.innerHTML = ``;
+
+
+            let hpBoxDiv = document.createElement("div");
+            hpBoxDiv.setAttribute("id", "entity-general-info-hp-box");
+            let hpPercentageDiv = document.createElement("div");
+            hpPercentageDiv.setAttribute("id", "entity-general-info-hp-percentage");
+
+            
+            let hpBarDiv = document.createElement("div");
+            hpBarDiv.setAttribute("id", "entity-general-info-hp-bar");
+            hpBarDiv.appendChild(hpBoxDiv);
+            hpBarDiv.appendChild(hpPercentageDiv);
+
+            hpDiv.appendChild(hpBarDiv);
+
+
+            this.hpPercentage = this.stats.hp / this.stats.maxHp;
+
+            hpPercentageDiv.style.width = `calc(${this.hpPercentage * 100}% - 4px)`;
+        }
 
 
         this.scene.hud.showEntityGeneralInfoHUD();
@@ -183,6 +199,11 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
 
     hideGeneralInfoHUD() {
         this.scene.hud.hideEntityGeneralInfoHUD();
+        
+        let hp = document.getElementById("entity-general-info-hp");
+        let progress = document.getElementById("entity-general-info-progress");
+        hp.innerHTML = ``
+        progress.innerHTML = ``
     }
 
     renderHealthBar() {

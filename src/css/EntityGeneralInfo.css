@@ -6,20 +6,22 @@
     left: 50%;
     width: 30%;
     height: 30%;
+    /* background-color: white; */
     transform: translate(-50%, 0%);
-    background-color: white;
 }
 
 #entity-general-info-wrapper {
     position: relative;
     width: 100%;
-    background-color: red;
     display: flex;
     flex-direction: column;
+    border: 1px black solid;
 }
 
 #entity-general-info-heading {
-    margin-top: 10px;
+    padding: 10px;
+    color: white;
+    background-color: rgb(0, 0, 0);
     text-align: center;
 }
 
@@ -28,13 +30,84 @@
 }
 
 #entity-general-info-img {
-    background-color: blue;
+    background-color: rgba(0, 0, 0, 0.795);
+    padding: 5px;
     width: 30%;
     aspect-ratio: 1 / 1;
     object-fit: contain;
 }
 
 #entity-general-info-list {
-    background-color: green;
+    background-color: rgba(197, 197, 197, 0.664);
     width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* HUD hp bar */
+#entity-general-info-hp {
+    position: relative;
+    background-color: rgba(196, 196, 196, 0.322);
+}
+
+#entity-general-info-hp-bar {
+    position: relative;
+    /* margin: 10px; */
+    padding: 5px;
+    margin: 5px;
+    width: 70%;
+    height: 20px;
+    background-color: red;
+}
+
+#entity-general-info-hp-percentage {
+    position: absolute;
+    left: calc(0% + 2px);
+    top: calc(0% + 2px);
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    background-color: green;
+}
+
+#entity-general-info-hp-box {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+
+/* HUD progress bar */
+#entity-general-info-progress {
+    position: relative;
+    background-color: rgba(196, 196, 196, 0.322);
+}
+
+#entity-general-info-progress-bar {
+    position: relative;
+    /* margin: 10px; */
+    padding: 5px;
+    margin: 5px;
+    width: 70%;
+    height: 20px;
+    background-color: red;
+}
+
+#entity-general-info-progress-percentage {
+    position: absolute;
+    left: calc(0% + 2px);
+    top: calc(0% + 2px);
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    background-color: rgb(0, 35, 192);
+}
+
+#entity-general-info-progress-box {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
 }

@@ -34,7 +34,6 @@ export default class CollisionController {
 
         // this.scene.physics.add.collider([this.heroGroup, this.enemyGroup], [])
 
-        // this.initPlayerOverlapCollectables();
 
         // Check overlap for transparent when player move behind the large object that will block the player sprite image
         this.scene.physics.add.overlap(this.scene.player, this.scene.worldManager.transparentHitboxGroup, (player, colliderBody) => {
@@ -54,16 +53,6 @@ export default class CollisionController {
         });
     }
 
-    initPlayerOverlapCollectables() {
-        this.scene.physics.add.overlap(this.scene.player.sensors.nearbyCollectablesSensor, this.scene.worldManager.collectablesGroup, (player, nearbyCollectable) => {
-            if (!this.currentCollectables.includes(nearbyCollectable)) {
-                this.currentCollectables.push(nearbyCollectable)
-            }
-            if (!this.sensors.touchingNearbyObjects.includes(nearbyCollectable)) {
-                this.sensors.touchingNearbyObjects.push(nearbyCollectable);
-            }
-        });
-    }
 
     addCollectableCollected(collectableCollected) {
         // console.log(collectableCollected)

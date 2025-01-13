@@ -73,7 +73,7 @@ export default class WorldManager {
                 for (let x = -30; x < 30; x++) {
                     for (let y = -30; y < 30; y++) {
 
-                        let possibleEntity = [[{ name: "tree"}], [{ name: "rock"}], [{ name: "bush"}]];
+                        let possibleEntity = [[{ name: "tree"}], [{ name: "rock"}], [{ name: "weeds"}]];
                         let chosenEntity = possibleEntity[Math.floor(Math.random() * possibleEntity.length)]
                         if (Math.random() < 0.7) {
                             chosenEntity = undefined;

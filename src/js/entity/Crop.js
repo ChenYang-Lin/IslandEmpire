@@ -12,10 +12,6 @@ export default class Crop extends Entity {
         console.log(this.name)
         this.entityData = CROP_GROW_DATA[this.name];
 
-        this.collectable = this.entityData.collectable;
-        // console.log(this.entityData)
-        // console.log(this.entityData.interaction)
-
         this.harvestable = false;
         this.sowingTime = sowingTime;
         this.timeToGrow = this.entityData.timeToGrow;
@@ -59,10 +55,17 @@ export default class Crop extends Entity {
         this.graphics.fillStyle(0x0000ff, 1);
 
         // Progress Bar
-        let completionPercentage = this.growTime / this.timeToGrow;
-        let progressBarWidth = (this.growTime > this.timeToGrow) ? (this.displayWidth - 4) : (this.displayWidth - 4) * completionPercentage;
+        this.calculateCropProgress();
+        let progressBarWidth = (this.growTime > this.timeToGrow) ? (this.displayWidth - 4) : (this.displayWidth - 4) * this.completionPercentage;
         this.progressBar = this.graphics.fillRoundedRect(this.x - this.displayWidth / 2 + 2, this.y - this.displayHeight / 2 + 2 + 32 - 6, progressBarWidth, 6 - 4, 1); // x, y, width, height, radius
         this.progressBar.depth = this.depth + 2;
+    }
+
+    calculateCropProgress() {
+        this.completionPercentage = this.growTime / this.timeToGrow;
+        if (this.completionPercentage >= 1) {
+            this.completionPercentage = 1;
+        }
     }
 
     destroyProgressBar() {
@@ -81,6 +84,35 @@ export default class Crop extends Entity {
         this.harvestable = true;
         this.scene.worldManager.collectablesGroup.add(this);
         this.initInteractionHitBox(this, true);
+    }
+
+    showGeneralInfoHUD() {
+        super.showGeneralInfoHUD();
+        
+        let progress = document.getElementById("entity-general-info-progress");
+        progress.innerHTML = ``;
+
+
+        let progressBoxDiv = document.createElement("div");
+        progressBoxDiv.setAttribute("id", "entity-general-info-progress-box");
+        let progressPercentageDiv = document.createElement("div");
+        progressPercentageDiv.setAttribute("id", "entity-general-info-progress-percentage");
+
+        
+        let progressBarDiv = document.createElement("div");
+        progressBarDiv.setAttribute("id", "entity-general-info-progress-bar");
+        progressBarDiv.appendChild(progressBoxDiv);
+        progressBarDiv.appendChild(progressPercentageDiv);
+
+        progress.appendChild(progressBarDiv);
+
+
+        this.calculateCropProgress();
+
+        progressPercentageDiv.style.width = `calc(${this.completionPercentage * 100}% - 4px)`;
+
+        
+        
     }
 
     update() {

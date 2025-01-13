@@ -151,6 +151,11 @@ export default class WorldCell {
             if (!entity.name) {
                 return;
             }
+
+            if (!ENTITY_DATA[entity.name]) {
+                console.log("ERROR: ENTITY DATA not found on EntityData.js: ", entity.name)
+                return;
+            }
             // console.log(entity)
             if (!ENTITY_DATA[entity.name].category) {
                 // console.log(entity.name)
