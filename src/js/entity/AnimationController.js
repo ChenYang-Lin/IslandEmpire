@@ -15,18 +15,23 @@ export default class AnimationController {
 
     initAnimationListeners() {
         this.character.on("animationcomplete", (anim, frame) => {
-            console.log("animationcomplete_" + anim.key.split("_")[0] + "_" + anim.key.split("_")[1], this.character.name)
+            // console.log("animationcomplete_" + anim.key.split("_")[0] + "_" + anim.key.split("_")[1], this.character.name)
             this.character.emit("animationcomplete_" + anim.key.split("_")[0] + "_" + anim.key.split("_")[1], anim, frame);
         })
 
         this.character.on(`animationcomplete_${this.character.name}_attack`, () => {
-            this.inAction = false;
+            
             this.character.hitbox.destroySwordHitbox();
+            this.character.anims.play(`${this.character.name}_idle_${this.character.direction}`, true);
+            setTimeout(() => {
+                this.inAction = false;
+            }, 300);
         })
     }
     
     swordAttack() {
-        console.log(this.inAction)
+        let velocity = new Phaser.Math.Vector2();
+        this.character.setVelocity(velocity.x, velocity.y);
         if (this.inAction) 
             return;
         this.inAction = true;
@@ -44,7 +49,7 @@ export default class AnimationController {
         if (this.scene.worldManager.map[`${this.character.onGrid.x},${this.character.onGrid.y}`].isHoedLand)
             return;
         this.inAction = true;
-        this.character.anims.play(`idle_${this.character.direction}`, true);
+        this.character.anims.play(`${this.character.name}_idle_${this.character.direction}`, true);
         setTimeout(() => {
             this.inAction = false;
         }, 500);

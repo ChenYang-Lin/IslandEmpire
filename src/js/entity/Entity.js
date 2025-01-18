@@ -17,7 +17,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.entityTexture = this?.entityData?.texture ?? texture;
         this.entityFrame = this?.entityData?.frame ?? frame;
 
-        console.log(this.entityData)
+        // console.log(this.entityData)
         
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
@@ -65,7 +65,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         }
 
         if (this.animation) {
-            console.log(this.animation)
+            // console.log(this.animation)
             this.anims.play(this.animation, true );  
         }
 
@@ -106,6 +106,9 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         
         scene.load.atlas("civilian", "assets/civilian.png", "assets/civilian_atlas.json");
         scene.load.animation("civilian_anim", "assets/civilian_anim.json");
+
+        scene.load.atlas("soldier", "assets/soldier.png", "assets/soldier_atlas.json");
+        scene.load.animation("soldier_anim", "assets/soldier_anim.json");
 
         scene.load.atlas("goblin", "assets/character/goblin.png", "assets/character/goblin_atlas.json")
         scene.load.animation("goblin_anim", "assets/character/goblin_anim.json");
@@ -232,7 +235,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         } else if (this.isAlly) {
             this.graphics.fillStyle(0x00ff00, 1);
         }
-        console.log(this.hp, this.maxHp)
+        // console.log(this.hp, this.maxHp)
         this.healthBar = this.graphics.fillRoundedRect(x+2, y+2, (this.hp/this.maxHp)*(width-4), height-4, 1); // x, y, width, height, radius
         this.healthBar.depth = this.depth + 2;
     }
@@ -320,7 +323,9 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
     }
     
     onDeath(attacker) {
-        this.scene.eventEmitter.emit(`${attacker}-destroy-${this.name}`);
+        if (attacker) {
+            this.scene.eventEmitter.emit(`${attacker}-destroy-${this.name}`);
+        }
         this.destroySelf();
         
     }

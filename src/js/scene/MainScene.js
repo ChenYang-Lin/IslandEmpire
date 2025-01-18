@@ -19,7 +19,7 @@ export default class MainScene extends Phaser.Scene {
         super({ key: "MainScene" });
 
         this.currentMap;
-        this.version = "0.31d";
+        this.version = "0.31ast";
     }
 
     init(data) {
@@ -85,10 +85,10 @@ export default class MainScene extends Phaser.Scene {
         //     this.worldManager.astar.findPath(this.worldManager.map, {tx: this.player.onGrid.x, ty: this.player.onGrid.y}, {tx: this.gridX, ty: this.gridY}, this)
         // })
         
-        // this.raft = new Raft(this, 0, 500, "raft", "raft", "raft_move_down_0");
-        if (this.currentMap === "island")
+        if (this.currentMap === "island") {
+            this.raft = new Raft(this, "raft", 0, 500, "raft", "raft_move_down_0");
             this.piglet = new Animal(this, "piglet", 0, 0, "animal", "piglet_idle_left");
-
+        }
     }
 
 
@@ -117,6 +117,7 @@ export default class MainScene extends Phaser.Scene {
         this.inventory.destroySelf();
         this.characterManager.destroySelf();
         this.piglet?.destroySelf();
+        this.raft?.destroySelf();
 
         this.civilian?.destroySelf();
     }

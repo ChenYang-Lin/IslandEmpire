@@ -1,4 +1,5 @@
 import Fishing from "../Fishing.js";
+import { Astar } from "../Pathfinding.js";
 import AnimationController from "./AnimationController.js";
 import Entity from "./Entity.js";
 import Hitbox from "./Hitbox.js";
@@ -16,7 +17,7 @@ export default class Character extends Entity {
         this.swordLength = 32;
 
         this.action = "rest";
-        this.path;
+        
         
         this.animationController = new AnimationController(this.scene, this);
         this.fishing = new Fishing(this.scene, this);
@@ -64,37 +65,61 @@ export default class Character extends Entity {
             this.timer += delta;
             if (this.timer >= 1000){
                 let emptyCell = this.findAnEmptyCell(2);
-                // console.log(emptyCell)
                 this.currPath = this.findPathToCell(emptyCell);
-                // console.log(this.currPath)
             }
         }
-        // let velocity = new Phaser.Math.Vector2();
-        // velocity.y = -1;
-        // this.animationController.move(velocity, "up", this);
+    }
+
+    moveToTarget(target) {
+        if (this.name == "soldier") {
+        }
+        if (this.pathToTarget?.length > 0) {
+            this.moveToGridCell(this.pathToTarget);
+        } 
+        this.pathToTarget = this.findPathToCell({ x: target.onGrid.x, y: target.onGrid.y });
+    
     }
 
     moveToGridCell(path) {
+
         if (path?.length > 0) {
             let velocity = new Phaser.Math.Vector2();
             this.nextGridCell = path[0];
+            // console.log(this.name, path[0], this.position.x, this.nextGridCell.tx*32-4)
     
-            if (this.position.x < this.nextGridCell.tx*32-4) {
-                velocity.x = 1;
-                this.direction = "right";
-            } else if (this.position.x > this.nextGridCell.tx*32+4) {
-                velocity.x = -1;
-                this.direction = "left";
-            } else if (this.position.y > this.nextGridCell.ty*32+4) {
+
+            if (this.position.y > this.nextGridCell.ty*32+1) {
                 velocity.y = -1;
                 this.direction = "up";
-            } else if (this.position.y < this.nextGridCell.ty*32-4) {
+            } else if (this.position.y < this.nextGridCell.ty*32-1) {
                 velocity.y = 1;                
                 this.direction = "down";
             } else {
+                velocity.y = 0;
+                this.setPosition(this.position.x, this.nextGridCell.ty*32);
+            }
+
+            if (this.position.x < this.nextGridCell.tx*32-1) {
+                velocity.x = 1;
+                this.direction = "right";
+            } else if (this.position.x > this.nextGridCell.tx*32+1) {
+                velocity.x = -1;
+                this.direction = "left";
+            } else {
+                velocity.x = 0;
+                this.setPosition(this.nextGridCell.tx*32, this.position.y);
+            }
+
+
+            if (this.position.x < this.nextGridCell.tx*32+0.5 
+                && this.position.x > this.nextGridCell.tx*32-0.5
+                && this.position.y < this.nextGridCell.ty*32+0.5 
+                && this.position.y > this.nextGridCell.ty*32-0.5
+            ) {
                 path.shift();
             }
             
+            velocity.normalize();
             this.animationController.move(velocity, this.direction, this);
         } else {
             this.autoControl = false;

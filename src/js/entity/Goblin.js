@@ -3,10 +3,13 @@ import Enemy from "./Enemy.js";
 
 
 export default class Goblin extends Enemy {
-    constructor(scene, x, y, name, texture, frame) {
+    constructor(scene, name, x, y, texture, frame) {
         const entityData = ENTITY_DATA[name];
         // scene, x, y, name, texture, frame
-        super(scene, x, y, "goblin", "goblin", "goblin_idle_left", entityData);
+        super(scene, "goblin", x, y, "goblin", "goblin_idle_left");
+
+        
+        this.scene.characterManager.characterGroup.add(this);
 
         this.speed = 32;
         this.swordLength = 16;
@@ -16,69 +19,62 @@ export default class Goblin extends Enemy {
         this.action = "idle";
         this.moveToLandX = 0;
         this.moveToLandY = 0;
+
+        this.target = "player"
+        this.tempTargetsInAttackRange = []
+        this.targetsInAttackRange = []
         
 
         this.anims.play(`goblin_idle_left`, true);
 
+        console.log(this.position.x - 16)
+        this.attackRangeSensor = this.scene.physics.add.image(this.position.x - 16, this.position.y - 16);
+        this.attackRangeSensor.body.setCircle(15, 0, 0);
 
+        this.followTargetRangeSensor = this.scene.physics.add.image(this.position.x - 16, this.position.y - 16);
+        this.followTargetRangeSensor.body.setCircle(30, 0, 0);
+
+        // Check overlap for opposite Team
+        this.scene.physics.add.overlap(this.attackRangeSensor, this.scene.collisionController.allyGroup, (self, target) => {
+
+            if (!this.tempTargetsInAttackRange.includes(target)) {
+                this.tempTargetsInAttackRange.push(target)
+            }
+            if (!this.targetsInAttackRange.includes(target)) {
+                this.targetsInAttackRange.push(target)
+            }
+            this.targetsInAttackRange.forEach((target) => {
+                if (target.name === "player") {
+                    this.animationController.swordAttack(); 
+                    return;
+                }
+            })
+        });
     }
 
-    getPathToPlayer() {
-        // console.log(this)
-        return this.scene.worldManager.astar.findPath(
-            this.scene.worldManager.map, 
-            {tx: this.onGrid.x, ty: this.onGrid.y}, 
-            {tx: this.scene.player.onGrid.x, ty: this.scene.player.onGrid.y}, 
-            this.scene,
-        )
-    }
 
-    moveToPlayer() {
-        if (this.pathToPlayer?.length > 0) {
-            this.moveToGridCell(this.pathToPlayer);
-        } else {
-            this.pathToPlayer = this.getPathToPlayer();
-        }
+    updateTargetInRange(time, delta) {
+        this.timer += delta;
+        this.targetsInAttackRange = this.targetsInAttackRange.filter(target => this.tempTargetsInAttackRange.includes(target));
+        this.tempTargetsInAttackRange = [];
+
     }
-    // moveToPlayer() {
-    //     let velocity = new Phaser.Math.Vector2();
-    //     if (this.pathToPlayer?.length > 0) {
-    //         this.nextGridCell = this.pathToPlayer[0];
-    //         // consols.log(this.position.y, this.nextGridCell.ty*32)
-    //         if (this.position.x < this.nextGridCell.tx*32-4) {
-    //             velocity.x = 1;
-    //             this.direction = "right";
-    //         } else if (this.position.x > this.nextGridCell.tx*32+4) {
-    //             velocity.x = -1;
-    //             this.direction = "left";
-    //         } else if (this.position.y > this.nextGridCell.ty*32+4) {
-    //             velocity.y = -1;
-    //             this.direction = "up";
-    //         } else if (this.position.y < this.nextGridCell.ty*32-4) {
-    //             velocity.y = 1;                
-    //             this.direction = "down";
-    //         } else {
-    //             this.pathToPlayer.shift();
-    //         }
-            
-    //         this.animationController.move(velocity, this.direction, this);
-            
-    //     } else {
-    //         // console.log("finding path")
-    //         this.pathToPlayer = this.getPathToPlayer();
-    //     }
-    // }
 
     moveToLand() {
         let velocity = new Phaser.Math.Vector2();
         if (this.onGrid.x === this.moveToLandX && this.onGrid.y === this.moveToLandY) {
             console.log(this.onGrid.y, this.moveToLandY )   
-            this.action = "moveToPlayer";
+            this.action = "moveToTarget";
+            // this.action = "moveRandomly";
             this.animationController.move(velocity, "up", this);
             return;
         }
         velocity.y = -1;
         this.animationController.move(velocity, "up", this);
+    }
+
+    destroySelf() {
+        super.destroySelf();
     }
 
 
@@ -100,14 +96,23 @@ export default class Goblin extends Enemy {
         switch (this.action) {            
             case "idle":
                 break;
-            case "moveToPlayer":
-                this.moveToPlayer();
+            case "moveToTarget":
+                this.moveToTarget(this.scene.player);
+                break;
+            case "moveRandomly":
+                this.moveRandomly(time, delta);
                 break;
             case "moveToLand":
                 this.moveToLand();
                 break;
             default:
         }
+
+        this.attackRangeSensor.x = this.position.x;
+        this.attackRangeSensor.y = this.position.y;
+
+        this.updateTargetInRange(time, delta);
+
 
 
         // this.animationController.swordAttack(); 

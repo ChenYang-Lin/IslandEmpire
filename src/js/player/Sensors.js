@@ -8,8 +8,8 @@ export default class Sensors {
         this.nearbyInteractableSensor = this.scene.physics.add.image(this.player.position.x - 16, this.player.position.y - 16);
         this.nearbyInteractableSensor.body.setCircle(15, 0, 0);
         
-        this.nearbyCollectablesSensor = this.scene.physics.add.image(this.player.position.x - 16, this.player.position.y - 16);
-        this.nearbyCollectablesSensor.body.setCircle(50, -33, -33);
+        // this.nearbyCollectablesSensor = this.scene.physics.add.image(this.player.position.x - 16, this.player.position.y - 16);
+        // this.nearbyCollectablesSensor.body.setCircle(50, -33, -33);
         
         this.touchingNearbyObjects = [];
     }
@@ -17,7 +17,7 @@ export default class Sensors {
     
 
     update() {
-        this.nearbyCollectablesSensor.setPosition(this.player.position.x, this.player.position.y);
+        // this.nearbyCollectablesSensor.setPosition(this.player.position.x, this.player.position.y);
         this.nearbyInteractableSensor.setPosition(this.player.position.x, this.player.position.y);
     }
 }

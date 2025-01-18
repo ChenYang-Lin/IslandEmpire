@@ -4,9 +4,9 @@ import Goblin from "./Goblin.js";
 
 
 export default class Raft extends Entity {
-    constructor(scene, x, y, name, texture, frame) {
+    constructor(scene, name, x, y, texture, frame) {
         let entityData = ENTITY_DATA[name];
-        super(scene, x, y, name, texture, frame, entityData);
+        super(scene, name, x, y, texture, frame, entityData);
 
         this.anims.play("raft_move_up", true);
         this.onDestination = false;
@@ -27,14 +27,25 @@ export default class Raft extends Entity {
         })
 
         
-        this.goblin = new Goblin(this.scene, this.x, this.y, "goblin", "goblin", "goblin");
+        this.goblin = new Goblin(this.scene, "goblin", this.x, this.y, "goblin", "goblin");
+    }
+
+    destroySelf() {
+        super.destroySelf();
     }
 
     update(time, delta) {
         if (!this.onDestination) {
             this.y -= 1;
             this.goblin.setPosition(this.position.x, this.position.y);
-        } 
+        } else {
+            setTimeout(() => {
+                this.setTransparent(0.5);
+                setTimeout(() => {
+                    this.onDeath();
+                }, 1000)
+            }, 1000)
+        }
         this.goblin?.update(time, delta);
         this.depth = this.position.y -1000
 

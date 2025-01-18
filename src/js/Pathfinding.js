@@ -33,12 +33,27 @@ class Astar {
         this.CLOSED = [];
 
         this.indicators = [];
+
+        this.indicatorColor = this.generateRandomColor();
+        this.indicatorPathColor = this.generateRandomColor();
     
         this.START;
         this.GOAL;
     
         this.GRID;
     }
+
+    generateRandomColor() {
+        // Generate random values for red, green, and blue components
+        let r = Math.floor(Math.random() * 256);
+        let g = Math.floor(Math.random() * 256);
+        let b = Math.floor(Math.random() * 256);
+      
+        // Convert to hex format
+        let hexColor = "" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+      
+        return hexColor;
+      }
 
     isObstacleOnGrid(cell) {
         if (cell.entities.length > 0) {
@@ -101,7 +116,7 @@ class Astar {
                 if (this.getNodeIndexInList(this.CLOSED, child) > 0) continue;
 
                 // indicator
-                this.drawRectangle(scene, child, 0x0000ff);
+                this.drawRectangle(scene, child, `0x${this.indicatorColor}`);
 
                 // child.g = n.g + 1;
                 // child.h = n.calcHeuristic(child, this.GOAL);
@@ -124,13 +139,13 @@ class Astar {
 
         while (current) {
             // indicator
-            this.drawRectangle(scene, current, 0xff0000);
+            this.drawRectangle(scene, current, `0x${this.indicatorPathColor}`);
 
             path.unshift(current);
             current = current.parent;
         }
-
-        path.splice(0, 1);
+        
+        path.splice(0, 1);   
         return path;
     }
 
@@ -246,6 +261,7 @@ class Astar {
     }
 
     drawRectangle(scene, node, color) {
+        // console.log(color)
 
         return;
 

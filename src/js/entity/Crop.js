@@ -6,7 +6,7 @@ export default class Crop extends Entity {
     constructor(scene, name, x, y, sowingTime) {
         let phase = (Math.random() < 0.5) ? "_0" : "_0_alt"; // randomly choose two seed image;
         let frame = name + phase;
-        super(scene, name, x, y, "crops_grow", name)
+        super(scene, name, x, y, "crops_grow", name + "_0")
         
         this.name = name;
         console.log(this.name)

@@ -1,4 +1,5 @@
 import Civilian from "./Civilian.js";
+import Soldier from "./Soldier.js";
 
 
 export default class CharacterManager {
@@ -9,9 +10,9 @@ export default class CharacterManager {
 
         if (this.scene.currentMap === "island") {
             let civilian = new Civilian(this.scene, "civilian", 0, -32, "civilian", "civilian_idle_left");
-            // let civilian2 = new Civilian(this.scene, 0, -64, "civilian", "civilian", "civilian_idle_left");
+            let soldier = new Soldier(this.scene, "soldier", 0, -64, "soldier", "soldier_idle_left");
             this.characterGroup.add(civilian);
-            // this.characterGroup.add(civilian2);
+            this.characterGroup.add(soldier);
         }
     }
 
