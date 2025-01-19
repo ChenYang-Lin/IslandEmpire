@@ -311,7 +311,8 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         })
     }
 
-    onHit(attacker, damage) {    
+    onHit(attacker, damage) { 
+        console.log("on hit: ", attacker)   
         if (this.hp <= 0) { 
             console.log(attacker)
             this.onDeath(attacker);

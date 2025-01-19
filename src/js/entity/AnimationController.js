@@ -30,6 +30,7 @@ export default class AnimationController {
     }
     
     swordAttack() {
+        console.log(this.character.name, "attacking...")
         let velocity = new Phaser.Math.Vector2();
         this.character.setVelocity(velocity.x, velocity.y);
         if (this.inAction) 
