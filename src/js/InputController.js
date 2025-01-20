@@ -65,7 +65,10 @@ export default class InputController {
         // Clear selected entity highlight
         this.addNewEventListener(this.listeners, window, "pointerdown", () => {
             if (this.selectedEntity) {
-                this.selectedEntity.handleDeselect();
+                
+                if (this.selectedEntity.body) { // make sure entity not yet destroyed
+                    this.selectedEntity.handleDeselect();
+                }
             }
         })
 
@@ -154,42 +157,118 @@ export default class InputController {
 
 
     movementController() {
+        // give some slide to velocity when player moving the character but blocked by some obstacles
+        if (this.glitchCounter > 0) {
+            this.glitchCounter--;
+            
+            let velocity = new Phaser.Math.Vector2();
+            velocity.x = this.savedVelocityX;
+            velocity.y = this.savedVelocityY;
+            
+            this.player.characterOnControl.animationController.move(velocity, this.direction);
+            return
+
+        }
 
         let velocity = new Phaser.Math.Vector2();
-        let direction;
-        let moved = false;
+        let directions = [];
+        this.direction;
+
+        this.savedVelocityX = 0;
+        this.savedVelocityY = 0;
+        let glitchScale = 0.5;
+
         
 
         if (this.cursor.up.isDown || this.joyUp) {
             velocity.y -= 1;
-            direction = "up";
-            moved = true;
+            this.direction = "up";
+            directions.push("up");
         }
         
         if (this.cursor.down.isDown || this.joyDown) {
             velocity.y += 1;
-            direction = "down";
-            moved = true;
+            this.direction = "down";
+            directions.push("down");
         }
 
         if (this.cursor.right.isDown || this.joyRight) {
             velocity.x += 1;
-            direction = "right";
-            moved = true;
+            this.direction = "right";
+            directions.push("right");
         }
         
         if (this.cursor.left.isDown || this.joyLeft) {
             velocity.x -= 1;
-            direction = "left";
-            moved = true;
+            this.direction = "left";
+            directions.push("left");
         }
 
 
-        velocity.normalize();
+        // give some slide to velocity when player moving the character but blocked by some obstacles
+        if (this.scene.player.characterOnControl.body.velocity.x === 0 && this.scene.player.characterOnControl.body.velocity.y === 0 && this.moveCommand)  {
+            console.log("fixing")
+
+            if (directions.length === 2) {
+                if (directions.includes("left") && directions.includes("up")) {
+                    console.log("left up")
+                    if (Math.random() < 0.5) {
+                        velocity.x = glitchScale;
+                        velocity.y = -glitchScale
+                    } else {
+                        velocity.x = -glitchScale;
+                        velocity.y = glitchScale;
+                    }
+                    
+                    
+                } else if (directions.includes("up") && directions.includes("right")) {
+                    console.log("up right")
+                    if (Math.random() < 0.5) {
+                        velocity.x = glitchScale;
+                        velocity.y = glitchScale
+                    } else {
+                        velocity.x = -glitchScale;
+                        velocity.y = -glitchScale;
+                    }
+                } else if (directions.includes("right") && directions.includes("down")) {
+                    console.log("down right")
+                    if (Math.random() < 0.5) {
+                        velocity.x = -glitchScale;
+                        velocity.y = glitchScale
+                    } else {
+                        velocity.x = glitchScale;
+                        velocity.y = -glitchScale;
+                    }
+                } else if (directions.includes("down") && directions.includes("left")) {
+                    console.log("down left")
+                    if (Math.random() < 0.5) {
+                        velocity.x = -glitchScale;
+                        velocity.y = -glitchScale;
+                    } else {
+                        velocity.x = glitchScale;
+                        velocity.y = glitchScale;
+                    }
+                } 
+
+                this.savedVelocityX = velocity.x;
+                this.savedVelocityY = velocity.y;
+                this.glitchCounter = 3;
+                
+            } 
+
+        }
+        this.moveCommand = true;
+        if (velocity.x === 0 && velocity.y === 0) {
+            this.moveCommand = false;
+        } 
+
+        // ? not sure if it gonna create a bug
         if (this.player.autoControl) {
             return;
         }
-        this.player.animationController.move(velocity, direction);
+
+        velocity.normalize();
+        this.player.characterOnControl.animationController.move(velocity, this.direction);
 
     }
 
@@ -197,7 +276,7 @@ export default class InputController {
         this.scene.eventEmitter.emit("pointerdown-attack-btn");
         switch (type) {
             case "sword":
-                this.player.animationController.swordAttack(); 
+                this.player.characterOnControl.animationController.swordAttack(); 
                 break;
             default:
         }
@@ -210,9 +289,9 @@ export default class InputController {
         console.log(this)
         switch (tool) {
             case "hoe":
-                this.player.animationController.hoe();
+                this.player.characterOnControl.animationController.hoe();
             case "fishingrod":
-                this.player.animationController.fishing();
+                this.player.characterOnControl.animationController.fishing();
             default:
         }
     }
@@ -225,7 +304,7 @@ export default class InputController {
                 this.playToolUsageAnimation(selectedItem)
                 break;
             case "seed":
-                if (this.player.animationController.sow(selectedItem)) {
+                if (this.player.characterOnControl.animationController.sow(selectedItem)) {
                     this.scene.inventory.removeItem(selectedItem, 1);
                 }
                 
@@ -259,10 +338,11 @@ export default class InputController {
     }
 
     update() {
-
+        
         this.movementController();
         if (this.keyJ.isDown) {
-            this.beginAction();
+            this.playAttackAnim("sword");
+            this.player.autoControl = false;
         }
         if (this.keyP.isDown) {
             let shop = this.scene.shop;

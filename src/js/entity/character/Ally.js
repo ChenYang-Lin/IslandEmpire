@@ -8,6 +8,7 @@ export default class Ally extends Character {
 
 
         this.scene.collisionController.allyGroup.add(this);
+        this.showHealthBar = true;
         
     }
 
@@ -16,7 +17,11 @@ export default class Ally extends Character {
         super.destroySelf();
     }
     
-    update() {
-        super.update();
+    update(time, delta) {
+        super.update(time, delta);
+        // return update if entity destroyed.
+        if (!this.body) 
+            return;
+        
     }
 }

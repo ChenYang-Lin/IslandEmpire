@@ -1,7 +1,6 @@
-import Fishing from "../Fishing.js";
-import { Astar } from "../Pathfinding.js";
+import Fishing from "../../Fishing.js";
 import AnimationController from "./AnimationController.js";
-import Entity from "./Entity.js";
+import Entity from "../Entity.js";
 import Hitbox from "./Hitbox.js";
 
 
@@ -126,21 +125,65 @@ export default class Character extends Entity {
         }
     }
 
+    
+    renderHealthBar() {
+        if (!this.body) 
+            return;
+
+        if (!this.showHealthBar) 
+            return;
+        this.graphics = this.scene.add.graphics();
+
+        this.healthBarBG?.destroy();
+        this.healthBar?.destroy();
+
+        let x = this.position.x - (this.hpBarWidth/2);
+        let y = this.position.y - this.hpBarOffsetY;
+        let width = this.hpBarWidth;
+        let height = 6;
+        let radius = 2;
+
+
+        // HealthBarBackground
+        this.graphics.fillStyle(0x000000, 1);
+        this.healthBarBG = this.graphics.fillRoundedRect(x, y, width, height, radius); // x, y, width, height, radius
+        this.healthBarBG.depth = this.depth + 1;
+        
+
+        // Healthbar
+        this.graphics.fillStyle(0xff0000, 1);
+        if (this.isAlly) {
+            this.graphics.fillStyle(0x0066ff, 1);
+            if (this === this.scene.player.characterOnControl) {
+                this.graphics.fillStyle(0x00ff00, 1);
+            }
+        } else {
+            this.graphics.fillStyle(0xff0000, 1);
+        }
+        this.healthBar = this.graphics.fillRoundedRect(x+2, y+2, (this.stats.hp/this.stats.maxHp)*(width-4), height-4, 1); // x, y, width, height, radius
+        this.healthBar.depth = this.depth + 2;
+    }
+    
 
     onHit(attacker, damage) {       
-        this.hp -= damage;
-        this.renderHealthBar();
+        if (!this.body) 
+            return;
 
+        if (this.dead) 
+            return;
+        console.log(this.body)
         super.onHit(attacker, damage);
+        this.renderHealthBar()
     }  
 
     onDeath(attacker) {
-        this.anims.play(`goblin_death`, false);  
-        this.healthBarBG?.destroy();
-        this.healthBar?.destroy();
-        this.destroyed = true;
+        // this.anims.play(`goblin_death`, false);  
+        this.dead = true;
+        // this.healthBarBG?.destroy();
+        // this.healthBar?.destroy();
+        // this.destroyed = true;
 
-        super.onDeath(attacker);
+        // super.onDeath(attacker);
     }
 
     destroySelf() {
@@ -152,15 +195,14 @@ export default class Character extends Entity {
     }
 
 
-    update() {
-        // console.log("updating", this.name, this.x, this.y)
+    update(time, delta) {
+        // return update if entity destroyed.
+        if (!this.body) 
+            return;
 
-        if (this.destroyed) return;
-
-
-        
-        
-        this.depth = this.position.y
+        this.stats.update();
+        this.renderHealthBar();
+        this.depth = this.position.y;
     }
 
 }

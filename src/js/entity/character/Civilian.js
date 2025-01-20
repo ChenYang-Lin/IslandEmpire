@@ -1,11 +1,10 @@
-import { ENTITY_DATA } from "../GameData.js"
+import { ENTITY_DATA } from "../../GameData.js"
 import Ally from "./Ally.js";
 
 
 export default class Civilian extends Ally {
     constructor(scene, name, x, y, texture, frame) {
-        const entityData = ENTITY_DATA[name];
-        super(scene, "civilian", x, y, "civilian", "civilian_idle_left", entityData);
+        super(scene, "civilian", x, y, "civilian", "civilian_idle_left");
         
         this.speed = 32;
 
@@ -33,10 +32,12 @@ export default class Civilian extends Ally {
 
 
     update(time, delta) {
-        super.update();
+        super.update(time, delta);
+        // return update if entity destroyed.
+        if (!this.body) 
+            return;
         
         
-        // console.log(this.currPath)
         this.moveRandomly(time, delta);
     }
 }

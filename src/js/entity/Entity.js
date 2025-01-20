@@ -1,4 +1,5 @@
 import { ENTITY_DATA, INTERACTION_HITBOX_DATA, TRANSPARENT_HITBOX_DATA } from "../GameData.js";
+import State from "./character/Stats.js";
 
 
 
@@ -96,6 +97,8 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.initInteractionHitBox(this);
 
 
+        
+        this.stats = new State(this.scene, this);
     }
 
     static preload(scene) {
@@ -155,7 +158,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
     }
 
     handleDeselect() {
-        this.scene.inputController.selectedEntityREXOutline?.remove(this);
+        this.scene.inputController?.selectedEntityREXOutline?.remove(this);
         this.scene.inputController.selectedEntity = null;
         this.hideGeneralInfoHUD();
     }
@@ -209,37 +212,6 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         progress.innerHTML = ``
     }
 
-    renderHealthBar() {
-        this.graphics = this.scene.add.graphics();
-
-        this.healthBarBG?.destroy();
-        this.healthBar?.destroy();
-
-        let x = this.position.x - (this.hpBarWidth/2);
-        let y = this.position.y - this.hpBarOffsetY;
-        let width = this.hpBarWidth;
-        let height = 6;
-        let radius = 2;
-
-
-        // HealthBarBackground
-        this.graphics.fillStyle(0x000000, 1);
-        this.healthBarBG = this.graphics.fillRoundedRect(x, y, width, height, radius); // x, y, width, height, radius
-        this.healthBarBG.depth = this.depth + 1;
-        
-
-        // Healthbar
-        this.graphics.fillStyle(0xff0000, 1);
-        if (this.isAlly === undefined) {
-            this.graphics.fillStyle(0x0000ff, 1);
-        } else if (this.isAlly) {
-            this.graphics.fillStyle(0x00ff00, 1);
-        }
-        // console.log(this.hp, this.maxHp)
-        this.healthBar = this.graphics.fillRoundedRect(x+2, y+2, (this.hp/this.maxHp)*(width-4), height-4, 1); // x, y, width, height, radius
-        this.healthBar.depth = this.depth + 2;
-    }
-    
 
     initTransparentHitBox(object) {
         this.transparentSprites = [];
@@ -312,9 +284,10 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
     }
 
     onHit(attacker, damage) { 
-        console.log("on hit: ", attacker)   
-        if (this.hp <= 0) { 
-            console.log(attacker)
+        this.stats.hp -= damage;
+
+        if (this.stats.hp <= 0) { 
+            console.log(this.name, " killed by: ", attacker)
             this.onDeath(attacker);
         }
     }  
@@ -333,6 +306,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
     
     destroySelf() {
         this.destroyed = true;
+        delete this.stats;
         this.destroyInteractionHitBox();
         this.destroy();
     }

@@ -6,8 +6,7 @@ export default class CollisionController {
 
         this.timer = 0;
 
-        this.player;
-        this.sensors;
+        // this.player;
         this.allyGroup = this.scene.physics.add.group();
         this.enemyGroup = this.scene.physics.add.group();
         this.hitboxGroup = this.scene.physics.add.group();
@@ -19,7 +18,6 @@ export default class CollisionController {
     }
 
     init() {
-        this.sensors = this.scene.player.sensors;
         // Collisions and Overlaps
         this.scene.physics.add.collider(
             [
@@ -43,12 +41,12 @@ export default class CollisionController {
             }, 50)
         });
         // check player interact with interactables like door, teleport gate, etc.
-        this.scene.physics.add.overlap(this.scene.player.sensors.nearbyInteractableSensor, this.scene.worldManager.interactionHitboxGroup, (player, nearbyInteractable) => {
+        this.scene.physics.add.overlap(this.scene.player.nearbyInteractableSensor, this.scene.worldManager.interactionHitboxGroup, (player, nearbyInteractable) => {
             if (!this.currentCollectables.includes(nearbyInteractable)) {
                 this.currentCollectables.push(nearbyInteractable)
             }
-            if (!this.sensors.touchingNearbyObjects.includes(nearbyInteractable)) {
-                this.sensors.touchingNearbyObjects.push(nearbyInteractable);
+            if (!this.scene.player.touchingNearbyObjects.includes(nearbyInteractable)) {
+                this.scene.player.touchingNearbyObjects.push(nearbyInteractable);
             }
         });
     }
@@ -64,11 +62,11 @@ export default class CollisionController {
         this.timer += delta;
         if (this.timer > 500) {
             this.timer = 0;
-            this.sensors.touchingNearbyObjects = this.sensors.touchingNearbyObjects.filter(item => this.currentCollectables?.includes(item));
-            this.sensors.touchingNearbyObjects = this.sensors.touchingNearbyObjects.filter(item => !this.collectableCollected?.includes(item));
+            this.scene.player.touchingNearbyObjects = this.scene.player.touchingNearbyObjects.filter(item => this.currentCollectables?.includes(item));
+            this.scene.player.touchingNearbyObjects = this.scene.player.touchingNearbyObjects.filter(item => !this.collectableCollected?.includes(item));
             this.currentCollectables = [];
-            // console.log(this.sensors.touchingNearbyObjects)
-            this.scene.hud.createCollectablesContainer(this.sensors.touchingNearbyObjects);
+            // console.log(this.scene.player.touchingNearbyObjects)
+            this.scene.hud.createCollectablesContainer(this.scene.player.touchingNearbyObjects);
         }
     }
     

@@ -1,11 +1,10 @@
-import { ENTITY_DATA } from "../GameData.js";
+import { ENTITY_DATA } from "../../GameData.js";
 import Ally from "./Ally.js";
 
 
 
 export default class Soldier extends Ally {
     constructor(scene, name, x, y, texture, frame) {
-        const entityData = ENTITY_DATA[name];
 
         super (scene, "soldier", x, y, "soldier", "soldier_idle_left");
 
@@ -91,11 +90,11 @@ export default class Soldier extends Ally {
 
     update(time, delta) {
 
-        super.update();
-
-        if (this.destroyed) {
+        super.update(time, delta);
+        // return update if entity destroyed.
+        if (!this.body) 
             return;
-        }
+        
         switch (this.action) {            
             case "idle":
                 break;

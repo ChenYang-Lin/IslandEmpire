@@ -1,39 +1,43 @@
-import Ally from "../entity/Ally.js";
-import Character from "../entity/Character.js";
+
 import { ENTITY_DATA, ITEM_ON_USE_DATA } from "../GameData.js";
-import Sensors from "./Sensors.js";
-import Stats from "./Stats.js";
+import Survivor from "../entity/character/Survivor.js";
 
-export default class Player extends Ally {
+export default class Player {
     constructor(scene) {
-
-        // if (Player._instance) {
-        //     return Player._instance;
-        // }
-
-        // const entityData = ENTITY_DATA["player"];
-        // scene, name, x, y, texture, frame
-        super(scene, "player", 0, 0, "player", "player_idle_right");
         this.scene = scene;
 
-        
-        this.scene.add.existing(this);
-        this.scene.physics.add.existing(this);
-
+        this.survivor = new Survivor(this.scene, "player", 0, 0, "player", "player_idle_left");
+        this.characterOnControl = this.survivor;
 
         this.autoControl = false;
+        // this.scene.collisionController.player = this;
 
-        this.sensors = new Sensors(this.scene, this);
-        this.stats = new Stats(this.scene, this);
-
-        this.scene.collisionController.player = this;
+        this.nearbyInteractableSensor = this.scene.physics.add.image(this.characterOnControl.position.x - 16, this.characterOnControl.position.y - 16);
+        this.nearbyInteractableSensor.body.setCircle(15, 0, 0);
+        this.touchingNearbyObjects = [];
         
-        let path = this.scene.worldManager.astar.findPath(this.scene.worldManager.map, {tx: this.onGrid.x, ty: this.onGrid.y}, {tx: -2, ty: 0}, this.scene)
+        // let path = this.scene.worldManager.astar.findPath(this.scene.worldManager.map, {tx: this.onGrid.x, ty: this.onGrid.y}, {tx: -2, ty: 0}, this.scene)
         // console.log(path)
 
-        // Player._instance = this;
+
+        this.healthBarCurrent = document.getElementById("health-bar-current");
+        this.healthBarValue = document.getElementById("health-bar-value");
+        this.hungerBarCurrent = document.getElementById("hunger-bar-current");
+        this.hungerBarValue = document.getElementById("hunger-bar-value");
+        this.thirstBarCurrent = document.getElementById("thirst-bar-current");
+        this.thirstBarValue = document.getElementById("thirst-bar-value");
     }
 
+    renderStatsDisplay() {
+        this.healthBarCurrent.style.width = (this.characterOnControl.stats.hp / this.characterOnControl.stats.maxHp) * 100 + "%";
+        this.healthBarValue.innerHTML = `${this.characterOnControl.stats.hp} / ${this.characterOnControl.stats.maxHp}`
+
+        this.hungerBarCurrent.style.width = (this.characterOnControl.stats.hunger / this.characterOnControl.stats.maxHunger) * 100 + "%";
+        this.hungerBarValue.innerHTML = `${this.characterOnControl.stats.hunger} / ${this.characterOnControl.stats.maxHunger}`
+
+        this.thirstBarCurrent.style.width = (this.characterOnControl.stats.thirst / this.characterOnControl.stats.maxThirst) * 100 + "%";
+        this.thirstBarValue.innerHTML = `${this.characterOnControl.stats.thirst} / ${this.characterOnControl.stats.maxThirst}`
+    }
 
     autoMoveToGridCell(path) {
         this.autoControl = true;
@@ -66,31 +70,21 @@ export default class Player extends Ally {
             this.stats.hp = this.stats.maxHp;
         }
 
-        this.stats.renderStatsDisplay();
+        this.renderStatsDisplay();
     }
 
     destroySelf() {
-        delete this.sensors;
-        delete this.stats;
-        super.destroySelf();
+        this.survivor = null;
     }
 
     update(time, delta) {
 
-        // console.log(this.destroyed);
-        // if (this.destroyed) {
-        //     return;
+        // if (this.autoControl) {
+        //     this.moveToGridCell(this.path);
         // }
+        this.nearbyInteractableSensor.setPosition(this.characterOnControl.position.x, this.characterOnControl.position.y);
 
-        super.update();
-        if (this.autoControl) {
-            this.moveToGridCell(this.path);
-        }
-        this.sensors.update();
-
-        this.stats.update();
-
-        // console.log("player updating")
+        this.renderStatsDisplay();
     }
 
 

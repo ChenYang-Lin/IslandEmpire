@@ -30,7 +30,6 @@ export default class AnimationController {
     }
     
     swordAttack() {
-        console.log(this.character.name, "attacking...")
         let velocity = new Phaser.Math.Vector2();
         this.character.setVelocity(velocity.x, velocity.y);
         if (this.inAction) 
@@ -109,11 +108,13 @@ export default class AnimationController {
 
         this.character.direction = direction ? direction : this.character.direction;
 
-        velocity.scale(this.character.speed);
+        velocity = velocity.scale(this.character.speed);
         this.character.setVelocity(velocity.x, velocity.y);
 
+        // console.log(this.character.name, this.character.body.velocity.x, this.character.body.velocity.y)
+
         // Walk or idle animaiton depends on velocity
-        if (Math.abs(this.character.body.velocity.x) > 0 || Math.abs(this.character.body.velocity.y) > 0) {
+        if (Math.abs(this.character.body.velocity.x) > 0.5 || Math.abs(this.character.body.velocity.y) > 0.5) {
             this.character.anims.play(`${this.character.name}_walk_${this.character.direction}`, true);
         } else {
             this.character.anims.play(`${this.character.name}_idle_${this.character.direction}`, true);

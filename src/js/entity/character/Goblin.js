@@ -1,4 +1,4 @@
-import { ENTITY_DATA } from "../GameData.js";
+import { ENTITY_DATA } from "../../GameData.js";
 import Enemy from "./Enemy.js";
 
 
@@ -79,25 +79,18 @@ export default class Goblin extends Enemy {
 
 
     update(time, delta) {
-        // this.timer += delta;
-        // if (this.timer >= 1000){
-        //     this.tempDir *= -1;
-        //     this.timer = 0;
-        // }
-        // let velocity = new Phaser.Math.Vector2();
-        // velocity.x += 1 * this.tempDir;
-        // velocity.normalize();
 
-        super.update();
-
-        if (this.destroyed) {
+        super.update(time, delta);
+        // return update if entity destroyed.
+        if (!this.body) 
             return;
-        }
+        
+
         switch (this.action) {            
             case "idle":
                 break;
             case "moveToTarget":
-                this.moveToTarget(this.scene.player);
+                this.moveToTarget(this.scene.player.characterOnControl);
                 break;
             case "moveRandomly":
                 this.moveRandomly(time, delta);

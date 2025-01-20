@@ -9,9 +9,8 @@ import CollisionController from "../CollisionController.js";
 import EventEmitter from "../EventEmitter.js";
 import Raft from "../entity/Raft.js";
 import Inventory from "../Inventory.js";
-import Civilian from "../entity/Civilian.js";
-import CharacterManager from "../entity/CharacterManager.js";
-import Animal from "../entity/Animal.js";
+import CharacterManager from "../entity/character/CharacterManager.js";
+import Animal from "../entity/character/Animal.js";
 
 
 export default class MainScene extends Phaser.Scene {
@@ -30,7 +29,6 @@ export default class MainScene extends Phaser.Scene {
     }
 
     preload() {
-        Player.preload(this);
         Resource.preload(this);
         Crop.preload(this);
         Entity.preload(this);
@@ -57,8 +55,8 @@ export default class MainScene extends Phaser.Scene {
         this.worldManager = new WorldManager(this);
         this.collisionController = new CollisionController(this);
         this.inventory = new Inventory(this);
-        this.player = new Player(this);
         this.characterManager = new CharacterManager(this);
+        this.player = new Player(this);
         this.inputController = new InputController(this, this.player);
         this.hud = new HUD(this);
         this.collisionController.init();
@@ -67,9 +65,9 @@ export default class MainScene extends Phaser.Scene {
         this.camera = this.cameras.main;
         this.camera.setZoom(2);
         // this.cameraDolly = new Phaser.Geom.Point(this.player.x, this.player.y);
-        this.camera.startFollow(this.player);
+        this.camera.startFollow(this.player.characterOnControl);
+        this.camera.setLerp(.2, .2);
         // this.camera.startFollow(this.cameraDolly);
-        // this.camera.setLerp(0.3, 0.3);
         // this.camera.roundPixels = true;
 
 

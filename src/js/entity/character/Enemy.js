@@ -1,0 +1,30 @@
+import Character from "./Character.js";
+
+
+export default class Enemy extends Character {
+    constructor(scene, name, x, y, texture, frame, entityData) {
+        let isAlly = false;
+        super(scene, name, x, y, texture, frame, entityData, isAlly);
+
+        this.scene.collisionController.enemyGroup.add(this);
+        this.showHealthBar = true;
+
+        
+    }
+
+    
+    destroySelf() {
+        this.scene.collisionController.enemyGroup.remove(this);
+        super.destroySelf();
+    }
+
+    update(time, delta) {
+        super.update(time, delta);
+        // return update if entity destroyed.
+        if (!this.body) 
+            return;
+        
+        
+    }
+
+}

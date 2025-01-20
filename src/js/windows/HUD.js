@@ -34,7 +34,7 @@ export default class HUD {
         this.wish = new Wish(this.scene, this);
         this.questManager = new QuestManager(this.scene, this);
 
-        this.scene.player.stats.renderStatsDisplay();
+        console.log(this.scene.player.characterOnControl)
 
         this.shopUI.addEventListener("pointerdown", () => {
             this.shop.openWindow();
@@ -163,7 +163,7 @@ export default class HUD {
                         collectableBtn.remove();
                         this.scene.inventory.addItem(interactable.name, interactable.quantity);
                         // console.log(this.scene.player.sensors.touchingNearbyObjects[i].parent)
-                        this.scene.player.sensors.touchingNearbyObjects[i].parent.onDeath("player");
+                        this.scene.player.touchingNearbyObjects[i].parent.onDeath("player");
                         this.scene.collisionController.addCollectableCollected(collectable);
                         break;
                     case "entrance":

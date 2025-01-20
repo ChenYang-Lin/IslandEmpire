@@ -116,7 +116,10 @@ export default class Crop extends Entity {
     }
 
     update() {
-        // Update progress bar
+        // return update if entity destroyed.
+        if (!this.body) 
+            return;
+        
 
             
         if (this.isHovered) {

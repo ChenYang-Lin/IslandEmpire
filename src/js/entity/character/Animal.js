@@ -1,4 +1,4 @@
-import { ENTITY_DATA } from "../GameData.js";
+import { ENTITY_DATA } from "../../GameData.js";
 import Character from "./Character.js";
 
 
@@ -16,9 +16,11 @@ export default class Animal extends Character {
     }
 
     update(time, delta) {
+        super.update(time, delta);
+        // return update if entity destroyed.
+        if (!this.body) 
+            return;
         
-        if (this.destroyed) return;
-        super.update();
         this.moveRandomly(time, delta);
     }
 }

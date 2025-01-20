@@ -1,6 +1,6 @@
 import { ENTITY_DATA } from "../GameData.js";
 import Entity from "./Entity.js";
-import Goblin from "./Goblin.js";
+import Goblin from "./character/Goblin.js";
 
 
 export default class Raft extends Entity {
@@ -35,6 +35,10 @@ export default class Raft extends Entity {
     }
 
     update(time, delta) {
+        // return update if entity destroyed.
+        if (!this.body) 
+            return;
+        
         if (!this.onDestination) {
             this.y -= 1;
             this.goblin.setPosition(this.position.x, this.position.y);
