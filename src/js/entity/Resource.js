@@ -59,6 +59,7 @@ export default class Resource extends Entity {
     }
 
     onDeath(attacker) {
+        console.log(this.name, "on death")
         this.entityData.drops.forEach((name) => {
             let drops = new Drops(this.scene, name, this.position.x + Math.floor(Math.random() * 20), this.position.y + Math.floor(Math.random() * 20), "item", name);
         })

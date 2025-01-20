@@ -76,12 +76,12 @@ export default class HUD {
             let islandEmpire = document.getElementById("island-empire").children[0];
             let width = window.getComputedStyle(islandEmpire).width;
             width = parseInt(width, 10)
-            console.log("screen width: ", width);
+            // console.log("screen width: ", width);
             if (width > 1200) {
-                console.log("zoom: 2");
+                // console.log("zoom: 2");
                 this.scene.camera.setZoom(2);
             } else {
-                console.log("zoom: 1");
+                // console.log("zoom: 1");
                 this.scene.camera.setZoom(1);
             }
 

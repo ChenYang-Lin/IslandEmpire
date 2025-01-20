@@ -27,7 +27,6 @@ export default class Goblin extends Enemy {
 
         this.anims.play(`goblin_idle_left`, true);
 
-        console.log(this.position.x - 16)
         this.attackRangeSensor = this.scene.physics.add.image(this.position.x - 16, this.position.y - 16);
         this.attackRangeSensor.body.setCircle(15, 0, 0);
 

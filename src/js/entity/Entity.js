@@ -152,7 +152,6 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
             thickness: 3,
             outlineColor: 0xFF0000
         });
-        console.log('clicked: ', this.name)
 
         this.showGeneralInfoHUD();
     }
@@ -160,7 +159,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
     handleDeselect() {
         this.scene.inputController?.selectedEntityREXOutline?.remove(this);
         this.scene.inputController.selectedEntity = null;
-        this.hideGeneralInfoHUD();
+        // this.hideGeneralInfoHUD();
     }
 
     showGeneralInfoHUD() {
@@ -175,7 +174,6 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         if (this.stats) {
             let hpDiv = document.getElementById("entity-general-info-hp");
             // hp.innerHTML = `HP: ${this.stats.hp}`
-            console.log( `HP: ${this.stats.hp}`)
 
             hpDiv.innerHTML = ``;
 
@@ -287,7 +285,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.stats.hp -= damage;
 
         if (this.stats.hp <= 0) { 
-            console.log(this.name, " killed by: ", attacker)
+            // console.log(this.name, " killed by: ", attacker)
             this.onDeath(attacker);
         }
     }  

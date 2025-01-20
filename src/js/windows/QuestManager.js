@@ -53,7 +53,7 @@ export default class QuestManager {
     }
 
     updateQuestPrompt() {
-        console.log(this.activeQuest)
+        // console.log(this.activeQuest)
         if (this.activeQuest) {
             this.questPrompt.style.display = "block";
             this.questPromptTaskName.innerHTML = this.activeQuest?.getTaskName();
@@ -78,7 +78,7 @@ export default class QuestManager {
     }
 
     updateDistance(target) {
-        let player = this.scene.player.onGrid;
+        let player = this.scene.player.characterOnControl.onGrid;
         let distance = Math.sqrt( Math.pow((target.x - player.x), 2) + Math.pow((target.y - player.y), 2));
 
         if (distance <= 0) {

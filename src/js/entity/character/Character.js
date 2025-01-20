@@ -170,8 +170,7 @@ export default class Character extends Entity {
             return;
 
         if (this.dead) 
-            return;
-        console.log(this.body)
+            return;0
         super.onHit(attacker, damage);
         this.renderHealthBar()
     }  

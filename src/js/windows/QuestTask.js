@@ -39,7 +39,7 @@ export default class QuestTask {
             case "arrival":
                 this.sub = this.questManager.scene.eventEmitter.subscribe(`player-move`, () => {
                     let player = this.questManager.scene.player;
-                    let playerOnGrid = `${player.onGrid.x},${player.onGrid.y}`;
+                    let playerOnGrid = `${player.characterOnControl.onGrid.x},${player.characterOnControl.onGrid.y}`;
         
                     if (this.task.completion.target === playerOnGrid) {
                         this.sub.unsubscribe();

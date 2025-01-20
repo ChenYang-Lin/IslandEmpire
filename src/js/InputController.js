@@ -207,7 +207,6 @@ export default class InputController {
 
         // give some slide to velocity when player moving the character but blocked by some obstacles
         if (this.scene.player.characterOnControl.body.velocity.x === 0 && this.scene.player.characterOnControl.body.velocity.y === 0 && this.moveCommand)  {
-            console.log("fixing")
 
             if (directions.length === 2) {
                 if (directions.includes("left") && directions.includes("up")) {
