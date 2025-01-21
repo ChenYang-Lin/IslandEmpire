@@ -9,8 +9,6 @@ export default class Structure extends Entity {
         super(scene, name, x, y, texture, name, );
 
         this.name = name;
-
-        console.log(this.name)
         
         // Transparent hitbox
         this.initTransparentHitBox(this);

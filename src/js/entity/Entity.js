@@ -163,6 +163,9 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
     }
 
     showGeneralInfoHUD() {
+        if (!this.body) 
+            return;
+
         // console.log(this.name, this.entityTexture, this.entityFrame);
         let name = document.getElementById("entity-general-info-name");
         let img = document.getElementById("entity-general-info-img");

@@ -62,7 +62,7 @@ export default class Goblin extends Enemy {
     moveToLand() {
         let velocity = new Phaser.Math.Vector2();
         if (this.onGrid.x === this.moveToLandX && this.onGrid.y === this.moveToLandY) {
-            console.log(this.onGrid.y, this.moveToLandY )   
+
             this.action = "moveToTarget";
             // this.action = "moveRandomly";
             this.animationController.move(velocity, "up", this);

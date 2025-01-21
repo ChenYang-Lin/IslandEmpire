@@ -157,27 +157,63 @@ export default class InputController {
 
 
     movementController() {
-        // give some slide to velocity when player moving the character but blocked by some obstacles
-        if (this.glitchCounter > 0) {
-            this.glitchCounter--;
-            
-            let velocity = new Phaser.Math.Vector2();
-            velocity.x = this.savedVelocityX;
-            velocity.y = this.savedVelocityY;
-            
-            this.player.characterOnControl.animationController.move(velocity, this.direction);
-            return
-
+        if (this.player.autoControl) {
+            return;
         }
+        // "blocked/glitch helper slide code" 
+        if (this.blockedDirections) {
+            if (this.blockedCounter > 0) {
+                let velocity = new Phaser.Math.Vector2();
+
+                if (this.blockedDirections.includes("left") && this.blockedDirections.includes("up")) {
+                    
+                    if (this.blockedCounter <= 2) {
+                        velocity.x = 0;
+                        velocity.y = -2;
+                    } else {
+                        velocity.x = -2;
+                        velocity.y = 0;
+                    }
+                } else if (this.blockedDirections.includes("up") && this.blockedDirections.includes("right")) {
+                    if (this.blockedCounter <= 2) {
+                        velocity.x = 2;
+                        velocity.y = 0
+                    } else {
+                        velocity.x = -0;
+                        velocity.y = -2;
+                    }
+                } else if (this.blockedDirections.includes("right") && this.blockedDirections.includes("down")) {
+                    if (this.blockedCounter <= 2) {
+                        velocity.x = -0;
+                        velocity.y = 2
+                    } else {
+                        velocity.x = 2;
+                        velocity.y = -0;
+                    }
+                } else if (this.blockedDirections.includes("down") && this.blockedDirections.includes("left")) {
+                    if (this.blockedCounter <= 2) {
+                        velocity.x = -2;
+                        velocity.y = -0;
+                    } else {
+                        velocity.x = 0;
+                        velocity.y = 2;
+                    }
+                } 
+    
+                this.blockedCounter--;    
+                this.player.characterOnControl.animationController.move(velocity, this.direction);
+                return;
+            } else {
+                this.blockedDirections = null;
+            }
+            return;
+        } 
+
 
         let velocity = new Phaser.Math.Vector2();
         let directions = [];
         this.direction;
-
-        this.savedVelocityX = 0;
-        this.savedVelocityY = 0;
-        let glitchScale = 0.5;
-
+        this.blockedCounter = 0;
         
 
         if (this.cursor.up.isDown || this.joyUp) {
@@ -206,65 +242,23 @@ export default class InputController {
 
 
         // give some slide to velocity when player moving the character but blocked by some obstacles
-        if (this.scene.player.characterOnControl.body.velocity.x === 0 && this.scene.player.characterOnControl.body.velocity.y === 0 && this.moveCommand)  {
+        if (this.scene.player.characterOnControl.body.velocity.x === 0 && this.scene.player.characterOnControl.body.velocity.y === 0 && this.moveCommand)  { // Moving key down but character not move
 
-            if (directions.length === 2) {
-                if (directions.includes("left") && directions.includes("up")) {
-                    console.log("left up")
-                    if (Math.random() < 0.5) {
-                        velocity.x = glitchScale;
-                        velocity.y = -glitchScale
-                    } else {
-                        velocity.x = -glitchScale;
-                        velocity.y = glitchScale;
-                    }
-                    
-                    
-                } else if (directions.includes("up") && directions.includes("right")) {
-                    console.log("up right")
-                    if (Math.random() < 0.5) {
-                        velocity.x = glitchScale;
-                        velocity.y = glitchScale
-                    } else {
-                        velocity.x = -glitchScale;
-                        velocity.y = -glitchScale;
-                    }
-                } else if (directions.includes("right") && directions.includes("down")) {
-                    console.log("down right")
-                    if (Math.random() < 0.5) {
-                        velocity.x = -glitchScale;
-                        velocity.y = glitchScale
-                    } else {
-                        velocity.x = glitchScale;
-                        velocity.y = -glitchScale;
-                    }
-                } else if (directions.includes("down") && directions.includes("left")) {
-                    console.log("down left")
-                    if (Math.random() < 0.5) {
-                        velocity.x = -glitchScale;
-                        velocity.y = -glitchScale;
-                    } else {
-                        velocity.x = glitchScale;
-                        velocity.y = glitchScale;
-                    }
-                } 
-
-                this.savedVelocityX = velocity.x;
-                this.savedVelocityY = velocity.y;
-                this.glitchCounter = 3;
+            if (directions.length === 2 && JSON.stringify(this.prevDirections) == JSON.stringify(directions)) { // player holding same input 
+                    this.blockedDirections = directions;
+                    this.blockedCounter = 4; // "blocked helper slide code" run two time and stop
                 
-            } 
+            }
 
-        }
+        } 
+        
+        this.prevDirections = directions;
+
         this.moveCommand = true;
         if (velocity.x === 0 && velocity.y === 0) {
             this.moveCommand = false;
         } 
 
-        // ? not sure if it gonna create a bug
-        if (this.player.autoControl) {
-            return;
-        }
 
         velocity.normalize();
         this.player.characterOnControl.animationController.move(velocity, this.direction);
