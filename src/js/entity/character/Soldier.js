@@ -95,6 +95,8 @@ export default class Soldier extends Ally {
         if (!this.body) 
             return;
         
+        
+        
         switch (this.action) {            
             case "idle":
                 break;
@@ -106,11 +108,9 @@ export default class Soldier extends Ally {
                 break;
             default:
         }
-        // console.log(this.onGrid.x, this.onGrid.y, this.position.x, this.position.y)
-        // console.log()
-        // if (!this.target) {
-        //     this.action = "moveRandomly";
-        // }
+        if (!this.target) {
+            this.action = "moveRandomly";
+        }
 
         this.attackRangeSensor.x = this.position.x;
         this.attackRangeSensor.y = this.position.y;

@@ -84,6 +84,9 @@ export default class InputController {
         this.keyP = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
         this.keyX = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
 
+        this.key1 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE);
+        this.key2 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
+
         
         this.createJoyStick();
     }
@@ -157,9 +160,9 @@ export default class InputController {
 
 
     movementController() {
-        if (this.player.autoControl) {
-            return;
-        }
+        // if (this.player.autoControl) {
+        //     return;
+        // }
         // "blocked/glitch helper slide code" 
         if (this.blockedDirections) {
             if (this.blockedCounter > 0) {
@@ -259,7 +262,6 @@ export default class InputController {
             this.moveCommand = false;
         } 
 
-
         velocity.normalize();
         this.player.characterOnControl.animationController.move(velocity, this.direction);
 
@@ -354,6 +356,17 @@ export default class InputController {
         }
         if (this.keyX.isUp && this.testX === true) {
             this.testX = false;
+        }
+
+
+        if (this.key1.isDown) {
+            
+            this.scene.player.characterOnControl = this.scene.player.survivor;
+        }
+
+        if (this.key2.isDown) {
+            this.scene.player.characterOnControl = this.scene.characterManager.characterList["soldier"];
+            this.scene.player.characterOnControl.action = ""
         }
         
     }
