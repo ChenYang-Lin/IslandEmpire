@@ -19,9 +19,10 @@ export default class Ally extends Character {
     
     update(time, delta) {
         super.update(time, delta);
-        // return update if entity destroyed.
+        
         if (!this.body) 
             return;
         
+
     }
 }

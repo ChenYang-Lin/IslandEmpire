@@ -124,6 +124,9 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
 
         scene.load.atlas("raft", "assets/entity/raft.png", "assets/entity/raft_atlas.json")
         scene.load.animation("raft_anim", "assets/entity/raft_anim.json");
+
+        scene.load.atlas("shark", "assets/entity/shark.png", "assets/entity/shark_atlas.json")
+        scene.load.animation("shark_anim", "assets/entity/shark_anim.json");
     }
 
     setPosition(x, y) {

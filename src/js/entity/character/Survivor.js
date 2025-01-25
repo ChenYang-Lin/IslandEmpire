@@ -6,6 +6,8 @@ export default class Survivor extends Ally {
     constructor(scene, name, x, y, texture, frame) {
         super(scene, name, x, y, texture, frame);
 
+        this.speed = 48;
+
         this.scene.characterManager.characterGroup.add(this);
     }
 

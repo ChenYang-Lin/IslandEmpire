@@ -8,7 +8,7 @@ export default class Soldier extends Ally {
 
         super (scene, "soldier", x, y, "soldier", "soldier_idle_left");
 
-        this.speed = 32;
+        this.speed = 48;
         
         this.timer = 0;
         // this.action = "idle";
@@ -85,7 +85,7 @@ export default class Soldier extends Ally {
 
     }
 
-
+    
 
 
     update(time, delta) {
@@ -94,6 +94,13 @@ export default class Soldier extends Ally {
         // return update if entity destroyed.
         if (!this.body) 
             return;
+
+
+
+        if (this.scene.player.characterOnControl === this) 
+            return;
+
+
         
         
         

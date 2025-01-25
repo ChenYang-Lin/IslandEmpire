@@ -1,0 +1,100 @@
+{
+    "anims": [
+        {
+            "key": "shark_down",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "shark",
+                    "frame": "shark_down_0"
+                },
+                {
+                    "key": "shark",
+                    "frame": "shark_down_1"
+                },
+                {
+                    "key": "shark",
+                    "frame": "shark_down_2"
+                },
+                {
+                    "key": "shark",
+                    "frame": "shark_down_3"
+                }
+            ]
+        },
+        {
+            "key": "shark_up",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "shark",
+                    "frame": "shark_up_0"
+                },
+                {
+                    "key": "shark",
+                    "frame": "shark_up_1"
+                },
+                {
+                    "key": "shark",
+                    "frame": "shark_up_2"
+                },
+                {
+                    "key": "shark",
+                    "frame": "shark_up_3"
+                }
+            ]
+        },
+        {
+            "key": "shark_right",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "shark",
+                    "frame": "shark_right_0"
+                },
+                {
+                    "key": "shark",
+                    "frame": "shark_right_1"
+                },
+                {
+                    "key": "shark",
+                    "frame": "shark_right_2"
+                },
+                {
+                    "key": "shark",
+                    "frame": "shark_right_3"
+                }
+            ]
+        },
+        {
+            "key": "shark_left",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "shark",
+                    "frame": "shark_left_0"
+                },
+                {
+                    "key": "shark",
+                    "frame": "shark_left_1"
+                },
+                {
+                    "key": "shark",
+                    "frame": "shark_left_2"
+                },
+                {
+                    "key": "shark",
+                    "frame": "shark_left_3"
+                }
+            ]
+        }
+    ]
+}

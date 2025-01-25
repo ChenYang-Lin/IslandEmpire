@@ -6,6 +6,7 @@ const ENTITY_DATA = {
     piglet:   { texture: "animal",   frame: "piglet_idle_down",   imageWidth: 1, imageHeight: 1, colliderWidth: 1,   colliderHeight: 1,   offsetX: 0,    offsetY: 0,   hpBarOffsetY: 48, },
     goblin:   { texture: "goblin",   frame: "goblin_idle_down",   imageWidth: 6, imageHeight: 6, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 2.75, offsetY: 3.5, hpBarOffsetY: 48, },
     raft:     { texture: "raft",     frame: "raft_move_right_0",  imageWidth: 5, imageHeight: 5, colliderWidth: 1,   colliderHeight: 1,   offsetX: 2,    offsetY: 2, },  
+    shark:    { texture: "shark",    frame: "shark_right_0",      imageWidth: 4, imageHeight: 4, colliderWidth: 1,   colliderHeight: 1,   offsetX: 1.8,  offsetY: 1.5, },  
 
     // Resources
     tree:  {category: "resource", type: "multiple", texture: "resource", frame: "tree_whole", collidable: true, imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, maxHP: 1, drops: [ "wood", "wood", ], },
