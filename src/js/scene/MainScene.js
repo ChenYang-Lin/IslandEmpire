@@ -118,6 +118,7 @@ export default class MainScene extends Phaser.Scene {
         this.characterManager.destroySelf();
         this.piglet?.destroySelf();
         this.raft?.destroySelf();
+        this.shark?.destroySelf();
 
         this.civilian?.destroySelf();
     }

@@ -80,12 +80,19 @@ export default class InputController {
 
 
         this.cursor = this.scene.input.keyboard.createCursorKeys();
+        
+        this.key1 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE);
+        this.key2 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
+
+        this.keyW = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+        this.keyA = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        this.keyS = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+        this.keyD = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+
         this.keyJ = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.J);
         this.keyP = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
         this.keyX = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
 
-        this.key1 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE);
-        this.key2 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
 
         
         this.createJoyStick();
@@ -219,25 +226,25 @@ export default class InputController {
         this.blockedCounter = 0;
         
 
-        if (this.cursor.up.isDown || this.joyUp) {
+        if (this.cursor.up.isDown || this.keyW.isDown || this.joyUp) {
             velocity.y -= 1;
             this.direction = "up";
             directions.push("up");
         }
         
-        if (this.cursor.down.isDown || this.joyDown) {
+        if (this.cursor.down.isDown || this.keyS.isDown || this.joyDown) {
             velocity.y += 1;
             this.direction = "down";
             directions.push("down");
         }
 
-        if (this.cursor.right.isDown || this.joyRight) {
+        if (this.cursor.right.isDown || this.keyD.isDown || this.joyRight) {
             velocity.x += 1;
             this.direction = "right";
             directions.push("right");
         }
         
-        if (this.cursor.left.isDown || this.joyLeft) {
+        if (this.cursor.left.isDown || this.keyA.isDown || this.joyLeft) {
             velocity.x -= 1;
             this.direction = "left";
             directions.push("left");
@@ -360,13 +367,13 @@ export default class InputController {
 
 
         if (this.key1.isDown) {
-            
             this.scene.player.characterOnControl = this.scene.player.survivor;
+            this.scene.camera.startFollow(this.player.characterOnControl);
         }
 
         if (this.key2.isDown) {
             this.scene.player.characterOnControl = this.scene.characterManager.characterList["soldier"];
-            this.scene.player.characterOnControl.action = ""
+            this.scene.camera.startFollow(this.player.characterOnControl);
         }
         
     }

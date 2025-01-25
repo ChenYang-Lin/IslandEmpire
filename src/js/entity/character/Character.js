@@ -5,8 +5,8 @@ import Hitbox from "./Hitbox.js";
 
 
 export default class Character extends Entity {
-    constructor(scene, name, x, y, texture, frame, entityData, isAlly) {
-        super(scene, name, x, y, texture, frame, entityData);
+    constructor(scene, name, x, y, texture, frame, isAlly) {
+        super(scene, name, x, y, texture, frame);
 
         this.timer = 0;
         this.speed = 64;

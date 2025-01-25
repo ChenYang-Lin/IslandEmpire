@@ -16,7 +16,11 @@ export default class Shark extends Entity {
         }
     }
 
+
     update() {
+        // return update if entity destroyed.
+        if (!this.body) 
+            return;
         
         let velocity = new Phaser.Math.Vector2();
         // velocity.x = 1;

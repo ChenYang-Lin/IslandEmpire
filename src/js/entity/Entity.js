@@ -1,4 +1,4 @@
-import { ENTITY_DATA, INTERACTION_HITBOX_DATA, TRANSPARENT_HITBOX_DATA } from "../GameData.js";
+import { ENTITY_DATA, ENTITY_SPRITE_TABLE, INTERACTION_HITBOX_DATA, TRANSPARENT_HITBOX_DATA } from "../GameData.js";
 import State from "./character/Stats.js";
 
 
@@ -8,37 +8,31 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
 
         super(scene, x, y, texture, frame);
 
+        this.scene.add.existing(this);
+        this.scene.physics.add.existing(this);
         
         this.name = name;
         
         this.entityData = ENTITY_DATA[this.name];
-        this.isAlly = isAlly;
+        this.entitySpriteData = ENTITY_SPRITE_TABLE[this.name];
+
+        console.log(this.name)
+
+        this.entityTexture  = this.entitySpriteData?.texture ?? texture;
+        this.entityFrame    = this.entitySpriteData?.frame ?? frame;
 
 
-        this.entityTexture = this?.entityData?.texture ?? texture;
-        this.entityFrame = this?.entityData?.frame ?? frame;
-
-        // console.log(this.entityData)
+        this.collidable     = this.entityData?.collidable ?? false;
+        this.imageWidth     = this.entityData?.imageWidth ?? 1;
+        this.imageHeight    = this.entityData?.imageHeight ?? 1;
+        this.colliderWidth  = this.entityData?.colliderWidth ?? 1;
+        this.colliderHeight = this.entityData?.colliderHeight ?? 1;
+        this.offsetX        = this.entityData?.offsetX ?? 0;
+        this.offsetY        = this.entityData?.offsetY ?? 0;
         
-        this.scene.add.existing(this);
-        this.scene.physics.add.existing(this);
-
-        if (!this.entityData) {
-            this.entityData = ENTITY_DATA[this.name]
-        }
-
-        // console.log(this.entityData)
-
-        this.collidable = this?.entityData?.collidable ?? false;
-        this.imageWidth = this?.entityData?.imageWidth ?? 1;
-        this.imageHeight = this?.entityData?.imageHeight ?? 1;
-        this.colliderWidth = this?.entityData?.colliderWidth ?? 1;
-        this.colliderHeight = this?.entityData?.colliderHeight ?? 1;
-        this.offsetX = this?.entityData?.offsetX ?? 0;
-        this.offsetY = this?.entityData?.offsetY ?? 0;
-        this.animation = this?.entityData?.animation;
-        this.hpBarOffsetY = this?.entityData?.hpBarOffsetY ?? 20;
-        this.hpBarWidth = this?.entityData?.hpBarWidth ?? 32;
+        this.animation      = this?.entityData?.animation;
+        this.hpBarOffsetY   = this?.entityData?.hpBarOffsetY ?? 20;
+        this.hpBarWidth     = this?.entityData?.hpBarWidth ?? 32;
 
 
 
