@@ -148,12 +148,13 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
     handleDeselect() {
         this.scene.inputController?.selectedEntityREXOutline?.remove(this);
         this.scene.inputController.selectedEntity = null;
-        // this.hideGeneralInfoHUD();
+        this.hideGeneralInfoHUD();
     }
 
     showGeneralInfoHUD() {
         if (!this.body) 
             return;
+
 
         // console.log(this.name, this.entityTexture, this.entityFrame);
         let name = document.getElementById("entity-general-info-name");
@@ -163,30 +164,30 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         // img.src = this.scene.sys.game.textures.getBase64("item", "potatoe");
         img.src = this.scene.sys.game.textures.getBase64(this.entityTexture, this.entityFrame);
 
+        
+        this.entityGeneralInfoList = document.getElementById("entity-general-info-list");
+        this.entityGeneralInfoList.innerHTML = ``;
+
         if (this.stats) {
-            let hpDiv = document.getElementById("entity-general-info-hp");
-            // hp.innerHTML = `HP: ${this.stats.hp}`
-
-            hpDiv.innerHTML = ``;
-
+            let hpDiv = document.createElement("div");
+            hpDiv.setAttribute("id", "entity-general-info-hp");
 
             let hpBoxDiv = document.createElement("div");
             hpBoxDiv.setAttribute("id", "entity-general-info-hp-box");
             let hpPercentageDiv = document.createElement("div");
             hpPercentageDiv.setAttribute("id", "entity-general-info-hp-percentage");
-
             
             let hpBarDiv = document.createElement("div");
             hpBarDiv.setAttribute("id", "entity-general-info-hp-bar");
-            hpBarDiv.appendChild(hpBoxDiv);
-            hpBarDiv.appendChild(hpPercentageDiv);
-
-            hpDiv.appendChild(hpBarDiv);
-
 
             this.hpPercentage = this.stats.hp / this.stats.maxHp;
-
             hpPercentageDiv.style.width = `calc(${this.hpPercentage * 100}% - 4px)`;
+
+            hpBarDiv.appendChild(hpBoxDiv);
+            hpBarDiv.appendChild(hpPercentageDiv);
+            hpDiv.appendChild(hpBarDiv);
+            this.entityGeneralInfoList.appendChild(hpDiv);
+
         }
 
 
@@ -195,11 +196,6 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
 
     hideGeneralInfoHUD() {
         this.scene.hud.hideEntityGeneralInfoHUD();
-        
-        let hp = document.getElementById("entity-general-info-hp");
-        let progress = document.getElementById("entity-general-info-progress");
-        hp.innerHTML = ``
-        progress.innerHTML = ``
     }
 
 

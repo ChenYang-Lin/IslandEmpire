@@ -106,30 +106,24 @@ export default class Crop extends Entity {
     showGeneralInfoHUD() {
         super.showGeneralInfoHUD();
         
-        let progress = document.getElementById("entity-general-info-progress");
-        progress.innerHTML = ``;
-
+        let progress = document.createElement("div");
+        progress.setAttribute("id", "entity-general-info-progress");
 
         let progressBoxDiv = document.createElement("div");
         progressBoxDiv.setAttribute("id", "entity-general-info-progress-box");
         let progressPercentageDiv = document.createElement("div");
         progressPercentageDiv.setAttribute("id", "entity-general-info-progress-percentage");
-
         
         let progressBarDiv = document.createElement("div");
         progressBarDiv.setAttribute("id", "entity-general-info-progress-bar");
         progressBarDiv.appendChild(progressBoxDiv);
         progressBarDiv.appendChild(progressPercentageDiv);
 
-        progress.appendChild(progressBarDiv);
-
-
         this.calculateCropProgress();
-
         progressPercentageDiv.style.width = `calc(${this.completionPercentage * 100}% - 4px)`;
-
         
-        
+        progress.appendChild(progressBarDiv);
+        this.entityGeneralInfoList.appendChild(progress); // htrml: "id", "entity-general-info-list"
     }
 
     update() {

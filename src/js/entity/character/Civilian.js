@@ -9,7 +9,7 @@ export default class Civilian extends Ally {
         this.speed = 32;
 
         this.storageBag = [];
-        this.storageBagCapacity = 3;
+        this.storageBagCapacity = 6;
 
 
         if (this.scene.currentMap === "island") {
@@ -29,18 +29,13 @@ export default class Civilian extends Ally {
     showGeneralInfoHUD() {
         super.showGeneralInfoHUD();
 
-        this.entityGeneralInfoList = document.getElementById("entity-general-info-list");
-        // this.entityGeneralInfoList.innerHTML = ``;
-
-        let storageBagContainer = document.getElementById("entity-storage-bag-container");
-        // let storageBagContainer = document.createElement("div");
-        // storageBagContainer.setAttribute("id", "entity-storage-bag-container");
-        storageBagContainer.innerHTML = ``;
+        
+        let storageBagContainer = document.createElement("div");
+        storageBagContainer.setAttribute("id", "entity-storage-bag-container");
         
         let storageBagList = document.createElement("div");
         storageBagList.setAttribute("id", "entity-storage-bag-list");
 
-        // for (let i = 0; i < this.storageBag.length; i++) {
         for (let i = 0; i < this.storageBagCapacity; i++) {
 
             let element = document.createElement("div");
@@ -58,10 +53,8 @@ export default class Civilian extends Ally {
             storageBagList.appendChild(element);
         }
 
-
-
         storageBagContainer.appendChild(storageBagList);
-        // this.entityGeneralInfoList.appendChild(storageBagContainer);
+        this.entityGeneralInfoList.appendChild(storageBagContainer); // htrml: "id", "entity-general-info-list"
     }
 
     attemptHarvestCrop() {
@@ -71,7 +64,6 @@ export default class Civilian extends Ally {
         let crop = this.scene.worldManager.growingCrops[`${this.onGrid.x},${this.onGrid.y}`]
         if (crop) {
             crop.onHarvest(this);
-            console.log(this.storageBag)
         }
     }
  
