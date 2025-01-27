@@ -20,6 +20,7 @@ export default class Animal extends Character {
         if (!this.body) 
             return;
         
+        this.depth += 10
         this.moveRandomly(time, delta);
     }
 }

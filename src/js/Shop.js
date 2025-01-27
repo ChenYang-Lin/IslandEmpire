@@ -125,7 +125,7 @@ export default class Shop {
 
         let shopQuantityConfirmBtn = document.getElementById("shop-quantity-confirm-btn");
         shopQuantityConfirmBtn.addEventListener("pointerdown", () => {
-            this.hud.inventory.addItem(SHOP_DATA[this.selectedItem].name, this.quantity);
+            this.scene.inventory.addItem(SHOP_DATA[this.selectedItem].name, this.quantity);
             this.closeQuantityWindow();
         })
 

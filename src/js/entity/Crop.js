@@ -1,5 +1,5 @@
 
-import { CROP_GROW_DATA } from "../GameData.js";
+import { CROP_GROW_DATA, INTERACTION_HITBOX_DATA } from "../GameData.js";
 import Entity from "./Entity.js";
 
 export default class Crop extends Entity {
@@ -73,9 +73,26 @@ export default class Crop extends Entity {
         this.progressBar?.destroy();
     }
 
+    onHarvest(harvester) {
+        if (!this.harvestable) {
+            return;
+        }
+        let collectableList = [];
+        INTERACTION_HITBOX_DATA[this.name].forEach((interactable) => {
+            if (interactable.type === "collectable") {
+                collectableList.push(interactable.name);
+            }
+        })
+        collectableList.forEach((collectable) => {
+            harvester.storageBag.push(collectable);
+        })
+        this.onDeath(harvester);
+    }
+
     onDeath(attacker) {
         delete this.scene.worldManager.growingCrops[`${this.onGrid.x},${this.onGrid.y}`]
-        delete this.scene.worldManager.map[`${this.onGrid.x},${this.onGrid.y}`].crop 
+        delete this.scene.worldManager.map[`${this.onGrid.x},${this.onGrid.y}`].crop;
+        delete this.scene.worldManager.saveMapToLocalStorage();
         this.destroyInteractionHitBox();
         super.onDeath(attacker);
     }

@@ -12,6 +12,10 @@ export default class Ally extends Character {
         
     }
 
+    showGeneralInfoHUD() {
+        super.showGeneralInfoHUD();
+    }
+
     destroySelf() {
         this.scene.collisionController.allyGroup.remove(this);
         super.destroySelf();

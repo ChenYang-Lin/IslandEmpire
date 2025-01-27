@@ -16,70 +16,19 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.entityData = ENTITY_DATA[this.name];
         this.entitySpriteData = ENTITY_SPRITE_TABLE[this.name];
 
-        console.log(this.name)
-
-        this.entityTexture  = this.entitySpriteData?.texture ?? texture;
-        this.entityFrame    = this.entitySpriteData?.frame ?? frame;
-
-
-        this.collidable     = this.entityData?.collidable ?? false;
-        this.imageWidth     = this.entityData?.imageWidth ?? 1;
-        this.imageHeight    = this.entityData?.imageHeight ?? 1;
-        this.colliderWidth  = this.entityData?.colliderWidth ?? 1;
-        this.colliderHeight = this.entityData?.colliderHeight ?? 1;
-        this.offsetX        = this.entityData?.offsetX ?? 0;
-        this.offsetY        = this.entityData?.offsetY ?? 0;
+        this.initSprite(x, y);
         
+
+
         this.animation      = this?.entityData?.animation;
         this.hpBarOffsetY   = this?.entityData?.hpBarOffsetY ?? 20;
         this.hpBarWidth     = this?.entityData?.hpBarWidth ?? 32;
 
-
-
-
-        // Default stats
-
-        this.adjustX = 0;
-        if (this.colliderWidth % 2 === 0) {
-            this.adjustX = 16;
-        }
-        this.adjustY = 0;
-        if (this.colliderHeight % 2 === 0) {
-            this.adjustY = 16;
-        }
-        
-
-        this.setPosition(x, y);
-        
-        this.setSize(this.colliderWidth * 32, this.colliderHeight * 32);
-        this.setOffset(this.offsetX * 32, this.offsetY * 32);
-        
-        this.depth = this.position.y;
-        if (this?.entityData?.offsetDepth) {
-            this.depth += this.entityData.offsetDepth;
-        }
-
         if (this.animation) {
-            // console.log(this.animation)
             this.anims.play(this.animation, true );  
         }
 
-        // console.log(this.name, this.collidable)
-        if (this.collidable && (this.colliderWidth > 1 || this.colliderHeight > 1)) {
-            let halfWidth = (this.colliderWidth - 1) / 2;
-            let halfHeight = (this.colliderHeight - 1) / 2;
 
-            let left = this.onGrid.x - Math.floor(halfWidth);
-            let right = this.onGrid.x + Math.ceil(halfWidth);
-            let top = this.onGrid.y - Math.floor(halfHeight);
-            let bottom = this.onGrid.y + Math.ceil(halfHeight);
-            
-            for (let x = left; x <= right; x++) {
-                for (let y = top; y <= bottom; y++) {
-                    this.scene.worldManager.map[`${x},${y}`].entities.push({ collidable: true });
-                }
-            }
-        } 
 
         // Selected
         this.setInteractive(this.scene.input.makePixelPerfect());
@@ -101,6 +50,9 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         scene.load.atlas("player_fishing", "assets/player_fishing.png", "assets/player_fishing_atlas.json");
         scene.load.animation("player_fishing_anim", "assets/player_fishing_anim.json");
         
+        scene.load.atlas("survivor", "assets/character/survivor.png", "assets/character/survivor_atlas.json")
+        scene.load.animation("survivor_anim", "assets/character/survivor_anim.json");
+
         scene.load.atlas("civilian", "assets/civilian.png", "assets/civilian_atlas.json");
         scene.load.animation("civilian_anim", "assets/civilian_anim.json");
 
@@ -121,6 +73,46 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
 
         scene.load.atlas("shark", "assets/entity/shark.png", "assets/entity/shark_atlas.json")
         scene.load.animation("shark_anim", "assets/entity/shark_anim.json");
+    }
+
+    initSprite(x, y) {
+        this.entityTexture  = this.entitySpriteData?.texture ?? texture;
+        this.entityFrame    = this.entitySpriteData?.frame ?? frame;
+
+        this.collidable     = this.entitySpriteData?.collidable ?? false;
+        this.imageWidth     = this.entitySpriteData?.imageWidth ?? 1;
+        this.imageHeight    = this.entitySpriteData?.imageHeight ?? 1;
+        this.colliderWidth  = this.entitySpriteData?.colliderWidth ?? 1;
+        this.colliderHeight = this.entitySpriteData?.colliderHeight ?? 1;
+        this.offsetX        = this.entitySpriteData?.offsetX ?? 0;
+        this.offsetY        = this.entitySpriteData?.offsetY ?? 0;
+        this.offsetDepth    = this.entitySpriteData?.offsetDepth ?? 0;
+
+        this.adjustX = (this.colliderWidth  % 2 === 0) ? 16 : 0;
+        this.adjustY = (this.colliderHeight % 2 === 0) ? 16 : 0;
+
+        this.setPosition(x, y);
+        this.depth = this.position.y + this.offsetDepth;
+
+        this.setSize(this.colliderWidth * 32, this.colliderHeight * 32);
+        this.setOffset(this.offsetX * 32, this.offsetY * 32);
+
+        // update map collidable if current entity take up space greather than 1 x 1 unit
+        if (this.collidable && (this.colliderWidth > 1 || this.colliderHeight > 1)) {
+            let halfWidth = (this.colliderWidth - 1) / 2;
+            let halfHeight = (this.colliderHeight - 1) / 2;
+
+            let left = this.onGrid.x - Math.floor(halfWidth);
+            let right = this.onGrid.x + Math.ceil(halfWidth);
+            let top = this.onGrid.y - Math.floor(halfHeight);
+            let bottom = this.onGrid.y + Math.ceil(halfHeight);
+            
+            for (let x = left; x <= right; x++) {
+                for (let y = top; y <= bottom; y++) {
+                    this.scene.worldManager.map[`${x},${y}`].entities.push({ collidable: true });
+                }
+            }
+        } 
     }
 
     setPosition(x, y) {

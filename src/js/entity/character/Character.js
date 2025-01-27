@@ -125,6 +125,9 @@ export default class Character extends Entity {
         }
     }
 
+    showGeneralInfoHUD() {
+        super.showGeneralInfoHUD();
+    }
     
     renderHealthBar() {
         if (!this.body) 

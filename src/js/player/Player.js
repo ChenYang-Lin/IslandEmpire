@@ -6,7 +6,7 @@ export default class Player {
     constructor(scene) {
         this.scene = scene;
 
-        this.survivor = new Survivor(this.scene, "player", 0, 0, "player", "player_idle_left");
+        this.survivor = new Survivor(this.scene, "survivor", 0, 0, "survivor", "survivor_idle_left");
         this.characterOnControl = this.survivor;
 
         this.autoControl = false;
