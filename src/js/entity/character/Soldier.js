@@ -8,7 +8,7 @@ export default class Soldier extends Ally {
 
         super (scene, "soldier", x, y, "soldier", "soldier_idle_left");
 
-        this.speed = 48;
+        this.speed = 32;
         
         this.timer = 0;
         // this.action = "idle";

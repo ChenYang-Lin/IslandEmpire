@@ -16,7 +16,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.entityData = ENTITY_DATA[this.name];
         this.entitySpriteData = ENTITY_SPRITE_TABLE[this.name];
 
-        this.initSprite(x, y);
+        this.initSprite(x, y, texture, frame);
         
 
 
@@ -75,7 +75,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         scene.load.animation("shark_anim", "assets/entity/shark_anim.json");
     }
 
-    initSprite(x, y) {
+    initSprite(x, y, texture, frame) {
         this.entityTexture  = this.entitySpriteData?.texture ?? texture;
         this.entityFrame    = this.entitySpriteData?.frame ?? frame;
 
