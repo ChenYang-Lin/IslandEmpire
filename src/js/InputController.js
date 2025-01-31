@@ -84,6 +84,7 @@ export default class InputController {
         this.key1 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE);
         this.key2 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
         this.key3 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.THREE);
+        this.key9 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NINE);
 
         this.keyW = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         this.keyA = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
@@ -327,6 +328,18 @@ export default class InputController {
             this.scene.camera.startFollow(this.player.characterOnControl);
             return;
 
+        }
+
+        if (this.key9.isDown) {
+            // make sure only execute one time when button down.
+            if (!this.key9Down) {
+                this.scene.characterManager.obtainedNewCharacter("civilian"); 
+            }
+            this.key9Down = true;
+
+        }
+        if (this.key9.isUp) {
+            this.key9Down = false;
         }
         
     }
