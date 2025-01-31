@@ -83,6 +83,7 @@ export default class InputController {
         
         this.key1 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE);
         this.key2 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
+        this.key3 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.THREE);
 
         this.keyW = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         this.keyA = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
@@ -305,13 +306,27 @@ export default class InputController {
 
 
         if (this.key1.isDown) {
-            this.scene.player.characterOnControl = this.scene.player.survivor;
+            let name = this.scene.characterManager.party[0];
+            let characterObject = this.scene.characterManager.getCharacterObject(name);
+            this.scene.player.characterOnControl = characterObject;
             this.scene.camera.startFollow(this.player.characterOnControl);
         }
 
         if (this.key2.isDown) {
-            this.scene.player.characterOnControl = this.scene.characterManager.characterList["soldier"];
+            let name = this.scene.characterManager.party[1];
+            let characterObject = this.scene.characterManager.getCharacterObject(name);
+            this.scene.player.characterOnControl = characterObject;
             this.scene.camera.startFollow(this.player.characterOnControl);
+            return;
+
+        }
+        if (this.key3.isDown) {
+            let name = this.scene.characterManager.party[2];
+            let characterObject = this.scene.characterManager.getCharacterObject(name);
+            this.scene.player.characterOnControl = characterObject;
+            this.scene.camera.startFollow(this.player.characterOnControl);
+            return;
+
         }
         
     }

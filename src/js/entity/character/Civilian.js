@@ -80,6 +80,9 @@ export default class Civilian extends Ally {
         if (!this.body) 
             return;
         
+        if (this.scene.player.characterOnControl === this) 
+            return;
+        
         this.attemptHarvestCrop();
         
         this.moveRandomly(time, delta);

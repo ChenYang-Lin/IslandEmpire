@@ -19,6 +19,7 @@
 }
 
 #entity-general-info-heading {
+    position: absolute;
     padding: 10px;
     color: white;
     background-color: rgb(0, 0, 0);

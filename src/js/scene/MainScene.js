@@ -19,7 +19,7 @@ export default class MainScene extends Phaser.Scene {
         super({ key: "MainScene" });
 
         this.currentMap;
-        this.version = "0.31ast";
+        this.version = "0.4.0";
     }
 
     init(data) {
@@ -60,6 +60,9 @@ export default class MainScene extends Phaser.Scene {
         this.player = new Player(this);
         this.inputController = new InputController(this, this.player);
         this.hud = new HUD(this);
+
+        this.characterManager.init();
+        this.player.init();
         this.collisionController.init();
         this.worldManager.initWorld(this.currentMap);
 

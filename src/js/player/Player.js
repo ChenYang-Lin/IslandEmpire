@@ -6,19 +6,12 @@ export default class Player {
     constructor(scene) {
         this.scene = scene;
 
-        this.survivor = new Survivor(this.scene, "survivor", 0, 0, "survivor", "survivor_idle_left");
-        this.characterOnControl = this.survivor;
-
         this.autoControl = false;
         // this.scene.collisionController.player = this;
 
-        this.nearbyInteractableSensor = this.scene.physics.add.image(this.characterOnControl.position.x - 16, this.characterOnControl.position.y - 16);
-        this.nearbyInteractableSensor.body.setCircle(15, 0, 0);
-        this.touchingNearbyObjects = [];
         
         // let path = this.scene.worldManager.astar.findPath(this.scene.worldManager.map, {tx: this.onGrid.x, ty: this.onGrid.y}, {tx: -2, ty: 0}, this.scene)
         // console.log(path)
-
 
         this.healthBarCurrent = document.getElementById("health-bar-current");
         this.healthBarValue = document.getElementById("health-bar-value");
@@ -26,6 +19,15 @@ export default class Player {
         this.hungerBarValue = document.getElementById("hunger-bar-value");
         this.thirstBarCurrent = document.getElementById("thirst-bar-current");
         this.thirstBarValue = document.getElementById("thirst-bar-value");
+    }
+
+    init() {
+        let survivor = this.scene.characterManager.getCharacterObject("survivor");
+        this.characterOnControl = survivor;
+
+        this.nearbyInteractableSensor = this.scene.physics.add.image(this.characterOnControl.position.x - 16, this.characterOnControl.position.y - 16);
+        this.nearbyInteractableSensor.body.setCircle(15, 0, 0);
+        this.touchingNearbyObjects = [];
     }
 
     renderStatsDisplay() {

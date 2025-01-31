@@ -89,7 +89,7 @@ const ENTITY_SPRITE_TABLE  = {
     survivor: { texture: "survivor", frame: "player_idle_right",  imageWidth: 6, imageHeight: 6, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 2.75, offsetY: 3.5, },
     civilian: { texture: "civilian", frame: "civilian_idle_down", imageWidth: 6, imageHeight: 6, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 2.75, offsetY: 3.5, },
     soldier:  { texture: "soldier",  frame: "soldier_idle_down",  imageWidth: 4, imageHeight: 4, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 1.75, offsetY: 2.5, },
-    piglet:   { texture: "animal",   frame: "piglet_idle_down",   imageWidth: 1, imageHeight: 1, colliderWidth: 1,   colliderHeight: 1,   offsetX: 0.25,    offsetY: 0.5,   },
+    piglet:   { texture: "animal",   frame: "piglet_idle_down",   imageWidth: 1, imageHeight: 1, colliderWidth: 1,   colliderHeight: 1,   offsetX: 0.25, offsetY: 0.5,   },
     goblin:   { texture: "goblin",   frame: "goblin_idle_down",   imageWidth: 6, imageHeight: 6, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 2.75, offsetY: 3.5, },
     raft:     { texture: "raft",     frame: "raft_move_right_0",  imageWidth: 5, imageHeight: 5, colliderWidth: 1,   colliderHeight: 1,   offsetX: 2,    offsetY: 2,   },
     shark:    { texture: "shark",    frame: "shark_right_0",      imageWidth: 4, imageHeight: 4, colliderWidth: 1,   colliderHeight: 1,   offsetX: 1.8,  offsetY: 1.5, },
@@ -164,7 +164,23 @@ const ENTITY_SPRITE_TABLE  = {
 }
 
 const CHARACTER_ENTITY_TABLE = {
-    character: { type: "character",  },
+    character: { type: "character",  maxHP: 100, },
+}
+
+const RESOURCE_TABLE = {
+
+}
+
+const CRAFTABLE_INGREDIENTS_TABLE = {
+    water_collector: { wood: 5, fiber: 3, },
+}
+
+const CROP_TABLE = {
+
+}
+
+const ITEM_TABLE = {
+    
 }
 
 const ENTITY_DATA = {
