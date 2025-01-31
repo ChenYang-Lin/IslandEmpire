@@ -16,7 +16,7 @@ export default class Character extends Entity {
         this.swordLength = 32;
 
         this.action = "rest";
-        
+        this.body.setCircle(8)
         
         this.animationController = new AnimationController(this.scene, this);
         this.fishing = new Fishing(this.scene, this);

@@ -101,6 +101,7 @@ export default class WorldCell {
         landSprite = landSprite ?? "land_all";
 
         let land = this.worldManager.scene.add.sprite(this.x, this.y, "land", landSprite);
+        land.setScale(2);
         this.worldManager.landSpriteGroup[`${this.cellX},${this.cellY}`]?.destroy();
         this.worldManager.landSpriteGroup[`${this.cellX},${this.cellY}`] = land;
         land.depth = this.y - 10000;
@@ -138,6 +139,7 @@ export default class WorldCell {
         } 
 
         let hoedLandSprite = this.worldManager.scene.add.sprite(this.x, this.y, "land", hoedLandSpriteName);
+        hoedLandSprite.setScale(2);
         hoedLandSprite.setDepth(hoedLandSprite.y - 1000);
         
         this.worldManager.hoedLandSpriteGroup[`${this.cellX},${this.cellY}`] = hoedLandSprite;

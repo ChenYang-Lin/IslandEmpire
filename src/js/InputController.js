@@ -110,6 +110,7 @@ export default class InputController {
             externalStrokeColor: "#9C9898",
             autoReturnToCenter: 1,
         }, (stickData) => {
+            this.stickData = stickData;
             this.joyLeft = false;
             this.joyRight = false;
             this.joyUp = false;
@@ -170,108 +171,45 @@ export default class InputController {
         // if (this.player.autoControl) {
         //     return;
         // }
-        // "blocked/glitch helper slide code" 
-        if (this.blockedDirections) {
-            if (this.blockedCounter > 0) {
-                let velocity = new Phaser.Math.Vector2();
-
-                if (this.blockedDirections.includes("left") && this.blockedDirections.includes("up")) {
-                    
-                    if (this.blockedCounter <= 2) {
-                        velocity.x = 0;
-                        velocity.y = -2;
-                    } else {
-                        velocity.x = -2;
-                        velocity.y = 0;
-                    }
-                } else if (this.blockedDirections.includes("up") && this.blockedDirections.includes("right")) {
-                    if (this.blockedCounter <= 2) {
-                        velocity.x = 2;
-                        velocity.y = 0
-                    } else {
-                        velocity.x = -0;
-                        velocity.y = -2;
-                    }
-                } else if (this.blockedDirections.includes("right") && this.blockedDirections.includes("down")) {
-                    if (this.blockedCounter <= 2) {
-                        velocity.x = -0;
-                        velocity.y = 2
-                    } else {
-                        velocity.x = 2;
-                        velocity.y = -0;
-                    }
-                } else if (this.blockedDirections.includes("down") && this.blockedDirections.includes("left")) {
-                    if (this.blockedCounter <= 2) {
-                        velocity.x = -2;
-                        velocity.y = -0;
-                    } else {
-                        velocity.x = 0;
-                        velocity.y = 2;
-                    }
-                } 
-    
-                this.blockedCounter--;    
-                this.player.characterOnControl.animationController.move(velocity, this.direction);
-                return;
-            } else {
-                this.blockedDirections = null;
-            }
-            return;
-        } 
-
 
         let velocity = new Phaser.Math.Vector2();
-        let directions = [];
         this.direction;
-        this.blockedCounter = 0;
-        
 
         if (this.cursor.up.isDown || this.keyW.isDown || this.joyUp) {
             velocity.y -= 1;
             this.direction = "up";
-            directions.push("up");
         }
         
         if (this.cursor.down.isDown || this.keyS.isDown || this.joyDown) {
             velocity.y += 1;
             this.direction = "down";
-            directions.push("down");
         }
 
         if (this.cursor.right.isDown || this.keyD.isDown || this.joyRight) {
             velocity.x += 1;
             this.direction = "right";
-            directions.push("right");
         }
         
         if (this.cursor.left.isDown || this.keyA.isDown || this.joyLeft) {
             velocity.x -= 1;
             this.direction = "left";
-            directions.push("left");
         }
 
-
-        // give some slide to velocity when player moving the character but blocked by some obstacles
-        if (this.scene.player.characterOnControl.body.velocity.x === 0 && this.scene.player.characterOnControl.body.velocity.y === 0 && this.moveCommand)  { // Moving key down but character not move
-
-            if (directions.length === 2 && JSON.stringify(this.prevDirections) == JSON.stringify(directions)) { // player holding same input 
-                    this.blockedDirections = directions;
-                    this.blockedCounter = 4; // "blocked helper slide code" run two time and stop
-                
-            }
-
-        } 
-        
-        this.prevDirections = directions;
-
-        this.moveCommand = true;
-        if (velocity.x === 0 && velocity.y === 0) {
-            this.moveCommand = false;
-        } 
-
         velocity.normalize();
-        this.player.characterOnControl.animationController.move(velocity, this.direction);
 
+        if (this.stickData && this.stickData.x && this.stickData.y) {
+            let joystickX = Number(this.stickData.x) / 100;
+            let joystickY = Number(this.stickData.y) / 100 * -1;
+
+            if (joystickX !== 0 && joystickY !== 0) {
+                let angleInRadians = Math.atan2(joystickY, joystickX);
+    
+                velocity.x = Math.abs(joystickX) * Math.cos(angleInRadians);
+                velocity.y = Math.abs(joystickY) * Math.sin(angleInRadians);
+            }
+        } 
+
+        this.player.characterOnControl.animationController.move(velocity, this.direction);
     }
 
     playAttackAnim(type) {

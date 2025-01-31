@@ -4,42 +4,44 @@
 
 const ENTITY_TABLE = {
     // Character
-    survivor: { name: "survivor", },
-    civilian: { name: "civilian", },
-    soldier:  { name: "soldier",  },
-    piglet:   { name: "piglet",   },
-    goblin:   { name: "goblin",   },
-    raft:     { name: "raft",     },
-    shark:    { name: "shark",    },
+    survivor: { name: "survivor", type: "character", },
+    civilian: { name: "civilian", type: "character", },
+    soldier:  { name: "soldier",  type: "character", },
+    piglet:   { name: "piglet",   type: "character", },
+    goblin:   { name: "goblin",   type: "character", },
+    raft:     { name: "raft",     type: "character", },
+    shark:    { name: "shark",    type: "character", },
 
     // Resource
-    tree:     { name: "tree",     },
-    weeds:    { name: "weeds",    },
-    rock:     { name: "rock",     },
+    tree:     { name: "tree",  type: "resource"},
+    weeds:    { name: "weeds", type: "resource"},
+    rock:     { name: "rock",  type: "resource"},
 
     // Craftable
-    water_collector: { name: "water collector" },
-    house:           { name: "house" },
-    tent:            { name: "tent" },
-    home_0:          { name: "home 0" },
-    home_1:          { name: "home 1" },
-    bed:             { name: "bed" },
+    water_collector: { name: "water collector", type: "craftable", },
+    bed:             { name: "bed",             type: "craftable", },
+
+
+    house:           { name: "house",  type: "structure", },
+    tent:            { name: "tent",   type: "structure", },
+    home_0:          { name: "home 0", type: "structure", },
+    home_1:          { name: "home 1", type: "structure", },
 
     // Crop
-    potato_grow:      { name: "potato plant",      },
-    eggplant_grow:    { name: "eggplant plant",    },
-    cauliflower_grow: { name: "cauliflower plant", },
-    pumpkin_grow:     { name: "pumpkin plant",     },
-    corn_grow:        { name: "corn plant",        },
+    potato_grow:      { name: "potato plant",      type: "crop", },
+    eggplant_grow:    { name: "eggplant plant",    type: "crop", },
+    cauliflower_grow: { name: "cauliflower plant", type: "crop", },
+    pumpkin_grow:     { name: "pumpkin plant",     type: "crop", },
+    corn_grow:        { name: "corn plant",        type: "crop", },
 
     // Item - weapon
-    sword: { name: "sword", },
+    sword: { name: "sword", type: "item", },
 
 
     // Item - material - material
-    wood:  { name: "wood",  },
-    fiber: { name: "fiber", },
-    stone: { name: "stone", },
+    wood:  { name: "wood",  type: "item", },
+    fiber: { name: "fiber", type: "item", },
+    stone: { name: "stone", type: "item", },
 
     // Item - material - ingredient
     potato:        { name: "potato",        },
@@ -87,7 +89,7 @@ const ENTITY_SPRITE_TABLE  = {
     survivor: { texture: "survivor", frame: "player_idle_right",  imageWidth: 6, imageHeight: 6, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 2.75, offsetY: 3.5, },
     civilian: { texture: "civilian", frame: "civilian_idle_down", imageWidth: 6, imageHeight: 6, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 2.75, offsetY: 3.5, },
     soldier:  { texture: "soldier",  frame: "soldier_idle_down",  imageWidth: 4, imageHeight: 4, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 1.75, offsetY: 2.5, },
-    piglet:   { texture: "animal",   frame: "piglet_idle_down",   imageWidth: 1, imageHeight: 1, colliderWidth: 1,   colliderHeight: 1,   offsetX: 0,    offsetY: 0,   },
+    piglet:   { texture: "animal",   frame: "piglet_idle_down",   imageWidth: 1, imageHeight: 1, colliderWidth: 1,   colliderHeight: 1,   offsetX: 0.25,    offsetY: 0.5,   },
     goblin:   { texture: "goblin",   frame: "goblin_idle_down",   imageWidth: 6, imageHeight: 6, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 2.75, offsetY: 3.5, },
     raft:     { texture: "raft",     frame: "raft_move_right_0",  imageWidth: 5, imageHeight: 5, colliderWidth: 1,   colliderHeight: 1,   offsetX: 2,    offsetY: 2,   },
     shark:    { texture: "shark",    frame: "shark_right_0",      imageWidth: 4, imageHeight: 4, colliderWidth: 1,   colliderHeight: 1,   offsetX: 1.8,  offsetY: 1.5, },
@@ -159,6 +161,10 @@ const ENTITY_SPRITE_TABLE  = {
     "entrance_rug":    { imageWidth: 2, imageHeight: 1, colliderWidth: 2, colliderHeight: 1, offsetX: 0, offsetY: 0, offsetDepth: -100, },
     "portal-infinite-forest": { imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, texture: "portal", frame: "portal_0", animation: "portal", },
     "portal-island": { imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, texture: "portal", frame: "portal_0", animation: "portal",},
+}
+
+const CHARACTER_ENTITY_TABLE = {
+    character: { type: "character",  },
 }
 
 const ENTITY_DATA = {

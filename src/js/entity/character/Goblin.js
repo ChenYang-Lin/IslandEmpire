@@ -20,7 +20,7 @@ export default class Goblin extends Enemy {
         this.moveToLandX = 0;
         this.moveToLandY = 0;
 
-        this.target = "player"
+        this.target = "survivor"
         this.tempTargetsInAttackRange = []
         this.targetsInAttackRange = []
         
@@ -43,7 +43,7 @@ export default class Goblin extends Enemy {
                 this.targetsInAttackRange.push(target)
             }
             this.targetsInAttackRange.forEach((target) => {
-                if (target.name === "player") {
+                if (target.name === "survivor") {
                     this.animationController.swordAttack(); 
                     return;
                 }

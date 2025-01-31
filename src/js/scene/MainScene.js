@@ -67,7 +67,7 @@ export default class MainScene extends Phaser.Scene {
         this.camera.setZoom(2);
         // this.cameraDolly = new Phaser.Geom.Point(this.player.x, this.player.y);
         this.camera.startFollow(this.player.characterOnControl);
-        this.camera.setLerp(.2, .2);
+        // this.camera.setLerp(.2, .2);
         // this.camera.startFollow(this.cameraDolly);
         // this.camera.roundPixels = true;
 
@@ -85,7 +85,7 @@ export default class MainScene extends Phaser.Scene {
         // })
         
         if (this.currentMap === "island") {
-            // this.raft = new Raft(this, "raft", 0, 500, "raft", "raft_move_down_0");
+            this.raft = new Raft(this, "raft", 0, 500, "raft", "raft_move_down_0");
             this.piglet = new Animal(this, "piglet", 0, 0, "animal", "piglet_idle_left");
             this.shark = new Shark(this, "shark", 128, 128, "shark", "shark_left");
         }
