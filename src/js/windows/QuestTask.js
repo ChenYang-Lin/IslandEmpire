@@ -22,7 +22,7 @@ export default class QuestTask {
                 console.log("SPAWN ENTITY")
                 let x = parseInt(spawnEntity.location.split(",")[0], 10) * 32;
                 let y = parseInt(spawnEntity.location.split(",")[1], 10) * 32;
-                new Resource(this.questManager.scene, spawnEntity.name, x, y, "resource");
+                new Resource(this.questManager.scene, spawnEntity.name, spawnEntity.name, x, y, "resource");
             }
         })
 

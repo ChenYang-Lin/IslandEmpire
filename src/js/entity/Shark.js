@@ -2,8 +2,8 @@ import Entity from "./Entity.js";
 
 
 export default class Shark extends Entity {
-    constructor(scene, name, x, y, texture, frame) {
-        super(scene, name, x, y, texture, frame);
+    constructor(scene, name, id, x, y, texture, frame) {
+        super(scene, name, id, x, y, texture, frame);
 
         this.speed = 32;
         this.direction = "right";

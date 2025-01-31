@@ -38,18 +38,17 @@ export default class CharacterManager {
         let character;
         switch (characterData.name) {
             case "survivor":
-                character = new Survivor(this.scene, "survivor", 0, 0, "survivor", "survivor_idle_left");
+                character = new Survivor(this.scene, "survivor", characterData.id, 0, 0, "survivor", "survivor_idle_left");
                 break;
             case "soldier":
-                character = new Soldier(this.scene, "soldier", 0, -64, "soldier", "soldier_idle_left");
+                character = new Soldier(this.scene, "soldier", characterData.id, 0, -64, "soldier", "soldier_idle_left");
                 break;
             case "civilian":
-                character = new Civilian(this.scene, "civilian", 0, -64, "civilian", "civilian_idle_left");
+                character = new Civilian(this.scene, "civilian", characterData.id, 0, -64, "civilian", "civilian_idle_left");
                 break;
             default:
 
         }
-        console.log(character)
         this.characterGroup.add(character);
     }
 

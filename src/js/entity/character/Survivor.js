@@ -3,8 +3,8 @@ import State from "./Stats.js";
 
 
 export default class Survivor extends Ally {
-    constructor(scene, name, x, y, texture, frame) {
-        super(scene, name, x, y, texture, frame);
+    constructor(scene, name, id, x, y, texture, frame) {
+        super(scene, name, id, x, y, texture, frame);
 
         this.speed = 48;
 

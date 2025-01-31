@@ -4,8 +4,8 @@ import State from "./character/Stats.js";
 
 
 export default class Entity extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, name, x, y, texture, frame, isAlly) {
-
+    constructor(scene, name, id, x, y, texture, frame, isAlly) {
+        // console.log(name, id);
         super(scene, x, y, texture, frame);
 
         this.scene.add.existing(this);

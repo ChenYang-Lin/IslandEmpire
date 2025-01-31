@@ -161,22 +161,22 @@ export default class WorldCell {
             // console.log(entity)
             if (!ENTITY_DATA[entity.name].category) {
                 // console.log(entity.name)
-                let entityObject = new Entity(this.worldManager.scene, entity.name, this.x, this.y, "entity", entity.name)
+                let entityObject = new Entity(this.worldManager.scene, entity.name, entity.name, this.x, this.y, "entity", entity.name)
             }
             if (ENTITY_DATA[entity.name].category === "resource") {
-                let resource = new Resource(this.worldManager.scene, entity.name, this.x, this.y, "resource");
+                let resource = new Resource(this.worldManager.scene, entity.name, entity.name, this.x, this.y, "resource");
             }
             if (ENTITY_DATA[entity.name].category === "craftable"){
                 switch(ENTITY_DATA[entity.name].type) {
                     case "water_collector":
                         console.log("create Water Collector");
-                        let waterCollector = new WaterCollector(this.worldManager.scene, entity.name, this.x, this.y, "construction")
+                        let waterCollector = new WaterCollector(this.worldManager.scene, entity.name, entity.name, this.x, this.y, "construction")
                         break;
                     case "structure": 
-                        let structure = new Structure(this.worldManager.scene, entity.name, this.x, this.y, "construction")
+                        let structure = new Structure(this.worldManager.scene, entity.name, entity.name, this.x, this.y, "construction")
                         break;
                     case "decoration":
-                        let decoration = new Entity(this.worldManager.scene, entity.name, this.x, this.y, ENTITY_DATA[entity.name].texture, ENTITY_DATA[entity.name].frame)
+                        let decoration = new Entity(this.worldManager.scene, entity.name, entity.name, this.x, this.y, ENTITY_DATA[entity.name].texture, ENTITY_DATA[entity.name].frame)
                 }
             }
 

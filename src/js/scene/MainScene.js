@@ -88,9 +88,9 @@ export default class MainScene extends Phaser.Scene {
         // })
         
         if (this.currentMap === "island") {
-            this.raft = new Raft(this, "raft", 0, 500, "raft", "raft_move_down_0");
-            this.piglet = new Animal(this, "piglet", 0, 0, "animal", "piglet_idle_left");
-            this.shark = new Shark(this, "shark", 128, 128, "shark", "shark_left");
+            this.raft = new Raft(this, "raft", "raft", 0, 500, "raft", "raft_move_down_0");
+            this.piglet = new Animal(this, "piglet", "piglet", 0, 0, "animal", "piglet_idle_left");
+            this.shark = new Shark(this, "shark", "shark", 128, 128, "shark", "shark_left");
         }
     }
 

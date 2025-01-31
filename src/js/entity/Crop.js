@@ -3,10 +3,10 @@ import { CROP_GROW_DATA, INTERACTION_HITBOX_DATA } from "../GameData.js";
 import Entity from "./Entity.js";
 
 export default class Crop extends Entity {
-    constructor(scene, name, x, y, sowingTime) {
+    constructor(scene, name, id, x, y, sowingTime) {
         let phase = (Math.random() < 0.5) ? "_0" : "_0_alt"; // randomly choose two seed image;
         let frame = name + phase;
-        super(scene, name, x, y, "crops_grow", name + "_0")
+        super(scene, name, id, x, y, "crops_grow", name + "_0")
         
         this.name = name;
         console.log(this.name)

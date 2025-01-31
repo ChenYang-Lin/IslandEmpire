@@ -2,10 +2,10 @@ import Entity from "./Entity.js";
 
 
 export default class WaterCollector extends Entity {
-    constructor(scene, x, y, texture, name) {
+    constructor(scene, x, y, id, texture, name) {
         
         // scene, x, y, name, texture, frame
-        super(scene, name, x, y, texture, name, );
+        super(scene, name, id, x, y, texture, name, );
 
         this.name = name;
 

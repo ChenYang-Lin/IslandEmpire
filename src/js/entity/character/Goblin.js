@@ -3,10 +3,10 @@ import Enemy from "./Enemy.js";
 
 
 export default class Goblin extends Enemy {
-    constructor(scene, name, x, y, texture, frame) {
+    constructor(scene, name, id, x, y, texture, frame) {
         const entityData = ENTITY_DATA[name];
         // scene, x, y, name, texture, frame
-        super(scene, "goblin", x, y, "goblin", "goblin_idle_left");
+        super(scene, "goblin", id, x, y, "goblin", "goblin_idle_left");
 
         
         this.scene.characterManager.characterGroup.add(this);

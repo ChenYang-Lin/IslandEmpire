@@ -2,9 +2,9 @@ import Character from "./Character.js";
 
 
 export default class Ally extends Character {
-    constructor(scene, name, x, y, texture, frame) {
+    constructor(scene, name, id, x, y, texture, frame) {
         let isAlly = true;
-        super(scene, name, x, y, texture, frame, isAlly);
+        super(scene, name, id, x, y, texture, frame, isAlly);
 
 
         this.scene.collisionController.allyGroup.add(this);

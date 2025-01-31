@@ -4,9 +4,9 @@ import Ally from "./Ally.js";
 
 
 export default class Soldier extends Ally {
-    constructor(scene, name, x, y, texture, frame) {
+    constructor(scene, name, id, x, y, texture, frame) {
 
-        super (scene, "soldier", x, y, "soldier", "soldier_idle_left");
+        super (scene, "soldier", id, x, y, "soldier", "soldier_idle_left");
 
         this.speed = 32;
         
