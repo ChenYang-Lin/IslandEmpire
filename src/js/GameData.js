@@ -4,13 +4,13 @@
 
 const ENTITY_TABLE = {
     // Character
-    survivor: { name: "survivor", type: "character", },
-    civilian: { name: "civilian", type: "character", },
-    soldier:  { name: "soldier",  type: "character", },
-    piglet:   { name: "piglet",   type: "character", },
-    goblin:   { name: "goblin",   type: "character", },
-    raft:     { name: "raft",     type: "character", },
-    shark:    { name: "shark",    type: "character", },
+    survivor: { name: "survivor", type: "character",  },
+    civilian: { name: "civilian", type: "character",  },
+    soldier:  { name: "soldier",  type: "character",  },
+    piglet:   { name: "piglet",   type: "character",  },
+    goblin:   { name: "goblin",   type: "character",  },
+    raft:     { name: "raft",     type: "character",  },
+    shark:    { name: "shark",    type: "character",  },
 
     // Resource
     tree:     { name: "tree",  type: "resource"},
@@ -163,9 +163,24 @@ const ENTITY_SPRITE_TABLE  = {
     "portal-island": { imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, texture: "portal", frame: "portal_0", animation: "portal",},
 }
 
-const CHARACTER_ENTITY_TABLE = {
-    character: { type: "character",  maxHP: 100, },
+const CHARACTER_TABLE = {
+    survivor: { isAlly: true,  },
+    soldier:  { isAlly: true,  },
+    civilian: { isAlly: true,  },
+    piglet:   { isAlly: false, },
+    goblin:   { isAlly: false, },
+    raft:     { isAlly: false, },
+    shark:    { isAlly: false, },
 }
+
+const STATS_TABLE = {
+    survivor: { atkDmg: 10,   speed: 32, maxHP: 50,   maxHunger: 50,   maxThirst: 50,   },
+    soldier:  { atkDmg: 10,   speed: 32, maxHP: 50,   maxHunger: 50,   maxThirst: 50,   },
+    civilian: { atkDmg: null, speed: 32, maxHP: 50,   maxHunger: 50,   maxThirst: 50,   },
+    piglet:   { atkDmg: null, speed: 32, maxHP: 50,   maxHunger: 50,   maxThirst: 50,   },
+    goblin:   { atkDmg: 10,   speed: 32, maxHP: 50,   maxHunger: null, maxThirst: null, },
+}
+
 
 const RESOURCE_TABLE = {
 
@@ -456,6 +471,7 @@ export {
     ENTITY_DATA,
     ENTITY_TABLE,
     ENTITY_SPRITE_TABLE,
+    STATS_TABLE,
     ITEM_ON_USE_DATA,
     CROP_GROW_DATA,
     SHOP_DATA,

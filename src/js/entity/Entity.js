@@ -1,10 +1,10 @@
 import { ENTITY_DATA, ENTITY_SPRITE_TABLE, INTERACTION_HITBOX_DATA, TRANSPARENT_HITBOX_DATA } from "../GameData.js";
-import State from "./character/Stats.js";
+import Stats from "./character/Stats.js";
 
 
 
 export default class Entity extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, name, id, x, y, texture, frame, isAlly) {
+    constructor(scene, name, id, x, y, texture, frame, savedData, ) {
         // console.log(name, id);
         super(scene, x, y, texture, frame);
 
@@ -12,6 +12,9 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.scene.physics.add.existing(this);
         
         this.name = name;
+        this.id = id;
+
+        this.savedData = savedData;
         
         this.entityData = ENTITY_DATA[this.name];
         this.entitySpriteData = ENTITY_SPRITE_TABLE[this.name];
@@ -40,8 +43,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.initInteractionHitBox(this);
 
 
-        
-        this.stats = new State(this.scene, this);
+        this.initStats();
     }
 
     static preload(scene) {
@@ -73,6 +75,10 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
 
         scene.load.atlas("shark", "assets/entity/shark.png", "assets/entity/shark_atlas.json")
         scene.load.animation("shark_anim", "assets/entity/shark_anim.json");
+    }
+
+    initStats() {
+        this.stats = new Stats(this.scene, this);
     }
 
     initSprite(x, y, texture, frame) {
@@ -142,6 +148,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
             outlineColor: 0xFF0000
         });
 
+        console.log(this.name, this.stats);
         this.showGeneralInfoHUD();
     }
 
@@ -169,24 +176,33 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.entityGeneralInfoList.innerHTML = ``;
 
         if (this.stats) {
-            let hpDiv = document.createElement("div");
-            hpDiv.setAttribute("id", "entity-general-info-hp");
+            // HP bar
+            if (this.stats.hp !== undefined) {
+                console.log(this.name, this.stats.hp)
+                let hpDiv = document.createElement("div");
+                hpDiv.setAttribute("id", "entity-general-info-hp");
+    
+                let hpBoxDiv = document.createElement("div");
+                hpBoxDiv.setAttribute("id", "entity-general-info-hp-box");
+                let hpPercentageDiv = document.createElement("div");
+                hpPercentageDiv.setAttribute("id", "entity-general-info-hp-percentage");
+                
+                let hpBarDiv = document.createElement("div");
+                hpBarDiv.setAttribute("id", "entity-general-info-hp-bar");
+    
+                if (this.stats.hp <= 0) {
+                    this.hpPercentage = 0;
+                } else {
+                    this.hpPercentage = this.stats.hp / this.stats.maxHP;
+                }
+                hpPercentageDiv.style.width = `calc(${this.hpPercentage * 100}% - 4px)`;
+    
+                hpBarDiv.appendChild(hpBoxDiv);
+                hpBarDiv.appendChild(hpPercentageDiv);
+                hpDiv.appendChild(hpBarDiv);
+                this.entityGeneralInfoList.appendChild(hpDiv);
+            }
 
-            let hpBoxDiv = document.createElement("div");
-            hpBoxDiv.setAttribute("id", "entity-general-info-hp-box");
-            let hpPercentageDiv = document.createElement("div");
-            hpPercentageDiv.setAttribute("id", "entity-general-info-hp-percentage");
-            
-            let hpBarDiv = document.createElement("div");
-            hpBarDiv.setAttribute("id", "entity-general-info-hp-bar");
-
-            this.hpPercentage = this.stats.hp / this.stats.maxHp;
-            hpPercentageDiv.style.width = `calc(${this.hpPercentage * 100}% - 4px)`;
-
-            hpBarDiv.appendChild(hpBoxDiv);
-            hpBarDiv.appendChild(hpPercentageDiv);
-            hpDiv.appendChild(hpBarDiv);
-            this.entityGeneralInfoList.appendChild(hpDiv);
 
         }
 

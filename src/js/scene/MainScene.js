@@ -18,8 +18,10 @@ export default class MainScene extends Phaser.Scene {
     constructor() {
         super({ key: "MainScene" });
 
+
+
         this.currentMap;
-        this.version = "0.4.0";
+        this.version = "0.4.1";
     }
 
     init(data) {
@@ -50,6 +52,18 @@ export default class MainScene extends Phaser.Scene {
 
     create() {
         this.checkVersion();
+
+        this.entityList = {};
+
+        if (localStorage.getItem("entityList")) {
+            this.loadEntityListToLocalStorage();
+        } else {
+            this.entityList["survivor"] = { name: "survivor", id: "survivor", }; 
+            
+
+            this.saveEntityListToLocalStorage();
+        }
+        
    
         // Initialization
         this.eventEmitter = new EventEmitter();
@@ -100,6 +114,14 @@ export default class MainScene extends Phaser.Scene {
         this.graphics.lineStyle(2, 0x0000ff);
         this.pointerOnGridIndicator.setPosition(gridX * 32 - 16, gridY * 32 - 16);
         this.graphics.strokeRectShape(this.pointerOnGridIndicator);
+    }
+
+    loadEntityListToLocalStorage() {
+        this.entityList = JSON.parse(localStorage.getItem("entityList"));
+    }
+
+    saveEntityListToLocalStorage() {
+        localStorage.setItem("entityList", JSON.stringify(this.entityList));
     }
 
     checkVersion() {

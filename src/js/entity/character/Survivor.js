@@ -1,5 +1,4 @@
 import Ally from "./Ally.js"
-import State from "./Stats.js";
 
 
 export default class Survivor extends Ally {

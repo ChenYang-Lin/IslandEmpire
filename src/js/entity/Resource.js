@@ -61,7 +61,7 @@ export default class Resource extends Entity {
     onDeath(attacker) {
         console.log(this.name, "on death")
         this.entityData.drops.forEach((name) => {
-            let drops = new Drops(this.scene, name, this.position.x + Math.floor(Math.random() * 20), this.position.y + Math.floor(Math.random() * 20), "item", name);
+            let drops = new Drops(this.scene, name,name, this.position.x + Math.floor(Math.random() * 20), this.position.y + Math.floor(Math.random() * 20), "item", name);
         })
         
         if (this.scene.currentMap !== "infinite-forest" && this.onGrid.x >= 0 && this.scene.worldManager.map[`${this.onGrid.x},${this.onGrid.y}`]) {

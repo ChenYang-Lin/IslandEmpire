@@ -8,27 +8,17 @@ export default class CharacterManager {
         this.scene = scene;
 
         this.characterGroup = this.scene.physics.add.group();
-        this.characterList = {};
+        // this.scene.entityList = {};
         this.party = [];
         this.partySize = 3;
 
-        if (localStorage.getItem("characterList")) {
-            this.characterList = JSON.parse(localStorage.getItem("characterList"));
-        } else {
-            this.characterList["survivor"] = { name: "survivor", type: "survivor", }; 
-            localStorage.setItem("characterList", JSON.stringify(this.characterList));
-
-
-            this.obtainedNewCharacter("soldier");
-            this.obtainedNewCharacter("civilian"); 
-        }
 
         this.party = ["survivor", "soldier", "civilian"]
     }
 
     init() {
         if (this.scene.currentMap === "island") {
-            Object.entries(this.characterList).forEach(([key, characterData]) => {
+            Object.entries(this.scene.entityList).forEach(([key, characterData]) => {
                 this.spawnCharacter(characterData);
             });
         }
@@ -38,38 +28,40 @@ export default class CharacterManager {
         let character;
         switch (characterData.name) {
             case "survivor":
-                character = new Survivor(this.scene, "survivor", characterData.id, 0, 0, "survivor", "survivor_idle_left");
+                character = new Survivor(this.scene, "survivor", characterData.id, 0, 0, "survivor", "survivor_idle_left", characterData.savedData);
                 break;
             case "soldier":
-                character = new Soldier(this.scene, "soldier", characterData.id, 0, -64, "soldier", "soldier_idle_left");
+                character = new Soldier(this.scene, "soldier", characterData.id, 0, -64, "soldier", "soldier_idle_left", characterData.savedData);
                 break;
             case "civilian":
-                character = new Civilian(this.scene, "civilian", characterData.id, 0, -64, "civilian", "civilian_idle_left");
+                character = new Civilian(this.scene, "civilian", characterData.id, 0, -64, "civilian", "civilian_idle_left", characterData.savedData);
                 break;
             default:
 
         }
+        character.initStats();
         this.characterGroup.add(character);
     }
 
     obtainedNewCharacter(name) {
         let id = name + "_1"
-        if (this.characterList[id]) {
+        if (this.scene.entityList[id]) {
             let counter = 2;
             id = "" + name + "_" + counter;
-            while(this.characterList[id]) {
+            while(this.scene.entityList[id]) {
                 counter++;
                 id = "" + name + "_" + counter;
             }
             console.log(id)
-            this.characterList[id] = { id: id, name: name, }
+            this.scene.entityList[id] = { id: id, name: name, }
         } else {
-            this.characterList[id] = { id: id, name: name, }
+            this.scene.entityList[id] = { id: id, name: name, }
         }
-        localStorage.setItem("characterList", JSON.stringify(this.characterList));
-        this.spawnCharacter(this.characterList[id])
+        this.scene.saveEntityListToLocalStorage();
+        this.spawnCharacter(this.scene.entityList[id])
 
     }
+
 
     getCharacterObject(name) {
         let characterObject;
