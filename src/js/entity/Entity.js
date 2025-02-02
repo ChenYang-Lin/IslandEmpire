@@ -173,12 +173,13 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
 
         
         this.entityGeneralInfoList = document.getElementById("entity-general-info-list");
+
         this.entityGeneralInfoList.innerHTML = ``;
 
         if (this.stats) {
+            this.stats.renderStats();
             // HP bar
             if (this.stats.hp !== undefined) {
-                console.log(this.name, this.stats.hp)
                 let hpDiv = document.createElement("div");
                 hpDiv.setAttribute("id", "entity-general-info-hp");
     

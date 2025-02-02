@@ -104,6 +104,10 @@ export default class Crop extends Entity {
     }
 
     showGeneralInfoHUD() {
+
+        if (!this.body) 
+            return;
+        
         super.showGeneralInfoHUD();
         
         let progress = document.createElement("div");

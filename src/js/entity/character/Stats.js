@@ -81,6 +81,65 @@ export default class Stats {
         }
     }
 
+    renderStats() {
+        // console.log(this.atkDmg)
+        // console.log(this.speed)
+        // console.log(this.maxHP)
+        // console.log(this.hunger)
+        // console.log(this.maxThirst)
+
+        let circularProgressContainer = document.createElement("div");
+        circularProgressContainer.setAttribute("id", "circular-progress-container");
+
+        // Hunger
+        if (this.hunger !== undefined && this.hunger !== null) {
+            let hungerProgress = document.createElement("div");
+            hungerProgress.setAttribute("id", "hunger-circular-progress");
+            hungerProgress.classList.add("circular-progress")
+
+            let hungerProgressValue = document.createElement("div");
+            hungerProgressValue.setAttribute("id", "hunger-circular-value");
+            hungerProgressValue.classList.add("circular-value")
+
+            let degree = this.getDegreeOfCircularProgress(this.hunger, this.maxHunger);
+
+
+            hungerProgress.style.backgroundImage  = `conic-gradient(#3d3d3d ${degree}deg, orange 0deg)`
+
+
+            hungerProgress.appendChild(hungerProgressValue);
+            circularProgressContainer.appendChild(hungerProgress);
+        }
+        // Thirst
+        if (this.thirst !== undefined && this.thirst !== null) {
+            let thirstProgress = document.createElement("div");
+            thirstProgress.setAttribute("id", "thirst-circular-progress");
+            thirstProgress.classList.add("circular-progress")
+
+            let thirstProgressValue = document.createElement("div");
+            thirstProgressValue.setAttribute("id", "thirst-circular-value");
+            thirstProgressValue.classList.add("circular-value")
+
+            console.log(this.thirst, this.maxThirst)
+            let degree = this.getDegreeOfCircularProgress(this.thirst, this.maxThirst);
+
+            thirstProgress.style.backgroundImage  = `conic-gradient(#3d3d3d ${degree}deg, blue 0deg)`
+
+
+            thirstProgress.appendChild(thirstProgressValue);
+            circularProgressContainer.appendChild(thirstProgress);
+        }
+
+        this.entity.entityGeneralInfoList.appendChild(circularProgressContainer);
+    }
+
+    getDegreeOfCircularProgress(curr, max) {
+        let percentage = curr / max;
+        let degree = percentage * 360;
+        degree = 360 - degree;
+        return degree;
+    }
+
 
 
     update() {
