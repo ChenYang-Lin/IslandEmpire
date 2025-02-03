@@ -99,7 +99,12 @@ export default class Stats {
 
             let hungerProgressValue = document.createElement("div");
             hungerProgressValue.setAttribute("id", "hunger-circular-value");
-            hungerProgressValue.classList.add("circular-value")
+            hungerProgressValue.classList.add("progress-value");
+
+            let hungerIcon = document.createElement("img");
+            hungerIcon.src= "./assets/icons/stats/hunger.png";
+            hungerIcon.style.width = "16px";
+            hungerIcon.style.height = "16px";
 
             let degree = this.getDegreeOfCircularProgress(this.hunger, this.maxHunger);
 
@@ -107,6 +112,8 @@ export default class Stats {
             hungerProgress.style.backgroundImage  = `conic-gradient(#3d3d3d ${degree}deg, orange 0deg)`
 
 
+
+            hungerProgressValue.appendChild(hungerIcon);
             hungerProgress.appendChild(hungerProgressValue);
             circularProgressContainer.appendChild(hungerProgress);
         }
@@ -118,14 +125,19 @@ export default class Stats {
 
             let thirstProgressValue = document.createElement("div");
             thirstProgressValue.setAttribute("id", "thirst-circular-value");
-            thirstProgressValue.classList.add("circular-value")
+            thirstProgressValue.classList.add("progress-value");
 
-            console.log(this.thirst, this.maxThirst)
+            let thirstIcon = document.createElement("img");
+            thirstIcon.src= "./assets/icons/stats/thirst.png";
+            thirstIcon.style.width = "16px";
+            thirstIcon.style.height = "16px";
+
             let degree = this.getDegreeOfCircularProgress(this.thirst, this.maxThirst);
 
             thirstProgress.style.backgroundImage  = `conic-gradient(#3d3d3d ${degree}deg, blue 0deg)`
 
 
+            thirstProgressValue.appendChild(thirstIcon);
             thirstProgress.appendChild(thirstProgressValue);
             circularProgressContainer.appendChild(thirstProgress);
         }
