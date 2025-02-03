@@ -33,6 +33,7 @@
 
 #entity-general-info-img {
     background-color: rgba(0, 0, 0, 0.795);
+    image-rendering: crisp-edges;
     padding: 2px;
     margin-top: 10px;
     width: 64px;

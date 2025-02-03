@@ -141,6 +141,9 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
     }
 
     handleSelected() {
+        if (this.scene.inputController.selectedEntity && this.scene.inputController.selectedEntity.body) {
+            this.scene.inputController.selectedEntity.handleDeselect();
+        }
         // Add postfx pipeline
         this.scene.inputController.selectedEntity = this;
         this.scene.inputController.selectedEntityREXOutline.add(this, {
@@ -178,33 +181,6 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
 
         if (this.stats) {
             this.stats.renderStats();
-            // HP bar
-            if (this.stats.hp !== undefined) {
-                let hpDiv = document.createElement("div");
-                hpDiv.setAttribute("id", "entity-general-info-hp");
-    
-                let hpBoxDiv = document.createElement("div");
-                hpBoxDiv.setAttribute("id", "entity-general-info-hp-box");
-                let hpPercentageDiv = document.createElement("div");
-                hpPercentageDiv.setAttribute("id", "entity-general-info-hp-percentage");
-                
-                let hpBarDiv = document.createElement("div");
-                hpBarDiv.setAttribute("id", "entity-general-info-hp-bar");
-    
-                if (this.stats.hp <= 0) {
-                    this.hpPercentage = 0;
-                } else {
-                    this.hpPercentage = this.stats.hp / this.stats.maxHP;
-                }
-                hpPercentageDiv.style.width = `calc(${this.hpPercentage * 100}% - 4px)`;
-    
-                hpBarDiv.appendChild(hpBoxDiv);
-                hpBarDiv.appendChild(hpPercentageDiv);
-                hpDiv.appendChild(hpBarDiv);
-                this.entityGeneralInfoList.appendChild(hpDiv);
-            }
-
-
         }
 
 

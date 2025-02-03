@@ -67,7 +67,7 @@ export default class InputController {
             if (this.selectedEntity) {
                 
                 if (this.selectedEntity.body) { // make sure entity not yet destroyed
-                    this.selectedEntity.handleDeselect();
+                    // this.selectedEntity.handleDeselect();
                 }
             }
         })

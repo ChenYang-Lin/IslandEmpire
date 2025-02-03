@@ -75,7 +75,8 @@ export default class Stats {
                 default:
             }
         })
-        if (this.scene.entityList[this.entity.id]) {
+        console.log(this.scene.entityList)
+        if (this.scene.entityList && this.scene.entityList[this.entity.id]) {
             this.scene.entityList[this.entity.id]["savedData"] = savedData;
             this.scene.saveEntityListToLocalStorage()
         }
@@ -88,6 +89,34 @@ export default class Stats {
         // console.log(this.hunger)
         // console.log(this.maxThirst)
 
+        // HP bar
+        if (this.hp !== undefined && this.hp !== null) {
+            let hpDiv = document.createElement("div");
+            hpDiv.setAttribute("id", "entity-general-info-hp");
+
+            let hpBoxDiv = document.createElement("div");
+            hpBoxDiv.setAttribute("id", "entity-general-info-hp-box");
+            let hpPercentageDiv = document.createElement("div");
+            hpPercentageDiv.setAttribute("id", "entity-general-info-hp-percentage");
+            
+            let hpBarDiv = document.createElement("div");
+            hpBarDiv.setAttribute("id", "entity-general-info-hp-bar");
+
+            if (this.hp <= 0) {
+                this.hpPercentage = 0;
+            } else {
+                this.hpPercentage = this.hp / this.maxHP;
+            }
+            hpPercentageDiv.style.width = `calc(${this.hpPercentage * 100}% - 4px)`;
+
+            hpBarDiv.appendChild(hpBoxDiv);
+            hpBarDiv.appendChild(hpPercentageDiv);
+            hpDiv.appendChild(hpBarDiv);
+            this.entity.entityGeneralInfoList.appendChild(hpDiv);
+        }
+
+
+        // Hunger Thirst
         let circularProgressContainer = document.createElement("div");
         circularProgressContainer.setAttribute("id", "circular-progress-container");
 
@@ -142,6 +171,7 @@ export default class Stats {
             circularProgressContainer.appendChild(thirstProgress);
         }
 
+        
         this.entity.entityGeneralInfoList.appendChild(circularProgressContainer);
     }
 

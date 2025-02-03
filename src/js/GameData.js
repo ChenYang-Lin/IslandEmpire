@@ -179,6 +179,10 @@ const STATS_TABLE = {
     civilian: { atkDmg: null, speed: 32, maxHP: 50,   maxHunger: 50,   maxThirst: 50,   },
     piglet:   { atkDmg: null, speed: 32, maxHP: 50,   maxHunger: 50,   maxThirst: 50,   },
     goblin:   { atkDmg: 10,   speed: 32, maxHP: 50,   maxHunger: null, maxThirst: null, },
+
+    tree:  { maxHP: 20, },
+    weeds: { maxHP: 20, },
+    rock:  { maxHP: 20, },
 }
 
 
