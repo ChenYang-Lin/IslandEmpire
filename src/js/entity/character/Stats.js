@@ -75,7 +75,6 @@ export default class Stats {
                 default:
             }
         })
-        console.log(this.scene.entityList)
         if (this.scene.entityList && this.scene.entityList[this.entity.id]) {
             this.scene.entityList[this.entity.id]["savedData"] = savedData;
             this.scene.saveEntityListToLocalStorage()

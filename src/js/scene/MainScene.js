@@ -12,6 +12,7 @@ import Inventory from "../Inventory.js";
 import CharacterManager from "../entity/character/CharacterManager.js";
 import Animal from "../entity/character/Animal.js";
 import Shark from "../entity/Shark.js";
+import Crafting from "../Crafting.js";
 
 
 export default class MainScene extends Phaser.Scene {
@@ -21,7 +22,9 @@ export default class MainScene extends Phaser.Scene {
 
 
         this.currentMap;
+        this.cssWindowOpened = false;
         this.version = "0.4.1";
+
     }
 
     init(data) {
@@ -65,11 +68,15 @@ export default class MainScene extends Phaser.Scene {
         }
         
    
+
+        
+        
         // Initialization
         this.eventEmitter = new EventEmitter();
         this.worldManager = new WorldManager(this);
         this.collisionController = new CollisionController(this);
         this.inventory = new Inventory(this);
+        this.crafting = new Crafting(this);
         this.characterManager = new CharacterManager(this);
         this.player = new Player(this);
         this.inputController = new InputController(this, this.player);
@@ -102,10 +109,16 @@ export default class MainScene extends Phaser.Scene {
         // })
         
         if (this.currentMap === "island") {
-            this.raft = new Raft(this, "raft", "raft", 0, 500, "raft", "raft_move_down_0");
-            this.piglet = new Animal(this, "piglet", "piglet", 0, 0, "animal", "piglet_idle_left");
+            // this.raft = new Raft(this, "raft", "raft", 0, 500, "raft", "raft_move_down_0");
+            // this.piglet = new Animal(this, "piglet", "piglet", 0, 0, "animal", "piglet_idle_left");
             this.shark = new Shark(this, "shark", "shark", 128, 128, "shark", "shark_left");
         }
+
+        this.crafting.startCrafting("water_collector")
+
+        
+        // this.input.topOnly = true; 
+        
     }
 
 

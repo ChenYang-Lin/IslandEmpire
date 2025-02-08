@@ -37,6 +37,8 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.setInteractive(this.scene.input.makePixelPerfect());
  
         this.on('pointerdown', () => {
+            if (this.scene.cssWindowOpened)
+                return;
             this.handleSelected();
         })
 

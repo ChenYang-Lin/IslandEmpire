@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/hud.css">
     <link rel="stylesheet" href="css/entityGeneralInfo.css">
     <link rel="stylesheet" href="css/invenotry.css">
+    <link rel="stylesheet" href="css/crafting.css">
     <link rel="stylesheet" href="css/panel.css">
     <link rel="stylesheet" href="css/stats.css">
     <link rel="stylesheet" href="css/construct.css">
@@ -125,6 +126,7 @@
              </div>
 
 
+
             
             <!-- UIs -->
             <div class="ui-container">
@@ -222,7 +224,34 @@
                 </button> -->
             </div>
 
-            <!-- Inventory -->
+            
+            <!-- Crafting ------------------------------------------------------------------------------------------------------------------------------------------------------------>
+            <div id="crafting-container" class="panel-container gradient-background-sides">
+                <!-- header -->
+                <div id="crafting-header" class="panel-header">
+                    <div id="crafting-tag" class="panel-tag">Crafting</div>
+                    <img src="assets/icons/panel/exit-btn.png" id="crafting-exit-btn" class="panel-exit-btn"></img>
+                </div>
+                <!-- body -->
+                <div id="crafting-body" class="panel-body">
+                    <div id="crafting-list">
+                        <!-- <div class="craftable-element"><img src="" alt="" class="panel-item-img"></div> -->
+                    </div>
+                    <div id="crafting-detail">
+                        <div id="craftable-name"></div>
+                        <div id="craftable-img"></div>
+                        <div id="craftable-ingredients">
+                            <div class="craftable-ingredients-element">
+                                <img class="craftable-ingredients-img"></img>
+                                <div class="craftable-ingredients-sufficiency">0/1</div>
+                            </div>
+                        </div>
+                        <div id="craftable-craft-btn"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inventory ------------------------------------------------------------------------------------------------------------------------------------------------------------>
             
             <div id="inventory-container" class="panel-container">
                 <div id="inventory-header" class="panel-header">
@@ -241,7 +270,7 @@
                     <div id="inventory-detail" class="panel-detail"></div>
                 </div>
             </div>
-            <!-- Shop -->
+            <!-- Shop ------------------------------------------------------------------------------------------------------------------------------------------------------------>
             <div id="shop-container">
                 <div id="shop-header">
                     <div id="shop-name">Shop</div>
@@ -302,7 +331,7 @@
                 </div>
             </div>
 
-            <!-- Wish Container -->
+            <!-- Wish Container ------------------------------------------------------------------------------------------------------------------------------------------------------------>
             <div id="wish-container">
                 <!-- Banner -->
                 <div id="banner-container">
@@ -366,7 +395,7 @@
                 <!-- End Spinner -->
             </div>
 
-            <!-- Reward Screen -->
+            <!-- Reward Screen ------------------------------------------------------------------------------------------------------------------------------------------------------------>
             <div id="reward-container">
                 <div id="reward-container-wrapper">
                     <div id="reward-header">&#9733    Obtained    &#9733</div>
@@ -382,7 +411,7 @@
             <!-- End Reward Screen -->
 
             
-            <!-- Item Switch Panel -->
+            <!-- Item Switch Panel ------------------------------------------------------------------------------------------------------------------------------------------------------------>
             <div id="item-switch-panel" class="panel-container">
                 <div class="panel-header">
                     <div class="panel-tag">Switch Item</div>

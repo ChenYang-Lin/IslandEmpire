@@ -21,7 +21,7 @@ const ENTITY_TABLE = {
     water_collector: { name: "water collector", type: "craftable", },
     bed:             { name: "bed",             type: "craftable", },
 
-
+    // Structure
     house:           { name: "house",  type: "structure", },
     tent:            { name: "tent",   type: "structure", },
     home_0:          { name: "home 0", type: "structure", },
@@ -192,6 +192,12 @@ const RESOURCE_TABLE = {
 
 const CRAFTABLE_INGREDIENTS_TABLE = {
     water_collector: { wood: 5, fiber: 3, },
+    // storage_chest: { wood: 10, },
+    home_1: { wood: 10, },
+}
+
+const STRUCTURE_INGREDIENTS_TABLE = {
+    home_1: { wood: 50, stone: 10, fiber: 5, }
 }
 
 const CROP_TABLE = {
@@ -437,6 +443,27 @@ const QUEST_DATA = {
 
 const MAP_DATA = {
     "island": {
+        "lv_1": {
+            "0,-3":  { isLand: true, entities: [ { name: "tree" }, ], },
+            "0,-2":  { isLand: true, entities: [ { name: "portal-infinite-forest"} ], },
+            "0,-1":  { isLand: true, entities: [ ], },
+            "0,0":   { isLand: true, entities: [ ], },
+         
+            "1,-3":  { isLand: true, entities: [ ], },
+            "1,-2":  { isLand: true, entities: [ { name: "home_0" }, ], },
+            "1,-1":  { isLand: true, entities: [ ], },
+            "1,0":   { isLand: true, entities: [ ], },
+         
+            "2,-3":  { isLand: true, entities: [ ], },
+            "2,-2":  { isLand: true, entities: [ ], },
+            "2,-1":  { isLand: true, entities: [ ], },
+            "2,0":   { isLand: true, entities: [ ], },
+         
+            "3,-3":  { isLand: true, entities: [ { name: "rock" }, ], },
+            "3,-2":  { isLand: true, entities: [ ], },
+            "3,-1":  { isLand: true, entities: [  { name: "weeds" }, ], },
+            "3,0":   { isHoedLand: true, isLand: true, entities: [ ], },   
+        },
         "0,-3":  { isLand: true, entities: [ { name: "tree" }, ], },
         "0,-2":  { isLand: true, entities: [ { name: "portal-infinite-forest"} ], },
         "0,-1":  { isLand: true, entities: [ ], },
@@ -475,6 +502,8 @@ export {
     ENTITY_DATA,
     ENTITY_TABLE,
     ENTITY_SPRITE_TABLE,
+    CRAFTABLE_INGREDIENTS_TABLE,
+    STRUCTURE_INGREDIENTS_TABLE,
     STATS_TABLE,
     ITEM_ON_USE_DATA,
     CROP_GROW_DATA,

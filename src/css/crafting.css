@@ -1,0 +1,81 @@
+
+
+#crafting-list {
+    width: 50%;
+    height: 100%;
+    /* background-color: black; */
+    overflow-y: hidden; 
+}
+
+.craftable-element {
+    display: inline-block;
+    margin: 5px;
+    width: 64px;
+    height: 64px;
+    background-color: white;
+}
+
+#crafting-detail {
+    width: 40%;
+    height: 100%;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#craftable-name {    
+    color: white;
+    font-size: 32px;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+    padding: 4px;
+    text-align: center;
+    /* background-color: yellow; */
+}
+
+#craftable-img {
+    height: 50%;
+    /* background-color: red; */
+}
+
+.craftable-img {
+    width: 100%;
+    height: 100%;
+    padding: 10%;
+    object-fit: contain;
+}
+
+#craftable-ingredients {
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: orange; */
+}
+
+.craftable-ingredients-element {
+    position: relative;
+    margin: 2%;
+    height: 40%;
+    aspect-ratio: 1/1;
+}
+
+.craftable-ingredients-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.craftable-ingredients-sufficiency {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 2px;
+    color: white;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+
+#craftable-craft-btn {
+    height: 10%;
+    background-color: cyan;
+}
+

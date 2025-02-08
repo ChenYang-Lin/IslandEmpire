@@ -208,6 +208,20 @@ export default class InputController {
     
                 velocity.x = Math.abs(joystickX) * Math.cos(angleInRadians);
                 velocity.y = Math.abs(joystickY) * Math.sin(angleInRadians);
+
+                if (Math.abs(velocity.x) > Math.abs(velocity.y)) {
+                    if (velocity.x > 0) {
+                        this.direction = "right";
+                    } else {
+                        this.direction = "left"
+                    }
+                } else {
+                    if (velocity.y > 0) {
+                        this.direction = "down";
+                    } else {
+                        this.direction = "up";
+                    }
+                }
             }
         } 
 
@@ -333,7 +347,8 @@ export default class InputController {
         if (this.key9.isDown) {
             // make sure only execute one time when button down.
             if (!this.key9Down) {
-                this.scene.characterManager.obtainedNewCharacter("civilian"); 
+                // this.scene.characterManager.obtainedNewCharacter("civilian"); 
+                this.scene.crafting.toggleWindow();
             }
             this.key9Down = true;
 
