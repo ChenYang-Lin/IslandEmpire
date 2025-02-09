@@ -4,6 +4,7 @@ import QuestManager from "./QuestManager.js";
 import Reward from "./Reward.js";
 import Shop from "../Shop.js";
 import Wish from "./Wish.js";
+import Crafting from "../Crafting.js";
 
 export default class HUD {
     constructor(scene) {
@@ -17,6 +18,7 @@ export default class HUD {
         // UIs
         this.shopUI = document.getElementById("shop-ui");
         this.wishUI = document.getElementById("wish-ui");
+        this.questUI = document.getElementById("quest-ui");
         this.inventoryUI = document.getElementById("inventory-ui");
         this.constructionUI = document.getElementById("construction-ui");
         this.exitUI = document.getElementById("exit-ui");
@@ -33,11 +35,20 @@ export default class HUD {
         this.shop = new Shop(this.scene, this);
         this.wish = new Wish(this.scene, this);
         this.questManager = new QuestManager(this.scene, this);
+        this.crafting = new Crafting(this.scene);
 
         console.log(this.scene.player.characterOnControl)
 
         this.shopUI.addEventListener("pointerdown", () => {
             this.shop.openWindow();
+        })
+
+        this.wishUI.addEventListener("pointerdown", () => {
+            this.wish.openWindow();
+        })
+
+        this.questUI.addEventListener("pointerdown", () => {
+            this.crafting.openWindow();
         })
 
         this.wishUI.addEventListener("pointerdown", () => {

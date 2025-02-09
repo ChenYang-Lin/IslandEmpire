@@ -12,7 +12,6 @@ import Inventory from "../Inventory.js";
 import CharacterManager from "../entity/character/CharacterManager.js";
 import Animal from "../entity/character/Animal.js";
 import Shark from "../entity/Shark.js";
-import Crafting from "../Crafting.js";
 
 
 export default class MainScene extends Phaser.Scene {
@@ -76,7 +75,6 @@ export default class MainScene extends Phaser.Scene {
         this.worldManager = new WorldManager(this);
         this.collisionController = new CollisionController(this);
         this.inventory = new Inventory(this);
-        this.crafting = new Crafting(this);
         this.characterManager = new CharacterManager(this);
         this.player = new Player(this);
         this.inputController = new InputController(this, this.player);
@@ -114,7 +112,6 @@ export default class MainScene extends Phaser.Scene {
             this.shark = new Shark(this, "shark", "shark", 128, 128, "shark", "shark_left");
         }
 
-        this.crafting.startCrafting("water_collector")
 
         
         // this.input.topOnly = true; 

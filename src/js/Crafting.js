@@ -7,6 +7,15 @@ export default class Crafting {
 
         this.craftingScreen = document.getElementById("crafting-container")
         
+        this.exitBtn = document.getElementById("crafting-exit-btn")
+        this.exitBtn.addEventListener("pointerdown", () => {
+            this.closeWindow();
+        })
+
+        this.craftBtn = document.getElementById("craftable-craft-btn");
+        this.craftBtn.addEventListener("pointerdown", () => {
+            this.startCrafting(this.selectedCraftableID);
+        })
     }
 
     checkSufficientMaterial(craftableID) {
@@ -18,7 +27,6 @@ export default class Crafting {
                 // enough material
             } else {
                 // NOT enough material
-                console.log("not enough material")
                 sufficientMaterial = false;
             }
         })
@@ -27,15 +35,28 @@ export default class Crafting {
     }
 
     startCrafting(craftableID) {
+        if (!craftableID) 
+            return;
+
         let sufficientMaterial = this.checkSufficientMaterial(craftableID)
-        console.log(sufficientMaterial)
         if (!sufficientMaterial) {
-            console.log("not sufficient material")
+            console.log("not sufficient material");
+            return;
         }
+
         let craftableIngredients = CRAFTABLE_INGREDIENTS_TABLE[craftableID];
         Object.entries(craftableIngredients).forEach(([name, quantity]) => {
-            console.log(name, quantity)
+            if (this.scene.inventory?.inventory[name] > quantity){
+                // enough material
+                this.scene.inventory.inventory[name] -= quantity;
+            } else {
+                // NOT enough material
+                console.log("ERROR: not enough material")
+            }
         })
+        // this.scene.inventory.addItem(craftableID, 1);
+        this.scene.hud.reward.showRewardScreen([{ name: craftableID, quantity: 1}])
+        this.renderCraftingDetail(craftableID);
     }
 
     renderCraftingWindow() {
@@ -69,12 +90,13 @@ export default class Crafting {
     }
 
     renderCraftingDetail(craftableID) {
-        console.log(craftableID)
+        // console.log(craftableID)
+        this.selectedCraftableID = craftableID;
 
         let name = document.getElementById("craftable-name");
         let img = document.getElementById("craftable-img");
         let ingredients = document.getElementById("craftable-ingredients");
-        let btn = document.getElementById("craftable-btn");
+        let btn = document.getElementById("craftable-craft-btn");
 
         // Name
         name.innerHTML = craftableID;
@@ -110,6 +132,21 @@ export default class Crafting {
             ingredients.appendChild(element);
         })
 
+        // Craft Btn
+        let sufficientMaterial = this.checkSufficientMaterial(craftableID);
+        if (!sufficientMaterial) {
+            btn.style.pointerEvents = "none";
+            btn.style.cursor = "auto";
+            btn.style.color = "rgba(255, 255, 255, 0.5)";
+            btn.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+            btn.style.borderColor = "rgba(255, 255, 255, 0.5)";
+        } else {
+            btn.style.pointerEvents = "auto";
+            btn.style.cursor = "pointer";
+            btn.style.color = "rgba(255, 255, 255, 1)";
+            btn.style.backgroundColor = "rgba(0, 0, 0, 1)";
+            btn.style.borderColor = "rgba(255, 255, 255, 1)";
+        }
 
     }
 

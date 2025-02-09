@@ -348,7 +348,7 @@ export default class InputController {
             // make sure only execute one time when button down.
             if (!this.key9Down) {
                 // this.scene.characterManager.obtainedNewCharacter("civilian"); 
-                this.scene.crafting.toggleWindow();
+                this.scene.hud.crafting.toggleWindow();
             }
             this.key9Down = true;
 
