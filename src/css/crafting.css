@@ -1,5 +1,6 @@
 
 
+
 #crafting-list {
     width: 50%;
     height: 100%;
@@ -57,10 +58,13 @@
     /* margin: 2%; */
     height: 64px;
     width: 64px;
+    margin: 2px;
+    display: flex;
+    flex-direction: column;
 }
 
 .craftable-ingredients-img {
-    position: absolute;
+    position: relative;
     width: 80%;
     height: 80%;
     left: 50%;
@@ -70,10 +74,9 @@
 }
 
 .craftable-ingredients-sufficiency {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: 2px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
     color: white;
     text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
 }

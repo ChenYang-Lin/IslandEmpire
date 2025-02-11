@@ -123,10 +123,23 @@ export default class Crafting {
 
             let sufficiency = document.createElement("div");
             sufficiency.classList.add("craftable-ingredients-sufficiency");
+            
             let hold = this.scene.inventory.inventory[name] ?? 0;
-            sufficiency.innerHTML = `${hold}/${quantity}`;
+
+            let holdDiv = document.createElement("span");
+            if (hold < quantity) {
+                holdDiv.style.color = "red"
+            } else {
+                holdDiv.style.color = "green"
+            }
+            holdDiv.innerHTML = `${hold}`;
+
+            let quantityDiv = document.createElement("span");
+            quantityDiv.innerHTML = `/${quantity}`;
 
             
+            sufficiency.appendChild(holdDiv);
+            sufficiency.appendChild(quantityDiv);
             element.appendChild(ingredientImg);
             element.appendChild(sufficiency);
             ingredients.appendChild(element);
@@ -143,8 +156,8 @@ export default class Crafting {
         } else {
             btn.style.pointerEvents = "auto";
             btn.style.cursor = "pointer";
-            btn.style.color = "rgba(255, 255, 255, 1)";
-            btn.style.backgroundColor = "rgba(0, 0, 0, 1)";
+            btn.style.color = "rgb(0, 0, 0)";
+            btn.style.backgroundColor = "rgb(255, 255, 255)";
             btn.style.borderColor = "rgba(255, 255, 255, 1)";
         }
 
