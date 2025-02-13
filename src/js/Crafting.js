@@ -168,11 +168,10 @@ export default class Crafting {
     }
 
     openWindow() {
-        console.log("open crafting window")
-        this.craftingScreen = document.getElementById("crafting-container");
-        this.renderCraftingWindow();
+        console.log("open crafting window");
         this.craftingScreen.style.display = "block";
         this.scene.cssWindowOpened = true;
+        this.renderCraftingWindow();
     }
 
     closeWindow() {
