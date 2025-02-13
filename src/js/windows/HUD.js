@@ -20,6 +20,9 @@ export default class HUD {
         this.wishUI = document.getElementById("wish-ui");
         this.questUI = document.getElementById("quest-ui");
         this.inventoryUI = document.getElementById("inventory-ui");
+        this.characterUI = document.getElementById("character-ui");
+        this.partyUI = document.getElementById("party-ui");
+        this.craftingUI = document.getElementById("crafting-ui");
         this.constructionUI = document.getElementById("construction-ui");
         this.exitUI = document.getElementById("exit-ui");
         this.constructionContainer = document.getElementById("construction-container");
@@ -48,16 +51,25 @@ export default class HUD {
         })
 
         this.questUI.addEventListener("pointerdown", () => {
-            this.crafting.openWindow();
-        })
-
-        this.wishUI.addEventListener("pointerdown", () => {
-            this.wish.openWindow();
+            
         })
 
         this.inventoryUI.addEventListener("pointerdown", () => {
             this.scene.inventory.openWindow();
         })
+        
+        this.characterUI.addEventListener("pointerdown", () => {
+            
+        })
+
+        this.partyUI.addEventListener("pointerdown", () => {
+            
+        })
+
+        this.craftingUI.addEventListener("pointerdown", () => {
+            this.crafting.openWindow();
+        })
+
         
         this.constructionUI.addEventListener("pointerdown", () => {
             this.showConstructionSceneUIs();

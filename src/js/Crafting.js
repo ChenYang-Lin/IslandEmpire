@@ -164,6 +164,7 @@ export default class Crafting {
     }
 
     openWindow() {
+        console.log("open crafting window")
         this.renderCraftingWindow();
         this.craftingScreen.style.display = "block";
         this.scene.cssWindowOpened = true;
