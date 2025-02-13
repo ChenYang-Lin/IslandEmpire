@@ -72,11 +72,11 @@ export default class Crafting {
         let craftableIngredients = CRAFTABLE_INGREDIENTS_TABLE;
         console.log(craftableIngredients);
 
-        Object.entries(craftableIngredients).entries().forEach(([index, [name, data]]) => {
+        Object.entries(craftableIngredients).forEach(([name, data]) => {
             console.log(name)
-            if (index === 0) {
-                this.renderCraftingDetail(name)
-            }
+            // if (index === 0) {
+            //     this.renderCraftingDetail(name)
+            // }
             let element = document.createElement("div");
             element.classList.add("craftable-element");
             element.addEventListener("pointerdown", () => {
