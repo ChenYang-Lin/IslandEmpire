@@ -60,10 +60,12 @@ export default class Crafting {
     }
 
     renderCraftingWindow() {
+        console.log("renderCraftingWindow")
         this.renderCraftingList();
     }
 
     renderCraftingList() {
+        console.log("renderCraftingList")
         let craftingList = document.getElementById("crafting-list");
         craftingList.innerHTML = ``;
 
@@ -90,6 +92,7 @@ export default class Crafting {
     }
 
     renderCraftingDetail(craftableID) {
+        console.log("renderCraftingDetail")
         // console.log(craftableID)
         this.selectedCraftableID = craftableID;
 
