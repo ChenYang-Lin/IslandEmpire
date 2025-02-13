@@ -70,6 +70,7 @@ export default class Crafting {
         craftingList.innerHTML = ``;
 
         let craftableIngredients = CRAFTABLE_INGREDIENTS_TABLE;
+        console.log(craftableIngredients);
 
         Object.entries(craftableIngredients).entries().forEach(([index, [name, data]]) => {
             console.log(name)
