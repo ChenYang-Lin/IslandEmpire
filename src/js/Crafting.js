@@ -72,6 +72,7 @@ export default class Crafting {
         let craftableIngredients = CRAFTABLE_INGREDIENTS_TABLE;
 
         Object.entries(craftableIngredients).entries().forEach(([index, [name, data]]) => {
+            console.log(name)
             if (index === 0) {
                 this.renderCraftingDetail(name)
             }
@@ -168,6 +169,7 @@ export default class Crafting {
 
     openWindow() {
         console.log("open crafting window")
+        this.craftingScreen = document.getElementById("crafting-container");
         this.renderCraftingWindow();
         this.craftingScreen.style.display = "block";
         this.scene.cssWindowOpened = true;
