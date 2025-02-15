@@ -130,7 +130,7 @@ export default class CharacterManager {
     renderCharacterPage() {
         this.sortedCharacterGroup = this.getSortedCharacterGroup(this.characterGroup);
 
-        this.selectedCharacter = this.sortedCharacterGroup.getChildren()[1];
+        this.selectedCharacter = this.sortedCharacterGroup.getChildren()[0];
         this.renderCharacterDetails(this.selectedCharacter);
         this.renderCharacterSelectionContainer(this.sortedCharacterGroup);
     }
@@ -141,6 +141,9 @@ export default class CharacterManager {
         
         characterGroup.getChildren().forEach((character) => {
 
+            let imgWrapper = document.createElement("div");
+            imgWrapper.classList.add("character-selection-img-wrapper");
+
             let characterSelectionImg = document.createElement("img");
             characterSelectionImg.classList.add("character-selection-img");
             characterSelectionImg.src = this.scene.sys.game.textures.getBase64(character.name, `${character.name}_idle_down`);
@@ -149,7 +152,8 @@ export default class CharacterManager {
                 this.renderCharacterDetails(this.selectedCharacter);
             })
 
-            this.characterSelectionContainer.appendChild(characterSelectionImg);
+            imgWrapper.appendChild(characterSelectionImg)
+            this.characterSelectionContainer.appendChild(imgWrapper);
         })
     }
 
