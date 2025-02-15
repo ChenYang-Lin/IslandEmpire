@@ -78,7 +78,7 @@ export default class Crop extends Entity {
             return;
         }
         let collectableList = [];
-        INTERACTION_HITBOX_DATA[this.name].forEach((interactable) => {
+        INTERACTION_HITBOX_DATA[this.name]?.forEach((interactable) => {
             if (interactable.type === "collectable") {
                 collectableList.push(interactable.name);
             }

@@ -250,47 +250,49 @@
                         </div>
                         <div id="character-page-section-content">
                             <!-- Info -->
-                            <div id="character-page-info">
-                                <div id="character-info-panel">
-                                    <!-- header -->
-                                    <div id="character-info-header">
-                                        <img src="assets/icons/hud/character/lord-icon.png" alt="" id="character-type-icon">
-                                        <div id="character-info-main">
-                                            <div id="character-name">Survivor</div>
-                                            <div id="character-profession">
-                                                <img src="assets/icons/hud/character/lord-icon.png" alt="" id="character-profession-icon">
-                                                <div id="character-profession-text">Lord</div>
+                            <div id="character-page-info-wrapper">
+                                <div id="character-page-info">
+                                    <div id="character-info-panel">
+                                        <!-- header -->
+                                        <div id="character-info-header">
+                                            <img src="assets/icons/hud/character/lord-icon.png" alt="" id="character-type-icon">
+                                            <div id="character-info-main">
+                                                <div id="character-name">Survivor</div>
+                                                <div id="character-profession">
+                                                    <img src="assets/icons/hud/character/lord-icon.png" alt="" id="character-profession-icon">
+                                                    <div id="character-profession-text">Lord</div>
+                                                </div>
                                             </div>
                                         </div>
+                                        <!-- experience -->
+                                        <div id="character-info-experience">
+                                            <div id="character-ascend-container">
+                                                <img src="assets/icons/hud/character/ascend-activated-icon.png" alt="" class="ascend-icon">
+                                                <img src="assets/icons/hud/character/ascend-icon.png" alt="" class="ascend-icon">
+                                                <img src="assets/icons/hud/character/ascend-icon.png" alt="" class="ascend-icon">
+                                                <img src="assets/icons/hud/character/ascend-icon.png" alt="" class="ascend-icon">
+                                                <img src="assets/icons/hud/character/ascend-icon.png" alt="" class="ascend-icon">
+                                                <img src="assets/icons/hud/character/ascend-icon.png" alt="" class="ascend-icon">
+                                            </div>
+                                            <div id="character-level-text">
+                                                <span id="character-level">Lv.1</span><span class="dark">/90</span>
+                                            </div>
+                                            <div id="character-level-bar-container">
+                                                <div id="character-level-bar"></div>
+                                            </div>
+                                        </div>
+                                        <!-- stats -->
+                                        <div id="character-info-stats">
+                                            <div class="character-stat-element">
+                                                <img class="character-stat-icon" src="assets/icons/hud/character/lord-icon.png"></img>
+                                                <div class="character-stat-type">Attack Damage</div>
+                                                <div class="character-stat-value">100</div>
+                                            </div>
+                                        </div>
+                                        <div id="character-info-level-btn"><span id="character-info-level-btn-text">Level Up</span></div>
                                     </div>
-                                    <!-- experience -->
-                                    <div id="character-info-experience">
-                                        <div id="character-ascend-container">
-                                            <img src="assets/icons/hud/character/ascend-activated-icon.png" alt="" class="ascend-icon">
-                                            <img src="assets/icons/hud/character/ascend-icon.png" alt="" class="ascend-icon">
-                                            <img src="assets/icons/hud/character/ascend-icon.png" alt="" class="ascend-icon">
-                                            <img src="assets/icons/hud/character/ascend-icon.png" alt="" class="ascend-icon">
-                                            <img src="assets/icons/hud/character/ascend-icon.png" alt="" class="ascend-icon">
-                                            <img src="assets/icons/hud/character/ascend-icon.png" alt="" class="ascend-icon">
-                                        </div>
-                                        <div id="character-level-text">
-                                            <span id="character-level">Lv.1</span><span class="dark">/90</span>
-                                        </div>
-                                        <div id="character-level-bar-container">
-                                            <div id="character-level-bar"></div>
-                                        </div>
-                                    </div>
-                                    <!-- stats -->
-                                    <div id="character-info-stats">
-                                        <div class="character-stat-element">
-                                            <img class="character-stat-icon" src="assets/icons/hud/character/lord-icon.png"></img>
-                                            <div class="character-stat-type">Attack Damage</div>
-                                            <div class="character-stat-value">100</div>
-                                        </div>
-                                    </div>
-                                    <div id="character-info-level-btn"><span id="character-info-level-btn-text">Level Up</span></div>
+                                    <img id="character-info-portrait" src="assets/icons/hud/shop.png" alt=""></img>
                                 </div>
-                                <img id="character-info-portrait" src="assets/icons/hud/shop.png" alt=""></img>
                             </div>
                             <!-- Weapon -->
                             <div id="character-page-weapon"></div>
@@ -301,7 +303,11 @@
                         </div>
                     </div>
                     <!-- End Page Content  -->
-                    <div id="character-page-selection-container"></div>
+                    <div id="character-page-selection-container">
+                        <img src="" alt="" class="character-selection-img">
+                        <img src="" alt="" class="character-selection-img">
+                        <img src="" alt="" class="character-selection-img">
+                    </div>
                 </div>
              </div>
 

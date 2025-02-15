@@ -41,7 +41,7 @@ export default class CharacterManager {
         this.skillTabBtn = document.getElementById("character-tab-skill")
 
         // Character Section Content
-        this.infoDiv = document.getElementById("character-page-info")
+        this.infoDiv = document.getElementById("character-page-info-wrapper")
         this.weaponDiv = document.getElementById("character-page-weapon")
         this.equipmentDiv = document.getElementById("character-page-equipment")
         this.skillDiv = document.getElementById("character-page-skill")
@@ -52,8 +52,7 @@ export default class CharacterManager {
 
         this.infoTabBtn.addEventListener("pointerdown", () => {
             this.renderCharacterDetails(this.selectedCharacter);
-            this.removeAllTabsHighlight();
-            this.infoTabBtn.classList.add("character-tab-selected");
+            
         })
 
         this.weaponTabBtn.addEventListener("pointerdown", () => {
@@ -113,10 +112,10 @@ export default class CharacterManager {
 
     }
 
-    getCharacterObject(name) {
+    getCharacterObject(id) {
         let characterObject;
         this.characterGroup.getChildren().forEach((character) => {
-            if (character.name === name) {
+            if (character.id === id) {
                 characterObject = character;
             }
         })
@@ -129,23 +128,45 @@ export default class CharacterManager {
 
     // Render Character Page ---------------------------------------------------------------------------------------------------------------------------------------------
     renderCharacterPage() {
-        let sortedCharacterGroup = this.getSortedCharacterGroup(this.characterGroup);
+        this.sortedCharacterGroup = this.getSortedCharacterGroup(this.characterGroup);
 
-        this.selectedCharacter = sortedCharacterGroup.getChildren()[1]
+        this.selectedCharacter = this.sortedCharacterGroup.getChildren()[1];
         this.renderCharacterDetails(this.selectedCharacter);
+        this.renderCharacterSelectionContainer(this.sortedCharacterGroup);
+    }
+
+    renderCharacterSelectionContainer(characterGroup) {
+        this.characterSelectionContainer = document.getElementById("character-page-selection-container");
+        this.characterSelectionContainer.innerHTML = ``;
+        
+        characterGroup.getChildren().forEach((character) => {
+
+            let characterSelectionImg = document.createElement("img");
+            characterSelectionImg.classList.add("character-selection-img");
+            characterSelectionImg.src = this.scene.sys.game.textures.getBase64(character.name, `${character.name}_idle_down`);
+            characterSelectionImg.addEventListener("pointerdown", () => {
+                this.selectedCharacter = this.getCharacterObject(character.id);
+                this.renderCharacterDetails(this.selectedCharacter);
+            })
+
+            this.characterSelectionContainer.appendChild(characterSelectionImg);
+        })
     }
 
 
-
     renderCharacterDetails(character) {
+        this.removeAllTabsHighlight();
+        this.infoTabBtn.classList.add("character-tab-selected");
+
         this.hideAllSections();
         this.infoDiv.style.display = "block";
+        
 
         let characterName = document.getElementById("character-name");
         let characterinfoStats = document.getElementById("character-info-stats");
 
         // Header
-        characterName.innerHTML = character.name;
+        characterName.innerHTML = character.id;
 
         // 
 
