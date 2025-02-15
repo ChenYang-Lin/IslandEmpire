@@ -60,24 +60,16 @@ export default class Crafting {
     }
 
     renderCraftingWindow() {
-        console.log("renderCraftingWindow")
-        this.renderCraftingList();
-    }
-
-    renderCraftingList() {
-        console.log("renderCraftingList")
         let craftingList = document.getElementById("crafting-list");
         craftingList.innerHTML = ``;
 
         let craftableIngredients = CRAFTABLE_INGREDIENTS_TABLE;
-        console.log(craftableIngredients);
-        let alreadyRenderDetail = false;
+        let firstOnList = true;
 
         Object.entries(craftableIngredients).forEach(([name, data]) => {
-            console.log(name)
-            if (!alreadyRenderDetail) {
+            if (firstOnList) {
                 this.renderCraftingDetail(name)
-                alreadyRenderDetail = true;
+                firstOnList = false;
             }
             let element = document.createElement("div");
             element.classList.add("craftable-element");
@@ -94,6 +86,7 @@ export default class Crafting {
             craftingList.appendChild(element);
         })
     }
+
 
     renderCraftingDetail(craftableID) {
         console.log("renderCraftingDetail")

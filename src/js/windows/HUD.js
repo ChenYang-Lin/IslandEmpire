@@ -59,7 +59,7 @@ export default class HUD {
         })
         
         this.characterUI.addEventListener("pointerdown", () => {
-            
+            this.scene.characterManager.openWindow();
         })
 
         this.partyUI.addEventListener("pointerdown", () => {

@@ -14,6 +14,7 @@
 
     <!-- css -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/characterPage.css">
     <link rel="stylesheet" href="css/hud.css">
     <link rel="stylesheet" href="css/entityGeneralInfo.css">
     <link rel="stylesheet" href="css/invenotry.css">
@@ -226,6 +227,83 @@
                     <div class="collectable-name">Wood</div>
                 </button> -->
             </div>
+
+
+            
+            <!-- Character Page ------------------------------------------------------------------------------------------------------------------------------------------------------------>
+             <div id="character-page-container">
+                <!-- Header -->
+                <div id="character-page-header">
+                    <img id="character-page-curr-tab-icon" src="assets/icons/hud/character/info-icon.png"></img>
+                    <div id="character-page-curr-tab-text">Character Details</div>
+                    <img src="assets/icons/panel/exit-btn.png" id="character-exit-btn" class="panel-exit-btn"></img>
+                </div>
+                <div id="character-page-body">
+                    <!-- Page Content -->
+                    <div id="character-page-content">
+                        <!-- Tabs -->
+                        <div id="character-page-tabs">
+                            <img id="character-tab-info" class="character-tab-img character-tab-selected" src="assets/icons/hud/character/info-icon.png" alt="" >
+                            <img id="character-tab-weapon" class="character-tab-img" src="assets/icons/hud/character/weapon-icon.png" alt="" >
+                            <img id="character-tab-equipment" class="character-tab-img" src="assets/icons/hud/character/equipment-icon.png" alt="" >
+                            <img id="character-tab-skill" class="character-tab-img" src="assets/icons/hud/character/skill-icon.png" alt="" >
+                        </div>
+                        <div id="character-page-section-content">
+                            <!-- Info -->
+                            <div id="character-page-info">
+                                <div id="character-info-panel">
+                                    <!-- header -->
+                                    <div id="character-info-header">
+                                        <img src="assets/icons/hud/character/lord-icon.png" alt="" id="character-type-icon">
+                                        <div id="character-info-main">
+                                            <div id="character-name">Survivor</div>
+                                            <div id="character-profession">
+                                                <img src="assets/icons/hud/character/lord-icon.png" alt="" id="character-profession-icon">
+                                                <div id="character-profession-text">Lord</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- experience -->
+                                    <div id="character-info-experience">
+                                        <div id="character-ascend-container">
+                                            <img src="assets/icons/hud/character/ascend-activated-icon.png" alt="" class="ascend-icon">
+                                            <img src="assets/icons/hud/character/ascend-icon.png" alt="" class="ascend-icon">
+                                            <img src="assets/icons/hud/character/ascend-icon.png" alt="" class="ascend-icon">
+                                            <img src="assets/icons/hud/character/ascend-icon.png" alt="" class="ascend-icon">
+                                            <img src="assets/icons/hud/character/ascend-icon.png" alt="" class="ascend-icon">
+                                            <img src="assets/icons/hud/character/ascend-icon.png" alt="" class="ascend-icon">
+                                        </div>
+                                        <div id="character-level-text">
+                                            <span id="character-level">Lv.1</span><span class="dark">/90</span>
+                                        </div>
+                                        <div id="character-level-bar-container">
+                                            <div id="character-level-bar"></div>
+                                        </div>
+                                    </div>
+                                    <!-- stats -->
+                                    <div id="character-info-stats">
+                                        <div class="character-stat-element">
+                                            <img class="character-stat-icon" src="assets/icons/hud/character/lord-icon.png"></img>
+                                            <div class="character-stat-type">Attack Damage</div>
+                                            <div class="character-stat-value">100</div>
+                                        </div>
+                                    </div>
+                                    <div id="character-info-level-btn"><span id="character-info-level-btn-text">Level Up</span></div>
+                                </div>
+                                <img id="character-info-portrait" src="assets/icons/hud/shop.png" alt=""></img>
+                            </div>
+                            <!-- Weapon -->
+                            <div id="character-page-weapon"></div>
+                            <!-- Equitments -->
+                            <div id="character-page-equipment"></div>
+                            <!-- Skill -->
+                            <div id="character-page-skill"></div>
+                        </div>
+                    </div>
+                    <!-- End Page Content  -->
+                    <div id="character-page-selection-container"></div>
+                </div>
+             </div>
 
             
             <!-- Crafting ------------------------------------------------------------------------------------------------------------------------------------------------------------>
