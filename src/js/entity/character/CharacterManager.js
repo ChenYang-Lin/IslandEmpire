@@ -46,6 +46,9 @@ export default class CharacterManager {
         this.equipmentDiv = document.getElementById("character-page-equipment")
         this.skillDiv = document.getElementById("character-page-skill")
 
+        // Other
+        this.levelUpBtn = document.getElementById("character-info-level-btn");
+
         this.characterPageExitBtn.addEventListener("pointerdown", () => {
             this.closeWindow();
         })
@@ -59,19 +62,24 @@ export default class CharacterManager {
             this.renderCharacterWeapon(this.selectedCharacter);
             this.removeAllTabsHighlight();
             this.weaponTabBtn.classList.add("character-tab-selected");
-        })
+        });
 
         this.equipmentTabBtn.addEventListener("pointerdown", () => {
             this.renderCharacterEquipment(this.selectedCharacter);
             this.removeAllTabsHighlight();
             this.equipmentTabBtn.classList.add("character-tab-selected");
-        })
+        });
 
         this.skillTabBtn.addEventListener("pointerdown", () => {
             this.renderCharacterSkill(this.selectedCharacter);
             this.removeAllTabsHighlight();
             this.skillTabBtn.classList.add("character-tab-selected");
-        })
+        });
+
+        // Level up btn
+        this.levelUpBtn.addEventListener("pointerdown", () => {
+            // if ready ascend
+        });
     }
 
     spawnCharacter(characterData) {
@@ -165,16 +173,42 @@ export default class CharacterManager {
         this.hideAllSections();
         this.infoDiv.style.display = "block";
         
-
-        let characterName = document.getElementById("character-name");
         let characterinfoStats = document.getElementById("character-info-stats");
 
-        // Header
-        characterName.innerHTML = character.id;
+        // Header ------------------------------------------------------
+        let typeIcon = document.getElementById("character-type-icon");
+        let name = document.getElementById("character-name");
+        let professionIcon = document.getElementById("character-profession-icon");
+        let professionText = document.getElementById("character-profession-text");
 
-        // 
+        name.innerHTML = character.id;
 
-        // Stats
+        // Experience ------------------------------------------------------
+        let ascentContainer = document.getElementById("character-ascend-container")
+        let characterLevel =  document.getElementById("character-level")
+        let levelBar = document.getElementById("character-level-bar");
+        
+        // console.log(character.stats.getLevel(), character.stats.getCurrLevelExpProgress(), character.stats.getNextLevelExpRequirement())
+        character.stats.testEveryLevelExpExpRequirement();
+
+        ascentContainer.innerHTML = ``;
+        let ascend = character.stats.ascend;
+        for (let i = 0; i < 6; i++) {
+            let ascendImg = document.createElement("img");
+            ascendImg.classList.add("ascend-icon");
+            ascendImg.src = "./assets/icons/hud/character/ascend-icon.png"
+            if (ascend > 0)
+                ascendImg.src = "./assets/icons/hud/character/ascend-activated-icon.png"
+            ascend--;
+
+            ascentContainer.appendChild(ascendImg);
+        }
+
+        characterLevel.innerHTML = `Lv. ${character.stats.getLevel()}`;
+        let progress = character.stats.getCurrLevelExpProgress() / character.stats.getNextLevelExpRequirement() * 100
+        levelBar.style.width = `${progress}%`
+
+        // Stats ------------------------------------------------------
         characterinfoStats.innerHTML = ``;
         this.characterStatBg = true;
         if (character.stats.maxHP) {
@@ -193,6 +227,18 @@ export default class CharacterManager {
         //     let statElement = this.renderStatElement("./assets/icons/hud/character/ascend-icon.png", "Attack Damage", character.stats.atkDmg);
         //     characterinfoStats.appendChild(statElement);
         // }
+
+        // Level up Btn ------------------------------------------------------
+        let levelUpBtnText = document.getElementById("character-info-level-btn-text");
+
+        // if level exceed limit change text Ascend
+        if (character.stats.getCurrLevelExpProgress() >= character.stats.getNextLevelExpRequirement()) {
+            levelUpBtnText.innerHTML = `Ascend`
+        }
+
+        // Portrait ----------------------------------------------------------------------
+        let portrait = document.getElementById("character-info-portrait");
+        portrait.src = this.scene.sys.game.textures.getBase64(character.name, `${character.name}_idle_down`);
     }
 
     renderStatElement(icon, type, value) {

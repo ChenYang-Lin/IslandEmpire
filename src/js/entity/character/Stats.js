@@ -6,6 +6,8 @@ export default class Stats {
         this.scene = scene;
         this.entity = entity;
 
+        this.levelConstant = 0.04;
+
         this.lastWorkingTime = Date.now();
 
         if (this.entity.savedData && this.entity.savedData.savedStats) {
@@ -29,12 +31,23 @@ export default class Stats {
                         this.maxThirst = savedStats.maxThirst;
                         this.thirst = savedStats.thirst;
                         break;
+                    // Exp
+                    case "exp":
+                        this.exp = savedStats.exp;
+                        break;
+                    case "ascend":
+                        this.ascend = savedStats.ascend;
+                        break;
                     default:
                 }
             })
         } else {
             this.initStats();
         }
+
+        // this.ascend = 4;
+        // this.exp = 2920060;
+                   
 
     }
 
@@ -44,6 +57,10 @@ export default class Stats {
             return;
 
         let savedData = {};
+        savedData["exp"] = 0;
+        this.exp = 0;
+        savedData["ascend"] = 0;
+        this.ascend = 0;
         Object.entries(statsTable).forEach(([key, value]) => {
             switch (key) {
                 case "atkDmg":
@@ -181,6 +198,64 @@ export default class Stats {
         return degree;
     }
 
+    getLevel() { 
+        // level = constant * sqrt(exp);
+        // exp = (level / constant)^2
+
+        let level = Math.floor(this.levelConstant * Math.sqrt(this.exp));
+
+        if (this.exp === this.getExp(level + 1)) {
+            level++;
+        }
+
+        if (this.ascend === 0 && level >= 19) {
+            level = 19
+        } else if (this.ascend === 1 && level >= 39) {
+            level = 39
+        } else if (this.ascend === 2 && level >= 49) {
+            level = 49
+        } else if (this.ascend === 3 && level >= 59) {
+            level = 59
+        } else if (this.ascend === 4 && level >= 69) {
+            level = 69
+        } else if (this.ascend === 5 && level >= 79) {
+            level = 79
+        } else if (this.ascend === 6 && level >= 89) {
+            level = 89
+        } 
+
+        return level + 1;
+    }
+
+    getExp(level) {
+        return Math.floor(Math.pow(level / this.levelConstant, 2));
+    }
+
+    getCurrLevelExpProgress() { 
+        let currLevel = this.getLevel() - 1; // level start at 1;
+        let allCurrLevelExpRequirement = this.getExp(currLevel);
+        return this.exp - allCurrLevelExpRequirement;
+    }
+
+    getNextLevelExpRequirement() { 
+        let currLevel = this.getLevel() - 1; // level start at 1;
+        let allCurrLevelExpRequirement = this.getExp(currLevel);
+        let allNextLevelExpRequirement = this.getExp(currLevel+1);
+   
+        return allNextLevelExpRequirement - allCurrLevelExpRequirement;
+    }
+
+    testEveryLevelExpExpRequirement() {
+        let prev = 0;
+        for (let i = 1; i < 60; i++) {
+            let all = this.getExp(i - 1)
+            let curr = all - prev;
+            prev = all;
+            console.log("level " +i + ": " + curr, all)
+        }
+    }
+
+    
 
 
     update() {
