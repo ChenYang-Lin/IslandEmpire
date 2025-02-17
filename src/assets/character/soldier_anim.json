@@ -1,6 +1,102 @@
 {
     "anims": [
         {
+            "key": "soldier_end_fishing_down",
+            "type": "frames",
+            "repeat": 0,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "soldier",
+                    "frame": "soldier_end_fishing_down_0"
+                },
+                {
+                    "key": "soldier",
+                    "frame": "soldier_end_fishing_down_1"
+                },
+                {
+                    "key": "soldier",
+                    "frame": "soldier_end_fishing_down_2"
+                },
+                {
+                    "key": "soldier",
+                    "frame": "soldier_end_fishing_down_3"
+                }
+            ]
+        },
+        {
+            "key": "soldier_end_fishing_up",
+            "type": "frames",
+            "repeat": 0,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "soldier",
+                    "frame": "soldier_end_fishing_up_0"
+                },
+                {
+                    "key": "soldier",
+                    "frame": "soldier_end_fishing_up_1"
+                },
+                {
+                    "key": "soldier",
+                    "frame": "soldier_end_fishing_up_2"
+                },
+                {
+                    "key": "soldier",
+                    "frame": "soldier_end_fishing_up_3"
+                }
+            ]
+        },
+        {
+            "key": "soldier_end_fishing_left",
+            "type": "frames",
+            "repeat": 0,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "soldier",
+                    "frame": "soldier_end_fishing_left_0"
+                },
+                {
+                    "key": "soldier",
+                    "frame": "soldier_end_fishing_left_1"
+                },
+                {
+                    "key": "soldier",
+                    "frame": "soldier_end_fishing_left_2"
+                },
+                {
+                    "key": "soldier",
+                    "frame": "soldier_end_fishing_left_3"
+                }
+            ]
+        },
+        {
+            "key": "soldier_end_fishing_right",
+            "type": "frames",
+            "repeat": 0,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "soldier",
+                    "frame": "soldier_end_fishing_right_0"
+                },
+                {
+                    "key": "soldier",
+                    "frame": "soldier_end_fishing_right_1"
+                },
+                {
+                    "key": "soldier",
+                    "frame": "soldier_end_fishing_right_2"
+                },
+                {
+                    "key": "soldier",
+                    "frame": "soldier_end_fishing_right_3"
+                }
+            ]
+        },
+        {
             "key": "soldier_start_fishing_right",
             "type": "frames",
             "repeat": 0,

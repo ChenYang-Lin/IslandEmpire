@@ -57,11 +57,11 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         scene.load.atlas("survivor", "assets/character/survivor.png", "assets/character/survivor_atlas.json")
         scene.load.animation("survivor_anim", "assets/character/survivor_anim.json");
 
-        scene.load.atlas("civilian", "assets/civilian.png", "assets/civilian_atlas.json");
-        scene.load.animation("civilian_anim", "assets/civilian_anim.json");
+        scene.load.atlas("civilian", "assets/character/civilian.png", "assets/character/civilian_atlas.json");
+        scene.load.animation("civilian_anim", "assets/character/civilian_anim.json");
 
-        scene.load.atlas("soldier", "assets/soldier.png", "assets/soldier_atlas.json");
-        scene.load.animation("soldier_anim", "assets/soldier_anim.json");
+        scene.load.atlas("soldier", "assets/character/soldier.png", "assets/character/soldier_atlas.json");
+        scene.load.animation("soldier_anim", "assets/character/soldier_anim.json");
 
         scene.load.atlas("goblin", "assets/character/goblin.png", "assets/character/goblin_atlas.json")
         scene.load.animation("goblin_anim", "assets/character/goblin_anim.json");

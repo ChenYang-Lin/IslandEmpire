@@ -42,7 +42,7 @@ export default class AnimationController {
             this.character.fishing.waitingForFish();
         })
 
-        this.character.on(`animationcomplete_player_end_fishing`, () => {
+        this.character.on(`animationcomplete_${this.character.name}_end_fishing`, () => {
             this.character.fishing.casting();
         })
     }

@@ -150,6 +150,7 @@ export default class Reward {
 
         this.scene.inventory.addItem(randomRewardName, 1);
         let rewardImage = this.scene.add.image(x, y, "item", randomRewardName);
+        rewardImage.depth += 8;
         let counter = 0;
         let rewardImageInterval = setInterval(() => {
             if (counter < 1000) {
