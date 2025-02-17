@@ -133,6 +133,7 @@ export default class Fishing {
 
     endFishing() {
         this.isFishing = false;
+        this.isWaitingForFish = false;
         clearTimeout(this.rewardTimeout);
 
         this.fishingLineGraphics.destroy();
@@ -144,6 +145,7 @@ export default class Fishing {
     update(time, delta) {
         if (this.isFishing && this.isWaitingForFish) {
             this.showFishingProgressHUD();
+            
             this.fishingTimeCounter += delta;
         }
     }
