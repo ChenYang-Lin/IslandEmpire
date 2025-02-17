@@ -58,6 +58,10 @@ export default class Soldier extends Ally {
             }
 
         });
+
+
+        let testFishing = false;
+        
     }
 
     updateTargetInAttackRange(time, delta) {
@@ -101,7 +105,11 @@ export default class Soldier extends Ally {
             return;
 
 
-        
+        if (!this.testFishing) {
+            this.animationController.fishing();
+            this.testFishing = true;
+        }
+        return;
         
         
         switch (this.action) {            

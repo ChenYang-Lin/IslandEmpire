@@ -31,6 +31,7 @@ export default class Inventory {
                 "sword": 1,
                 "fishingrod": 1,
                 "hoe": 1,
+                "bottle_water": 2,
             }
             this.saveInventoryToLocalStorage();
         }

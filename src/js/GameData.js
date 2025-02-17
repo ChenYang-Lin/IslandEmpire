@@ -51,6 +51,7 @@ const ENTITY_TABLE = {
     egg:           { name: "egg",           },
 
     // Item - consumable - food
+    bottle_water:{ name: "bottle_water",},
     pumpkin:     { name: "pumpkin",     },
     corn:        { name: "corn",        },
     apple:       { name: "apple",       },
@@ -131,6 +132,7 @@ const ENTITY_SPRITE_TABLE  = {
     egg:           { texture: "item", frame: "egg",           },
 
     // Item - consumable - food
+    bottle_water:     { texture: "item", frame: "bottle_water",     },
     pumpkin:          { texture: "item", frame: "pumpkin",          },
     corn:             { texture: "item", frame: "corn",             },
     apple:            { texture: "item", frame: "apple",            },
@@ -262,6 +264,7 @@ const ENTITY_DATA = {
 
     
     // Item - consumable - food
+    bottle_water:{ quality: 1, type: "food", category: "consumable", name: "bottle_water",texture: "item", frame: "bottle_water" },
     pumpkin:     { quality: 1, type: "food", category: "consumable", name: "pumpkin",     texture: "item", frame: "pumpkin" },
     corn:        { quality: 1, type: "food", category: "consumable", name: "corn",        texture: "item", frame: "corn" },
     apple:       { quality: 1, type: "food", category: "consumable", name: "apple",       texture: "item", frame: "apple" },
@@ -314,9 +317,19 @@ const INTERACTION_HITBOX_DATA = {
 
 
 const ITEM_ON_USE_DATA = {
-    banana: { hunger: 20 },
-    bread: { hunger: 20 },
-    burger: { hp: 20 },
+    bottle_water:    { hp:   0, hunger:   0, thirst:  20, },
+    bread:           { hp:   0, hunger:  20, thirst:   0, },
+    pumpkin:         { hp:   0, hunger:   0, thirst:   0, },
+    corn:            { hp:   0, hunger:   0, thirst:   0, },
+    apple:           { hp:   0, hunger:   0, thirst:   0, },
+    bagel:           { hp:   0, hunger:   0, thirst:   0, },
+    banana:          { hp:   0, hunger:   0, thirst:   0, },
+    burger:          { hp:   0, hunger:   0, thirst:   0, },
+    burrito:         { hp:   0, hunger:   0, thirst:   0, },
+    canned_food:     { hp:   0, hunger:   0, thirst:   0, },
+    croissant:       { hp:   0, hunger:   0, thirst:   0, },
+    doughnut:        { hp:   0, hunger:   0, thirst:   0, },
+    drumstick_cooked:{ hp:   0, hunger:   0, thirst:   0, },
 }
 
 const CROP_GROW_DATA = {
@@ -338,6 +351,31 @@ const SHOP_DATA = [
     { name: "stone", price: 10, limit: -1, },
     { name: "wood", price: 10, limit: -1, },
 ]
+
+const REWARD_CHANCE_DATA = {
+    fishing_wl_1: {
+        five: {
+            chance: 0,
+            list: [],
+        },
+        four: {
+            chance: 0,
+            list: [],
+        },
+        three: {
+            chance: 0.03,
+            list: ["potato_seed",],
+        },
+        two: {
+            chance: 0.15,
+            list: ["bottle_water", "bread",],
+        },
+        one: {
+            chance: 1,
+            list: ["stone", "wood", "fiber"],
+        },
+    }
+}
 
 const QUEST_DATA = {
     "beginner-quest-one": {
@@ -510,6 +548,7 @@ export {
     SHOP_DATA,
     QUEST_DATA,
     MAP_DATA,
+    REWARD_CHANCE_DATA,
     TRANSPARENT_HITBOX_DATA,
     INTERACTION_HITBOX_DATA,
 }

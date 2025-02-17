@@ -114,8 +114,7 @@ export default class MainScene extends Phaser.Scene {
 
 
         
-        // this.input.topOnly = true; 
-        
+        // this.input.topOnly = true;
     }
 
 

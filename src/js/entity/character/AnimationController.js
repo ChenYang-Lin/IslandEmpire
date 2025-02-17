@@ -16,16 +16,34 @@ export default class AnimationController {
     initAnimationListeners() {
         this.character.on("animationcomplete", (anim, frame) => {
             // console.log("animationcomplete_" + anim.key.split("_")[0] + "_" + anim.key.split("_")[1], this.character.name)
-            this.character.emit("animationcomplete_" + anim.key.split("_")[0] + "_" + anim.key.split("_")[1], anim, frame);
+
+            let emitMessage = "animationcomplete";
+            let animArr = anim.key.split("_");
+            animArr.forEach((word) => {
+                if (word === "left" || word === "right" || word === "up" || word === "down") {
+                    return;
+                }
+                emitMessage = emitMessage + "_" + word;
+            })
+            this.character.emit(emitMessage, anim, frame);
         })
 
         this.character.on(`animationcomplete_${this.character.name}_attack`, () => {
             
+            console.log("end attack")
             this.character.hitbox.destroySwordHitbox();
             this.character.anims.play(`${this.character.name}_idle_${this.character.direction}`, true);
             setTimeout(() => {
                 this.inAction = false;
             }, 300);
+        })
+
+        this.character.on(`animationcomplete_${this.character.name}_start_fishing`, () => {
+            this.character.fishing.waitingForFish();
+        })
+
+        this.character.on(`animationcomplete_player_end_fishing`, () => {
+            this.character.fishing.casting();
         })
     }
     
@@ -59,20 +77,17 @@ export default class AnimationController {
     fishing() {
         if (this.character.destroyed === true) 
             return;
-        if (this.inAction) {
-            if (this.isFishing) {
-                this.inAction = false;
-                this.isFishing = false;
-                this.character.fishing.endFishing();
-            }
+
+        if (this.inAction && this.character.fishing.isFishing) {
+            this.character.fishing.endFishing();
+            this.inAction = false;
             return;
         }
+
         let fishable = this.character.fishing.checkFishable();
 
         if (fishable) {
             this.inAction = true;
-            this.isFishing = true;
-            console.log("character: ", this.character)
             this.character.fishing.startFishing();
         }
     }

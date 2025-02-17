@@ -1,4 +1,4 @@
-import { ENTITY_DATA } from "../GameData.js";
+import { ENTITY_DATA, REWARD_CHANCE_DATA } from "../GameData.js";
 
 
 
@@ -80,6 +80,10 @@ export default class Reward {
         })
     }
 
+    hideRewardScreen() {
+        this.rewardContainer.style.display = "none";
+    }
+
     randomReward(num, givenProbability) {
         let itemList = [];
 
@@ -126,7 +130,38 @@ export default class Reward {
         this.showRewardScreen(itemList);
     }
 
-    hideRewardScreen() {
-        this.rewardContainer.style.display = "none";
+    getOneRandomReward(num, type, displayScreen, x, y) {
+        let data = REWARD_CHANCE_DATA[type];
+
+        let chance = Math.random();
+        let list;
+
+        for (let [key, value] of Object.entries(data)) {
+            if (chance <= value.chance) {
+                list = value.list;
+                break;
+            }
+        }
+
+        let randomIndex = Math.floor(Math.random() * list.length);
+        let randomRewardName = list[randomIndex];
+        
+        console.log(randomRewardName);
+
+        this.scene.inventory.addItem(randomRewardName, 1);
+        let rewardImage = this.scene.add.image(x, y, "item", randomRewardName);
+        let counter = 0;
+        let rewardImageInterval = setInterval(() => {
+            if (counter < 1000) {
+                counter += 100;
+                rewardImage.y -= 1;
+                rewardImage.alpha -= 0.05;
+            } else {
+                rewardImage.destroy();
+                clearInterval(rewardImageInterval);
+            }
+        }, 100)
     }
+
+
 }

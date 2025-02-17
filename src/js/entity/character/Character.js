@@ -201,8 +201,10 @@ export default class Character extends Entity {
         // return update if entity destroyed.
         if (!this.body) 
             return;
+        
 
         this.stats.update();
+        this.fishing.update(time, delta);
         this.renderHealthBar();
         this.depth = this.position.y;
     }

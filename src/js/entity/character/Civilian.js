@@ -24,6 +24,7 @@ export default class Civilian extends Ally {
                 }
             }, 2000);
         }
+
     }
 
     showGeneralInfoHUD() {

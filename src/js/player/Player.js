@@ -7,6 +7,7 @@ export default class Player {
         this.scene = scene;
 
         this.autoControl = false;
+        this.inBattle = false;
         // this.scene.collisionController.player = this;
 
         
@@ -28,6 +29,9 @@ export default class Player {
         this.nearbyInteractableSensor = this.scene.physics.add.image(this.characterOnControl.position.x - 16, this.characterOnControl.position.y - 16);
         this.nearbyInteractableSensor.body.setCircle(15, 0, 0);
         this.touchingNearbyObjects = [];
+
+         
+        this.exitBattle();
     }
 
     renderStatsDisplay() {
@@ -47,36 +51,30 @@ export default class Player {
     }
 
 
-    useItem(itemName) {
-        
-        console.log("useItem: ", itemName)
-        console.log(ENTITY_DATA[itemName])
-        console.log(ITEM_ON_USE_DATA[itemName] )
 
-        let deltaHunger = ITEM_ON_USE_DATA[itemName]?.hunger ?? 0
-        let deltaThirst = ITEM_ON_USE_DATA[itemName]?.thirst ?? 0
-        let deltaHp = ITEM_ON_USE_DATA[itemName]?.hp ?? 0
-
-        this.stats.hunger += deltaHunger;
-        if (this.stats.hunger >= this.stats.maxHunger) {
-            this.stats.hp = this.stats.maxHunger;
-        }
-
-        this.stats.thirst += deltaThirst;
-        if (this.stats.thirst >= this.stats.maxThirst) {
-            this.stats.thirst = this.stats.maxThirst;
-        }
-        
-        this.stats.hp += deltaHp;
-        if (this.stats.hp >= this.stats.maxHp) {
-            this.stats.hp = this.stats.maxHp;
-        }
-
-        this.renderStatsDisplay();
-    }
 
     destroySelf() {
         this.survivor = null;
+    }
+
+    enterBattle() {
+        this.inBattle = true;
+        this.scene.collisionController.allyGroup.getChildren().forEach((character) => {
+            character.showHealthBar = true;
+        })
+        this.scene.collisionController.enemyGroup.getChildren().forEach((character) => {
+            character.showHealthBar = true;
+        })
+    }
+
+    exitBattle() {
+        this.inBattle = true;
+        this.scene.collisionController.allyGroup.getChildren().forEach((character) => {
+            character.showHealthBar = false;
+        })
+        this.scene.collisionController.enemyGroup.getChildren().forEach((character) => {
+            character.showHealthBar = false;
+        })
     }
 
     update(time, delta) {

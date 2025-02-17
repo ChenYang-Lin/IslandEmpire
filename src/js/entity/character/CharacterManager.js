@@ -26,6 +26,7 @@ export default class CharacterManager {
             Object.entries(this.scene.entityList).forEach(([key, characterData]) => {
                 if (characterData.id === "survivor")
                     this.spawnCharacter(characterData);
+
             });
         }
     }

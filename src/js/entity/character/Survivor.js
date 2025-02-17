@@ -15,7 +15,7 @@ export default class Survivor extends Ally {
     }
 
     update(time, delta) {
-        super.update();
+        super.update(time, delta);
         // return update if entity destroyed.
         if (!this.body) 
             return;

@@ -50,7 +50,7 @@ export default class InputController {
                 console.log(itemName + " out")
                 return;
             }
-            this.scene.player.useItem(itemName);
+            this.scene.player.characterOnControl.useItem(itemName);
             this.player.autoControl = false;
         });
         // Consumable Switcher Btn Listener
@@ -84,6 +84,7 @@ export default class InputController {
         this.key1 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE);
         this.key2 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
         this.key3 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.THREE);
+        this.key8 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.EIGHT);
         this.key9 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NINE);
 
         this.keyW = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
@@ -242,7 +243,6 @@ export default class InputController {
 
     
     playToolUsageAnimation(tool) {
-        console.log(this)
         switch (tool) {
             case "hoe":
                 this.player.characterOnControl.animationController.hoe();
@@ -343,6 +343,19 @@ export default class InputController {
             return;
 
         }
+
+        if (this.key8.isDown) {
+            // make sure only execute one time when button down.
+            if (!this.key8Down) {
+                this.scene.characterManager.obtainedNewCharacter("soldier"); 
+            }
+            this.key8Down = true;
+
+        }
+        if (this.key8.isUp) {
+            this.key8Down = false;
+        }
+
 
         if (this.key9.isDown) {
             // make sure only execute one time when button down.
