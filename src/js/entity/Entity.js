@@ -142,6 +142,21 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
+    get onFacingGrid() {
+        let { x, y, } = this.onGrid;
+
+        if (this.direction === "left")
+            x -= 1;
+        if (this.direction === "right")
+            x += 1;
+        if (this.direction === "up")
+            y -= 1;
+        if (this.direction === "down")
+            y += 1;
+        
+        return {x, y}
+    }
+
     handleSelected() {
         if (this.scene.inputController.selectedEntity && this.scene.inputController.selectedEntity.body) {
             this.scene.inputController.selectedEntity.handleDeselect();

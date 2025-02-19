@@ -105,7 +105,8 @@ export default class Fishing {
         this.fishingBarBG?.destroy();
         this.fishingBar?.destroy();
 
-        this.scene.hud.reward.getOneRandomReward(1, "fishing_wl_1", false, this.character.position.x, this.character.position.y);
+
+        this.scene.hud.reward.fishingReward(this.character.onFacingGrid.x*32, this.character.onFacingGrid.y*32);
         // this.scene.hud.reward.randomReward(this.rewardCount);
 
         this.character.anims.play(`${this.character.name}_end_fishing_${this.character.direction}`);

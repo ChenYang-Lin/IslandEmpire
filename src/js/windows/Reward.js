@@ -130,7 +130,7 @@ export default class Reward {
         this.showRewardScreen(itemList);
     }
 
-    getOneRandomReward(num, type, displayScreen, x, y) {
+    getOneRandomReward(num, type, displayScreen) {
         let data = REWARD_CHANCE_DATA[type];
 
         let chance = Math.random();
@@ -146,9 +146,16 @@ export default class Reward {
         let randomIndex = Math.floor(Math.random() * list.length);
         let randomRewardName = list[randomIndex];
         
-        console.log(randomRewardName);
+        // console.log(randomRewardName);
 
         this.scene.inventory.addItem(randomRewardName, 1);
+        return randomRewardName;
+    }
+
+
+    fishingReward(x, y) {
+        let randomRewardName = this.getOneRandomReward(1, "fishing_wl_1", false)
+
         let rewardImage = this.scene.add.image(x, y, "item", randomRewardName);
         rewardImage.depth += 8;
         let counter = 0;
@@ -163,6 +170,5 @@ export default class Reward {
             }
         }, 100)
     }
-
 
 }
