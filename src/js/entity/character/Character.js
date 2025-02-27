@@ -65,6 +65,9 @@ export default class Character extends Entity {
             if (this.timer >= 1000){
                 let emptyCell = this.findAnEmptyCell(2);
                 this.currPath = this.findPathToCell(emptyCell);
+                // console.log(this.id)
+                if (this.id === "soldier_1")
+                    console.log(this.currPath)
             }
         }
     }

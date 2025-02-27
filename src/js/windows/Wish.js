@@ -103,6 +103,8 @@ export default class Wish {
         let quality = 6;
         let list;
 
+        console.log(chance)
+
 
         for (let [key, value] of Object.entries(data)) {
             quality--;

@@ -105,11 +105,12 @@ export default class Soldier extends Ally {
             return;
 
 
-        if (!this.testFishing) {
-            this.animationController.fishing();
-            this.testFishing = true;
-        }
-        return;
+        // if (!this.testFishing) {
+        //     this.animationController.fishing();
+        //     this.testFishing = true;
+        // }
+        // return;
+        console.log(this.action)
         
         
         switch (this.action) {            

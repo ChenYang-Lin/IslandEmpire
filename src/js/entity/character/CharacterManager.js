@@ -14,7 +14,7 @@ export default class CharacterManager {
         this.party = [];
         this.partySize = 3;
 
-        this.party = ["survivor", "soldier", "civilian"]
+        this.party = ["survivor", "soldier_1", "civilian_1"]
     }
 
     init() {
