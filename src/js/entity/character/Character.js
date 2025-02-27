@@ -166,6 +166,14 @@ export default class Character extends Entity {
         this.healthBar = this.graphics.fillRoundedRect(x+2, y+2, (this.stats.hp/this.stats.maxHp)*(width-4), height-4, 1); // x, y, width, height, radius
         this.healthBar.depth = this.depth + 2;
     }
+
+    showMessage() {
+        let messageGraphics = this.scene.add.graphics();
+        let x = this.position.x;
+        let y = this.position.y;
+        messageGraphics.fillStyle(0x000000, 1);
+        this.messageBox = messageGraphics.fillRect(x, y, 10, 2);
+    }
     
 
     onHit(attacker, damage) {       

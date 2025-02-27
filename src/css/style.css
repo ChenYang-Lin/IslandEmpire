@@ -56,6 +56,9 @@ body {
     pointer-events: none;
 }
 
+.scale-4 {
+    transform: scale(4);
+}
 
 #fps {
     position: absolute;

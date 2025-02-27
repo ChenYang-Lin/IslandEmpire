@@ -1,4 +1,4 @@
-import { ENTITY_DATA, ENTITY_SPRITE_TABLE, ENTITY_TABLE } from "../../GameData.js"
+import { ENTITY_DATA, ENTITY_TABLE } from "../../GameData.js"
 import Ally from "./Ally.js";
 
 
@@ -45,8 +45,8 @@ export default class Civilian extends Ally {
             if (this.storageBag[i]) {
                 let img = document.createElement("img");
                 img.classList.add("entity-storage-bag-element-img");
-                let texutre = ENTITY_SPRITE_TABLE[this.storageBag[i]].texture;
-                let frame = ENTITY_SPRITE_TABLE[this.storageBag[i]].frame;
+                let texutre = ENTITY_TABLE[this.storageBag[i]].texture;
+                let frame = ENTITY_TABLE[this.storageBag[i]].frame;
                 img.src = this.scene.sys.game.textures.getBase64(texutre, frame);
                 
                 element.appendChild(img);

@@ -30,7 +30,7 @@ export default class Player {
         this.nearbyInteractableSensor.body.setCircle(15, 0, 0);
         this.touchingNearbyObjects = [];
 
-         
+         this.characterOnControl.showMessage();
         this.exitBattle();
     }
 

@@ -1,91 +1,6 @@
 
 
-
-
-const ENTITY_TABLE = {
-    // Character
-    survivor: { name: "survivor", type: "character",  },
-    civilian: { name: "civilian", type: "character",  },
-    soldier:  { name: "soldier",  type: "character",  },
-    piglet:   { name: "piglet",   type: "character",  },
-    goblin:   { name: "goblin",   type: "character",  },
-    raft:     { name: "raft",     type: "character",  },
-    shark:    { name: "shark",    type: "character",  },
-
-    // Resource
-    tree:     { name: "tree",  type: "resource"},
-    weeds:    { name: "weeds", type: "resource"},
-    rock:     { name: "rock",  type: "resource"},
-
-    // Craftable
-    water_collector: { name: "water collector", type: "craftable", },
-    bed:             { name: "bed",             type: "craftable", },
-
-    // Structure
-    house:           { name: "house",  type: "structure", },
-    tent:            { name: "tent",   type: "structure", },
-    home_0:          { name: "home 0", type: "structure", },
-    home_1:          { name: "home 1", type: "structure", },
-
-    // Crop
-    potato_grow:      { name: "potato plant",      type: "crop", },
-    eggplant_grow:    { name: "eggplant plant",    type: "crop", },
-    cauliflower_grow: { name: "cauliflower plant", type: "crop", },
-    pumpkin_grow:     { name: "pumpkin plant",     type: "crop", },
-    corn_grow:        { name: "corn plant",        type: "crop", },
-
-    // Item - weapon
-    sword: { name: "sword", type: "item", },
-
-
-    // Item - material - material
-    wood:  { name: "wood",  type: "item", },
-    fiber: { name: "fiber", type: "item", },
-    stone: { name: "stone", type: "item", },
-
-    // Item - material - ingredient
-    potato:        { name: "potato",        },
-    eggplant:      { name: "eggplant",      },
-    cauliflower:   { name: "cauliflower",   },   
-    drumstick_raw: { name: "drumstick raw", }, 
-    egg:           { name: "egg",           },
-
-    // Item - consumable - food
-    bottle_water:{ name: "bottle_water",},
-    pumpkin:     { name: "pumpkin",     },
-    corn:        { name: "corn",        },
-    apple:       { name: "apple",       },
-    bagel:       { name: "bagel",       },
-    banana:      { name: "banana",      },
-    bread:       { name: "bread",       },
-    burger:      { name: "burger",      },
-    burrito:     { name: "burrito",     },
-    canned_food: { name: "canned food", },
-    croissant:   { name: "croissant",   },
-    doughnut:    { name: "doughnut",    },
-    drumstick_cooked: { name: "drumstick cooked", },
-
-    // Item - farming - tool
-    hoe:        { name: "hoe",        },
-    axe:        { name: "axe",        },
-    pickaxe:    { name: "pickaxe",    }, 
-    fishingrod: { name: "fishingrod", }, 
-
-    // Item - farming - seed
-    potato_seed:      { name: "potato seed",      }, 
-    eggplant_seed:    { name: "eggplant seed",    },
-    cauliflower_seed: { name: "cauliflower seed", },
-    pumpkin_seed:     { name: "pumpkinseed",      },
-    corn_seed:        { name: "corn seed",        },
-
-    // Other
-    entrance_rug:     { name: "entrance_rug" },
-    portal_infinite_forest:     { name: "portal_infinite_forest" },
-    portal_island:     { name: "portal_island" },
-    
-}
-
-const ENTITY_SPRITE_TABLE  = {
+const ENTITY_TABLE  = {
     // Character
     survivor: { texture: "survivor", frame: "player_idle_right",  imageWidth: 6, imageHeight: 6, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 2.75, offsetY: 3.5, },
     civilian: { texture: "civilian", frame: "civilian_idle_down", imageWidth: 6, imageHeight: 6, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 2.75, offsetY: 3.5, },
@@ -213,8 +128,8 @@ const ITEM_TABLE = {
 const ENTITY_DATA = {
     player:   { texture: "player",   frame: "player_idle_right",  imageWidth: 6, imageHeight: 6, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 2.75, offsetY: 3.5, hpBarOffsetY: 48, },
     survivor: { texture: "survivor", frame: "survivor_idle_down", imageWidth: 6, imageHeight: 6, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 2.75, offsetY: 3.5, hpBarOffsetY: 48, },
-    civilian: { texture: "civilian", frame: "civilian_idle_down", imageWidth: 6, imageHeight: 6, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 2.75, offsetY: 3.5, hpBarOffsetY: 48, },
-    soldier:  { texture: "soldier",  frame: "soldier_idle_down",  imageWidth: 4, imageHeight: 4, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 1.75, offsetY: 2.5, hpBarOffsetY: 48, },
+    civilian: { quality: 4, texture: "civilian", frame: "civilian_idle_down", imageWidth: 6, imageHeight: 6, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 2.75, offsetY: 3.5, hpBarOffsetY: 48, },
+    soldier:  { quality: 5, texture: "soldier",  frame: "soldier_idle_down",  imageWidth: 4, imageHeight: 4, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 1.75, offsetY: 2.5, hpBarOffsetY: 48, },
     piglet:   { texture: "animal",   frame: "piglet_idle_down",   imageWidth: 1, imageHeight: 1, colliderWidth: 1,   colliderHeight: 1,   offsetX: 0,    offsetY: 0,   hpBarOffsetY: 48, },
     goblin:   { texture: "goblin",   frame: "goblin_idle_down",   imageWidth: 6, imageHeight: 6, colliderWidth: 0.5, colliderHeight: 0.5, offsetX: 2.75, offsetY: 3.5, hpBarOffsetY: 48, },
     raft:     { texture: "raft",     frame: "raft_move_right_0",  imageWidth: 5, imageHeight: 5, colliderWidth: 1,   colliderHeight: 1,   offsetX: 2,    offsetY: 2,                     },  
@@ -264,13 +179,13 @@ const ENTITY_DATA = {
 
     
     // Item - consumable - food
-    bottle_water:{ quality: 1, type: "food", category: "consumable", name: "bottle_water",texture: "item", frame: "bottle_water" },
+    bottle_water:{ quality: 2, type: "food", category: "consumable", name: "bottle_water",texture: "item", frame: "bottle_water" },
     pumpkin:     { quality: 1, type: "food", category: "consumable", name: "pumpkin",     texture: "item", frame: "pumpkin" },
     corn:        { quality: 1, type: "food", category: "consumable", name: "corn",        texture: "item", frame: "corn" },
     apple:       { quality: 1, type: "food", category: "consumable", name: "apple",       texture: "item", frame: "apple" },
     bagel:       { quality: 1, type: "food", category: "consumable", name: "bagel",       texture: "item", frame: "bagel" },  
     banana:      { quality: 1, type: "food", category: "consumable", name: "banana",      texture: "item", frame: "banana" },   
-    bread:       { quality: 1, type: "food", category: "consumable", name: "bread",       texture: "item", frame: "bread" },  
+    bread:       { quality: 2, type: "food", category: "consumable", name: "bread",       texture: "item", frame: "bread" },  
     burger:      { quality: 1, type: "food", category: "consumable", name: "burger",      texture: "item", frame: "burger" },   
     burrito:     { quality: 1, type: "food", category: "consumable", name: "burrito",     texture: "item", frame: "burrito" },    
     canned_food: { quality: 1, type: "food", category: "consumable", name: "canned food", texture: "item", frame: "canned_food" },        
@@ -285,7 +200,7 @@ const ENTITY_DATA = {
     fishingrod: { quality: 5, category: "farming", type: "tool", }, 
 
     // Item - farming - seed
-    "potato_seed":      { quality: 2, category: "farming", type: "seed", imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, crop_grow: "potato_grow", },
+    "potato_seed":      { quality: 3, category: "farming", type: "seed", imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, crop_grow: "potato_grow", },
     "eggplant_seed":    { quality: 2, category: "farming", type: "seed", imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, crop_grow: "eggplant_grow", },    
     "cauliflower_seed": { quality: 2, category: "farming", type: "seed", imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, crop_grow: "cauliflower_grow", },
     "pumpkin_seed":     { quality: 2, category: "farming", type: "seed", imageWidth: 1, imageHeight: 2, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 1, crop_grow: "pumpkin_grow", },
@@ -368,6 +283,28 @@ const REWARD_CHANCE_DATA = {
         },
         two: {
             chance: 0.15,
+            list: ["bottle_water", "bread",],
+        },
+        one: {
+            chance: 1,
+            list: ["stone", "wood", "fiber"],
+        },
+    },
+    banner_standard: {
+        five: {
+            chance: 0.03,
+            list: ["soldier"],
+        },
+        four: {
+            chance: 0.1,
+            list: ["civilian", ],
+        },
+        three: {
+            chance: 1,
+            list: ["potato_seed",],
+        },
+        two: {
+            chance: 1,
             list: ["bottle_water", "bread",],
         },
         one: {
@@ -539,7 +476,7 @@ const MAP_DATA = {
 export {
     ENTITY_DATA,
     ENTITY_TABLE,
-    ENTITY_SPRITE_TABLE,
+    CHARACTER_TABLE,
     CRAFTABLE_INGREDIENTS_TABLE,
     STRUCTURE_INGREDIENTS_TABLE,
     STATS_TABLE,

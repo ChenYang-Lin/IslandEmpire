@@ -1,4 +1,4 @@
-import { ENTITY_DATA } from "../GameData.js";
+import { CHARACTER_TABLE, ENTITY_DATA, ENTITY_TABLE, REWARD_CHANCE_DATA } from "../GameData.js";
 
 
 export default class Wish {
@@ -6,9 +6,14 @@ export default class Wish {
         this.scene = scene;
         this.hud = hud;
 
-        this.quality = "blue";
-        this.itemList = []
+        this.qualityColor = "blue";
+        this.spinQualityValue = 1;
+        this.itemList = [];
+        this.wishHistory = [];
 
+
+        this.standardPityCounterFour = 0;
+        this.standardPityCounterFive = 0;
 
         this.wishContainer = document.getElementById("wish-container");
         this.initWishScreen();
@@ -32,12 +37,19 @@ export default class Wish {
 
         this.wishOneBtn = document.getElementById("wish-one-btn");
         this.wishOneBtn.addEventListener("pointerdown", () => {
-            
-            this.spinnerSpin(1);
+            if (this.scene.inventory.wishStandard >= 1) {
+                this.scene.inventory.wishStandard--;
+                this.spinnerSpin(1);
+                this.updateCurrency();
+            }
         })
         this.wishTenBtn = document.getElementById("wish-ten-btn");
         this.wishTenBtn.addEventListener("pointerdown", () => {
-            this.spinnerSpin(10);
+            if (this.scene.inventory.wishStandard >= 10) {
+                this.scene.inventory.wishStandard -= 10;
+                this.spinnerSpin(10);
+                this.updateCurrency();
+            }
         })
 
         this.updateCurrency();
@@ -52,8 +64,18 @@ export default class Wish {
         this.spinnerPiece = document.querySelectorAll(".spinner-piece")
         this.spinnerPieceIcon = document.querySelectorAll(".spinner-piece-icon");
         this.spinnerPieceIcon.forEach((icon) => {
-            let items = Object.keys(ENTITY_DATA);
-            icon.src = this.scene.sys.game.textures.getBase64("item", items[Math.floor(Math.random() * items.length)]);
+            let items = ["stone", "potato_seed", "bottle_water", "bread", "fiber", "wood", "soldier", ]
+
+            let itemName = items[Math.floor(Math.random() * items.length)]
+
+            let entityData = ENTITY_TABLE[itemName]
+            if (CHARACTER_TABLE[itemName]) {
+                icon.classList.add("scale-4");
+            }
+            let texture = entityData.texture ?? "item";
+            let frame = entityData.frame ?? itemName;
+
+            icon.src = this.scene.sys.game.textures.getBase64(texture, frame);
         })
 
 
@@ -73,25 +95,55 @@ export default class Wish {
     }
 
     wishOne() {
-        // get chance
+        
+        let type = "banner_standard";
+        let data = REWARD_CHANCE_DATA[type];
+
         let chance = Math.random();
-        // if (chance < 0.3) {
-        if (chance < 0.1) {
-            // 10% Purple
-            this.quality = "purple";
-        // } else if (chance < 0.6) {
-        } else if (chance < 0.95) {
-            // 85% Blue
-            this.quality = "blue";
-        } else {
-            // 5% Gold
-            this.quality = "gold";
+        let quality = 6;
+        let list;
+
+
+        for (let [key, value] of Object.entries(data)) {
+            quality--;
+            if (chance <= value.chance) {
+                list = value.list;
+                break;
+            }
+        }
+        this.standardPityCounterFour++;
+        this.standardPityCounterFive++;
+
+        if (quality <= 5 && this.standardPityCounterFive >= 80) {
+            quality = 5;
+        } else if (quality <= 4 && this.standardPityCounterFour >= 10) {
+            quality = 4;
+        } 
+
+        if (quality === 4) {
+            list = data.four.list;
+            this.standardPityCounterFour = 0;
+        }
+        if (quality === 5) {
+            list = data.five.list;
+            this.standardPityCounterFive = 0;
         }
 
-        let items = Object.keys(ENTITY_DATA);
-        let itemName = items[Math.floor(Math.random() * items.length)]
-        console.log(itemName)
-        this.itemList.push({ name: itemName, quantity: 1 });
+        if (quality > this.spinQualityValue) {
+            this.spinQualityValue = quality;
+        }
+
+        this.wishHistory.push(quality);
+
+
+        let randomIndex = Math.floor(Math.random() * list.length);
+        let randomRewardName = list[randomIndex];
+        
+        // console.log(randomRewardName);
+
+        this.scene.inventory.addItem(randomRewardName, 1);
+        
+        return randomRewardName;
     }
 
     spinnerSpin(wishQuantity) {
@@ -100,18 +152,22 @@ export default class Wish {
             return;
 
         this.itemList = [];
+        this.spinQualityValue = 1;
         for (let i = 0; i < wishQuantity; i++) {
-            this.wishOne();
+            let rewardName = this.wishOne();
+            this.itemList.push(rewardName);
         }
 
 
+        console.log(this.wishHistory)
         
         this.spinnerAcceleration = 0;
-        this.color = "#00c1ff";
+        this.color = "#00c1ff"; // blue spinner border 
         this.spinnerDegree = 0;
         this.qualitySet = false;
         this.alpha = 0;
 
+        // Spinner spin
         this.spinnerLooper = setInterval(() => {
             this.isSpinning = true;
             spinner.style.transform = `rotate(${this.spinnerDegree}deg) scale(${this.spinnerScale})`
@@ -129,33 +185,60 @@ export default class Wish {
                 spinner.style.borderColor = `${this.color}${this.alpha.toString(16)}`
             }
         }, 20);
+        
+        // Spinner quality color change
         setTimeout(() => {
             this.alpha = 255;
             this.qualitySet = true;
             this.spinnerAcceleration = 15;
+            
+            switch (this.spinQualityValue) {
+                case 5: 
+                    this.qualityColor = "gold";
+                    break;
+                case 4: 
+                    this.qualityColor = "purple";
+                    break;
+                case 3: 
+                    this.qualityColor = "blue";
+                    break;
+                case 2: 
+                    this.qualityColor = "green";
+                    break;
+                case 1: 
+                    this.qualityColor = "gray";
+                    break;
+                default:
+                    this.qualityColor = "transparent";
+            }
 
-            spinner.style.borderColor = this.quality;
+            spinner.style.borderColor = this.qualityColor;
             this.spinnerPiece.forEach((element) => {
-                element.classList.add(`spinner-piece-${this.quality}`)
+                element.classList.add(`spinner-piece-${this.qualityColor}`)
             });
             
-            this.spinnerBody.classList.add(`spinner-piece-${this.quality}`);
+            this.spinnerBody.classList.add(`spinner-piece-${this.qualityColor}`);
         }, 3000)
+        
+        // Show reward screen; and reset spinner
         setTimeout(() => {
             clearInterval(this.spinnerLooper);
             this.isSpinning = false; 
             this.qualitySet = false;
 
             this.spinnerPiece.forEach((element) => {
+                element.classList.remove("spinner-piece-gray")
+                element.classList.remove("spinner-piece-green")
                 element.classList.remove("spinner-piece-blue")
                 element.classList.remove("spinner-piece-purple")
                 element.classList.remove("spinner-piece-gold")
             });
 
+            this.spinnerBody.classList.remove("spinner-piece-gray")
+            this.spinnerBody.classList.remove("spinner-piece-green")
             this.spinnerBody.classList.remove("spinner-piece-blue")
             this.spinnerBody.classList.remove("spinner-piece-purple")
             this.spinnerBody.classList.remove("spinner-piece-gold")
-
 
             this.hud.reward.showRewardScreen(this.itemList);
             this.hideSpinnerContainer();

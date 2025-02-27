@@ -1,4 +1,4 @@
-import { ENTITY_DATA, ENTITY_SPRITE_TABLE, INTERACTION_HITBOX_DATA, TRANSPARENT_HITBOX_DATA } from "../GameData.js";
+import { ENTITY_DATA, ENTITY_TABLE, INTERACTION_HITBOX_DATA, TRANSPARENT_HITBOX_DATA } from "../GameData.js";
 import Stats from "./character/Stats.js";
 
 
@@ -17,7 +17,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite {
         this.savedData = savedData;
         
         this.entityData = ENTITY_DATA[this.name];
-        this.entitySpriteData = ENTITY_SPRITE_TABLE[this.name];
+        this.entitySpriteData = ENTITY_TABLE[this.name];
 
         this.initSprite(x, y, texture, frame);
         

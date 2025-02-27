@@ -297,16 +297,28 @@
     transform: rotate(315deg);
 }
 
+.spinner-piece-gray {
+    background-color: rgba(214, 214, 214, 0.637);
+
+}
+.spinner-piece-green {
+    background-color: rgba(78, 255, 25, 0.637);
+}
+
 .spinner-piece-blue {
-    background-color: blue;
+    background-color: rgba(12, 146, 255, 0.637);
 }
 
 .spinner-piece-purple {
-    background-color: purple;
+    background-color: rgba(182, 0, 182, 0.664);
 }
 
 .spinner-piece-gold {
-    background-color: gold;
+    background-color: #ffdf27b7;
+}
+
+.spinner-piece-transparent {
+    background-color: #ffd90000;
 }
 
 #arrow {

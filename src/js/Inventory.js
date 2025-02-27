@@ -7,7 +7,7 @@ export default class Inventory {
         this.coin = 1000;
         this.wishFragment = 1000;
         this.wishEvent = 10;
-        this.wishStandard = 15;
+        this.wishStandard = 150;
 
         // inventory window
         this.selectedFarmingItem;

@@ -1,4 +1,4 @@
-import { ENTITY_DATA, REWARD_CHANCE_DATA } from "../GameData.js";
+import { ENTITY_DATA, ENTITY_TABLE, CHARACTER_TABLE, REWARD_CHANCE_DATA } from "../GameData.js";
 
 
 
@@ -36,9 +36,11 @@ export default class Reward {
         this.rewardContainer.style.display = "block";
         this.rewardItemsContainer.innerHTML = "";
 
-        itemList.forEach((item) => {
+        // sort by quality in ascending order
+        itemList.sort((a, b) => ENTITY_DATA[b].quality - ENTITY_DATA[a].quality);
+
+        itemList.forEach((itemName) => {
             
-            this.scene.inventory.addItem(item.name, item.quantity);
 
             let rewardItem = document.createElement("div");
             rewardItem.classList.add("reward-item");
@@ -48,18 +50,26 @@ export default class Reward {
 
             let rewardItemImg = document.createElement("img");
             rewardItemImg.classList.add("reward-item-img");
-            rewardItemImg.src = this.scene.sys.game.textures.getBase64("item", item.name);
+
+
+            let entityData = ENTITY_TABLE[itemName]
+            if (CHARACTER_TABLE[itemName]) {
+                rewardItemImg.classList.add("scale-4");
+            }
+            let texture = entityData.texture ?? "item";
+            let frame = entityData.frame ?? itemName;
+            rewardItemImg.src = this.scene.sys.game.textures.getBase64(texture, frame);
 
             let rewardItemQuantity = document.createElement("div");
             rewardItemQuantity.classList.add("reward-item-quantity");
-            rewardItemQuantity.innerHTML = `x${item.quantity}`
+            rewardItemQuantity.innerHTML = `x${1}`
 
             rewardItem.appendChild(rewardItemImg);
             rewardItem.appendChild(rewardItemQuantity);
             this.rewardItemsContainer.appendChild(rewardItem);
 
             // quality border shadow
-            let quality = ENTITY_DATA[item.name].quality;
+            let quality = ENTITY_DATA[itemName].quality;
             switch (quality) {
                 case 1: 
                     rewardItem.style.boxShadow = "0 0 2px 1px rgb(255, 255, 255)";
@@ -68,7 +78,7 @@ export default class Reward {
                     rewardItem.style.boxShadow = "0 0 2px 1px rgb(30,255,0)";
                     break;
                 case 3: 
-                    rewardItem.style.boxShadow = "0 0 2px 1px rgb(0,112,221)";
+                    rewardItem.style.boxShadow = "0 0 3px 2px rgb(0,112,221)";
                     break;
                 case 4: 
                     rewardItem.style.boxShadow = "0 0 3px 2px rgb(163,53,238)";
@@ -158,6 +168,9 @@ export default class Reward {
 
         let rewardImage = this.scene.add.image(x, y, "item", randomRewardName);
         rewardImage.depth += 8;
+        rewardImage.displayWidth = 24;
+        rewardImage.displayHeight = 24;
+        
         let counter = 0;
         let rewardImageInterval = setInterval(() => {
             if (counter < 1000) {

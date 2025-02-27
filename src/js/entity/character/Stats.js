@@ -259,13 +259,20 @@ export default class Stats {
 
 
     update() {
-        if (Date.now() - this.lastWorkingTime > 1 * 1000) {
+        if (Date.now() - this.lastWorkingTime > 10 * 60 * 1000) {
             if (this.hunger) {
                 if (this.hunger >= 0) {
                     this.hunger--;
-                    this.lastWorkingTime += 5000;
+                    this.lastWorkingTime = Date.now();
                 } else {
                     // console.log("need food!!!!!!!!!!")
+                }
+            } if (this.thirst) {
+                if (this.thirst >= 0) {
+                    this.thirst--;
+                    this.lastWorkingTime = Date.now();
+                } else {
+                    // console.log("need water!!!!!!!!!!")
                 }
             }
         }

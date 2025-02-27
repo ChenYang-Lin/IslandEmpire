@@ -7,7 +7,7 @@ export default class Fishing {
 
         // variables
         this.isFishing = false;
-        this.fishingTimeRequired = 1 * 1000;
+        this.fishingTimeRequired = 30 * 1000;
 
     }
 
