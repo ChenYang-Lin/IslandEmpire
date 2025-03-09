@@ -16,7 +16,7 @@ const ENTITY_TABLE  = {
     rock:  { texture: "resource", frame: "rock",       collidable: true, imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, },
 
     // Craftable
-    water_collector: { texture: "resource",     frame: "water_collector", collidable: true, imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, },
+    water_collector: { texture: "construction", frame: "water_collector", collidable: true, imageWidth: 1, imageHeight: 1, colliderWidth: 1, colliderHeight: 1, offsetX: 0, offsetY: 0, },
     house:           { texture: "construction", frame: "house",           collidable: true, imageWidth: 5, imageHeight: 7, colliderWidth: 5, colliderHeight: 3, offsetX: 0, offsetY: 3, },
     tent:            { texture: "construction", frame: "tent",            collidable: true, imageWidth: 2, imageHeight: 3, colliderWidth: 2, colliderHeight: 2, offsetX: 0, offsetY: 1, },
     home_0:          { texture: "construction", frame: "home_0",          collidable: true, imageWidth: 2, imageHeight: 3, colliderWidth: 2, colliderHeight: 2, offsetX: 0, offsetY: 1, },

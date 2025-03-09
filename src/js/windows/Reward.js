@@ -52,12 +52,13 @@ export default class Reward {
             rewardItemImg.classList.add("reward-item-img");
 
 
-            let entityData = ENTITY_TABLE[itemName]
-            if (CHARACTER_TABLE[itemName]) {
+            let entityData = ENTITY_TABLE[itemName.name]
+            if (CHARACTER_TABLE[itemName.name]) {
                 rewardItemImg.classList.add("scale-4");
             }
+
             let texture = entityData.texture ?? "item";
-            let frame = entityData.frame ?? itemName;
+            let frame = entityData.frame ?? itemName.name;
             rewardItemImg.src = this.scene.sys.game.textures.getBase64(texture, frame);
 
             let rewardItemQuantity = document.createElement("div");
@@ -68,8 +69,10 @@ export default class Reward {
             rewardItem.appendChild(rewardItemQuantity);
             this.rewardItemsContainer.appendChild(rewardItem);
 
+            console.log(itemName.name)
+
             // quality border shadow
-            let quality = ENTITY_DATA[itemName].quality;
+            let quality = ENTITY_DATA[itemName.name].quality;
             switch (quality) {
                 case 1: 
                     rewardItem.style.boxShadow = "0 0 2px 1px rgb(255, 255, 255)";
